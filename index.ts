@@ -6,6 +6,7 @@ import express, {
 
 import "dotenv/config";
 import cors, { type CorsOptions } from "cors";
+import jwt from "jsonwebtoken";
 import apiAuthRouter from "./routes/api-auth"
 import apiMemberRouter from "./routes/api-member"
 
