@@ -9,6 +9,7 @@ import cors, { type CorsOptions } from "cors";
 import jwt from "jsonwebtoken";
 import apiAuthRouter from "./routes/api-auth"
 import apiMemberRouter from "./routes/api-member"
+import ecpayRouter from './routes/ecpay-test-only.js'; // 💡 引入你的綠界路由
 
 
 const app = express();
@@ -66,6 +67,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use("/api/auth", apiAuthRouter);
 app.use("/api/member", apiMemberRouter);
+app.use('/ecpay', ecpayRouter); 
 
 const port = Number(process.env.PORT) || 3002;
 
