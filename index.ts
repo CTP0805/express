@@ -10,9 +10,11 @@ import jwt from "jsonwebtoken";
 import apiAuthRouter from "./routes/api-auth"
 import apiMemberRouter from "./routes/api-member"
 import ecpayRouter from './routes/ecpay-test-only.js'; // 💡 引入你的綠界路由
+import cookieParser from "cookie-parser";
 
 
 const app = express();
+
 
 // 每次有 request，都把他的來源丟到這，然後由我決定要不要放行
 const corsOptions: CorsOptions = {
@@ -33,6 +35,7 @@ app.use(cors(corsOptions));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 
 
