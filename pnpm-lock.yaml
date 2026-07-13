@@ -32,9 +32,6 @@ importers:
       express-session:
         specifier: ^1.19.0
         version: 1.19.0
-      fake-data-generator-taiwan:
-        specifier: ^1.0.4
-        version: 1.0.4
       jsonwebtoken:
         specifier: ^9.0.3
         version: 9.0.3
@@ -47,6 +44,9 @@ importers:
       mysql2:
         specifier: ^3.22.1
         version: 3.22.5(@types/node@25.9.4)
+      nodemailer:
+        specifier: ^7.0.11
+        version: 7.0.13
       postcss:
         specifier: ^8.5.10
         version: 8.5.16
@@ -78,9 +78,15 @@ importers:
       '@types/jsonwebtoken':
         specifier: ^9.0.10
         version: 9.0.10
+      '@types/multer':
+        specifier: ^2.2.0
+        version: 2.2.0
       '@types/node':
         specifier: ^25.8.0
         version: 25.9.4
+      '@types/nodemailer':
+        specifier: ^7.0.5
+        version: 7.0.12
       nodemon:
         specifier: 3.1.14
         version: 3.1.14
@@ -396,8 +402,14 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
+  '@types/multer@2.2.0':
+    resolution: {integrity: sha512-3U1troeqGV8Ntp7Q3klwf4zr23VEoqYVocYXaswm9+8z3O9UHDYAqLxjJ/h550iRADTjKdOdhhasXw6gD6kYtg==}
+
   '@types/node@25.9.4':
     resolution: {integrity: sha512-dszCsrKb5U7ZsVZBWiHFklTloVl0mSEnWH/iZXfZUlI4rzCUnsvGmgqfuVRHL54ugE7/wRuxEIXRa2iMZ+BG6g==}
+
+  '@types/nodemailer@7.0.12':
+    resolution: {integrity: sha512-80vKwiIsVSyFA1rRovH59jNPLBOuc6dRZIHEu40gXTkBkZnQv8vog1xSGEb9j5q/tdMAs5ivvDR2pLTU0hGHXA==}
 
   '@types/qs@6.15.1':
     resolution: {integrity: sha512-GZHUBZR9hckSUhrxmp1nG6NwdpM9fCunJwyThLW1X3AyHgd9IlHb6VANpQQqDr2o/qQp6McZ3y/IA2rVzKzSbw==}
@@ -608,9 +620,6 @@ packages:
   express@5.2.1:
     resolution: {integrity: sha512-hIS4idWWai69NezIdRt2xFVofaF4j+6INOpJlVOLDO8zXGpUVEVzIYk12UUi2JzjEzWL3IOAxcTubgz9Po0yXw==}
     engines: {node: '>= 18'}
-
-  fake-data-generator-taiwan@1.0.4:
-    resolution: {integrity: sha512-IpjLKCbCn1/1zrkL/jpoCETeGeHecBXwO5cfOhDX5CZRaSbO8T3l4QNmehgePYe246HbmEv0mgBZODKHBNxYLA==}
 
   fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
@@ -922,6 +931,10 @@ packages:
   node-gyp-build@4.8.4:
     resolution: {integrity: sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ==}
     hasBin: true
+
+  nodemailer@7.0.13:
+    resolution: {integrity: sha512-PNDFSJdP+KFgdsG3ZzMXCgquO7I6McjY2vlqILjtJd0hy8wEvtugS9xKRF2NWlPNGxvLCXlTNIae4serI7dinw==}
+    engines: {node: '>=6.0.0'}
 
   nodemon@3.1.14:
     resolution: {integrity: sha512-jakjZi93UtB3jHMWsXL68FXSAosbLfY0In5gtKq3niLSkrWznrVBzXFNOEMJUfc9+Ke7SHWoAZsiMkNP3vq6Jw==}
@@ -1364,9 +1377,17 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
+  '@types/multer@2.2.0':
+    dependencies:
+      '@types/express': 5.0.6
+
   '@types/node@25.9.4':
     dependencies:
       undici-types: 7.24.6
+
+  '@types/nodemailer@7.0.12':
+    dependencies:
+      '@types/node': 25.9.4
 
   '@types/qs@6.15.1': {}
 
@@ -1623,8 +1644,6 @@ snapshots:
       vary: 1.1.2
     transitivePeerDependencies:
       - supports-color
-
-  fake-data-generator-taiwan@1.0.4: {}
 
   fill-range@7.1.1:
     dependencies:
@@ -1902,6 +1921,8 @@ snapshots:
   node-addon-api@8.9.0: {}
 
   node-gyp-build@4.8.4: {}
+
+  nodemailer@7.0.13: {}
 
   nodemon@3.1.14:
     dependencies:

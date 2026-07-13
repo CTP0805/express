@@ -1,11 +1,10 @@
-// 檔案: utils/upload-images.js
-
 // 這個檔案是在寫一個上傳檔案的模組
-import multer from "multer";
+import multer, { type FileFilterCallback } from "multer";
+import type { Request } from "express";
 import { v4 } from "uuid"; // uuid 是獨一無二的亂碼
 
 // 1.篩選檔案、 2.決定副檔名
-const extMap = {
+const extMap: Record<string, string> = {
   "image/png": ".png",
   "image/jpeg": ".jpg",
   "image/webp": ".webp",
@@ -14,12 +13,21 @@ const extMap = {
 // 這段程式碼先列出一個清單（extMap），只准 PNG、JPG、WebP 進來。
 // key是我要的，value是決定要存成的副檔名(因為後面要改檔名，新名字是由檔名和副檔名組成的)
 
-function fileFilter(req, file, callback) { // 篩選是否符合這三種檔案類型
-  callback(null, !! extMap[file.mimetype]);
+function fileFilter(
+  req: Request,
+  file: Express.Multer.File,
+  callback: FileFilterCallback,
+): void {
+  // 篩選是否符合這三種檔案類型
+  callback(null, !!extMap[file.mimetype]);
 }
 
 const storage = multer.diskStorage({
-  destination: (req, file, callback) => {  
+  destination: (
+    req: Request,
+    file: Express.Multer.File,
+    callback: (error: Error | null, destination: string) => void,
+  ): void => {
     callback(null, "public/images"); // null 表⽰沒有錯誤
   },
   // 搬運工收到照片後，會直接把它搬到你的專案裡一個叫 public/images 的資料夾
@@ -32,13 +40,16 @@ const storage = multer.diskStorage({
   第二個位置 (!!...)：代表「結果」。
   也就是你最終要告訴 Multer 的答案：這張票（檔案）到底給不給過？
   */
-  filename: (req, file, callback) => {
+  filename: (
+    req: Request,
+    file: Express.Multer.File,
+    callback: (error: Error | null, filename: string) => void,
+  ): void => {
     const f = v4() + extMap[file.mimetype];
     callback(null, f);
   },
   // 改名字，改成 uuid 這種獨一無二的亂碼
   // 新名字 = uuid + 副檔名
-
 });
 
 export default multer({ fileFilter, storage }); // 匿名匯出，匯入時可以改名字
