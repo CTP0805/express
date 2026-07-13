@@ -1,6 +1,8 @@
-import express from 'express'
-const router = express.Router()
+import  { Router } from "express";
+
 import * as crypto from 'crypto'
+
+const router: Router = Router();
 
 /* GET home page. */
 router.get('/', function (req, res) {
