@@ -1,5 +1,7 @@
-import express from 'express'
-const router = express.Router()
+import  { Router } from "express";
+
+
+const router: Router = Router();
 import * as crypto from 'crypto'
 import { createLinePayClient } from 'line-pay-merchant'
 
