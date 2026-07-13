@@ -1,3 +1,4 @@
+
 import express, {
   type Request,
   type Response,
@@ -10,6 +11,7 @@ import jwt from "jsonwebtoken";
 import apiAuthRouter from "./routes/api-auth.js"
 import apiMemberRouter from "./routes/api-member.js"
 import ecpayRouter from './routes/ecpay-test-only.js'; // 💡 引入你的綠界路由
+import linepayRouter from './routes/linepay.js';
 import cookieParser from "cookie-parser";
 
 
@@ -70,9 +72,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use("/api/auth", apiAuthRouter);
 app.use("/api/member", apiMemberRouter);
-app.use('/ecpay', ecpayRouter); 
+app.use('/ecpay', ecpayRouter);
+app.use('/linepay', linepayRouter); 
 
-const port = Number(process.env.PORT) || 3002;
+const port = Number(process.env.PORT) || 3001;
 
 app.listen(port, () => {
   console.log(`Express + TS 啟動 http://localhost:${port}`);

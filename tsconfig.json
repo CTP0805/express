@@ -20,6 +20,7 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
+    "allowJs": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
 
