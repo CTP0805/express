@@ -7,8 +7,8 @@ import express, {
 import "dotenv/config";
 import cors, { type CorsOptions } from "cors";
 import jwt from "jsonwebtoken";
-import apiAuthRouter from "./routes/api-auth"
-import apiMemberRouter from "./routes/api-member"
+import apiAuthRouter from "./routes/api-auth.js"
+import apiMemberRouter from "./routes/api-member.js"
 import ecpayRouter from './routes/ecpay-test-only.js'; // 💡 引入你的綠界路由
 import cookieParser from "cookie-parser";
 
