@@ -6,7 +6,7 @@ import * as crypto from 'crypto'
 router.get('/', function (req, res) {
   // 目前只需要一個參數，總金額。其它的可以自行設定
   const amount = Number(req.query.amount) || 0
-  const items = req.query.items || ''
+  const items = typeof req.query.items === 'string' ? req.query.items : ''
 
   const itemName =
     items.split(',').length > 1
@@ -109,14 +109,18 @@ router.get('/', function (req, res) {
   }
 
   //四、計算 CheckMacValue
-  function CheckMacValueGen(parameters, algorithm, digest) {
+  function CheckMacValueGen(
+    parameters: Record<string, string | number>,
+    algorithm: string,
+    digest: crypto.BinaryToTextEncoding,
+  ): string {
     let Step0
 
     Step0 = Object.entries(parameters)
       .map(([key, value]) => `${key}=${value}`)
       .join('&')
 
-    function DotNETURLEncode(string) {
+    function DotNETURLEncode(value: string): string {
       const list = {
         '%2D': '-',
         '%5F': '_',
@@ -130,16 +134,16 @@ router.get('/', function (req, res) {
 
       Object.entries(list).forEach(([encoded, decoded]) => {
         const regex = new RegExp(encoded, 'g')
-        string = string.replace(regex, decoded)
+        value = value.replace(regex, decoded)
       })
 
-      return string
+      return value
     }
 
     const Step1 = Step0.split('&')
       .sort((a, b) => {
-        const keyA = a.split('=')[0]
-        const keyB = b.split('=')[0]
+        const keyA = a.split('=')[0] ?? ''
+        const keyB = b.split('=')[0] ?? ''
         return keyA.localeCompare(keyB)
       })
       .join('&')
