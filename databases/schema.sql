@@ -621,6 +621,35 @@ ALTER TABLE `sessions`
   ADD CONSTRAINT `fk_sessions_experience` FOREIGN KEY (`experience_id`) REFERENCES `experiences` (`id`);
 COMMIT;
 
+-- hosts資料表加一個欄位
+
+ALTER TABLE hosts
+ADD COLUMN role VARCHAR(50) NULL AFTER name;
+
+
+
+CREATE TABLE category_notes (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  category_id INT NOT NULL,
+  title VARCHAR(50) NOT NULL,
+  content VARCHAR(255) NOT NULL,
+  sort_order INT NOT NULL DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+-- 加上注意事項的資料表
+（每個分類分別有對應的注意事項）
+  CONSTRAINT fk_category_notes_category
+    FOREIGN KEY (category_id)
+    REFERENCES experience_categories(id)
+    ON DELETE CASCADE
+);
+
+
+
+
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
