@@ -52,17 +52,17 @@ INSERT INTO `experience_categories` (`id`, `category_name`, `icon_url`, `sort_or
 
 -- --------------------------------------------------------
 -- Seed data for `hosts`
-INSERT INTO `hosts` (`id`, `name`, `bio`, `avatar`, `rating`) VALUES
-(1, 'Sofia Rossi', '羅馬在地導覽員，熟悉古城巷弄與義式咖啡文化。', '/avatars/host-sofia.jpg', 5),
-(2, 'Lukas Weber', '慕尼黑料理老師，擅長巴伐利亞家常菜與啤酒文化。', '/avatars/host-lukas.jpg', 5),
-(3, 'Claire Dubois', '巴黎藝術史研究者，帶旅人用輕鬆方式看懂博物館。', '/avatars/host-claire.jpg', 5),
-(4, 'Anna Novak', '布拉格戶外嚮導，喜歡分享河岸步道與城市傳說。', '/avatars/host-anna.jpg', 4),
-(5, 'Marco Bianchi', '佛羅倫斯歷史導覽員，專長文藝復興建築與街區故事。', '/avatars/host-marco.jpg', 5),
-(6, 'Elena Garcia', '西班牙品酒師，熟悉里奧哈葡萄酒與小酒館文化。', '/avatars/host-elena.jpg', 5),
-(7, 'Ingrid Hansen', '哥本哈根陶藝職人，開設小班制手作體驗。', '/avatars/host-ingrid.jpg', 4),
-(8, 'Mateo Alvarez', '巴塞隆納吉他手，長期參與佛朗明哥演出。', '/avatars/host-mateo.jpg', 5),
-(9, 'Emma Clarke', '倫敦旅拍攝影師，擅長自然光人像與街景構圖。', '/avatars/host-emma.jpg', 5),
-(10, 'Nora Schneider', '維也納親子活動規劃師，設計適合家庭的文化路線。', '/avatars/host-nora.jpg', 4);
+INSERT INTO `hosts` (`id`, `name`, `role`,`bio`, `avatar`, `rating`) VALUES
+(1, 'Sofia Rossi','歷史導覽員','羅馬在地導覽員，熟悉古城巷弄與義式咖啡文化。', '/images/experiences/avatars/host-sofia.jpg', 5),
+(2, 'Lukas Weber','歷史導覽員', '慕尼黑料理老師，擅長巴伐利亞家常菜與啤酒文化。', '/images/experiences/avatars/host-lukas.jpg', 5),
+(3, 'Claire Dubois','歷史導覽員', '巴黎藝術史研究者，帶旅人用輕鬆方式看懂博物館。', '/images/experiences/avatars/host-claire.jpg', 5),
+(4, 'Anna Novak','歷史導覽員', '布拉格戶外嚮導，喜歡分享河岸步道與城市傳說。', '/images/experiences/avatars/host-anna.jpg', 4),
+(5, 'Marco Bianchi','歷史導覽員', '佛羅倫斯歷史導覽員，專長文藝復興建築與街區故事。', '/images/experiences/avatars/host-marco.jpg', 5),
+(6, 'Elena Garcia','歷史導覽員', '西班牙品酒師，熟悉里奧哈葡萄酒與小酒館文化。', '/images/experiences/avatars/host-elena.jpg', 5),
+(7, 'Ingrid Hansen','歷史導覽員', '哥本哈根陶藝職人，開設小班制手作體驗。', '/images/experiences/avatars/host-ingrid.jpg', 4),
+(8, 'Mateo Alvarez','歷史導覽員', '巴塞隆納吉他手，長期參與佛朗明哥演出。', '/images/experiences/avatars/host-mateo.jpg', 5),
+(9, 'Emma Clarke','歷史導覽員', '倫敦旅拍攝影師，擅長自然光人像與街景構圖。', '/images/experiences/avatars/host-emma.jpg', 5),
+(10, 'Nora Schneider','歷史導覽員', '維也納親子活動規劃師，設計適合家庭的文化路線。', '/images/experiences/avatars/host-nora.jpg', 4);
 
 -- --------------------------------------------------------
 -- Seed data for `experiences`
@@ -109,7 +109,7 @@ INSERT INTO `posts` (`id`, `title`, `slug`, `content`, `excerpt`, `cover_image`,
 -- --------------------------------------------------------
 -- Seed data for `experience_images`
 INSERT INTO `experience_images` (`id`, `experience_id`, `image_url`, `is_primary`, `sort_order`, `created_at`) VALUES
-(1, 1, '/images/experiences/rome-coffee-walk.jpg', 1, 1, '2026-07-13 13:05:00'),
+(1, 1, '/images/experiences/rome-coffee-walk-2.jpg', 1, 1, '2026-07-13 13:05:00'),
 (2, 2, '/images/experiences/munich-cooking-class.jpg', 1, 1, '2026-07-13 13:05:00'),
 (3, 3, '/images/experiences/paris-orsay-tour.jpg', 1, 1, '2026-07-13 13:05:00'),
 (4, 4, '/images/experiences/prague-river-walk.jpg', 1, 1, '2026-07-13 13:05:00'),
@@ -236,9 +236,6 @@ INSERT INTO category_notes (category_id, title, content, sort_order) VALUES
 (6, '飲酒提醒', '請理性飲酒，並自行評估身體狀況。', 3),
 (6, '取消政策', '體驗開始前 48 小時可免費取消，逾期恕不退款。', 4);
 
--- Seed data for `hosts`
-UPDATE hosts
-SET identity = '歷史導覽員'
-WHERE id = 1;
+
 
 COMMIT;
