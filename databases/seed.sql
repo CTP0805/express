@@ -14,17 +14,17 @@ START TRANSACTION;
 
 -- --------------------------------------------------------
 -- Seed data for `member`
-INSERT INTO `member` (`id`, `name`, `email`, `password_hash`, `phone`, `gender`, `birthday`, `avatar_url`, `member_level`, `is_email_verified`, `google_uid`, `current_points`, `total_spent`, `total_orders`, `status_id`, `created_at`, `updated_at`, `token_version`) VALUES
-(1, '王小明', 'ming.wang@example.com', '$2b$10$demoHashForMember0001', '0912000001', NULL, '1995-03-12', '/avatars/member-01.jpg', '銅', NULL, NULL, 120, 16800, 3, 1, '2026-06-01 09:10:00', '2026-07-10 10:00:00', 1),
-(2, '李雅婷', 'yating.lee@example.com', '$2b$10$demoHashForMember0002', '0912000002', NULL, '1992-08-21', '/avatars/member-02.jpg', '銅', NULL, NULL, 80, 9200, 2, 1, '2026-06-02 11:20:00', '2026-07-09 13:30:00', 1),
-(3, '陳柏宇', 'boyu.chen@example.com', '$2b$10$demoHashForMember0003', '0912000003', NULL, '1989-11-05', '/avatars/member-03.jpg', '銅', NULL, NULL, 260, 31500, 5, 1, '2026-06-03 14:00:00', '2026-07-08 18:20:00', 1),
-(4, '林思涵', 'sihan.lin@example.com', '$2b$10$demoHashForMember0004', '0912000004', NULL, '1998-01-18', '/avatars/member-04.jpg', '銅', NULL, NULL, 45, 4500, 1, 1, '2026-06-04 15:30:00', '2026-07-07 08:15:00', 1),
-(5, '張育誠', 'yucheng.chang@example.com', '$2b$10$demoHashForMember0005', '0912000005', NULL, '1990-06-30', '/avatars/member-05.jpg', '銅', NULL, NULL, 310, 40200, 6, 1, '2026-06-05 16:40:00', '2026-07-06 19:45:00', 1),
-(6, '黃品萱', 'pinxuan.huang@example.com', '$2b$10$demoHashForMember0006', '0912000006', NULL, '1996-09-09', '/avatars/member-06.jpg', '銅', NULL, NULL, 150, 18800, 4, 1, '2026-06-06 10:05:00', '2026-07-05 12:10:00', 1),
-(7, '吳承恩', 'chengen.wu@example.com', '$2b$10$demoHashForMember0007', '0912000007', NULL, '1993-12-24', '/avatars/member-07.jpg', '銅', NULL, NULL, 95, 7600, 2, 1, '2026-06-07 13:15:00', '2026-07-04 17:25:00', 1),
-(8, '蔡佳穎', 'jiaying.tsai@example.com', '$2b$10$demoHashForMember0008', '0912000008', NULL, '1999-04-14', '/avatars/member-08.jpg', '銅', NULL, NULL, 30, 2800, 1, 1, '2026-06-08 09:50:00', '2026-07-03 20:00:00', 1),
-(9, '許哲維', 'zhewei.hsu@example.com', '$2b$10$demoHashForMember0009', '0912000009', NULL, '1987-07-07', '/avatars/member-09.jpg', '銅', NULL, NULL, 210, 25600, 4, 1, '2026-06-09 18:35:00', '2026-07-02 09:05:00', 1),
-(10, '鄭若晴', 'ruoqing.cheng@example.com', '$2b$10$demoHashForMember0010', '0912000010', NULL, '1994-10-02', '/avatars/member-10.jpg', '銅', NULL, NULL, 170, 22100, 3, 1, '2026-06-10 12:25:00', '2026-07-01 11:40:00', 1);
+INSERT INTO `member` (`id`, `name`, `email`, `password_hash`, `phone`, `gender`, `birthday`, `avatar_url`, `member_level`, `is_email_verified`, `google_uid`, `current_points`, `total_spent`, `total_orders`, `created_at`, `updated_at`, `token_version`) VALUES
+(1, '王小明', 'ming.wang@example.com', '$2b$10$demoHashForMember0001', '0912000001', NULL, '1995-03-12', '/avatars/member-01.jpg', '銅', NULL, NULL, 120, 16800, 3, '2026-06-01 09:10:00', '2026-07-10 10:00:00', 1),
+(2, '李雅婷', 'yating.lee@example.com', '$2b$10$demoHashForMember0002', '0912000002', NULL, '1992-08-21', '/avatars/member-02.jpg', '銅', NULL, NULL, 80, 9200, 2,  '2026-06-02 11:20:00', '2026-07-09 13:30:00', 1),
+(3, '陳柏宇', 'boyu.chen@example.com', '$2b$10$demoHashForMember0003', '0912000003', NULL, '1989-11-05', '/avatars/member-03.jpg', '銅', NULL, NULL, 260, 31500, 5,  '2026-06-03 14:00:00', '2026-07-08 18:20:00', 1),
+(4, '林思涵', 'sihan.lin@example.com', '$2b$10$demoHashForMember0004', '0912000004', NULL, '1998-01-18', '/avatars/member-04.jpg', '銅', NULL, NULL, 45, 4500, 1,  '2026-06-04 15:30:00', '2026-07-07 08:15:00', 1),
+(5, '張育誠', 'yucheng.chang@example.com', '$2b$10$demoHashForMember0005', '0912000005', NULL, '1990-06-30', '/avatars/member-05.jpg', '銅', NULL, NULL, 310, 40200, 6,  '2026-06-05 16:40:00', '2026-07-06 19:45:00', 1),
+(6, '黃品萱', 'pinxuan.huang@example.com', '$2b$10$demoHashForMember0006', '0912000006', NULL, '1996-09-09', '/avatars/member-06.jpg', '銅', NULL, NULL, 150, 18800, 4,  '2026-06-06 10:05:00', '2026-07-05 12:10:00', 1),
+(7, '吳承恩', 'chengen.wu@example.com', '$2b$10$demoHashForMember0007', '0912000007', NULL, '1993-12-24', '/avatars/member-07.jpg', '銅', NULL, NULL, 95, 7600, 2, '2026-06-07 13:15:00', '2026-07-04 17:25:00', 1),
+(8, '蔡佳穎', 'jiaying.tsai@example.com', '$2b$10$demoHashForMember0008', '0912000008', NULL, '1999-04-14', '/avatars/member-08.jpg', '銅', NULL, NULL, 30, 2800, 1,  '2026-06-08 09:50:00', '2026-07-03 20:00:00', 1),
+(9, '許哲維', 'zhewei.hsu@example.com', '$2b$10$demoHashForMember0009', '0912000009', NULL, '1987-07-07', '/avatars/member-09.jpg', '銅', NULL, NULL, 210, 25600, 4,  '2026-06-09 18:35:00', '2026-07-02 09:05:00', 1),
+(10, '鄭若晴', 'ruoqing.cheng@example.com', '$2b$10$demoHashForMember0010', '0912000010', NULL, '1994-10-02', '/avatars/member-10.jpg', '銅', NULL, NULL, 170, 22100, 3,  '2026-06-10 12:25:00', '2026-07-01 11:40:00', 1);
 
 -- --------------------------------------------------------
 -- Seed data for `coupons`
