@@ -10,10 +10,10 @@ import cors, { type CorsOptions } from "cors";
 import jwt from "jsonwebtoken";
 import apiAuthRouter from "./routes/api-auth.js"
 import apiMemberRouter from "./routes/api-member.js"
-import ecpayRouter from './routes/ecpay-test-only.js'; // 💡 引入你的綠界路由
+import ecpayRouter from './routes/ecpay-test-only.js';
 import linepayRouter from './routes/linepay.js';
+import cartRouter from "./routes/api-cart.js";
 import cookieParser from "cookie-parser";
-
 
 const app = express();
 
@@ -74,6 +74,7 @@ app.use("/api/auth", apiAuthRouter);
 app.use("/api/member", apiMemberRouter);
 app.use('/ecpay', ecpayRouter);
 app.use('/linepay', linepayRouter); 
+app.use('/api/cart', cartRouter); 
 
 const port = Number(process.env.PORT) || 3001;
 
