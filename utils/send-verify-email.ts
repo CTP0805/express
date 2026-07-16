@@ -1,8 +1,9 @@
 import nodemailer from "nodemailer"
 import jwt from "jsonwebtoken";
 import "dotenv/config"
-import { verifyEmailTemplate } from "./email-template.js";
+import { EmailTemplate } from "./email-template.js";
 
+// TS 型別
 type EmailVerifyPayload = {
   id: number;
   email: string;
@@ -11,10 +12,11 @@ type EmailVerifyPayload = {
 
 
 // 產生信箱驗證 token
-function createEmailVerifyToken(member: { id: number; email: string }) {
+// member: { id: number; email: string }
+function createEmailVerifyToken(id: number, email: string ) {
   const payload: EmailVerifyPayload = {
-    id: member.id,
-    email: member.email,
+    id,
+    email,
     purpose: "email_verify", // 說明目的 免得跟登入的 token 搞混
   };
 
@@ -44,11 +46,14 @@ const transporter = nodemailer.createTransport({
 });
 
 // 寄出驗證信
-async function sendVerifyEmail(member: { id: number; name: string; email: string }) {
-  const token = createEmailVerifyToken({
-    id: member.id,
-    email: member.email,
-  });
+// member: { id: number; name: string; email: string }
+async function sendVerifyEmail( id: number, name: string, email: string ) {
+  const token = createEmailVerifyToken(
+    // id: member.id,
+    // email: member.email,
+    id,
+    email,
+  );
 
   const backendOrigin = process.env.BACKEND_ORIGIN || "http://localhost:3002";
 
@@ -58,9 +63,9 @@ async function sendVerifyEmail(member: { id: number; name: string; email: string
   // transporter.sendMail --> 真的把 email 寄出去
   await transporter.sendMail({
     from: process.env.SMTP_USER,
-    to: member.email,
+    to: email,
     subject: "請完成信箱驗證",
-    html: verifyEmailTemplate(member.name,verifyUrl),
+    html: EmailTemplate("verify-email", name, verifyUrl),
   });
 }
 
