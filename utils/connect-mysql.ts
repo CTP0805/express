@@ -30,7 +30,6 @@ pool.on("connection", (connection: PoolConnection) => {
   console.log(`新的資料庫連線建⽴ ID: ${connection.threadId}`);
 });
 
-
 (pool as unknown as PoolErrorEvent).on("error", (err) => {
   console.error("❌ 資料庫連線池錯誤:", err);
   if (err.code === "PROTOCOL_CONNECTION_LOST") {

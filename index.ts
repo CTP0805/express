@@ -44,7 +44,8 @@ app.use("/api/auth", apiAuthRouter);
 app.use("/api/member", apiMemberRouter);
 app.use("/ecpay", ecpayRouter);
 app.use("/linepay", linepayRouter);
-app.use("/api/experiences", experienceRouter);
+app.use("/api/experiences", experienceRouter); 
+app.use('/api/cart', cartRouter); 
 
 const port = Number(process.env.PORT) || 3001;
 
