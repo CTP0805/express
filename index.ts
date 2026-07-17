@@ -10,7 +10,7 @@ import jwt, { type JwtPayload } from "jsonwebtoken";
 import apiAuthRouter from "./routes/api-auth.js";
 import apiMemberRouter from "./routes/api-member.js";
 import cartRouter from "./routes/api-cart.js"
-import ecpayRouter from "./routes/ecpay-test-only.js"; // 💡 引入你的綠界路由
+import ecpayRouter from "./routes/ecpay-test-only.js"; 
 import linepayRouter from "./routes/linepay.js";
 import experienceRouter from "./routes/experience.js";
 import cookieParser from "cookie-parser";
