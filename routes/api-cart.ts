@@ -151,5 +151,51 @@ router.put("/update", async (req, res) => {
   }
 });
 
+//編輯/更換購物車商品場次與數量
+router.put("/edit", async (req: Request, res: Response) => {
+  const { experienceId, oldSessionId, newSessionId, newQuantity } = req.body;
+  const memberId = 1; // 目前統一寫死 1 號會員
+
+  try {
+    // 1. 刪除原本舊場次的資料
+    const deleteSql = `
+      DELETE FROM cart 
+      WHERE member_id = ? AND experience_id = ? AND session_id = ?
+    `;
+    await pool.query(deleteSql, [memberId, experienceId, oldSessionId]);
+
+    // 2. 檢查新選擇的 targetSessionId 是否本來就存在購物車中？
+    const checkSql = `
+      SELECT id, quantity FROM cart 
+      WHERE member_id = ? AND experience_id = ? AND session_id = ?
+    `;
+    const [existingRows]: any = await pool.query(checkSql, [memberId, experienceId, newSessionId]);
+
+    if (existingRows.length > 0) {
+      // 狀況 A: 新場次原本就在購物車裡 -> 合併數量
+      const totalQty = existingRows[0].quantity + newQuantity;
+      const updateSql = `UPDATE cart SET quantity = ? WHERE id = ?`;
+      await pool.query(updateSql, [totalQty, existingRows[0].id]);
+    } else {
+      // 狀況 B: 新場次是全新的項目 -> 直接新增一筆
+      const insertSql = `
+        INSERT INTO cart (member_id, experience_id, session_id, quantity) 
+        VALUES (?, ?, ?, ?)
+      `;
+      await pool.query(insertSql, [memberId, experienceId, newSessionId, newQuantity]);
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "購物車編輯成功"
+    });
+  } catch (error) {
+    console.error("後端編輯購物車失敗:", error);
+    res.status(500).json({
+      success: false,
+      message: "伺服器內部錯誤，無法更新編輯資料"
+    });
+  }
+});
 
 export default router;
