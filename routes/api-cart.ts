@@ -1,6 +1,5 @@
 import express, { type Request, type Response, Router } from "express";
 import pool from "../utils/connect-mysql.js";
-import { success } from "zod";
 import { authenticate } from "../middlewares/authenticate.js";
 
 const router: Router = Router();

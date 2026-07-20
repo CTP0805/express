@@ -10,6 +10,7 @@ import jwt, { type JwtPayload } from "jsonwebtoken";
 import apiAuthRouter from "./routes/api-auth.js";
 import apiMemberRouter from "./routes/api-member.js";
 import cartRouter from "./routes/api-cart.js"
+import checkoutRouter from "./routes/api-checkout.js"
 import ecpayRouter from "./routes/ecpay-test-only.js"; 
 import linepayRouter from "./routes/linepay.js";
 import experienceRouter from "./routes/experience.js";
@@ -47,6 +48,7 @@ app.use("/ecpay", ecpayRouter);
 app.use("/linepay", linepayRouter);
 app.use("/api/experiences", experienceRouter); 
 app.use('/api/cart', cartRouter); 
+app.use('/api/checkout', checkoutRouter); 
 
 const port = Number(process.env.PORT) || 3001;
 
