@@ -89,6 +89,31 @@ const resetPasswordSchema = z.object({
     }),
 });
 
+const changePasswordSchema = z.object({
+  oldPassword: z
+    .string()
+    .min(8, {
+      message: "密碼至少需要 8 個字",
+    })
+    .regex(/[A-Za-z]/, {
+      message: "密碼必須包含英文",
+    })
+    .regex(/\d/, {
+      message: "密碼必須包含數字",
+    }),
+  newPassword: z
+    .string()
+    .min(8, {
+      message: "密碼至少需要 8 個字",
+    })
+    .regex(/[A-Za-z]/, {
+      message: "密碼必須包含英文",
+    })
+    .regex(/\d/, {
+      message: "密碼必須包含數字",
+    }),
+});
+
 // JWT 登入
 router.post("/login", async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -726,8 +751,57 @@ router.put("/reset-password", async (req: Request, res: Response) => {
 });
 
 // 修改密碼
-router.put("/change-password", authenticate, (req: Request, res: Response) => {
-  
+router.put("/change-password", authenticate, async (req: Request, res: Response) => {
+  const { oldPassword, newPassword } = req.body;
+
+  // step1. 驗證格式 
+  const zodResult = changePasswordSchema.safeParse({
+    oldPassword,
+    newPassword,
+  });
+
+  if (!zodResult.success) {
+    res.status(400).json({
+      success: false,
+      message: zodResult.error.issues[0].message,
+    });
+    return;
+  }
+
+  const memberId = req.user!.id;
+
+  // step2. 根據 JWT 裡的會員 id 查詢資料庫
+  const [members] = await pool.query<MemberRow[]>(`SELECT * FROM member WHERE id = ?`,[memberId]);
+
+
+  // step3. 先比對舊密碼是否正確
+  const result = await bcrypt.compare(oldPassword, members[0].password_hash);
+
+  if(result){
+    
+    // step4. 將新密碼雜湊
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    
+    // step5. 更新資料庫 
+    const updatePasswordSql = `
+        UPDATE member
+        SET
+          password_hash = ?,
+          token_version = token_version + 1,
+          updated_at = NOW()
+        WHERE
+          id = ?
+      `;
+
+    const [updateResult] = await pool.query(updatePasswordSql, [hashedPassword, memberId])
+    if (updateResult){
+      res.status(200).json({ success: true, message: "密碼更新成功(，請重新登入?)" });
+    }
+  }else{
+    res.status(406).json({ success: false, message: "帳號或密碼錯誤(後端)" });
+  }
+
+
 });
 
 // 第三方登入：Google
@@ -893,6 +967,8 @@ router.post("/oauth-google", async (req: Request, res: Response) => {
 });
 
 // 刪除帳號???
-router.delete("/delete-account", authenticate, (req: Request, res: Response) => {});
+router.delete("/delete-account", authenticate, (req: Request, res: Response) => {
+  
+});
 
 export default router;

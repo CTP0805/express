@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
     file: Express.Multer.File,
     callback: (error: Error | null, destination: string) => void,
   ): void => {
-    callback(null, "public/images"); // null 表⽰沒有錯誤
+    callback(null, "public/avatars"); // null 表⽰沒有錯誤
   },
   // 搬運工收到照片後，會直接把它搬到你的專案裡一個叫 public/images 的資料夾
   // 因為放在 public 資料夾的東西，客人的瀏覽器才看得到
@@ -52,4 +52,14 @@ const storage = multer.diskStorage({
   // 新名字 = uuid + 副檔名
 });
 
-export default multer({ fileFilter, storage }); // 匿名匯出，匯入時可以改名字
+// 2 * 1024 * 1024 = 2MB。
+// 因需求是「小於」2MB，因此減 1，讓剛好 2MB 的檔案也會被拒絕。
+const MAX_FILE_SIZE = 2 * 1024 * 1024 - 1;
+
+export default multer({
+  storage, // 決定檔案要存在哪裡、檔名怎麼產生
+  fileFilter, // 只允許 PNG、JPG、WEBP
+  limits: {
+    fileSize: MAX_FILE_SIZE, // 每一個上傳檔案必須小於 2MB
+  },
+}); // 匿名匯出，匯入時可以改名字
