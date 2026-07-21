@@ -19,11 +19,7 @@ declare global {
 }
 
 // 驗證會員是否登入的 middleware
-export async function authenticate(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export async function authenticate( req: Request, res: Response, next: NextFunction ) {
   try {
     // 從 Cookie 取出登入時設定的 Kenny
     //
