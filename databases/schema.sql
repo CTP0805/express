@@ -196,7 +196,7 @@ CREATE TABLE `hosts` (
 --
 
 CREATE TABLE `member` (
-    `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id` int NOT NULL ,
     `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
     `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
     `password_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
