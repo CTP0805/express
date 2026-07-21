@@ -10,11 +10,9 @@ import cookieParser from "cookie-parser";
 import crypto from "node:crypto";
 import { authenticate } from "../middlewares/authenticate.js";
 
-
 const { FRONTEND_ORIGIN } = process.env;
 
 const router: Router = Router();
-
 
 // TypeScript 型別
 type MemberRow = {
@@ -43,8 +41,11 @@ type ResetPasswordPayload = {
 
 // 格式驗證專區
 const loginSchema = z.object({
-  account: z.email({ message: "請輸入正確的 Email 格式" }),
-  password: z.string().min(8, { message: "密碼至少需要 8 個字" }),
+  email: z
+    .string()
+    .min(1, { message: "請輸入 Email" })
+    .email({ message: "請輸入正確的 Email 格式" }),
+  password: z.string().min(1, { message: "請輸入密碼" }),
 });
 
 const registerSchema = z.object({
@@ -114,61 +115,86 @@ const changePasswordSchema = z.object({
     }),
 });
 
+const resendVerifyEmailSchema = z.object({
+  email: z.email({
+    message: "請輸入正確的 Email 格式",
+  }),
+});
+
 // JWT 登入
 router.post("/login", async (req: Request, res: Response) => {
   const { email, password } = req.body;
-  // step1. 後端格式驗證
 
-  // 先判斷兩個欄位是不是都有值
-  if (!email || !password) {
-    res.status(400).json({ success: false, message: "請填寫帳號或密碼(後端)" });
-    return;
+  // step1. 後端格式驗證
+  const zodResult = loginSchema.safeParse({
+    email,
+    password,
+  });
+
+  if (!zodResult.success) {
+    if (zodResult.error?.issues?.length) {
+      // 400 Bad Request
+      res
+        .status(400)
+        .json({ success: false, message: zodResult.error.issues[0].message });
+      return;
+    }
   }
 
   // step2. 帳號對不對
   const sql = `SELECT * FROM member WHERE email = ?`;
   const [member] = await pool.query<MemberRow[]>(sql, [email]);
-  console.log(member);
 
   if (member.length === 0) {
+    // 401 Unauthorized
     res.status(401).json({ success: false, message: "帳號或密碼錯誤(後端)" });
     return;
   }
 
-  // step3. 信箱沒驗證不能登入
-  if (!member[0].is_email_verified) {
-    res.status(403).json({
-      success: false,
-      message: "請先完成信箱驗證，再進行登入",
-    });
-    return;
-  }
+  
 
-  // step4. 密碼對不對
+  // step3. 密碼對不對
   const result = await bcrypt.compare(password, member[0].password_hash);
+
   if (result) {
-    const { id, name, email } = member[0];
-    // 回傳 JWT token (之前是寫入 session)
-    const payload = { id, email, token_version: member[0].token_version ?? 1 }; // 把目前資料庫的 token_version 放進登入 JWT
-    const token = jwt.sign(payload, process.env.JWT_SECRET || "JWT_KEY", {
-      expiresIn: "7d", // 設定過期時間(一天)
-    });
+    // step3. 信箱沒驗證不能登入
+    if (!member[0].is_email_verified) {
+      // 403 Forbidden
+      res.status(403).json({
+        success: false,
+        message: "請先完成信箱驗證，再登入",
+      });
+      return;
+    } else {
+      const { id, name, email } = member[0];
+      // step5-1. 製作 JWT token
+      const payload = {
+        id,
+        email,
+        token_version: member[0].token_version ?? 1,
+      }; // 把目前資料庫的 token_version 放進登入 JWT
+      const token = jwt.sign(payload, process.env.JWT_SECRET || "JWT_KEY", {
+        expiresIn: "7d", // 設定過期時間(7天)
+      });
 
-    res.cookie("Kenny", token, {
-      httpOnly: true,
-      secure: false, // 本機 localhost 用 false；正式 HTTPS 上線要改 true
-      sameSite: "lax" as const, // 跨網站請求時要不要帶 cookie
-      path: "/",
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 過期時間 7 天
-    });
+      // step5-2. 把 token 放在 cookie 回應給前端
+      res.cookie("Kenny", token, {
+        httpOnly: true,
+        secure: false, // 本機 localhost 用 false；正式 HTTPS 上線要改 true
+        sameSite: "lax" as const, // 跨網站請求時要不要帶 cookie
+        path: "/",
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 過期時間 7 天
+      });
 
-    res.status(200).json({
-      success: true,
-      message: "登入成功(後端)",
-      data: { id, name, email }, // 這裡就不要再把 token 回應給前端，我們已經把 token 放在前端的 cookie 裡了
-    });
+      res.status(200).json({
+        success: true,
+        message: "登入成功(後端)",
+        data: { id, name, email }, // 這裡就不要再把 token 回應給前端，我們已經把 token 放在前端的 cookie 裡了
+      });
+    }
   } else {
-    res.status(406).json({ success: false, message: "帳號或密碼錯誤(後端)" });
+    // 401 Unauthorized
+    res.status(401).json({ success: false, message: "帳號或密碼錯誤(後端)" });
   }
 });
 
@@ -187,14 +213,15 @@ router.post("/logout", (req: Request, res: Response) => {
   });
 });
 
-// 取得並驗證目前使用者是誰
+// ❓❓❓(API回應有點亂) 取得並驗證目前使用者是誰
 // 前端重新整理頁面時，會呼叫這支 API，瀏覽器會自動帶上 HttpOnly Cookie 裡的 Kenny JWT。
 router.get("/me", authenticate, async (req: Request, res: Response) => {
   // authenticate 已驗證過 JWT，因此這裡理論上一定有 user。
   if (!req.user) {
+    // 401 Unauthorized
     res.status(401).json({
       success: false,
-      message: "尚未登入",
+      message: "尚未登入(後端)",
     });
     return;
   }
@@ -241,9 +268,9 @@ router.post("/register", async (req: Request, res: Response) => {
     password,
   });
 
-  // 狀態碼待確認
   if (!zodResult.success) {
     if (zodResult.error?.issues?.length) {
+      // 400 Bad Request
       res
         .status(400)
         .json({ success: false, message: zodResult.error.issues[0].message });
@@ -258,7 +285,10 @@ router.post("/register", async (req: Request, res: Response) => {
   ]);
 
   if (existingMember.length) {
-    res.status(409).json({ success: false, message: "此email已註冊過" });
+    // 409 Conflict
+    res
+      .status(409)
+      .json({ success: false, message: "此 Email 已註冊過(後端)" });
     return;
   }
 
@@ -276,15 +306,14 @@ router.post("/register", async (req: Request, res: Response) => {
     // step5. 註冊成功後，寄出驗證信
     await sendVerifyEmail(memberId, name, email);
     if (rows) {
-      // 狀態碼待確認
-      res.status(200).json({
+      // 201 Created
+      res.status(201).json({
         success: true,
         message: "註冊成功，已發送驗證信，請至信箱完成驗證(後端)",
       });
     }
   } catch (error) {
     console.warn(error);
-    // 狀態碼待確認
     res.status(500).json({ success: false, message: "註冊失敗(後端)" });
   }
 });
@@ -393,7 +422,7 @@ router.get("/verify-email", async (req: Request, res: Response) => {
   } catch (error) {
     console.warn(error);
     res.redirect(
-      `${FRONTEND_ORIGIN}/auth/verify-email?success=false&message=invalid-or-expired`,
+      `${FRONTEND_ORIGIN}/auth/verify-email?success=false&message=insuccess-or-expired`,
     );
     /*
     res.status(400).json({
@@ -401,6 +430,76 @@ router.get("/verify-email", async (req: Request, res: Response) => {
       message: "驗證連結無效或已過期，請重新註冊或重新發送驗證信",
     });
     */
+  }
+});
+
+// 重發信箱驗證信
+router.post("/resend-verify-email", async (req: Request, res: Response) => {
+  const { email } = req.body;
+
+  // step1：確認前端有傳來正確格式的 Email
+  const zodResult = resendVerifyEmailSchema.safeParse({ email });
+
+  if (!zodResult.success) {
+    res.status(400).json({
+      success: false,
+      message: zodResult.error.issues[0].message,
+    });
+    return;
+  }
+
+  // step2：統一移除前後空白與轉小寫
+  const normalizedEmail = email.trim().toLowerCase();
+
+  try {
+    // step3：找出尚未驗證的會員資料
+    const [members] = await pool.query<MemberRow[]>(
+      `
+        SELECT id, name, email, is_email_verified
+        FROM member
+        WHERE email = ?
+      `,
+      [normalizedEmail],
+    );
+
+    if (members.length === 0) {
+      res.status(404).json({
+        success: false,
+        message: "找不到此會員資料",
+      });
+      return;
+    }
+
+    const member = members[0];
+
+    // step4：已驗證就不必再寄信
+    if (member.is_email_verified) {
+      res.status(400).json({
+        success: false,
+        message: "此信箱已完成驗證，請直接登入",
+      });
+      return;
+    }
+
+    // step5：沿用註冊時既有的寄信功能
+    await sendVerifyEmail(
+      member.id as number,
+      member.name || "會員",
+      member.email as string,
+    );
+
+    // step6：回覆前端
+    res.status(200).json({
+      success: true,
+      message: "驗證信已重新寄出，請至信箱查看",
+    });
+  } catch (error) {
+    console.warn("resend-verify-email error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "驗證信寄送失敗，請稍後再試",
+    });
   }
 });
 
@@ -417,6 +516,7 @@ router.post("/forgot-password", async (req: Request, res: Response) => {
   });
 
   if (!zodResult.success) {
+    // 400 Bad Request
     res.status(400).json({
       success: false,
       message: zodResult.error.issues[0].message,
@@ -444,8 +544,7 @@ router.post("/forgot-password", async (req: Request, res: Response) => {
 
     // --------------------------------
     // step3. 不論會員存在或不存在
-    // 都回傳同樣的成功訊息
-    //
+    // 都回傳同樣的成功訊息、成功的狀態碼
     // 這樣可以避免攻擊者測試：
     // 某個 Email 到底有沒有註冊
     // --------------------------------
@@ -454,7 +553,7 @@ router.post("/forgot-password", async (req: Request, res: Response) => {
         success: true,
         message: "若此 Email 存在，我們已寄送重設密碼信",
       });
-      console.log("❌ 密碼重設信發送錯誤 : 查無此使用者")
+      console.log("❌ 密碼重設信發送錯誤 : 查無此使用者");
       return;
     }
 
@@ -478,7 +577,12 @@ router.post("/forgot-password", async (req: Request, res: Response) => {
     // step4. 寄送重設密碼 Email
     // --------------------------------
 
-    await sendResetPasswordEmail( member.id, member.name || "會員", member.email, member.token_version);
+    await sendResetPasswordEmail(
+      member.id,
+      member.name || "會員",
+      member.email,
+      member.token_version,
+    );
 
     // --------------------------------
     // step5. 回傳前端
@@ -487,7 +591,7 @@ router.post("/forgot-password", async (req: Request, res: Response) => {
       success: true,
       message: "若此 Email 存在，我們已寄送重設密碼信",
     });
-    console.log("🎯 密碼重設信發送成功")
+    console.log("🎯 密碼重設信發送成功");
   } catch (error) {
     console.warn("forgot-password error:", error);
 
@@ -512,7 +616,7 @@ router.get("/reset-password", async (req: Request, res: Response) => {
   // 沒有 token
   if (!token) {
     res.redirect(
-      `${FRONTEND_ORIGIN}/auth/reset-password?valid=false&message=missing-token`,
+      `${FRONTEND_ORIGIN}/auth/reset-password?success=false&message=missing-token`,
     );
     return;
   }
@@ -536,7 +640,7 @@ router.get("/reset-password", async (req: Request, res: Response) => {
     // --------------------------------
     if (payload.purpose !== "password_reset") {
       res.redirect(
-        `${FRONTEND_ORIGIN}/auth/reset-password?valid=false&message=wrong-purpose`,
+        `${FRONTEND_ORIGIN}/auth/reset-password?success=false&message=wrong-purpose`,
       );
       return;
     }
@@ -557,7 +661,7 @@ router.get("/reset-password", async (req: Request, res: Response) => {
 
     if (members.length === 0) {
       res.redirect(
-        `${FRONTEND_ORIGIN}/auth/reset-password?valid=false&message=member-not-found`,
+        `${FRONTEND_ORIGIN}/auth/reset-password?success=false&message=member-not-found`,
       );
       return;
     }
@@ -575,21 +679,21 @@ router.get("/reset-password", async (req: Request, res: Response) => {
     // --------------------------------
     if (payload.token_version !== currentTokenVersion) {
       res.redirect(
-        `${FRONTEND_ORIGIN}/auth/reset-password?valid=false&message=token-used`,
+        `${FRONTEND_ORIGIN}/auth/reset-password?success=false&message=token-used`,
       );
       return;
     }
 
     // token 有效，導向前端重設密碼頁
     res.redirect(
-      `${FRONTEND_ORIGIN}/auth/reset-password?valid=true&token=${encodeURIComponent(token)}`,
+      `${FRONTEND_ORIGIN}/auth/reset-password?success=true&token=${encodeURIComponent(token)}`,
     );
   } catch (error) {
     console.warn("reset-password GET error:", error);
 
     // JWT 過期、格式錯誤、簽章錯誤都會進入這裡
     res.redirect(
-      `${FRONTEND_ORIGIN}/auth/reset-password?valid=false&message=invalid-or-expired`,
+      `${FRONTEND_ORIGIN}/auth/reset-password?success=false&message=insuccess-or-expired`,
     );
   }
 });
@@ -614,6 +718,7 @@ router.put("/reset-password", async (req: Request, res: Response) => {
   });
 
   if (!zodResult.success) {
+    // 400 Bad Request
     res.status(400).json({
       success: false,
       message: zodResult.error.issues[0].message,
@@ -634,6 +739,7 @@ router.put("/reset-password", async (req: Request, res: Response) => {
     // step3. 確認 token 用途
     // --------------------------------
     if (payload.purpose !== "password_reset") {
+      // 400 Bad Request
       res.status(400).json({
         success: false,
         message: "重設密碼 token 用途錯誤",
@@ -656,6 +762,7 @@ router.put("/reset-password", async (req: Request, res: Response) => {
     ]);
 
     if (members.length === 0) {
+      // 400 Bad Request
       res.status(400).json({
         success: false,
         message: "重設密碼連結無效(無此會員)",
@@ -673,6 +780,7 @@ router.put("/reset-password", async (req: Request, res: Response) => {
     // 代表密碼已經重設過，或所有登入狀態已被撤銷
     // --------------------------------
     if (payload.token_version !== currentTokenVersion) {
+      // 400 Bad Request
       res.status(400).json({
         success: false,
         message: "重設密碼連結已失效，請重新申請",
@@ -717,6 +825,7 @@ router.put("/reset-password", async (req: Request, res: Response) => {
     // 如果 affectedRows = 0
     // 代表在更新前 token_version 已被其他請求修改
     if (affectedRows === 0) {
+      // 400 Bad Request
       res.status(400).json({
         success: false,
         message: "重設密碼連結已失效，請重新申請",
@@ -739,10 +848,9 @@ router.put("/reset-password", async (req: Request, res: Response) => {
       success: true,
       message: "密碼已更新，請重新登入",
     });
-    
   } catch (error) {
     console.warn("reset-password PUT error:", error);
-
+    // 400 Bad Request
     res.status(400).json({
       success: false,
       message: "重設密碼連結無效或已過期",
@@ -751,39 +859,43 @@ router.put("/reset-password", async (req: Request, res: Response) => {
 });
 
 // 修改密碼
-router.put("/change-password", authenticate, async (req: Request, res: Response) => {
-  const { oldPassword, newPassword } = req.body;
+router.put(
+  "/change-password",
+  authenticate,
+  async (req: Request, res: Response) => {
+    const { oldPassword, newPassword } = req.body;
 
-  // step1. 驗證格式 
-  const zodResult = changePasswordSchema.safeParse({
-    oldPassword,
-    newPassword,
-  });
-
-  if (!zodResult.success) {
-    res.status(400).json({
-      success: false,
-      message: zodResult.error.issues[0].message,
+    // step1. 驗證格式
+    const zodResult = changePasswordSchema.safeParse({
+      oldPassword,
+      newPassword,
     });
-    return;
-  }
 
-  const memberId = req.user!.id;
+    if (!zodResult.success) {
+      res.status(400).json({
+        success: false,
+        message: zodResult.error.issues[0].message,
+      });
+      return;
+    }
 
-  // step2. 根據 JWT 裡的會員 id 查詢資料庫
-  const [members] = await pool.query<MemberRow[]>(`SELECT * FROM member WHERE id = ?`,[memberId]);
+    const memberId = req.user!.id;
 
+    // step2. 根據 JWT 裡的會員 id 查詢資料庫
+    const [members] = await pool.query<MemberRow[]>(
+      `SELECT * FROM member WHERE id = ?`,
+      [memberId],
+    );
 
-  // step3. 先比對舊密碼是否正確
-  const result = await bcrypt.compare(oldPassword, members[0].password_hash);
+    // step3. 先比對舊密碼是否正確
+    const result = await bcrypt.compare(oldPassword, members[0].password_hash);
 
-  if(result){
-    
-    // step4. 將新密碼雜湊
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    
-    // step5. 更新資料庫 
-    const updatePasswordSql = `
+    if (result) {
+      // step4. 將新密碼雜湊
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+      // step5. 更新資料庫
+      const updatePasswordSql = `
         UPDATE member
         SET
           password_hash = ?,
@@ -793,16 +905,20 @@ router.put("/change-password", authenticate, async (req: Request, res: Response)
           id = ?
       `;
 
-    const [updateResult] = await pool.query(updatePasswordSql, [hashedPassword, memberId])
-    if (updateResult){
-      res.status(200).json({ success: true, message: "密碼更新成功(，請重新登入?)" });
+      const [updateResult] = await pool.query(updatePasswordSql, [
+        hashedPassword,
+        memberId,
+      ]);
+      if (updateResult) {
+        res
+          .status(200)
+          .json({ success: true, message: "密碼更新成功(，請重新登入?)" });
+      }
+    } else {
+      res.status(400).json({ success: false, message: "帳號或密碼錯誤(後端)" });
     }
-  }else{
-    res.status(406).json({ success: false, message: "帳號或密碼錯誤(後端)" });
-  }
-
-
-});
+  },
+);
 
 // 第三方登入：Google
 // 這段參考 Eddy 範例的 /google-login：
@@ -967,8 +1083,10 @@ router.post("/oauth-google", async (req: Request, res: Response) => {
 });
 
 // 刪除帳號???
-router.delete("/delete-account", authenticate, (req: Request, res: Response) => {
-  
-});
+router.delete(
+  "/delete-account",
+  authenticate,
+  (req: Request, res: Response) => {},
+);
 
 export default router;
