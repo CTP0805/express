@@ -43,10 +43,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-
-
-
-
 app.use("/api/auth", apiAuthRouter);
 app.use("/api/member", apiMemberRouter);
 app.use("/api/member-coupon", apiMemberCouponRouter);
