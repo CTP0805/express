@@ -196,24 +196,27 @@ CREATE TABLE `hosts` (
 --
 
 CREATE TABLE `member` (
-    `id` int NOT NULL,
-    `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `password_hash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `phone` varchar(20) COLLATE utf8mb4_unicode_ci,
-    `gender` enum('男', '女', '其他') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    `password_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    `gender` enum('男','女','其他') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `birthday` date DEFAULT NULL,
-    `avatar_url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `member_level` enum('銅', '銀', '金') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '銅',
+    `avatar_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    `member_level` enum('銅','銀','金') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '銅',
     `is_email_verified` datetime DEFAULT NULL,
-    `google_uid` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    `google_uid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `current_points` int NOT NULL DEFAULT '0',
     `total_spent` int NOT NULL DEFAULT '0',
     `total_orders` int NOT NULL DEFAULT '0',
     `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `token_version` int NOT NULL DEFAULT '1'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+    `token_version` int NOT NULL DEFAULT '1',
+    `role` enum('管理者','客服','會員') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '會員',
+    `city` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 --
 -- 傾印資料表的資料 `member`
