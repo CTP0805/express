@@ -1,15 +1,21 @@
 /**
- * 部落格圖片上傳 API
+ * =============================================================================
+ * 【新手導讀】部落格「封面／單圖」上傳 API（Blog 子功能）
+ * =============================================================================
+ * 為什麼獨立檔案？
+ *   若掛在 /api/blog/:id 同一支，Express 可能把 "upload" 誤判成 id。
+ *   所以 index.ts 掛：app.use("/api/blog/upload", ...) 與 /api/blog 分開。
  *
- * 掛載：app.use("/api/blog/upload", apiBlogUploadRouter)
- * （獨立檔案，避免與 api-blog 的 /:id 路由衝突）
+ * 流程：
+ *   1) 前端用 FormData 放檔案，欄位名必須叫 image
+ *   2) authenticate 確認已登入
+ *   3) multer（blogImageUpload）把檔存到 express/public/uploads/blog
+ *   4) 回傳 path（寫進 DB）與 url（給 <img> 預覽）
  *
- * POST /api/blog/upload
- *   - multipart field 名稱：image
- *   - 需登入（Cookie Kenny）
- *   - 成功回傳 { success, url, path }
- *     path = /uploads/blog/xxx.jpg（建議寫入 posts.cover_image）
- *     url  = 絕對網址（方便前端預覽）
+ * 和內文 base64 圖的差別：
+ *   封面 → 這支 upload API
+ *   編輯器內嵌圖 → blog-content-images.ts 在 POST/PUT 文章時處理
+ * =============================================================================
  */
 import { type Request, type Response, Router } from "express";
 import { authenticate } from "../middlewares/authenticate.js";
@@ -20,9 +26,12 @@ import {
 
 const router: Router = Router();
 
+// POST /api/blog/upload
+// 中介層串接：先登入 → 再 multer 收檔 → 最後組 URL 回應
 router.post(
   "/",
   authenticate,
+  // 【區塊】multer 收檔：錯誤（格式／超過 5MB）在這裡變成 400 JSON
   (req: Request, res: Response, next) => {
     blogImageUpload.single("image")(req, res, (err: unknown) => {
       if (err) {
@@ -47,8 +56,10 @@ router.post(
       next();
     });
   },
+  // 【區塊】收檔成功：把磁碟檔名轉成網站可開的路徑
   (req: Request, res: Response) => {
     try {
+      // multer 成功後檔案在 req.file（不是 req.body）
       const file = req.file;
       if (!file) {
         res.status(400).json({

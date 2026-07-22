@@ -1,8 +1,32 @@
 /**
- * 部落格 API（對應資料表 posts）
+ * =============================================================================
+ * 【新手導讀】部落格後端 API（你的負責範圍：Blog）
+ * =============================================================================
+ * 這支檔案做什麼？
+ *   瀏覽器（Next 前端）用 fetch 打這裡，這裡再查 MySQL 的 posts 表，回 JSON。
  *
- * 掛載：app.use("/api/blog", apiBlogRouter)
+ * 誰掛載它？
+ *   express/index.ts → app.use("/api/blog", apiBlogRouter)
+ *   所以下面 router.get("/") 實際網址是 GET http://localhost:3001/api/blog
  *
+ * 常見流程（前後端對照）：
+ *   列表頁 blog/page.tsx        → GET  /api/blog
+ *   管理頁 blog/manage          → GET  /api/blog/mine
+ *   新增頁 blog/new             → POST /api/blog（通常先選 eligible-orders）
+ *   編輯頁 blog/[slug]/edit    → PUT  /api/blog/:id
+ *   審核頁 blog/review          → GET pending-review + POST :id/review
+ *   上傳封面                    → POST /api/blog/upload（另一支檔 api-blog-upload.ts）
+ *
+ * 資料表：posts（可能還有 order_id / order_title / review_note 擴充欄）
+ * 需執行：express/databases/wang-blog-order-review.sql
+ *
+ * 名詞小抄：
+ *   authenticate = 中介層，檢查 Cookie 裡的登入 token，通過才有 req.user
+ *   res.json(...) = 把物件變成 JSON 字串回給前端
+ *   slug = 網址用的文章代稱（比用數字 id 好讀）
+ * =============================================================================
+ *
+ * 路由一覽：
  * GET    /api/blog                 公開列表（預設已上架；可 query status）
  * GET    /api/blog/mine            我的文章（需登入）
  * GET    /api/blog/pending-review  待審核佇列（管理者）
@@ -13,8 +37,6 @@
  * PUT    /api/blog/:id             更新（僅作者內容；管理者不可改內容）
  * POST   /api/blog/:id/review      管理者通過／駁回 + 註解
  * DELETE /api/blog/:id             刪除（僅作者）
- *
- * 需執行：express/databases/wang-blog-order-review.sql（order_id / order_title / review_note）
  */
 import { type Request, type Response, Router } from "express";
 import type { ResultSetHeader, RowDataPacket } from "mysql2";
@@ -27,12 +49,13 @@ import {
 
 const router: Router = Router();
 
+// ---------- 常數：標題長度、允許的文章狀態（和前端 types 要對齊）----------
 const TITLE_MAX = 20;
 const ALLOWED_STATUS = new Set([
-  "draft",
-  "pending_review",
-  "published",
-  "rejected",
+  "draft", // 草稿
+  "pending_review", // 送審中
+  "published", // 已上架（公開列表看得到）
+  "rejected", // 審核退回
 ]);
 
 type PostRow = RowDataPacket & {
@@ -199,7 +222,12 @@ function isAdminRole(role: string): boolean {
   return role === "管理者";
 }
 
-// ── 公開列表 ──────────────────────────────────────────
+// =============================================================================
+// 【區塊】公開文章列表 GET /
+// 誰用：next/app/blog/page.tsx → fetchBlogPosts()
+// 做什麼：從 posts 撈文章；預設只給 status=published 的
+// 新手：req.query 是網址 ?status=xxx 這種參數；不需登入
+// =============================================================================
 router.get("/", async (req: Request, res: Response) => {
   try {
     const { status, category_id, mine } = req.query;
@@ -271,7 +299,12 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-// ── 我的文章 ──────────────────────────────────────────
+// =============================================================================
+// 【區塊】我的文章 GET /mine
+// 誰用：管理頁 blog/manage
+// 做什麼：只撈 author_id = 目前登入者 的文章（含草稿／退回）
+// 新手：authenticate 寫在路徑後面 → 沒登入會 401，有登入才進函式
+// =============================================================================
 router.get("/mine", authenticate, async (req: Request, res: Response) => {
   try {
     const memberId = req.user!.id;
@@ -338,7 +371,11 @@ router.get("/mine", authenticate, async (req: Request, res: Response) => {
   }
 });
 
-// ── 待審核（管理者） ──────────────────────────────────
+// =============================================================================
+// 【區塊】待審核佇列 GET /pending-review（管理者）
+// 誰用：blog/review 頁
+// 做什麼：撈 pending_review 狀態的文章給管理者看
+// =============================================================================
 router.get(
   "/pending-review",
   authenticate,
@@ -378,7 +415,12 @@ router.get(
   },
 );
 
-// ── 可撰寫訂單（已付款且尚未有文章） ──────────────────
+// =============================================================================
+// 【區塊】可寫文的訂單 GET /eligible-orders
+// 誰用：新增文章頁（選「這篇文對應哪張已付款訂單」）
+// 做什麼：order_status=paid 且還沒有綁 posts 的訂單
+// 為什麼要綁訂單：體驗後寫心得，一篇文對應一筆消費
+// =============================================================================
 router.get(
   "/eligible-orders",
   authenticate,
@@ -438,7 +480,11 @@ router.get(
   },
 );
 
-// ── 依 slug（放在 /:id 之前） ─────────────────────────
+// =============================================================================
+// 【區塊】依 slug 取單篇 GET /slug/:slug
+// 誰用：blog/[slug]/page.tsx 公開閱讀頁
+// 新手：必須寫在 /:id 之前！否則 Express 會把 "slug" 當成 id
+// =============================================================================
 router.get("/slug/:slug", async (req: Request, res: Response) => {
   try {
     const slug = String(req.params.slug ?? "").trim();
@@ -475,7 +521,10 @@ router.get("/slug/:slug", async (req: Request, res: Response) => {
   }
 });
 
-// ── 單篇 by id ────────────────────────────────────────
+// =============================================================================
+// 【區塊】依數字 id 取單篇 GET /:id
+// 誰用：編輯、管理等需要用 id 操作時
+// =============================================================================
 router.get("/:id", async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
@@ -512,7 +561,12 @@ router.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
-// ── 新增 ──────────────────────────────────────────────
+// =============================================================================
+// 【區塊】新增文章 POST /
+// 誰用：blog/new → BlogPostForm 送出
+// 做什麼：檢查登入、標題、訂單資格 → 把 base64 圖存成檔 → INSERT posts
+// 新手：req.body 是前端 JSON；成功通常回 201 + 新文章物件
+// =============================================================================
 router.post("/", authenticate, async (req: Request, res: Response) => {
   try {
     const body = req.body as Record<string, unknown>;
@@ -688,7 +742,11 @@ router.post("/", authenticate, async (req: Request, res: Response) => {
   }
 });
 
-// ── 更新（僅作者改內容；order 不可改） ────────────────
+// =============================================================================
+// 【區塊】更新文章 PUT /:id
+// 誰用：blog/[slug]/edit
+// 規則：只有作者能改內容；綁定的 order 不可亂改
+// =============================================================================
 router.put("/:id", authenticate, async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
@@ -815,7 +873,12 @@ router.put("/:id", authenticate, async (req: Request, res: Response) => {
   }
 });
 
-// ── 管理者審查：通過／駁回 ────────────────────────────
+// =============================================================================
+// 【區塊】審查 POST /:id/review
+// 誰用：blog/review
+// body 常見：{ action: 'approve' | 'reject', review_note?: string }
+// 通過 → published；駁回 → rejected + 註解給作者看
+// =============================================================================
 router.post(
   "/:id/review",
   authenticate,
@@ -911,7 +974,9 @@ router.post(
   },
 );
 
-// ── 刪除 ──────────────────────────────────────────────
+// =============================================================================
+// 【區塊】刪除 DELETE /:id（僅作者）
+// =============================================================================
 router.delete("/:id", authenticate, async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);

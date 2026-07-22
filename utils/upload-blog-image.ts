@@ -1,8 +1,4 @@
-/**
- * 部落格封面／頂圖上傳（multer）
- * - 存到 public/uploads/blog（由 express.static 對外提供）
- * - 不修改既有 upload-Image.ts（他人模組）
- */
+
 import fs from "fs";
 import path from "path";
 import multer, { type FileFilterCallback } from "multer";
@@ -11,7 +7,6 @@ import { v4 as uuidv4 } from "uuid";
 
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "blog");
 
-/** 確保資料夾存在 */
 function ensureUploadDir(): void {
   if (!fs.existsSync(UPLOAD_DIR)) {
     fs.mkdirSync(UPLOAD_DIR, { recursive: true });

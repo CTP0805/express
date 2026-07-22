@@ -1,8 +1,13 @@
 /**
- * 部落格內文圖片處理（僅 blog 使用）
- * - 將 HTML 內 data:image/...;base64,... 寫入 public/uploads/blog
- * - 替換成相對路徑 /uploads/blog/{uuid}.ext
- * - 顯示時由前端把 /uploads/ 接到 Express static
+ * =============================================================================
+ * 【新手導讀】內文 HTML 裡的 base64 圖片 → 存成真實檔案
+ * =============================================================================
+ * 問題：富文字編輯器常把圖變成 data:image/png;base64,xxxxx（很長）
+ *       直接塞進 DB 會爆、也難快取。
+ * 解法：存檔到 public/uploads/blog，HTML 改成 <img src="/uploads/blog/uuid.png">
+ * 誰呼叫：api-blog.ts 的 POST（新增）、PUT（更新）文章時
+ * 前端顯示：next 的 media / BlogMediaImage 會把相對路徑接上後端網域
+ * =============================================================================
  */
 import fs from "fs";
 import path from "path";
