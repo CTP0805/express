@@ -11,30 +11,52 @@ router.get("/cart", authenticate, async (req: Request, res: Response) => {
     const memberId = req.user?.id;
 
     const sql = `
-    SELECT 
-  cart.id AS cartId,                                          
-  cart.experience_id AS experienceId,                    
-  cart.session_id AS sessionId,                            
-  experiences.title AS name,                                   
-  sessions.adult_price AS price,      
-  cart.quantity,                                       
-  sessions.start_time AS sessionName,                      
-  experience_images.image_url AS image 
-FROM cart
-INNER JOIN experiences 
-  ON cart.experience_id = experiences.id
-INNER JOIN sessions 
-  ON cart.session_id = sessions.id
-LEFT JOIN experience_images 
-  ON cart.experience_id = experience_images.experience_id 
-  AND experience_images.is_primary = 1
-WHERE cart.member_id = ?;
-`;
+      SELECT 
+        cart.id AS cartId,                             
+        cart.experience_id AS experienceId,                    
+        cart.session_id AS sessionId,                            
+        experiences.title AS name,                             
+        IFNULL(sessions.adult_price, 0) AS adultPrice,      
+        IFNULL(sessions.child_price, 0) AS childPrice,      
+        IFNULL(cart.adult_quantity, 1) AS adultQuantity,
+        IFNULL(cart.child_quantity, 0) AS childQuantity, 
+        DATE_FORMAT(sessions.start_time, '%Y-%m-%d %H:%i') AS sessionName,
+        sessions.booking_deadline AS bookingDeadline,
+        experience_images.image_url AS image 
+      FROM cart
+      INNER JOIN experiences ON cart.experience_id = experiences.id
+      INNER JOIN sessions ON cart.session_id = sessions.id
+      LEFT JOIN experience_images 
+        ON cart.experience_id = experience_images.experience_id 
+        AND experience_images.is_primary = 1
+      WHERE cart.member_id = ?;
+    `;
     const [rows] = await pool.query(sql, [memberId]);
+
+    const now = new Date();
+    // 整理回傳資料並加上 isSoldOut 判定
+    const cartData = (rows as any[]).map((row: any) => {
+      const isExpired = row.bookingDeadline ? new Date(row.bookingDeadline) <= now : false;
+      const adultQty = Number(row.adultQuantity) || 1;
+      const childQty = Number(row.childQuantity) || 0;
+      const adultP = Number(row.adultPrice) || 0;
+      const childP = Number(row.childPrice) || 0;
+
+      return {
+        ...row,
+        adultQuantity: adultQty,
+        childQuantity: childQty,
+        adultPrice: adultP,
+        childPrice: childP,
+        quantity: adultQty + childQty,
+        itemTotal: adultQty * adultP + childQty * childP,
+        isSoldOut: isExpired,
+      };
+    });
 
     res.status(200).json({
       success: true,
-      data: rows,
+      data: cartData,
     });
   } catch (error) {
     console.error("取得購物車資料失敗:", error);
@@ -47,16 +69,22 @@ WHERE cart.member_id = ?;
 
 //加入onAdd商品到購物車
 router.post("/add", authenticate, async (req: Request, res: Response) => {
-  const { experienceId, sessionId, quantity } = req.body;
+  const {
+    experienceId,
+    sessionId,
+    adultQuantity = 1,
+    childQuantity = 0,
+  } = req.body;
+
   const memberId = req.user?.id;
 
-  // 防呆：確保前端傳過來的數量是大於 0 的有效數字
-  const targetQty = quantity < 1 ? 1 : quantity;
+  const validAdult = adultQuantity < 0 ? 0 : adultQuantity;
+  const validChild = childQuantity < 0 ? 0 : childQuantity;
 
   try {
-    // 💡 1. 檢查這名會員的購物車，是否本來就已經有這個商品與場次
+    // 1. 檢查這名會員的購物車，是否本來就已經有這個商品與場次
     const checkSql = `
-      SELECT id, quantity FROM cart 
+      SELECT id, adult_quantity, child_quantity FROM cart 
       WHERE member_id = ? AND experience_id = ? AND session_id = ?
     `;
     const [existingRows]: any = await pool.query(checkSql, [
@@ -67,20 +95,26 @@ router.post("/add", authenticate, async (req: Request, res: Response) => {
 
     if (existingRows.length > 0) {
       // 狀況 A: 商品已存在 -> 累加數量 (舊數量 + 新傳入的數量)
-      const newQty = existingRows[0].quantity + targetQty;
-      const updateSql = `UPDATE cart SET quantity = ? WHERE id = ?`;
-      await pool.query(updateSql, [newQty, existingRows[0].id]);
+      const newAdultQty = existingRows[0].adult_quantity + validAdult;
+      const newChildQty = existingRows[0].child_quantity + validChild;
+      const updateSql = `UPDATE cart SET adult_quantity = ?, child_quantity = ? WHERE id = ?`;
+      await pool.query(updateSql, [
+        newAdultQty,
+        newChildQty,
+        existingRows[0].id,
+      ]);
     } else {
       // 狀況 B: 商品不存在 -> 新增一筆紀錄
       const insertSql = `
-        INSERT INTO cart (member_id, experience_id, session_id, quantity) 
-        VALUES (?, ?, ?, ?)
+        INSERT INTO cart (member_id, experience_id, session_id, adult_quantity, child_quantity) 
+        VALUES (?, ?, ?, ?, ?)
       `;
       await pool.query(insertSql, [
         memberId,
         experienceId,
         sessionId,
-        targetQty,
+        validAdult,
+        validChild,
       ]);
     }
 
@@ -98,7 +132,10 @@ router.post("/add", authenticate, async (req: Request, res: Response) => {
 });
 
 //刪除onRemove購物車指定商品 API
-router.delete("/cart-items", authenticate, async (req: Request, res: Response) => {
+router.delete(
+  "/cart-items",
+  authenticate,
+  async (req: Request, res: Response) => {
     try {
       const memberId = req.user?.id;
       const { experienceId, sessionId } = req.query;
@@ -108,13 +145,11 @@ router.delete("/cart-items", authenticate, async (req: Request, res: Response) =
           .status(400)
           .json({ success: false, message: "缺少必要參數" });
       }
-      //刪除該會員(目前固定為2) 在該場次的該行程購物車紀錄
+      //刪除該會員 在該場次的該行程購物車紀錄
       const sql = `
-      DELETE FROM cart 
-      WHERE member_id = ? 
-        AND experience_id = ? 
-        AND session_id = ?;
-    `;
+        DELETE FROM cart 
+        WHERE member_id = ? AND experience_id = ? AND session_id = ?;
+      `;
 
       //執行 SQL 刪除指令，並帶入安全參數, 帶入佔位符?可以防止駭客入侵(惡意攻擊)
       await pool.query(sql, [memberId, experienceId, sessionId]);
@@ -134,23 +169,21 @@ router.delete("/cart-items", authenticate, async (req: Request, res: Response) =
 );
 
 //處理cart數量增減
-router.put("/update", authenticate, async (req, res) => {
-  const { userId, experienceId, sessionId, quantity } = req.body;
+router.put("/update", authenticate, async (req: Request, res: Response) => {
+  const { experienceId, sessionId, adultQuantity, childQuantity } = req.body;
   const memberId = req.user?.id;
-
-  // 安全防呆：確保前端傳過來的數量最少為 1
-  const targetQty = quantity < 1 ? 1 : quantity;
 
   try {
     const sql = `
     UPDATE cart 
-      SET quantity = ? 
+      SET adult_quantity = ?, child_quantity = ?
       WHERE member_id = ? AND experience_id = ? AND session_id = ?
     `;
 
     // 執行更新數量資料
-    const [result] = await pool.execute(sql, [
-      quantity,
+    await pool.execute(sql, [
+      adultQuantity,
+      childQuantity,
       memberId,
       experienceId,
       sessionId,
@@ -171,8 +204,8 @@ router.put("/update", authenticate, async (req, res) => {
 
 //編輯/更換購物車商品場次與數量
 router.put("/edit", authenticate, async (req: Request, res: Response) => {
-  const { experienceId, oldSessionId, newSessionId, newQuantity } = req.body;
-  const memberId = req.user?.id; 
+  const { experienceId, oldSessionId, newSessionId, newAdultQuantity, newChildQuantity } = req.body;
+  const memberId = req.user?.id;
 
   try {
     // 1. 刪除原本舊場次的資料
@@ -182,9 +215,9 @@ router.put("/edit", authenticate, async (req: Request, res: Response) => {
     `;
     await pool.query(deleteSql, [memberId, experienceId, oldSessionId]);
 
-    // 2. 檢查新選擇的 targetSessionId 是否本來就存在購物車中？
+    // 2. 檢查新選擇的場次是否存在
     const checkSql = `
-      SELECT id, quantity FROM cart 
+      SELECT id, adult_quantity, child_quantity FROM cart
       WHERE member_id = ? AND experience_id = ? AND session_id = ?
     `;
     const [existingRows]: any = await pool.query(checkSql, [
@@ -195,20 +228,22 @@ router.put("/edit", authenticate, async (req: Request, res: Response) => {
 
     if (existingRows.length > 0) {
       // 狀況 A: 新場次原本就在購物車裡 -> 合併數量
-      const totalQty = existingRows[0].quantity + newQuantity;
-      const updateSql = `UPDATE cart SET quantity = ? WHERE id = ?`;
-      await pool.query(updateSql, [totalQty, existingRows[0].id]);
+      const totalAdult = existingRows[0].adult_quantity + newAdultQuantity;
+      const totalChild = existingRows[0].child_quantity + newChildQuantity;
+      const updateSql = `UPDATE cart SET adult_quantity = ?, child_quantity = ? WHERE id = ?`;
+      await pool.query(updateSql, [totalAdult, totalChild, existingRows[0].id]);
     } else {
       // 狀況 B: 新場次是全新的項目 -> 直接新增一筆
       const insertSql = `
-        INSERT INTO cart (member_id, experience_id, session_id, quantity) 
-        VALUES (?, ?, ?, ?)
+        INSERT INTO cart (member_id, experience_id, session_id, adult_quantity, child_quantity) 
+        VALUES (?, ?, ?, ?, ?)
       `;
       await pool.query(insertSql, [
         memberId,
         experienceId,
         newSessionId,
-        newQuantity,
+        newAdultQuantity,
+        newChildQuantity,
       ]);
     }
 

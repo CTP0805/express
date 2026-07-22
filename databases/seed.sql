@@ -2021,17 +2021,17 @@ INSERT INTO `favorites` (`id`, `experience_id`, `member_id`, `created_at`) VALUE
 
 -- --------------------------------------------------------
 -- Seed data for `cart`
-INSERT INTO `cart` (`id`, `member_id`, `experience_id`, `session_id`, `quantity`) VALUES
-(1, 1, 2, 2, 2),
-(2, 2, 3, 3, 1),
-(3, 3, 4, 4, 2),
-(4, 4, 5, 5, 1),
-(5, 5, 6, 6, 2),
-(6, 6, 7, 7, 1),
-(7, 7, 8, 8, 2),
-(8, 8, 9, 9, 1),
-(9, 9, 10, 10, 3),
-(10, 10, 1, 1, 2);
+INSERT INTO `cart` (`id`, `member_id`, `experience_id`, `session_id`, `adult_quantity`, `child_quantity`) VALUES
+(1, 1, 2, 2, 2, 0),
+(2, 2, 3, 3, 1, 0),
+(3, 3, 4, 4, 2, 0),
+(4, 4, 5, 5, 1, 0),
+(5, 5, 6, 6, 1, 1),
+(6, 6, 7, 7, 1, 0),
+(7, 7, 8, 8, 2, 0),
+(8, 8, 9, 9, 1, 0),
+(9, 9, 10, 10, 2, 1),
+(10, 10, 1, 1, 2, 0);
 
 -- --------------------------------------------------------
 -- Seed data for `experience_reviews`

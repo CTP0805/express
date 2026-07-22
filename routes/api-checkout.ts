@@ -60,8 +60,10 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
     cart.member_id,
     cart.experience_id,
     cart.session_id,
-    cart.quantity,
-    sessions.adult_price AS price
+    cart.adult_quantity,
+    cart.child_quantity,
+    sessions.adult_price,
+    sessions.child_price
   FROM cart
   JOIN sessions ON cart.session_id = sessions.id
   WHERE cart.member_id = ?`,
@@ -70,10 +72,15 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
     if (!cartItems || cartItems.length === 0)
       return res.status(400).json({ success: false, message: "購物車是空的" });
 
-    // 動態計算 original_amount
+    // 分別計算 (大人數 × 大人價) + (小孩數 × 小孩價)
     let original_amount = 0;
     for (const item of cartItems) {
-      original_amount += Number(item.price || 0) * Number(item.quantity || 1);
+      const adultSubtotal =
+        Number(item.adult_quantity || 0) * Number(item.adult_price || 0);
+      const childSubtotal =
+        Number(item.child_quantity || 0) * Number(item.child_price || 0);
+
+      original_amount += adultSubtotal + childSubtotal;
     }
 
     // === 步驟 2：後端判定會員等級折扣 (對齊你的 member 表 member_level) ===
@@ -147,6 +154,13 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
 
     // C. 寫入 order_items 明細表
     for (const item of cartItems) {
+      const adultSubtotal =
+        Number(item.adult_quantity || 0) * Number(item.adult_price || 0);
+      const childSubtotal =
+        Number(item.child_quantity || 0) * Number(item.child_price || 0);
+      const itemTotal = adultSubtotal + childSubtotal; // 該商品總價
+      const totalQuantity =
+        Number(item.adult_quantity || 0) + Number(item.child_quantity || 0); // 總人數
       await pool.query(
         `
         INSERT INTO order_items 
@@ -158,8 +172,9 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
           item.experience_id,
           item.session_id,
           item.price,
-          item.quantity,
-          item.price * item.quantity,
+          item.adult_price, // 單價用成人價為基準或平均價
+          totalQuantity, // 總人數
+          itemTotal, // 該項目總金額
         ],
       );
     }
