@@ -24,6 +24,7 @@ type MemberRow = {
   google_uid?: string | null;
   avatar_url?: string | null;
   token_version?: number;
+  role?:string;
 };
 
 type EmailVerifyPayload = {
@@ -229,7 +230,7 @@ router.get("/me", authenticate, async (req: Request, res: Response) => {
   // 重新從資料庫拿目前會員資料
   const [members] = await pool.query<MemberRow[]>(
     `
-      SELECT id, name, email
+      SELECT id, name, email, role
       FROM member
       WHERE id = ?
     `,
@@ -253,6 +254,7 @@ router.get("/me", authenticate, async (req: Request, res: Response) => {
       id: member.id,
       name: member.name || "",
       email: member.email,
+      role: member.role,
     },
   });
 });
@@ -327,6 +329,7 @@ router.get("/verify-email", async (req: Request, res: Response) => {
     res.redirect(
       `${FRONTEND_ORIGIN}/auth/verify-email?success=false&message=missing-token`,
     );
+    console.log("驗證失敗 : 缺少驗證 token");
     /*
     res.status(400).json({
       success: false,
@@ -348,6 +351,7 @@ router.get("/verify-email", async (req: Request, res: Response) => {
       res.redirect(
         `${FRONTEND_ORIGIN}/auth/verify-email?success=false&message=wrong-purpose`,
       );
+      console.log("驗證失敗 : 驗證 token 用途錯誤");
       /*
       res.status(400).json({
         success: false,
@@ -373,6 +377,7 @@ router.get("/verify-email", async (req: Request, res: Response) => {
       res.redirect(
         `${FRONTEND_ORIGIN}/auth/verify-email?success=false&message=member-not-found`,
       );
+      console.log("驗證失敗 : 找不到會員資料");
       /*
       res.status(404).json({
         success: false,
@@ -387,6 +392,8 @@ router.get("/verify-email", async (req: Request, res: Response) => {
       res.redirect(
         `${FRONTEND_ORIGIN}/auth/verify-email?success=true&already=true`,
       );
+      console.log("此信箱已經驗證過 !");
+
       /*
       res.status(200).json({
         success: true,
@@ -413,6 +420,8 @@ router.get("/verify-email", async (req: Request, res: Response) => {
     // return;
 
     res.redirect(`${FRONTEND_ORIGIN}/auth/verify-email?success=true`);
+    console.log("信箱驗證成功 !");
+    
     /*
     res.status(200).json({
       success: true,
@@ -421,9 +430,30 @@ router.get("/verify-email", async (req: Request, res: Response) => {
     */
   } catch (error) {
     console.warn(error);
+
+    // jwt.decode 只負責「讀取」token 內容，不會驗證簽章或過期時間。
+    // 這裡不能拿它來當登入驗證，但可以用來帶回 email，讓前端知道要替誰重寄信。
+    const decodedToken = jwt.decode(token);
+
+    const email =
+      typeof decodedToken === "object" &&
+      decodedToken !== null &&
+      "email" in decodedToken &&
+      typeof decodedToken.email === "string"
+        ? decodedToken.email
+        : "";
+
+    // email 可能沒有讀取成功，因此只有真的有 email 才附加在網址上。
+    const emailQuery = email
+      ? `&email=${encodeURIComponent(email)}`
+      : "";
+
     res.redirect(
-      `${FRONTEND_ORIGIN}/auth/verify-email?success=false&message=insuccess-or-expired`,
+      `${FRONTEND_ORIGIN}/auth/verify-email?success=false&message=invalid-or-expired${emailQuery}`,
     );
+
+    console.log("驗證失敗 : 驗證連結無效或已過期，請重新註冊或重新發送驗證信");
+
     /*
     res.status(400).json({
       success: false,
