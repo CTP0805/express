@@ -19,22 +19,25 @@ const updateProfileSchema = z.object({
     z
       .string()
       .trim()
-      .regex(/^09\d{8}$/, { message: "手機格式錯誤，請輸入 09 開頭的 10 碼手機號碼" })
+      .regex(/^09\d{8}$/, {
+        message: "手機格式錯誤，請輸入 09 開頭的 10 碼手機號碼",
+      })
       .nullable(),
   ),
 
   // 這三個值要和 MySQL member.gender 的 ENUM 完全一致。
   gender: z.preprocess(
     (value) => (value === "" ? null : value),
-    z.enum(["男", "女", "其他"], {
-      message: "性別只能是「男」、「女」或「其他」",
-    }).nullable(),
+    z
+      .enum(["男", "女", "其他"], {
+        message: "性別只能是「男」、「女」或「其他」",
+      })
+      .nullable(),
   ),
 
   birthday: z.preprocess(
     (value) => (value === "" ? null : value),
-    z
-      .iso
+    z.iso
       .date({ message: "生日格式必須是 YYYY-MM-DD，例如 2000-05-10" })
       .refine((birthday) => birthday <= new Date().toISOString().slice(0, 10), {
         message: "生日不能是未來日期",
@@ -63,7 +66,9 @@ router.get("/profile", authenticate, async (req: Request, res: Response) => {
             member_level,
             current_points,
             total_spent,
-            total_orders
+            total_orders,
+            role,
+            city
           FROM member
           WHERE id = ?
         `,
@@ -118,8 +123,6 @@ router.put("/profile", authenticate, async (req: Request, res: Response) => {
     // 3. 取得「驗證通過、整理過」的資料
     // 例如 phone: "" 已經被轉成 null。
     const { name, phone, gender, birthday } = zodResult.data;
-
-
 
     // 4. 更新目前登入會員的資料
     await pool.query(
@@ -176,9 +179,13 @@ router.put("/profile", authenticate, async (req: Request, res: Response) => {
 });
 
 // 會員大頭貼上傳、更新
-router.post("/avatar", authenticate, uploadImage.single("avatar"), async (req: Request, res: Response) => {
-  // 前端 FormData 的欄位名稱必須叫做 avatar  
-  try {
+router.post(
+  "/avatar",
+  authenticate,
+  uploadImage.single("avatar"),
+  async (req: Request, res: Response) => {
+    // 前端 FormData 的欄位名稱必須叫做 avatar
+    try {
       const memberId = req.user!.id;
 
       // 若前端沒傳檔案，req.file 會是 undefined
@@ -224,20 +231,31 @@ router.post("/avatar", authenticate, uploadImage.single("avatar"), async (req: R
 );
 
 // 刪除大頭貼
-router.delete("/avatar", authenticate, async (req: Request, res: Response) => {
-});
-
+router.delete(
+  "/avatar",
+  authenticate,
+  async (req: Request, res: Response) => {},
+);
 
 // 取得最近瀏覽資料
-router.get("/recently-viewed", authenticate, (req: Request, res: Response) => {},
+router.get(
+  "/recently-viewed",
+  authenticate,
+  (req: Request, res: Response) => {},
 );
 
 // 加入最近瀏覽
-router.post("/recently-viewed", authenticate, (req: Request, res: Response) => {},
+router.post(
+  "/recently-viewed",
+  authenticate,
+  (req: Request, res: Response) => {},
 );
 
 // 刪除最近瀏覽
-router.delete("/recently-viewed", authenticate, (req: Request, res: Response) => {},
+router.delete(
+  "/recently-viewed",
+  authenticate,
+  (req: Request, res: Response) => {},
 );
 
 // 取得心願清單
@@ -437,5 +455,4 @@ router.delete(
   },
 );
 
-      
 export default router;
