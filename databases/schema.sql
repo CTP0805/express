@@ -652,7 +652,29 @@ CONSTRAINT fk_category_notes_category
     REFERENCES experience_categories(id)
     ON DELETE CASCADE
 );
+CREATE TABLE `chat_rooms` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
+  CONSTRAINT fk_chat_rooms_user
+    FOREIGN KEY (`user_id`)
+    REFERENCES `member`(`id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `chat_messages` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `room_id` INT NOT NULL,
+  `sender` ENUM('user','admin') NOT NULL,
+  `text` TEXT NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `is_read` TINYINT(1) NOT NULL DEFAULT 0,
+
+  CONSTRAINT fk_chat_messages_room
+    FOREIGN KEY (`room_id`)
+    REFERENCES `chat_rooms`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
 ;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */
