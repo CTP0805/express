@@ -55,7 +55,7 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
     // === 步驟 1：後端撈取購物車，自己計算金額（防止前端竄改金額） ===
     // 撈出你的 cart 表商品
     const [cartItems] = await pool.query<RowDataPacket[]>(
-      `SELECT 
+  `SELECT 
     cart.id,
     cart.member_id,
     cart.experience_id,
@@ -69,6 +69,7 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
   WHERE cart.member_id = ?`,
       [memberId],
     );
+
     if (!cartItems || cartItems.length === 0)
       return res.status(400).json({ success: false, message: "購物車是空的" });
 
@@ -83,7 +84,7 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
       original_amount += adultSubtotal + childSubtotal;
     }
 
-    // === 步驟 2：後端判定會員等級折扣 (對齊你的 member 表 member_level) ===
+    // === 步驟 2：後端判定會員等級折扣（金=9折, 銀=95折, 銅=原價）===
     const [members] = await pool.query<RowDataPacket[]>(
       "SELECT member_level, current_points FROM member WHERE id = ?",
       [memberId],
@@ -94,7 +95,18 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
         .status(404)
         .json({ success: false, message: "Member not found" });
     }
-    const discountRate = member.member_level === "金" ? 0.95 : 1.0;
+
+    // 根據會員等級設定「折扣率」與「M幣回饋率
+    let discountRate = 1.0;
+    let rewardRate = 0.01; // 預設銅牌 1%
+
+    if (member.member_level === "金") {
+      discountRate = 0.9;  // 金牌 9 折
+      rewardRate = 0.05;    // 金牌 5% 回饋
+    } else if (member.member_level === "銀") {
+      discountRate = 0.95; // 銀牌 95 折
+      rewardRate = 0.03;    // 銀牌 3% 回饋
+    }
     const levelDiscount = Math.round(original_amount * (1 - discountRate));
 
     // === 步驟 3：安全檢查 M 幣與折價券 ===
@@ -114,7 +126,7 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
           .status(400)
           .json({ success: false, message: "Coupon not found" });
       }
-      coupon_discount = coupon.discount_amount;
+      coupon_discount = Number(coupon.discount_amount);
     }
 
     // 計算應付總價 (final_amount)
@@ -122,8 +134,8 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
       original_amount - levelDiscount - coupon_discount - points_redeemed;
     if (final_amount < 0) final_amount = 0;
 
-    // 計算獲得的 M 幣
-    const points_earned = Math.round(final_amount * 1) || 1;
+    // 計算獲得的 M 幣 (實付金額 * 回饋率)
+    const points_earned = Math.round(final_amount * rewardRate);
 
     // === 步驟 4：寫入資料庫 (利用 Transaction 確保安全) ===
     // A. 生成訂單編號，例如：EU + 年月日 + 隨機流水號 (對齊你圖片中的 EU2607130001)
@@ -154,14 +166,18 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
 
     // C. 寫入 order_items 明細表
     for (const item of cartItems) {
-      const adultSubtotal =
-        Number(item.adult_quantity || 0) * Number(item.adult_price || 0);
-      const childSubtotal =
-        Number(item.child_quantity || 0) * Number(item.child_price || 0);
-      const itemTotal = adultSubtotal + childSubtotal; // 該商品總價
-      const totalQuantity =
-        Number(item.adult_quantity || 0) + Number(item.child_quantity || 0); // 總人數
-      await pool.query(
+        const adultQty = Number(item.adult_quantity || 0);
+        const childQty = Number(item.child_quantity || 0);
+        const adultPrice = Number(item.adult_price || 0);
+        const childPrice = Number(item.child_price || 0);
+        // 1. 計算該項目的真實小計金額 (大人 + 小孩)
+        const itemTotal = (adultQty * adultPrice) + (childQty * childPrice);
+        // 2. 計算總人數
+        const totalQuantity = adultQty + childQty;
+        // 3. 基準單價 (若有大人帶大人價，沒大人帶小孩價)
+        const unitPrice = adultQty > 0 ? adultPrice : childPrice;
+
+        await pool.query(
         `
         INSERT INTO order_items 
         (order_id, experience_id, session_id, original_unit_price, quantity, subtotal, item_status)
@@ -171,19 +187,20 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
           order_id,
           item.experience_id,
           item.session_id,
-          item.price,
-          item.adult_price, // 單價用成人價為基準或平均價
-          totalQuantity, // 總人數
-          itemTotal, // 該項目總金額
+          unitPrice,     // 對應 original_unit_price
+          totalQuantity, // 對應 quantity (總人數)
+          itemTotal,     // 對應 subtotal (項目小計)
         ],
       );
     }
 
     // D. 扣除會員 M 幣 (current_points)
+    if (points_redeemed > 0) {
     await pool.query(
       "UPDATE member SET current_points = current_points - ? WHERE id = ?",
       [points_redeemed, memberId],
-    );
+      );
+    }
 
     // E. 把 member_coupons 狀態標記為已使用 (is_used = 1)
     if (coupon_id) {
@@ -203,4 +220,98 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
     res.status(500).json({ success: false, message: "伺服器錯誤" });
   }
 });
+
+//(供 Payment 頁面使用) 取得單一訂單詳細資料 GET /api/checkout/order/:orderId 
+router.get("/order/:orderId", authenticate, async (req: Request, res: Response) => {
+  const { orderId } = req.params;
+  const memberId = req.user?.id;
+
+  try {
+    const [orders] = await pool.query<RowDataPacket[]>(
+      `SELECT id, original_amount, final_amount, points_earned 
+       FROM order_main 
+       WHERE id = ? AND member_id = ?`,
+      [orderId, memberId]
+    );
+
+    if (!orders || orders.length === 0) {
+      return res.status(404).json({ success: false, message: "找不到該訂單" });
+    }
+
+    const order = orders[0];
+    if (!order) {
+      return res.status(404).json({ success: false, message: "找不到該訂單" });
+    }
+
+    // 撈取該訂單對應的商品名稱組合 (用來傳給綠界與 LINE Pay 的商品說明)
+    const [items] = await pool.query<RowDataPacket[]>(
+      `SELECT experiences.title 
+       FROM order_items 
+       JOIN experiences ON order_items.experience_id = experiences.id 
+       WHERE order_items.order_id = ?`,
+      [orderId]
+    );
+
+    const itemsSummary = items.map((i) => i.title).join("#") || "精選體驗行程";
+
+    res.json({
+      success: true,
+     order: {
+        id: order.id,
+        original_amount: Number(order.original_amount),
+        final_amount: Number(order.final_amount),
+        points_earned: Number(order.points_earned),
+        items_summary: itemsSummary,
+      },
+    });
+  } catch (error) {
+    console.error("撈取訂單詳情失敗：", error);
+    res.status(500).json({ success: false, message: "伺服器錯誤" });
+  }
+});
+
+//訂單完成success介面
+router.post("/pay-success", authenticate, async (req: Request, res: Response) => {
+  const { order_id } = req.body;
+  const memberId = req.user?.id;
+
+  try {
+    // 1. 撈出該筆訂單資料
+    const [orders] = await pool.query<RowDataPacket[]>(
+      "SELECT order_status, points_earned, contact_email FROM order_main WHERE id = ? AND member_id = ?",
+      [order_id, memberId]
+    );
+
+    const order = orders[0];
+    if (!order) {
+      return res.status(404).json({ success: false, message: "找不到該訂單" });
+    }
+
+    // 2. 如果狀態還是 pending，將狀態更新為 paid 並增加會員點數
+    if (order.order_status === "pending") {
+      // A. 更新訂單狀態
+      await pool.query(
+        "UPDATE order_main SET order_status = 'paid', updated_at = NOW() WHERE id = ?",
+        [order_id]
+      );
+
+      // B. 真正將賺取的 M 幣加給會員
+      if (order.points_earned > 0) {
+        await pool.query(
+          "UPDATE member SET current_points = current_points + ? WHERE id = ?",
+          [order.points_earned, memberId]
+        );
+      }
+    }
+
+    res.json({
+      success: true,
+      email: order.contact_email,
+    });
+  } catch (error) {
+    console.error("更新付款成功狀態失敗：", error);
+    res.status(500).json({ success: false, message: "伺服器錯誤" });
+  }
+});
+
 export default router;
