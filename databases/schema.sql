@@ -180,7 +180,7 @@ CREATE TABLE `hosts` (
     `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
     `role` VARCHAR(50) NOT NULL,
     `bio` text COLLATE utf8mb4_unicode_ci,
-    `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 --

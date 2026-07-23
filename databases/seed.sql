@@ -112,17 +112,17 @@ INSERT INTO `experience_categories` (`id`, `category_name`, `icon_url`, `sort_or
 
 -- --------------------------------------------------------
 -- Seed data for `hosts`
-INSERT INTO `hosts` (`id`, `name`, `role`,`bio`, `avatar`, `rating`) VALUES
-(1, 'Sofia Rossi','歷史導覽員','羅馬在地導覽員，熟悉古城巷弄與義式咖啡文化。', '/images/experiences/avatars/host-sofia.jpg', 5),
-(2, 'Lukas Weber','歷史導覽員', '慕尼黑料理老師，擅長巴伐利亞家常菜與啤酒文化。', '/images/experiences/avatars/host-lukas.jpg', 5),
-(3, 'Claire Dubois','歷史導覽員', '巴黎藝術史研究者，帶旅人用輕鬆方式看懂博物館。', '/images/experiences/avatars/host-claire.jpg', 5),
-(4, 'Anna Novak','歷史導覽員', '布拉格戶外嚮導，喜歡分享河岸步道與城市傳說。', '/images/experiences/avatars/host-anna.jpg', 4),
-(5, 'Marco Bianchi','歷史導覽員', '佛羅倫斯歷史導覽員，專長文藝復興建築與街區故事。', '/images/experiences/avatars/host-marco.jpg', 5),
-(6, 'Elena Garcia','歷史導覽員', '西班牙品酒師，熟悉里奧哈葡萄酒與小酒館文化。', '/images/experiences/avatars/host-elena.jpg', 5),
-(7, 'Ingrid Hansen','歷史導覽員', '哥本哈根陶藝職人，開設小班制手作體驗。', '/images/experiences/avatars/host-ingrid.jpg', 4),
-(8, 'Mateo Alvarez','歷史導覽員', '巴塞隆納吉他手，長期參與佛朗明哥演出。', '/images/experiences/avatars/host-mateo.jpg', 5),
-(9, 'Emma Clarke','歷史導覽員', '倫敦旅拍攝影師，擅長自然光人像與街景構圖。', '/images/experiences/avatars/host-emma.jpg', 5),
-(10, 'Nora Schneider','歷史導覽員', '維也納親子活動規劃師，設計適合家庭的文化路線。', '/images/experiences/avatars/host-nora.jpg', 4);
+INSERT INTO `hosts` (`id`, `name`, `role`,`bio`, `avatar`) VALUES
+(1, 'Sofia Rossi','歷史導覽員','羅馬在地導覽員，熟悉古城巷弄與義式咖啡文化。', '/images/experiences/avatars/host-sofia.jpg'),
+(2, 'Lukas Weber','歷史導覽員', '慕尼黑料理老師，擅長巴伐利亞家常菜與啤酒文化。', '/images/experiences/avatars/host-lukas.jpg'),
+(3, 'Claire Dubois','歷史導覽員', '巴黎藝術史研究者，帶旅人用輕鬆方式看懂博物館。', '/images/experiences/avatars/host-claire.jpg'),
+(4, 'Anna Novak','歷史導覽員', '布拉格戶外嚮導，喜歡分享河岸步道與城市傳說。', '/images/experiences/avatars/host-anna.jpg'),
+(5, 'Marco Bianchi','歷史導覽員', '佛羅倫斯歷史導覽員，專長文藝復興建築與街區故事。', '/images/experiences/avatars/host-marco.jpg'),
+(6, 'Elena Garcia','歷史導覽員', '西班牙品酒師，熟悉里奧哈葡萄酒與小酒館文化。', '/images/experiences/avatars/host-elena.jpg'),
+(7, 'Ingrid Hansen','歷史導覽員', '哥本哈根陶藝職人，開設小班制手作體驗。', '/images/experiences/avatars/host-ingrid.jpg'),
+(8, 'Mateo Alvarez','歷史導覽員', '巴塞隆納吉他手，長期參與佛朗明哥演出。', '/images/experiences/avatars/host-mateo.jpg'),
+(9, 'Emma Clarke','歷史導覽員', '倫敦旅拍攝影師，擅長自然光人像與街景構圖。', '/images/experiences/avatars/host-emma.jpg'),
+(10, 'Nora Schneider','歷史導覽員', '維也納親子活動規劃師，設計適合家庭的文化路線。', '/images/experiences/avatars/host-nora.jpg');
 
 -- --------------------------------------------------------
 -- Seed data for `experiences`

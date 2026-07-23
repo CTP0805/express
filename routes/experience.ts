@@ -420,7 +420,6 @@ router.get("/:id", async (req: Request, res: Response) => {
     h.name AS host_name,
     h.bio AS host_bio,
     h.avatar AS host_avatar,
-    h.rating AS host_rating,
     h.role AS host_role
 
   FROM experiences e
