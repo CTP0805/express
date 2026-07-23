@@ -320,7 +320,8 @@ CREATE TABLE `posts` (
     `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `author_id` int NOT NULL,
-    `category_id` int DEFAULT NULL
+    `category_id` int DEFAULT NULL,
+    `review_note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '管理者審查／退回原因（阿偉）'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 --
@@ -528,21 +529,21 @@ AUTO_INCREMENT = 11;
 --
 ALTER TABLE `member`
 MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
+AUTO_INCREMENT = 104;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member_coupons`
 --
 ALTER TABLE `member_coupons`
 MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
+AUTO_INCREMENT = 631;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_items`
 --
 ALTER TABLE `order_items`
 MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
+AUTO_INCREMENT = 253;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `posts`

@@ -1,33 +1,49 @@
 /**
- * 會員 M幣 + 優惠券 API（對齊 schema：member / coupons / member_coupons / order_main）
+ * =============================================================================
+ * 【新手導讀】M 幣 + 優惠券 API（你的負責範圍：member/coupon）
+ * =============================================================================
+ * 掛載：app.use("/api/member-coupon", ...) 
+ * 前端頁：next/app/member/coupon/page.tsx
  *
- * 掛載：app.use("/api/member-coupon", apiMemberCouponRouter)
- * （獨立檔案，不修改既有 api-member.ts）
+ * 兩大支 API：
+ *   GET  /benefits  → 一次拿：餘額、M幣流水、我的券、可兌換券池
+ *   POST /redeem    → 輸入代碼（如 C1）寫入 member_coupons 領券
  *
- * GET  /api/member-coupon/benefits
- *   一次取得：M幣餘額、由 order_main 推導的流水、已持有優惠券、可兌換券池
+ * 資料表怎麼分工：
+ *   coupons         = 券「目錄」（有哪些券、折多少、有效期）
+ *   member_coupons  = 會員「錢包裡的券」（誰領了、用過沒）
+ *   member.current_points = 現在 M 幣餘額
+ *   order_main      = 沒有獨立流水表，用 points_earned / points_redeemed「推導」流水
  *
- * POST /api/member-coupon/redeem
- *   body: { code: string }  代碼格式 C{coupon_id}（DB 無 code 欄，以 id 合成）
+ * 付款成功後核銷／發幣／升等不在這裡：
+ *   → 見 api-payment-success-rewards.ts（成功頁呼叫）
  *
- * 相關表欄位：
- * - member.current_points
- * - coupons: id, coupon_name, min_spent, discount_amount, start_date, end_date
- * - member_coupons: id, member_id, coupon_id, is_used, received_at, used_at
- * - order_main: points_earned / points_redeemed（推導 M幣流水，無獨立流水表）
+ * 代碼格式：DB 沒有 code 欄，後端用 C + id（C1、C10）當兌換碼
+ * =============================================================================
  */
+
+// ---------- import：來源與用途 ----------
+// express：Router / 請求回應型別
 import { type Request, type Response, Router } from "express";
+// mysql2：
+//   RowDataPacket = SELECT 列
+//   ResultSetHeader = INSERT/UPDATE 結果（含 insertId、affectedRows）
 import type { ResultSetHeader, RowDataPacket } from "mysql2";
+// DB 連線池
 import pool from "../utils/connect-mysql.js";
+// 登入中介層
 import { authenticate } from "../middlewares/authenticate.js";
 
+// 本檔路由；index 掛 /api/member-coupon
 const router: Router = Router();
 
+// ---------- 小工具：券碼 C1 ↔ 資料庫 id=1 ----------
 /** DB 無券碼欄位：以前綴 C + id 作為兌換碼（例：C1、C10） */
 function couponCodeFromId(id: number): string {
   return `C${id}`;
 }
 
+/** 使用者輸入 "C3" → 3；格式不對回 null */
 function parseCouponCode(raw: string): number | null {
   const code = raw.trim().toUpperCase();
   const m = /^C(\d+)$/.exec(code);
@@ -92,6 +108,10 @@ export type MemberCouponStatus =
   | "used"
   | "expired";
 
+/**
+ * 【邏輯】把 DB 的 is_used + 日期 → 前端篩選用的狀態字
+ * available=可用 / scheduled=尚未開始 / used=已使用 / expired=已過期
+ */
 function deriveStatus(
   isUsed: boolean,
   startDate: string,
@@ -161,14 +181,16 @@ function mapMemberCouponView(row: MemberCouponRow) {
   };
 }
 
-/**
- * GET /benefits
- * 取得目前登入會員的 M幣與優惠券資料
- */
+// =============================================================================
+// 【區塊】GET /api/member-coupon/benefits
+// 誰用：coupon/page.tsx → fetchMemberBenefits()
+// 回傳大致結構：{ wallet, transactions, coupons, redeemable_codes }
+// =============================================================================
 router.get("/benefits", authenticate, async (req: Request, res: Response) => {
   try {
     const memberId = req.user!.id;
 
+    // (1) M 幣餘額
     const [memberRows] = await pool.query<MemberPointRow[]>(
       `SELECT current_points FROM member WHERE id = ? LIMIT 1`,
       [memberId],
@@ -179,7 +201,7 @@ router.get("/benefits", authenticate, async (req: Request, res: Response) => {
       return;
     }
 
-    // 由訂單推導 M幣流水（DB 無 point_transactions）
+    // (2) 由訂單推導 M幣「流水」（沒有獨立 point_transactions 表）
     const [orderRows] = await pool.query<OrderPointRow[]>(
       `
         SELECT id, points_earned, points_redeemed, created_at, order_status
@@ -303,13 +325,15 @@ router.get("/benefits", authenticate, async (req: Request, res: Response) => {
   }
 });
 
-/**
- * POST /redeem
- * 兌換優惠券（寫入 member_coupons）
- */
+// =============================================================================
+// 【區塊】POST /api/member-coupon/redeem
+// 誰用：RedeemCouponForm → redeemCouponCode("C1")
+// 步驟：驗格式 → 查 coupons 是否存在 → 是否過期 → 是否已領過 → INSERT member_coupons
+// =============================================================================
 router.post("/redeem", authenticate, async (req: Request, res: Response) => {
   try {
     const memberId = req.user!.id;
+    // 前端 body: { code: "C1" }
     const rawCode = String(
       (req.body as { code?: string })?.code ?? "",
     ).trim();
@@ -327,6 +351,7 @@ router.post("/redeem", authenticate, async (req: Request, res: Response) => {
       return;
     }
 
+    // 券目錄是否存在
     const [couponRows] = await pool.query<CouponRow[]>(
       `
         SELECT id, coupon_name, min_spent, discount_amount, start_date, end_date

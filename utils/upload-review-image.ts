@@ -1,11 +1,14 @@
-
+/**
+ * 評價圖片上傳（multer）— 獨立檔，不改他人 upload-Image
+ * public/uploads/reviews
+ */
 import fs from "fs";
 import path from "path";
 import multer, { type FileFilterCallback } from "multer";
 import type { Request } from "express";
 import { v4 as uuidv4 } from "uuid";
 
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "blog");
+const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "reviews");
 
 function ensureUploadDir(): void {
   if (!fs.existsSync(UPLOAD_DIR)) {
@@ -21,7 +24,6 @@ const extMap: Record<string, string> = {
   "image/jpg": ".jpg",
   "image/webp": ".webp",
   "image/gif": ".gif",
-  "image/avif": ".avif",
 };
 
 function fileFilter(
@@ -30,7 +32,7 @@ function fileFilter(
   callback: FileFilterCallback,
 ): void {
   if (!extMap[file.mimetype]) {
-    callback(new Error("僅支援 PNG、JPG、WebP、GIF、AVIF"));
+    callback(new Error("僅支援 PNG、JPG、WebP、GIF"));
     return;
   }
   callback(null, true);
@@ -47,14 +49,12 @@ const storage = multer.diskStorage({
   },
 });
 
-/** 單檔上限 5MB */
-export const blogImageUpload = multer({
+export const reviewImageUpload = multer({
   fileFilter,
   storage,
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
-/** DB／API 回傳的相對路徑（搭配 static：/uploads/blog/xxx.jpg） */
-export function toBlogPublicPath(filename: string): string {
-  return `/uploads/blog/${filename}`;
+export function toReviewPublicPath(filename: string): string {
+  return `/uploads/reviews/${filename}`;
 }

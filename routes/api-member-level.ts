@@ -1,29 +1,51 @@
 /**
- * 會員等級 API（對齊 member.member_level enum：'銅' | '銀' | '金'）
+ * =============================================================================
+ * 【新手導讀】會員等級後端 API
+ * =============================================================================
+ * 檔案：express/routes/api-member-level.ts
+ * 掛載：express/index.ts → app.use("/api/member-level", apiMemberLevelRouter)
+ * 完整網址：GET /api/member-level
+ * 前端對應：next/app/member/level/api.ts → fetchMemberLevel()
  *
- * 掛載：app.use("/api/member-level", apiMemberLevelRouter)
- * （獨立檔案，不修改既有 api-member.ts）
- *
- * GET /api/member-level
- *   回傳目前等級、下一級、進度、剩餘訂單／消費、權益表
- *
- * 升等依據（業務規則，寫在後端常數）：
- * - 銅 → 銀：total_orders >= 3 或 total_spent >= 5000
- * - 銀 → 金：total_orders >= 6 或 total_spent >= 15000
- * （實際等級以 DB member_level 為準；進度以 total_orders / total_spent 計算）
+ * 本檔只「讀取＋計算顯示」，不改 member_level（寫入在 payment-success-rewards）
+ * =============================================================================
  */
+
+// ---------- import：從哪來、幹嘛用 ----------
+
+// express 框架
+//   Router：建立「子路由表」，最後 export 給 index 掛載
+//   Request / Response：HTTP 請求、回應的 TypeScript 型別
+//   type 關鍵字：只引入型別，執行時不存在
 import { type Request, type Response, Router } from "express";
+
+// mysql2：MySQL 驅動的型別
+//   RowDataPacket：查詢結果「一列」的型別標記
 import type { RowDataPacket } from "mysql2";
+
+// 專案自己的 DB 連線池（../ = 上一層目錄）
+//   pool.query(sql, 參數) → 執行 SQL
+//   .js 副檔名：因為編譯/執行時 ESM 需要（TS 原始檔是 .ts）
 import pool from "../utils/connect-mysql.js";
+
+// 登入中介層：檢查 Cookie JWT，通過才把 req.user 填上
+//   用法：router.get("/", authenticate, handler)
 import { authenticate } from "../middlewares/authenticate.js";
 
+// const router = Router()
+//   建立路由器實例；下面 router.get / post 都掛在這
 const router: Router = Router();
 
+// export type：別的檔案也能 import type { MemberLevel }
 export type MemberLevel = "銅" | "銀" | "金";
 
+// 陣列：等級由低到高，用 index 算「下一級」
 const LEVEL_ORDER: MemberLevel[] = ["銅", "銀", "金"];
 
-/** 升到該等級所需門檻（進入此等級的最低條件） */
+/**
+ * Record<鍵型別, 值型別>：物件對應表
+ * 進入該等級的門檻（與前端 thresholds 一致）
+ */
 const LEVEL_THRESHOLDS: Record<
   MemberLevel,
   { minOrders: number; minSpent: number }
@@ -33,6 +55,7 @@ const LEVEL_THRESHOLDS: Record<
   金: { minOrders: 6, minSpent: 15000 },
 };
 
+// 純展示用權益列（不是 SQL 撈的）
 const BENEFIT_ROWS = [
   {
     label: "大使權益",
@@ -64,6 +87,11 @@ const BENEFIT_ROWS = [
   },
 ];
 
+/**
+ * type A = B & C
+ *   交叉型別：同時具備 B 與 C 的欄位
+ *   RowDataPacket & { ... } = MySQL 列 + 我們關心的欄位
+ */
 type MemberLevelRow = RowDataPacket & {
   member_level: string;
   total_spent: number;
@@ -72,20 +100,35 @@ type MemberLevelRow = RowDataPacket & {
   name: string;
 };
 
+/**
+ * 【函式】normalizeLevel
+ * 用途：DB 可能髒資料，統一成 銅|銀|金
+ * 參數 raw: string | null | undefined → 三種都可能
+ * 回傳：MemberLevel
+ */
 function normalizeLevel(raw: string | null | undefined): MemberLevel {
+  // === 嚴格相等（型別＋值）
   if (raw === "銀" || raw === "金" || raw === "銅") return raw;
   return "銅";
 }
 
+/**
+ * 【函式】nextLevelOf
+ * 用途：目前等級的「下一級」；金沒有下一級 → null
+ * LEVEL_ORDER.indexOf：找到在陣列的位置（找不到是 -1）
+ */
 function nextLevelOf(level: MemberLevel): MemberLevel | null {
   const idx = LEVEL_ORDER.indexOf(level);
   if (idx < 0 || idx >= LEVEL_ORDER.length - 1) return null;
+  // ?? null：左邊是 null/undefined 時用右邊（這裡防呆）
   return LEVEL_ORDER[idx + 1] ?? null;
 }
 
 /**
- * 以 total_orders / total_spent 計算往下一級的進度（0–100）
- * 取「訂單進度」與「消費進度」較高者
+ * 【函式】calcProgress
+ * 用途：算進度條 %、還差幾單／多少錢
+ * Math.max / Math.min：取大／取小，用來把比例夾在 0~1
+ * Math.round：四捨五入成整數百分比
  */
 function calcProgress(
   current: MemberLevel,
@@ -99,6 +142,7 @@ function calcProgress(
 } {
   const next = nextLevelOf(current);
   if (!next) {
+    // 已是最高等
     return {
       progressPercent: 100,
       remainingOrders: 0,
@@ -110,6 +154,7 @@ function calcProgress(
   const curTh = LEVEL_THRESHOLDS[current];
   const nextTh = LEVEL_THRESHOLDS[next];
 
+  // 區間長度至少 1，避免除以 0
   const orderSpan = Math.max(1, nextTh.minOrders - curTh.minOrders);
   const spentSpan = Math.max(1, nextTh.minSpent - curTh.minSpent);
 
@@ -122,6 +167,7 @@ function calcProgress(
     Math.max(0, (totalSpent - curTh.minSpent) / spentSpan),
   );
 
+  // 訂單進度、消費進度取較高者當條
   const best = Math.max(orderProgress, spentProgress);
   const remainingOrders = Math.max(0, nextTh.minOrders - totalOrders);
   const remainingSpend = Math.max(0, nextTh.minSpent - totalSpent);
@@ -134,10 +180,25 @@ function calcProgress(
   };
 }
 
+// =============================================================================
+// 【主要路由】GET /
+// 完整路徑：GET /api/member-level
+// 中介層：authenticate（要先登入）
+// async (req, res) => {}：非同步處理函式
+// =============================================================================
 router.get("/", authenticate, async (req: Request, res: Response) => {
   try {
+    // req.user! 的 !：非空斷言「我確定有值」（authenticate 過了才會到這）
+    // ?. 可選鏈：物件可能是 undefined 時安全取值（這裡用 !）
     const memberId = req.user!.id;
 
+    /**
+     * pool.query<型別[]>(sql, [參數])
+     *   ? 佔位符：防止 SQL 注入，參數依序代入
+     *   回傳 [rows, fields]，我們只要 rows → 解構 const [rows] = ...
+     * SQL：
+     *   SELECT 欄位 FROM 表 WHERE 條件 LIMIT 1
+     */
     const [rows] = await pool.query<MemberLevelRow[]>(
       `
         SELECT name, member_level, total_spent, total_orders, current_points
@@ -148,17 +209,27 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
       [memberId],
     );
 
+    // 陣列第一筆；沒資料則 undefined
     const member = rows[0];
     if (!member) {
+      // res.status(404).json(...)：HTTP 狀態 + JSON body
       res.status(404).json({ success: false, message: "找不到會員資料" });
-      return;
+      return; // 結束函式，避免繼續寫第二次 res
     }
 
     const currentLevel = normalizeLevel(member.member_level);
+    // Number(x) || 0：轉數字；若是 NaN/0 則用 0（注意：真的 0 也會變 0）
     const totalOrders = Number(member.total_orders) || 0;
     const totalSpent = Number(member.total_spent) || 0;
     const progress = calcProgress(currentLevel, totalOrders, totalSpent);
 
+    // 下一級門檻：前端畫「已完成 0/3」「已消費 0/5,000」
+    // 升等：訂單達標 **或** 消費達標（完成其一即可）
+    const nextGoal = progress.next
+      ? LEVEL_THRESHOLDS[progress.next]
+      : null;
+
+    // 成功回應：前端 ApiEnvelope + MemberLevelPayload
     res.status(200).json({
       success: true,
       message: "會員等級資料取得成功",
@@ -169,8 +240,13 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
         progress_percent: progress.progressPercent,
         remaining_orders: progress.remainingOrders,
         remaining_spend: progress.remainingSpend,
+        // DB 累積（付款成功 rewards 會更新 total_orders / total_spent）
         total_orders: totalOrders,
         total_spent: totalSpent,
+        // 下一級目標（銅→銀 3／5000；銀→金 6／15000）
+        goal_orders: nextGoal?.minOrders ?? null,
+        goal_spent: nextGoal?.minSpent ?? null,
+        upgrade_rule: "either" as const,
         current_points: Number(member.current_points) || 0,
         levels: LEVEL_ORDER,
         benefit_rows: BENEFIT_ROWS,
@@ -186,19 +262,21 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
           },
           {
             q: "如何升等？",
-            a: "銅→銀：完成至少 3 筆訂單或累積消費 NT$5,000；銀→金：完成至少 6 筆訂單或累積消費 NT$15,000。",
+            a: "完成其一即可：銅→銀需「已完成 3 筆訂單」或「累積消費 NT$5,000」；銀→金需「6 筆」或「NT$15,000」。",
           },
           {
             q: "哪裡可以查詢會員資格？",
-            a: "於個人檔案 > 會員等級 頁面，即可查看當前等級、進度條與剩餘升等條件。",
+            a: "於個人檔案 > 會員等級 可查看已完成 X/3 筆訂單、已消費 Y/5,000 等進度。",
           },
         ],
       },
     });
   } catch (error) {
+    // 任何未預期錯誤：記 log + 500
     console.error("[GET /api/member-level]", error);
     res.status(500).json({ success: false, message: "取得會員等級失敗" });
   }
 });
 
+// 給 index.ts：import xxx from "./routes/api-member-level.js"
 export default router;

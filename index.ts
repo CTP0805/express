@@ -15,9 +15,9 @@ import checkoutRouter from "./routes/api-checkout.js"
 import ecpayRouter from "./routes/ecpay-test-only.js"; 
 import linepayRouter from "./routes/linepay.js";
 import experienceRouter from "./routes/experience.js";
-/** blog / M幣券 / 等級：獨立路由檔（僅掛載，不改他人路由內容） */
 import apiMemberCouponRouter from "./routes/api-member-coupon.js";
 import apiMemberLevelRouter from "./routes/api-member-level.js";
+import apiMemberOrderRouter from "./routes/api-member-order.js";
 import apiBlogRouter from "./routes/api-blog.js";
 import apiBlogUploadRouter from "./routes/api-blog-upload.js";
 import cookieParser from "cookie-parser";
@@ -47,10 +47,12 @@ app.use(cookieParser());
 
 app.use("/api/auth", apiAuthRouter);
 app.use("/api/member", apiMemberRouter);
-app.use("/api/member-coupon", apiMemberCouponRouter);
-app.use("/api/member-level", apiMemberLevelRouter);
-app.use("/api/blog/upload", apiBlogUploadRouter);
-app.use("/api/blog", apiBlogRouter);
+// --- 本人：coupon / level / success 後續 / blog ---
+app.use("/api/member-coupon", apiMemberCouponRouter); // M幣查詢、領券
+app.use("/api/member-level", apiMemberLevelRouter); // 等級讀取
+app.use("/api/member-order", apiMemberOrderRouter);
+app.use("/api/blog/upload", apiBlogUploadRouter); // 封面上傳（須在 /api/blog 前）
+app.use("/api/blog", apiBlogRouter); // 文章 CRUD
 app.use("/ecpay", ecpayRouter);
 app.use("/linepay", linepayRouter);
 app.use("/api/experiences", experienceRouter); 
