@@ -20,10 +20,30 @@ import apiMemberLevelRouter from "./routes/api-member-level.js";
 import apiMemberOrderRouter from "./routes/api-member-order.js";
 import apiBlogRouter from "./routes/api-blog.js";
 import apiBlogUploadRouter from "./routes/api-blog-upload.js";
+import apiChatRouter from "./routes/api-chat.js";
+import chatSocket from "./socket/chat.js";
 import cookieParser from "cookie-parser";
+import { createServer } from "node:http";
+import { Server } from "socket.io";
 
 
 const app = express();
+const server = createServer(app);
+//socket cos要另外設定
+const io = new Server(server, {
+  cors: {
+    origin: function (
+      origin: string | undefined,
+      callback: (error: Error | null, allow?: boolean) => void,
+    ) {
+      // 開發階段暫時允許所有前端來源連線
+      // 正式部署時需改成白名單限制，避免未授權網站連接 Socket
+      callback(null, true);
+    },
+    credentials: true,
+  },
+});
+chatSocket(io);
 
 // 每次有 request，都把他的來源丟到這，然後由我決定要不要放行
 const corsOptions: CorsOptions = {
@@ -59,9 +79,9 @@ app.use("/api/experiences", experienceRouter);
 app.use('/api/cart', cartRouter); 
 app.use('/api/checkout', checkoutRouter); 
 app.use('/api/member-orders', apiMemberOrdersRouter); 
-
+app.use("/api/chat", apiChatRouter);
 const port = Number(process.env.PORT) || 3001;
-
-app.listen(port, () => {
+//socket跟伺服器共用一個port
+server.listen(port, () => {
   console.log(`Express + TS 啟動 http://localhost:${port}`);
 });
