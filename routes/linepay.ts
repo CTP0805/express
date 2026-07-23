@@ -13,20 +13,25 @@ const linePayClient = createLinePayClient({
   env: 'development', // LINE Pay Sandbox
 })
 
-// 使用者用手機付完款後，LINE Pay 會把使用者帶回你的前端哪個畫面？
-// 這裡設定付完款後導回你前端的 localhost:3000/completed 頁面
-const redirectUrls = {
-  confirmUrl: 'http://localhost:3000/success', 
-  cancelUrl: 'http://localhost:3000/payment',
-}
 
 // 關卡一：前端按下確認付款，來這裡「預約訂單」
 router.get('/reserve', async (req, res) => {
   const amount = typeof req.query.amount === 'string' ? Number(req.query.amount) || 0 : 0
   const items = typeof req.query.items === 'string' ? req.query.items : '商品一批'
 
+  // 🚀 關鍵修改 1：拿到前端傳過來的 order_id
+  const orderId = typeof req.query.order_id === 'string' ? req.query.order_id : ''
+
   if (!amount) {
     return res.status(400).json({ success: false, message: '缺少總金額' })
+  }
+
+  // 🚀 關鍵修改 2：動態把 order_id 組進跳轉網址中！
+  // 使用者用手機付完款後，LINE Pay 會把使用者帶回你的前端哪個畫面？
+  // 這裡設定付完款後導回你前端的 localhost:3000/completed 頁面
+  const redirectUrls = {
+    confirmUrl: `http://localhost:3000/success?order_id=${orderId}`, 
+    cancelUrl: `http://localhost:3000/payment?order_id=${orderId}`,
   }
 
   // 組裝 LINE Pay 官方規定的訂單格式

@@ -9,6 +9,7 @@ import cors, { type CorsOptions } from "cors";
 import jwt, { type JwtPayload } from "jsonwebtoken";
 import apiAuthRouter from "./routes/api-auth.js";
 import apiMemberRouter from "./routes/api-member.js";
+import apiMemberOrdersRouter from "./routes/api-member-orders.js";
 import cartRouter from "./routes/api-cart.js"
 import checkoutRouter from "./routes/api-checkout.js"
 import ecpayRouter from "./routes/ecpay-test-only.js"; 
@@ -20,6 +21,7 @@ import apiMemberLevelRouter from "./routes/api-member-level.js";
 import apiBlogRouter from "./routes/api-blog.js";
 import apiBlogUploadRouter from "./routes/api-blog-upload.js";
 import cookieParser from "cookie-parser";
+
 
 const app = express();
 
@@ -54,6 +56,7 @@ app.use("/linepay", linepayRouter);
 app.use("/api/experiences", experienceRouter); 
 app.use('/api/cart', cartRouter); 
 app.use('/api/checkout', checkoutRouter); 
+app.use('/api/member-orders', apiMemberOrdersRouter); 
 
 const port = Number(process.env.PORT) || 3001;
 

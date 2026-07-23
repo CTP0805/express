@@ -10,6 +10,9 @@ router.get('/', function (req, res) {
   const amount = Number(req.query.amount) || 0
   const items = typeof req.query.items === 'string' ? req.query.items : ''
 
+  // 🚀 關鍵修改 1：從前端 query 撈出傳進來的 order_id
+  const orderId = typeof req.query.order_id === 'string' ? req.query.order_id : ''
+
   const itemName =
     items.split(',').length > 1
       ? items.split(',').join('#')
@@ -37,9 +40,9 @@ router.get('/', function (req, res) {
   const ItemName = itemName // String(400) 如果商品名稱有多筆，需在金流選擇頁一行一行顯示商品名稱的話，商品名稱請以符號#分隔。
 
   // 付款結果通知回傳網址(這網址可能需要網路上的真實網址或IP，才能正確接收回傳結果)
-  const ReturnURL = 'https://www.ecpay.com.tw'
+  const ReturnURL = `https://www.ecpay.com.tw`
   // (二選一)以下這個設定，會有回傳結果，但要用前端的api路由來接收並協助重新導向到前端成功callback頁面(不用時下面要83~97從中的值要註解)
-  const OrderResultURL = 'http://localhost:3000/success' //前端成功頁面api路由(POST)
+  const OrderResultURL = `http://localhost:3000/success?order_id=${orderId}` //前端成功頁面api路由(POST)
   // (二選一)以下這個設定，不會任何回傳結果(不用時下面要83~97從中的值要註解)
   // const ClientBackURL = 'http://localhost:3000/ecpay/callback' //前端成功頁面
   const ChoosePayment = 'ALL'

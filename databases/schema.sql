@@ -44,7 +44,8 @@ CREATE TABLE `cart` (
     `member_id` int NOT NULL,
     `experience_id` int NOT NULL,
     `session_id` int NOT NULL,
-    `quantity` int NOT NULL DEFAULT '1'
+    `adult_quantity` int NOT NULL DEFAULT '1',
+    `child_quantity` int NOT NULL DEFAULT '0'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 --
