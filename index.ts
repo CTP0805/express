@@ -19,7 +19,6 @@ import apiMemberLevelRouter from "./routes/api-member-level.js";
 import apiMemberOrderRouter from "./routes/api-member-order.js";
 import apiBlogRouter from "./routes/api-blog.js";
 import apiBlogUploadRouter from "./routes/api-blog-upload.js";
-import apiPaymentSuccessRewardsRouter from "./routes/api-payment-success-rewards.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -50,7 +49,6 @@ app.use("/api/member", apiMemberRouter);
 app.use("/api/member-coupon", apiMemberCouponRouter); // M幣查詢、領券
 app.use("/api/member-level", apiMemberLevelRouter); // 等級讀取
 app.use("/api/member-order", apiMemberOrderRouter);
-app.use("/api/payment-success-rewards", apiPaymentSuccessRewardsRouter); // 剩餘+實付回饋
 app.use("/api/blog/upload", apiBlogUploadRouter); // 封面上傳（須在 /api/blog 前）
 app.use("/api/blog", apiBlogRouter); // 文章 CRUD
 app.use("/ecpay", ecpayRouter);

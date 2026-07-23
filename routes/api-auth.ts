@@ -24,7 +24,6 @@ type MemberRow = {
   google_uid?: string | null;
   avatar_url?: string | null;
   token_version?: number;
-  // ⭐ 阿偉：member.role（會員／管理者／客服）供前端部落格身分分流
   role?: string;
   member_level?: string;
   current_points?: number;
@@ -235,7 +234,7 @@ router.get("/me", authenticate, async (req: Request, res: Response) => {
   try {
     const [members] = await pool.query<MemberRow[]>(
       `
-        SELECT id, name, email, role, member_level, current_points
+        SELECT id, name, email, role
         FROM member
         WHERE id = ?
       `,
@@ -263,13 +262,6 @@ router.get("/me", authenticate, async (req: Request, res: Response) => {
     return;
   }
 
-  // ⭐ 阿偉：role 給前端 blog／會員中心判斷「會員寫文」或「管理者審查」
-  const roleRaw = String(member.role ?? "會員");
-  const role =
-    roleRaw === "管理者" || roleRaw === "客服" || roleRaw === "會員"
-      ? roleRaw
-      : "會員";
-
   // 前端收到這份資料後，就知道目前已登入。
   res.status(200).json({
     success: true,
@@ -277,9 +269,7 @@ router.get("/me", authenticate, async (req: Request, res: Response) => {
       id: member.id,
       name: member.name || "",
       email: member.email,
-      role, // ⭐ 阿偉：身分（會員／管理者／客服）
-      member_level: member.member_level ?? undefined,
-      current_points: Number(member.current_points) || 0,
+      role: member.role,
     },
   });
 });
