@@ -51,6 +51,8 @@ router.get("/", async (req: Request, res: Response) => {
 
     const conditions: string[] = [];
     const params: unknown[] = [];
+    // 只顯示目前仍有可預訂場次的體驗
+    conditions.push("ps.experience_id IS NOT NULL");
     if (keyword) {
       const searchKeyword = `%${keyword}%`;
 
@@ -87,20 +89,6 @@ router.get("/", async (req: Request, res: Response) => {
     if (maxPrice !== null && Number.isFinite(maxPrice) && maxPrice >= 0) {
       conditions.push("ps.adult_min_price <= ?");
       params.push(maxPrice);
-    }
-
-    if (date === "today") {
-      conditions.push(`
-    EXISTS (
-      SELECT 1
-      FROM sessions date_session
-      WHERE date_session.experience_id = e.id
-        AND date_session.status = 1
-        AND date_session.start_time >= NOW()
-        AND date_session.booking_deadline >= NOW()
-        AND DATE(date_session.start_time) = CURDATE()
-    )
-  `);
     }
 
     if (date === "tomorrow") {
@@ -296,7 +284,7 @@ LEFT JOIN experience_categories c
   }
 });
 
-// 取得活動分類與各分類的活動數量
+// 取得體驗分類與各分類的體驗數量
 router.get("/categories", async (req: Request, res: Response) => {
   try {
     const keyword =
@@ -307,7 +295,7 @@ router.get("/categories", async (req: Request, res: Response) => {
     const date = typeof req.query.date === "string" ? req.query.date : "";
 
     const conditions: string[] = [];
-    const params: string[] = [];
+    const params: unknown[] = [];
 
     if (keyword) {
       const searchKeyword = `%${keyword}%`;
@@ -327,19 +315,7 @@ router.get("/categories", async (req: Request, res: Response) => {
       conditions.push("e.city = ?");
       params.push(city);
     }
-    if (date === "today") {
-      conditions.push(`
-    EXISTS (
-      SELECT 1
-      FROM sessions date_session
-      WHERE date_session.experience_id = e.id
-        AND date_session.status = 1
-        AND date_session.start_time >= NOW()
-        AND date_session.booking_deadline >= NOW()
-        AND DATE(date_session.start_time) = CURDATE()
-    )
-  `);
-    } else if (date === "tomorrow") {
+    if (date === "tomorrow") {
       conditions.push(`
     EXISTS (
       SELECT 1
@@ -425,9 +401,7 @@ router.get("/:id", async (req: Request, res: Response) => {
     c.category_name,
     e.host_id,
     e.title,
-    e.subtitle,
     e.description,
-    e.notice,
     e.meeting_point,
     e.city,
     e.longitude,
@@ -526,7 +500,33 @@ router.get("/:id", async (req: Request, res: Response) => {
 
     const [noteRows] = await pool.query(notesSql, [experience.category_id]);
     const notes = noteRows as { title: string; content: string }[];
+    const [imageRows] = await pool.query(
+      `
+    SELECT
+      id,
+      image_url,
+      is_primary,
+      sort_order
+    FROM experience_images
+    WHERE experience_id = ?
+    ORDER BY is_primary DESC, sort_order ASC, id ASC
+  `,
+      [experience.id],
+    );
 
+    const images = (
+      imageRows as {
+        id: number;
+        image_url: string;
+        is_primary: number;
+        sort_order: number;
+      }[]
+    ).map((image) => ({
+      id: Number(image.id),
+      image_url: image.image_url,
+      is_primary: Number(image.is_primary),
+      sort_order: Number(image.sort_order),
+    }));
     const sessionsSql = `
 SELECT
   id,
@@ -590,6 +590,7 @@ FROM sessions
       status: "success",
       data: {
         ...experience,
+        images,
         longitude:
           experience.longitude === null ? null : Number(experience.longitude),
         latitude:

@@ -81,12 +81,10 @@ CREATE TABLE `experiences` (
     `id` int NOT NULL,
     `category_id` int NOT NULL,
     `host_id` int NOT NULL,
-    `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-    `notice` text COLLATE utf8mb4_unicode_ci,
-    `meeting_point` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
     `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+    `meeting_point` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
     `longitude` decimal(9, 6) DEFAULT NULL,
     `latitude` decimal(8, 6) DEFAULT NULL,
     `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -183,7 +181,6 @@ CREATE TABLE `hosts` (
     `role` VARCHAR(50) NOT NULL,
     `bio` text COLLATE utf8mb4_unicode_ci,
     `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `rating` int NOT NULL DEFAULT '5'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 --
@@ -634,8 +631,6 @@ ALTER TABLE `sessions`
 ADD CONSTRAINT `fk_sessions_experience` FOREIGN KEY (`experience_id`) REFERENCES `experiences` (`id`);
 
 COMMIT;
-
--- hosts資料表加一個欄位
 
 CREATE TABLE category_notes (
   id INT PRIMARY KEY AUTO_INCREMENT,
