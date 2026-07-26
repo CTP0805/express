@@ -563,7 +563,7 @@ router.post("/forgot-password", async (req: Request, res: Response) => {
     // step2. 查詢會員是否存在
     // --------------------------------
     const findMemberSql = `
-        SELECT id, name, email, token_version
+        SELECT id, name, email, token_version, is_email_verified
         FROM member
         WHERE email = ?
       `;
@@ -588,6 +588,14 @@ router.post("/forgot-password", async (req: Request, res: Response) => {
     }
 
     const member = members[0];
+
+    if(!member.is_email_verified){
+      // 狀態碼不確定
+      res.status(400).json({
+        success: false,
+        message: "此帳號尚未完成信箱驗證",
+      });
+    }
 
     // 理論上 id、email、token_version 一定存在
     // 這裡是為了讓 TypeScript 確認資料安全

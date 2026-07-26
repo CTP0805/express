@@ -169,6 +169,17 @@ CREATE TABLE `favorites` (
 -- 傾印資料表的資料 `favorites`
 --
 
+--
+-- 資料表結構 `recently_viewed`
+--
+
+CREATE TABLE `recently_viewed` (
+    `id` int NOT NULL,
+    `member_id` int NOT NULL,
+    `experience_id` int NOT NULL,
+    `viewed_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -405,6 +416,22 @@ ADD UNIQUE KEY `uk_favorites_member_experience` (`member_id`, `experience_id`),
 ADD KEY `idx_favorites_experience_id` (`experience_id`);
 
 --
+-- 資料表索引 `recently_viewed`
+--
+
+ALTER TABLE `recently_viewed`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uk_recently_viewed_member_experience` (
+    `member_id`,
+    `experience_id`
+  ),
+  ADD KEY `idx_recently_viewed_member_time` (
+    `member_id`,
+    `viewed_at`,
+    `id`
+  );
+
+--
 -- 資料表索引 `hosts`
 --
 ALTER TABLE `hosts` ADD PRIMARY KEY (`id`);
@@ -515,6 +542,14 @@ MODIFY `id` int NOT NULL AUTO_INCREMENT,
 AUTO_INCREMENT = 11;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `recently_viewed`
+--
+
+ALTER TABLE `recently_viewed`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 1;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `hosts`
 --
 ALTER TABLE `hosts`
@@ -595,6 +630,15 @@ ADD CONSTRAINT `fk_experience_reviews_order_item` FOREIGN KEY (`order_item_id`) 
 ALTER TABLE `favorites`
 ADD CONSTRAINT `fk_favorites_experience` FOREIGN KEY (`experience_id`) REFERENCES `experiences` (`id`),
 ADD CONSTRAINT `fk_favorites_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`);
+
+--
+-- 資料表的限制式 `recently_viewed`
+--
+ALTER TABLE `recently_viewed`
+  ADD CONSTRAINT `fk_recently_viewed_member`
+    FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  ADD CONSTRAINT `fk_recently_viewed_experience`
+    FOREIGN KEY (`experience_id`) REFERENCES `experiences` (`id`);
 
 --
 -- 資料表的限制式 `member_coupons`

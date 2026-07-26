@@ -46,6 +46,10 @@ const updateProfileSchema = z.object({
   ),
 });
 
+const recentlyViewedSchema = z.object({
+  experienceId: z.coerce.number().int().positive(),
+});
+
 // 取得會員資料
 router.get("/profile", authenticate, async (req: Request, res: Response) => {
   try {
@@ -231,24 +235,247 @@ router.post(
 );
 
 // 刪除大頭貼
-router.delete(
-  "/avatar",
-  authenticate,
-  async (req: Request, res: Response) => {},
+router.delete("/avatar", authenticate, async (req: Request, res: Response) => {
+    try {
+      // authenticate 已驗證登入，並將會員 id 放到 req.user
+      const memberId = req.user!.id;
+
+      // 將目前登入會員的 avatar_url 清空為 NULL
+      await pool.query(
+        `
+          UPDATE member
+          SET avatar_url = NULL
+          WHERE id = ?
+        `,
+        [memberId],
+      );
+
+      res.status(200).json({
+        success: true,
+        message: "已移除頭像，恢復預設頭像",
+      });
+    } catch (error) {
+      console.error("移除會員頭像失敗：", error);
+
+      res.status(500).json({
+        success: false,
+        message: "移除頭像失敗，請稍後再試",
+      });
+    }
+  },
 );
 
 // 取得最近瀏覽資料
 router.get(
   "/recently-viewed",
   authenticate,
-  (req: Request, res: Response) => {},
+  async (req: Request, res: Response) => {
+    try {
+      const memberId = req.user!.id;
+
+      const [rows] = await pool.query(
+        `
+          SELECT
+            e.id,
+            e.title,
+            e.city,
+            c.category_name,
+
+            -- experiences 沒有價格，價格從 sessions 取最小成人價格
+            COALESCE(ps.adult_min_price, 0) AS price,
+
+            -- 圖片從 experience_images 取主要圖片
+            ci.image_url,
+
+            -- 評價從 experience_reviews 計算
+            COALESCE(rs.rating, 0) AS rating,
+            COALESCE(rs.review_count, 0) AS review_count,
+
+            rv.viewed_at
+
+          FROM recently_viewed rv
+
+          INNER JOIN experiences e
+            ON e.id = rv.experience_id
+
+          LEFT JOIN experience_categories c
+            ON c.id = e.category_id
+
+          LEFT JOIN (
+            SELECT
+              experience_id,
+              MIN(adult_price) AS adult_min_price
+            FROM sessions
+            WHERE status = 1
+              AND start_time >= NOW()
+              AND booking_deadline >= NOW()
+            GROUP BY experience_id
+          ) ps
+            ON ps.experience_id = e.id
+
+          LEFT JOIN (
+            SELECT experience_id, image_url
+            FROM (
+              SELECT
+                experience_id,
+                image_url,
+                ROW_NUMBER() OVER (
+                  PARTITION BY experience_id
+                  ORDER BY is_primary DESC, sort_order ASC, id ASC
+                ) AS rn
+              FROM experience_images
+            ) ranked_images
+            WHERE rn = 1
+          ) ci
+            ON ci.experience_id = e.id
+
+          LEFT JOIN (
+            SELECT
+              experience_id,
+              ROUND(AVG(rating), 1) AS rating,
+              COUNT(*) AS review_count
+            FROM experience_reviews
+            GROUP BY experience_id
+          ) rs
+            ON rs.experience_id = e.id
+
+          WHERE rv.member_id = ?
+
+          -- 最新瀏覽排最前面
+          ORDER BY rv.viewed_at DESC, rv.id DESC
+
+          -- 雙重保護：資料庫最多應保留 20 筆，API 也只回傳 20 筆
+          LIMIT 20
+        `,
+        [memberId],
+      );
+
+      const items = (rows as Record<string, unknown>[]).map((item) => ({
+        ...item,
+        id: Number(item.id),
+        price: Number(item.price),
+        rating: Number(item.rating),
+        review_count: Number(item.review_count),
+      }));
+
+      res.status(200).json({
+        success: true,
+        data: items,
+      });
+    } catch (error) {
+      console.error("[GET /api/member/recently-viewed]", error);
+
+      res.status(500).json({
+        success: false,
+        message: "取得最近瀏覽資料失敗",
+      });
+    }
+  },
 );
 
 // 加入最近瀏覽
 router.post(
   "/recently-viewed",
   authenticate,
-  (req: Request, res: Response) => {},
+  async (req: Request, res: Response) => {
+    const parsedResult = recentlyViewedSchema.safeParse(req.body);
+
+    if (!parsedResult.success) {
+      res.status(400).json({
+        status: "error",
+        message: "experienceId 必須是大於 0 的整數",
+      });
+      return;
+    }
+
+    const memberId = req.user!.id;
+    const { experienceId } = parsedResult.data;
+
+    try {
+      // 先確認前端送來的體驗 ID 確實存在
+      const [experienceRows] = await pool.query<{ id: number }[]>(
+        `
+          SELECT id
+          FROM experiences
+          WHERE id = ?
+          LIMIT 1
+        `,
+        [experienceId],
+      );
+
+      if (experienceRows.length === 0) {
+        res.status(404).json({
+          status: "error",
+          message: "找不到此體驗",
+        });
+        return;
+      }
+
+      const connection = await pool.getConnection();
+
+      try {
+        await connection.beginTransaction();
+
+        await connection.query(
+          `
+            INSERT INTO recently_viewed (
+              member_id,
+              experience_id,
+              viewed_at
+            )
+            VALUES (?, ?, NOW())
+
+            -- 同一會員再次瀏覽同一體驗時：
+            -- 不新增第二筆，而是更新瀏覽時間。
+            ON DUPLICATE KEY UPDATE
+              viewed_at = NOW()
+          `,
+          [memberId, experienceId],
+        );
+
+        await connection.query(
+          `
+            DELETE rv
+            FROM recently_viewed AS rv
+            LEFT JOIN (
+              SELECT id
+              FROM (
+                SELECT id
+                FROM recently_viewed
+                WHERE member_id = ?
+                ORDER BY viewed_at DESC, id DESC
+                LIMIT 20
+              ) AS latest_twenty
+            ) AS records_to_keep
+              ON records_to_keep.id = rv.id
+
+            WHERE rv.member_id = ?
+              AND records_to_keep.id IS NULL
+          `,
+          [memberId, memberId],
+        );
+
+        await connection.commit();
+
+        res.status(200).json({
+          status: "success",
+          message: "最近瀏覽已更新",
+        });
+      } catch (error) {
+        await connection.rollback();
+        throw error;
+      } finally {
+        connection.release();
+      }
+    } catch (error) {
+      console.error("[POST /api/member/recently-viewed]", error);
+
+      res.status(500).json({
+        status: "error",
+        message: "記錄最近瀏覽失敗",
+      });
+    }
+  },
 );
 
 // 刪除最近瀏覽
