@@ -72,18 +72,42 @@ type PostRow = RowDataPacket & {
   created_at: Date | string;
   author_id: number;
   category_id: number | null;
+  order_item_id?: number | null;
+  experience_id?: number | null;
+  experience_title?: string | null;
+  city?: string | null;
+  category_name?: string | null;
   order_id?: string | null;
   order_title?: string | null;
   review_note?: string | null;
   author_name?: string | null;
+  comment_count?: number | string | null;
 };
 
 type RoleRow = RowDataPacket & { role: string };
 
+type PostIdRow = RowDataPacket & { id: number };
+
+type BlogCommentRow = RowDataPacket & {
+  id: number;
+  post_id: number;
+  member_id: number;
+  author_name: string;
+  author_avatar: string | null;
+  content: string;
+  created_at: Date | string;
+};
+
 /** 舊 DB 一定有的欄位（保證列表可顯示） */
 const POST_SELECT_BASE = `
   id, title, slug, content, excerpt, cover_image, content_image,
-  status, published_at, updated_at, created_at, author_id, category_id
+  status, published_at, updated_at, created_at, author_id, category_id,
+  (
+    SELECT ec.category_name
+    FROM experience_categories AS ec
+    WHERE ec.id = posts.category_id
+    LIMIT 1
+  ) AS category_name
 `;
 
 /** 擴充欄位快取：使用者可能只加 review_note、或完整 order_* */
@@ -163,10 +187,12 @@ function mapPost(row: PostRow) {
     created_at: toIso(row.created_at) ?? new Date().toISOString(),
     author_id: Number(row.author_id),
     category_id: row.category_id == null ? null : Number(row.category_id),
+    category_name: row.category_name ?? null,
     order_id: row.order_id ?? null,
     order_title: row.order_title ?? null,
     review_note: row.review_note ?? null,
     author_name: row.author_name ?? null,
+    comment_count: Number(row.comment_count) || 0,
   };
 }
 
@@ -252,7 +278,12 @@ router.get("/", async (req: Request, res: Response) => {
     const select = await getPostSelect();
     const [rows] = await pool.query<PostRow[]>(
       `
-        SELECT ${select}
+        SELECT ${select},
+          (
+            SELECT COUNT(*)
+            FROM blog_comments AS bc
+            WHERE bc.post_id = posts.id
+          ) AS comment_count
         FROM posts
         ${where}
         ORDER BY
@@ -376,8 +407,7 @@ router.get("/mine", authenticate, async (req: Request, res: Response) => {
 // 誰用：blog/review 頁
 // 做什麼：撈 pending_review 狀態的文章給管理者看
 // =============================================================================
-router.get(
-  "/pending-review",
+router.get("/pending-review",
   authenticate,
   async (req: Request, res: Response) => {
     try {
@@ -394,9 +424,13 @@ router.get(
 
       const [rows] = await pool.query<PostRow[]>(
         `
-          SELECT p.*, m.name AS author_name
+          SELECT
+            p.*,
+            m.name AS author_name,
+            ec.category_name
           FROM posts p
           LEFT JOIN member m ON m.id = p.author_id
+          LEFT JOIN experience_categories ec ON ec.id = p.category_id
           WHERE p.status = ?
           ORDER BY p.updated_at DESC
         `,
@@ -476,6 +510,171 @@ router.get(
         success: false,
         message: "讀取可撰寫訂單失敗",
       });
+    }
+  },
+);
+
+// =============================================================================
+// 【區塊】公開文章留言 GET /slug/:slug/comments
+// =============================================================================
+router.get("/slug/:slug/comments", async (req: Request, res: Response) => {
+  try {
+    const slug = String(req.params.slug ?? "").trim();
+    if (!slug) {
+      res.status(400).json({ success: false, message: "缺少 slug" });
+      return;
+    }
+
+    const [postRows] = await pool.query<PostIdRow[]>(
+      `
+        SELECT id
+        FROM posts
+        WHERE slug = ?
+          AND status = 'published'
+        LIMIT 1
+      `,
+      [slug],
+    );
+    const post = postRows[0];
+    if (!post) {
+      res.status(404).json({ success: false, message: "找不到已上架文章" });
+      return;
+    }
+
+    const [rows] = await pool.query<BlogCommentRow[]>(
+      `
+        SELECT
+          bc.id,
+          bc.post_id,
+          bc.member_id,
+          m.name AS author_name,
+          m.avatar_url AS author_avatar,
+          bc.content,
+          bc.created_at
+        FROM blog_comments AS bc
+        INNER JOIN member AS m
+          ON m.id = bc.member_id
+        WHERE bc.post_id = ?
+        ORDER BY bc.created_at DESC, bc.id DESC
+      `,
+      [post.id],
+    );
+
+    res.status(200).json({
+      success: true,
+      comments: rows.map((row) => ({
+        id: Number(row.id),
+        post_id: Number(row.post_id),
+        member_id: Number(row.member_id),
+        author_name: row.author_name,
+        author_avatar: row.author_avatar,
+        content: row.content,
+        created_at:
+          toIso(row.created_at) ?? new Date().toISOString(),
+      })),
+    });
+  } catch (error) {
+    console.error("[GET /api/blog/slug/:slug/comments]", error);
+    res.status(500).json({ success: false, message: "讀取留言失敗" });
+  }
+});
+
+// =============================================================================
+// 【區塊】新增文章留言 POST /slug/:slug/comments（需登入）
+// =============================================================================
+router.post(
+  "/slug/:slug/comments",
+  authenticate,
+  async (req: Request, res: Response) => {
+    try {
+      const slug = String(req.params.slug ?? "").trim();
+      const content = String(
+        (req.body as { content?: unknown }).content ?? "",
+      ).trim();
+
+      if (!slug) {
+        res.status(400).json({ success: false, message: "缺少 slug" });
+        return;
+      }
+      if (content.length < 2 || content.length > 500) {
+        res.status(400).json({
+          success: false,
+          message: "留言內容需為 2 至 500 個字",
+        });
+        return;
+      }
+
+      const [postRows] = await pool.query<PostIdRow[]>(
+        `
+          SELECT id
+          FROM posts
+          WHERE slug = ?
+            AND status = 'published'
+          LIMIT 1
+        `,
+        [slug],
+      );
+      const post = postRows[0];
+      if (!post) {
+        res.status(404).json({ success: false, message: "找不到已上架文章" });
+        return;
+      }
+
+      const [result] = await pool.query<ResultSetHeader>(
+        `
+          INSERT INTO blog_comments (
+            post_id,
+            member_id,
+            content
+          ) VALUES (?, ?, ?)
+        `,
+        [post.id, req.user!.id, content],
+      );
+
+      const [rows] = await pool.query<BlogCommentRow[]>(
+        `
+          SELECT
+            bc.id,
+            bc.post_id,
+            bc.member_id,
+            m.name AS author_name,
+            m.avatar_url AS author_avatar,
+            bc.content,
+            bc.created_at
+          FROM blog_comments AS bc
+          INNER JOIN member AS m
+            ON m.id = bc.member_id
+          WHERE bc.id = ?
+          LIMIT 1
+        `,
+        [result.insertId],
+      );
+      const created = rows[0];
+      if (!created) {
+        res.status(500).json({
+          success: false,
+          message: "留言建立後讀取失敗",
+        });
+        return;
+      }
+
+      res.status(201).json({
+        success: true,
+        message: "留言已送出",
+        comment: {
+          id: Number(created.id),
+          post_id: Number(created.post_id),
+          member_id: Number(created.member_id),
+          author_name: created.author_name,
+          author_avatar: created.author_avatar,
+          content: created.content,
+          created_at:
+            toIso(created.created_at) ?? new Date().toISOString(),
+        },
+      });
+    } catch (error) {
+      console.error("[POST /api/blog/slug/:slug/comments]", error);
+      res.status(500).json({ success: false, message: "送出留言失敗" });
     }
   },
 );

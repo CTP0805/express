@@ -230,7 +230,7 @@ router.get("/me", authenticate, async (req: Request, res: Response) => {
   // 重新從資料庫拿目前會員資料
   const [members] = await pool.query<MemberRow[]>(
     `
-      SELECT id, name, email, role
+      SELECT id, name, email, role, avatar_url
       FROM member
       WHERE id = ?
     `,
@@ -255,6 +255,7 @@ router.get("/me", authenticate, async (req: Request, res: Response) => {
       name: member.name || "",
       email: member.email,
       role: member.role,
+      avatar_url: member.avatar_url ?? null,
     },
   });
 });
