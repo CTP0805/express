@@ -21,6 +21,7 @@ import apiMemberOrderRouter from "./routes/api-member-order.js";
 import apiBlogRouter from "./routes/api-blog.js";
 import apiBlogUploadRouter from "./routes/api-blog-upload.js";
 import apiChatRouter from "./routes/api-chat.js";
+import apiLocationRouter from "./routes/api-location.js"
 import chatSocket from "./socket/chat.js";
 import cookieParser from "cookie-parser";
 import { createServer } from "node:http";
@@ -80,6 +81,7 @@ app.use('/api/cart', cartRouter);
 app.use('/api/checkout', checkoutRouter); 
 app.use('/api/member-orders', apiMemberOrdersRouter); 
 app.use("/api/chat", apiChatRouter);
+app.use("/api/location",apiLocationRouter)
 const port = Number(process.env.PORT) || 3001;
 //socket跟伺服器共用一個port
 server.listen(port, () => {
