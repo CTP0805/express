@@ -272,13 +272,13 @@ router.get("/order/:orderId", authenticate, async (req: Request, res: Response) 
 
 //訂單完成success介面
 router.post("/pay-success", authenticate, async (req: Request, res: Response) => {
-  const { order_id } = req.body;
+  const { order_id, payment_method } = req.body;
   const memberId = req.user?.id;
 
   try {
     // 1. 撈出該筆訂單資料
     const [orders] = await pool.query<RowDataPacket[]>(
-      "SELECT order_status, points_earned, contact_email FROM order_main WHERE id = ? AND member_id = ?",
+     "SELECT order_status, final_amount, points_earned, contact_email FROM order_main WHERE id = ? AND member_id = ?",
       [order_id, memberId]
     );
 
@@ -287,27 +287,69 @@ router.post("/pay-success", authenticate, async (req: Request, res: Response) =>
       return res.status(404).json({ success: false, message: "找不到該訂單" });
     }
 
-    // 2. 如果狀態還是 pending，將狀態更新為 paid 並增加會員點數
-    if (order.order_status === "pending") {
-      // A. 更新訂單狀態
+    // 2. 使用原子更新 (Atomic Update)：確保只會執行一次，防止重複請求
+    const [updateResult]: any = await pool.query(
+      `UPDATE order_main 
+       SET order_status = 'paid', 
+           payment_method = COALESCE(?, payment_method), 
+           updated_at = NOW() 
+       WHERE id = ? AND order_status = 'pending'`,
+      [payment_method, order_id]
+    );
+
+      //  只有「第一次成功改為 paid」的情境，才執行 M幣發放與會員升級累加
+      if (updateResult.affectedRows > 0) {
+
+      //同步將該筆訂單下的所有子項目 (order_items) 狀態改為 'paid'
       await pool.query(
-        "UPDATE order_main SET order_status = 'paid', updated_at = NOW() WHERE id = ?",
+        "UPDATE order_items SET item_status = 'confirmed' WHERE order_id = ?",
         [order_id]
       );
 
-      // B. 真正將賺取的 M 幣加給會員
-      if (order.points_earned > 0) {
-        await pool.query(
-          "UPDATE member SET current_points = current_points + ? WHERE id = ?",
-          [order.points_earned, memberId]
-        );
+        const paidAmount = Number(order.final_amount) || 0;
+        const pointsEarned = Number(order.points_earned) || 0;
+
+        // A. 發放 M 幣、累加總消費金額 (total_spent)、累加訂單數 (total_orders)
+      await pool.query(
+        `UPDATE member 
+         SET current_points = current_points + ?,
+             total_spent = total_spent + ?,
+             total_orders = total_orders + 1
+         WHERE id = ?`,
+        [pointsEarned, paidAmount, memberId]
+      );
+
+      // B. 撈出會員更新後的最新 total_spent 與 total_orders
+      const [updatedMemberRows] = await pool.query<RowDataPacket[]>(
+        "SELECT total_spent, total_orders, member_level FROM member WHERE id = ?",
+        [memberId]
+      );
+      const currentMember = updatedMemberRows[0];
+
+      if (currentMember) {
+        const totalSpent = Number(currentMember.total_spent) || 0;
+        const totalOrders = Number(currentMember.total_orders) || 0;
+
+        // C. 判定最新會員等級 (金牌 > 銀牌 > 銅牌)
+        // 門檻範例：金牌 (20,000元 或 10筆) / 銀牌 (8,000元 或 5筆)
+        let newLevel = "銅";
+        if (totalSpent >= 20000 || totalOrders >= 10) {
+          newLevel = "金";
+        } else if (totalSpent >= 8000 || totalOrders >= 5) {
+          newLevel = "銀";
+        }
+
+        // D. 若等級有提升，更新資料庫的 member_level 欄位
+        if (newLevel !== currentMember.member_level) {
+          await pool.query(
+            "UPDATE member SET member_level = ? WHERE id = ?",
+            [newLevel, memberId]
+          );
+        }
       }
     }
 
-    res.json({
-      success: true,
-      email: order.contact_email,
-    });
+    res.json({ success: true, email: order.contact_email });
   } catch (error) {
     console.error("更新付款成功狀態失敗：", error);
     res.status(500).json({ success: false, message: "伺服器錯誤" });

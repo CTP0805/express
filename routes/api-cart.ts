@@ -22,6 +22,8 @@ router.get("/cart", authenticate, async (req: Request, res: Response) => {
         IFNULL(cart.child_quantity, 0) AS childQuantity, 
         DATE_FORMAT(sessions.start_time, '%Y-%m-%d %H:%i') AS sessionName,
         sessions.booking_deadline AS bookingDeadline,
+        sessions.max_participants AS maxParticipants,
+        sessions.status AS sessionStatus,
         experience_images.image_url AS image 
       FROM cart
       INNER JOIN experiences ON cart.experience_id = experiences.id
@@ -36,11 +38,21 @@ router.get("/cart", authenticate, async (req: Request, res: Response) => {
     const now = new Date();
     // 整理回傳資料並加上 isSoldOut 判定
     const cartData = (rows as any[]).map((row: any) => {
+      // 判斷 1: 報名截止時間是否已過期
       const isExpired = row.bookingDeadline ? new Date(row.bookingDeadline) <= now : false;
       const adultQty = Number(row.adultQuantity) || 1;
       const childQty = Number(row.childQuantity) || 0;
+      const totalQty = adultQty + childQty;
       const adultP = Number(row.adultPrice) || 0;
       const childP = Number(row.childPrice) || 0;
+      const maxParticipants = Number(row.maxParticipants) || 0;
+
+      // 判斷 2: 購物車數量是否超過最大允許人數，或場次停售 (sessionStatus === 0)
+      const isOverMax = maxParticipants > 0 && totalQty > maxParticipants;
+      const isStatusDisabled = row.sessionStatus === 0;
+
+      // 只要「過期」、「停售」或「超出人數上限」，都算 Sold Out！
+      const isSoldOut = isExpired || isOverMax || isStatusDisabled;
 
       return {
         ...row,
@@ -50,7 +62,8 @@ router.get("/cart", authenticate, async (req: Request, res: Response) => {
         childPrice: childP,
         quantity: adultQty + childQty,
         itemTotal: adultQty * adultP + childQty * childP,
-        isSoldOut: isExpired,
+        isSoldOut: isExpired, // 完售 / 截止判定
+        isExpired: isExpired, // 備用：給前端顯示是「過期」還是「額滿
       };
     });
 
@@ -263,24 +276,37 @@ router.put("/edit", authenticate, async (req: Request, res: Response) => {
 //商品資料渲染, 取推薦商品進畫面
 router.get("/experience", async (req: Request, res: Response) => {
   try {
-    const sql = `
+   const sql = `
   SELECT 
     experiences.id,
     experiences.title,
     experiences.city,
     experience_images.image_url AS primaryImage,
-    MIN(sessions.adult_price) AS minPrice
+    MIN(sessions.adult_price) AS minPrice,
+    COALESCE(rs.rating, 0) AS rating,    
+    COALESCE(rs.review_count, 0) AS review_count
   FROM experiences
   LEFT JOIN experience_images 
     ON experiences.id = experience_images.experience_id 
     AND experience_images.is_primary = 1
   LEFT JOIN sessions 
     ON experiences.id = sessions.experience_id
+  LEFT JOIN (
+    SELECT 
+      experience_id,
+      ROUND(AVG(rating), 1) AS rating,
+      COUNT(*) AS review_count
+    FROM experience_reviews 
+    GROUP BY experience_id
+  ) rs 
+    ON experiences.id = rs.experience_id
   GROUP BY 
-    experiences.id, 
-    experiences.title, 
-    experiences.city, 
-    experience_images.image_url
+    experiences.id,
+    experiences.title,
+    experiences.city,
+    experience_images.image_url,
+    rs.rating,
+    rs.review_count
   ORDER BY experiences.id ASC
   LIMIT 8;
 `;
