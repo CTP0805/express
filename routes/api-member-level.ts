@@ -7,7 +7,7 @@
  * 完整網址：GET /api/member-level
  * 前端對應：next/app/member/level/api.ts → fetchMemberLevel()
  *
- * 本檔只「讀取＋計算顯示」，不改 member_level（寫入在 payment-success-rewards）
+ * 本檔只負責從 member 資料表 SELECT 並整理前端顯示資料，不修改會員資料。
  * =============================================================================
  */
 
@@ -37,10 +37,10 @@ import { authenticate } from "../middlewares/authenticate.js";
 const router: Router = Router();
 
 // export type：別的檔案也能 import type { MemberLevel }
-export type MemberLevel = "銅" | "銀" | "金";
+export type MemberLevel = "啟程旅人" | "探索旅人" | "環遊旅人";
 
 // 陣列：等級由低到高，用 index 算「下一級」
-const LEVEL_ORDER: MemberLevel[] = ["銅", "銀", "金"];
+const LEVEL_ORDER: MemberLevel[] = ["啟程旅人", "探索旅人", "環遊旅人"];
 
 /**
  * Record<鍵型別, 值型別>：物件對應表
@@ -50,9 +50,31 @@ const LEVEL_THRESHOLDS: Record<
   MemberLevel,
   { minOrders: number; minSpent: number }
 > = {
-  銅: { minOrders: 0, minSpent: 0 },
-  銀: { minOrders: 3, minSpent: 5000 },
-  金: { minOrders: 6, minSpent: 15000 },
+  啟程旅人: { minOrders: 0, minSpent: 0 },
+  探索旅人: { minOrders: 3, minSpent: 5000 },
+  環遊旅人: { minOrders: 6, minSpent: 15000 },
+};
+
+// 卡面主題由後端依資料庫等級決定，前端只套用回傳色碼。
+const LEVEL_CARD_THEMES: Record<
+  MemberLevel,
+  { start: string; middle: string; end: string }
+> = {
+  啟程旅人: {
+    start: "#2DD4BF",
+    middle: "#22D3EE",
+    end: "#38BDF8",
+  },
+  探索旅人: {
+    start: "#818CF8",
+    middle: "#A78BFA",
+    end: "#C084FC",
+  },
+  環遊旅人: {
+    start: "#FDE047",
+    middle: "#FBBF24",
+    end: "#FB7185",
+  },
 };
 
 // 純展示用權益列（不是 SQL 撈的）
@@ -60,30 +82,42 @@ const BENEFIT_ROWS = [
   {
     label: "大使權益",
     values: {
-      銅: "1倍 (最高回饋1%)",
-      銀: "3倍 (最高回饋3%)",
-      金: "5倍 (最高回饋5%)",
+      啟程旅人: "1倍 (最高回饋1%)",
+      探索旅人: "3倍 (最高回饋3%)",
+      環遊旅人: "5倍 (最高回饋5%)",
     },
   },
   {
     label: "會員日",
     values: {
-      銅: "TWD 50 基礎會員日",
-      銀: "TWD 150 進階會員日",
-      金: "TWD 300 尊榮會員日",
+      啟程旅人: "TWD 50 基礎會員日",
+      探索旅人: "TWD 150 進階會員日",
+      環遊旅人: "TWD 300 尊榮會員日",
     },
   },
   {
     label: "會員價",
-    values: { 銅: "-", 銀: "銀級價", 金: "金級價" },
+    values: {
+      啟程旅人: "-",
+      探索旅人: "探索旅人價",
+      環遊旅人: "環遊旅人價",
+    },
   },
   {
     label: "升等禮",
-    values: { 銅: "-", 銀: "TWD 200 升等禮", 金: "TWD 500 升等禮" },
+    values: {
+      啟程旅人: "-",
+      探索旅人: "TWD 200 升等禮",
+      環遊旅人: "TWD 500 升等禮",
+    },
   },
   {
     label: "續會禮",
-    values: { 銅: "-", 銀: "TWD 200 續會禮", 金: "TWD 500 續會禮" },
+    values: {
+      啟程旅人: "-",
+      探索旅人: "TWD 200 續會禮",
+      環遊旅人: "TWD 500 續會禮",
+    },
   },
 ];
 
@@ -93,7 +127,7 @@ const BENEFIT_ROWS = [
  *   RowDataPacket & { ... } = MySQL 列 + 我們關心的欄位
  */
 type MemberLevelRow = RowDataPacket & {
-  member_level: string;
+  member_level: MemberLevel;
   total_spent: number;
   total_orders: number;
   current_points: number;
@@ -101,20 +135,8 @@ type MemberLevelRow = RowDataPacket & {
 };
 
 /**
- * 【函式】normalizeLevel
- * 用途：DB 可能髒資料，統一成 銅|銀|金
- * 參數 raw: string | null | undefined → 三種都可能
- * 回傳：MemberLevel
- */
-function normalizeLevel(raw: string | null | undefined): MemberLevel {
-  // === 嚴格相等（型別＋值）
-  if (raw === "銀" || raw === "金" || raw === "銅") return raw;
-  return "銅";
-}
-
-/**
  * 【函式】nextLevelOf
- * 用途：目前等級的「下一級」；金沒有下一級 → null
+ * 用途：目前等級的「下一級」；最高等級沒有下一級 → null
  * LEVEL_ORDER.indexOf：找到在陣列的位置（找不到是 -1）
  */
 function nextLevelOf(level: MemberLevel): MemberLevel | null {
@@ -188,9 +210,13 @@ function calcProgress(
 // =============================================================================
 router.get("/", authenticate, async (req: Request, res: Response) => {
   try {
-    // req.user! 的 !：非空斷言「我確定有值」（authenticate 過了才會到這）
-    // ?. 可選鏈：物件可能是 undefined 時安全取值（這裡用 !）
-    const memberId = req.user!.id;
+    // authenticate 已從登入 Cookie 驗證 JWT，並把登入者放進 req.user。
+    // 前端不傳 memberId，避免使用者竄改 ID 查詢別人的會員資料。
+    const memberId = req.user?.id;
+    if (!memberId) {
+      res.status(401).json({ success: false, message: "尚未登入" });
+      return;
+    }
 
     /**
      * pool.query<型別[]>(sql, [參數])
@@ -217,7 +243,8 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
       return; // 結束函式，避免繼續寫第二次 res
     }
 
-    const currentLevel = normalizeLevel(member.member_level);
+    // member_level 直接採用 SELECT 回來的 ENUM 值，不在 API 內改寫。
+    const currentLevel = member.member_level;
     // Number(x) || 0：轉數字；若是 NaN/0 則用 0（注意：真的 0 也會變 0）
     const totalOrders = Number(member.total_orders) || 0;
     const totalSpent = Number(member.total_spent) || 0;
@@ -235,7 +262,7 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
       message: "會員等級資料取得成功",
       data: {
         name: member.name,
-        current_level: currentLevel,
+        member_level: member.member_level,
         next_level: progress.next,
         progress_percent: progress.progressPercent,
         remaining_orders: progress.remainingOrders,
@@ -243,26 +270,27 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
         // DB 累積（付款成功 rewards 會更新 total_orders / total_spent）
         total_orders: totalOrders,
         total_spent: totalSpent,
-        // 下一級目標（銅→銀 3／5000；銀→金 6／15000）
+        // 下一級目標（啟程→探索 3／5000；探索→環遊 6／15000）
         goal_orders: nextGoal?.minOrders ?? null,
         goal_spent: nextGoal?.minSpent ?? null,
         upgrade_rule: "either" as const,
         current_points: Number(member.current_points) || 0,
+        card_theme: LEVEL_CARD_THEMES[member.member_level],
         levels: LEVEL_ORDER,
         benefit_rows: BENEFIT_ROWS,
         thresholds: LEVEL_THRESHOLDS,
         faqs: [
           {
             q: "會員分級有哪些？",
-            a: "本平台會員分為銅、銀、金三個等級，依消費與完成訂單數給予不同權益。",
+            a: "本平台會員分為啟程旅人、探索旅人、環遊旅人三個等級，依消費與完成訂單數給予不同權益。",
           },
           {
             q: "如何加入會員權益？",
-            a: "註冊帳號後自動成為銅級會員。累積消費或完成體驗預訂即可自動升等，無需額外申請。",
+            a: "註冊帳號後自動成為啟程旅人。累積消費或完成體驗預訂即可自動升等，無需額外申請。",
           },
           {
             q: "如何升等？",
-            a: "完成其一即可：銅→銀需「已完成 3 筆訂單」或「累積消費 NT$5,000」；銀→金需「6 筆」或「NT$15,000」。",
+            a: "完成其一即可：啟程旅人→探索旅人需「已完成 3 筆訂單」或「累積消費 NT$5,000」；探索旅人→環遊旅人需「6 筆」或「NT$15,000」。",
           },
           {
             q: "哪裡可以查詢會員資格？",
