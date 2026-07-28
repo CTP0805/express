@@ -316,24 +316,86 @@ CREATE TABLE `order_main` (
 --
 
 CREATE TABLE `posts` (
-    `id` bigint UNSIGNED NOT NULL,
-    `title` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-    `excerpt` text COLLATE utf8mb4_unicode_ci,
-    `cover_image` text COLLATE utf8mb4_unicode_ci COMMENT 'cover image URL or media id',
-    `content_image` text COLLATE utf8mb4_unicode_ci COMMENT 'content image URL or media id',
-    `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'draft',
-    `published_at` datetime DEFAULT NULL,
-    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `author_id` int NOT NULL,
-    `category_id` int DEFAULT NULL,
-    `review_note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '管理者審查／退回原因（阿偉）'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` LONGTEXT COLLATE utf8mb4_unicode_ci NOT NULL,
+  `excerpt` TEXT COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cover_image` TEXT COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content_image` TEXT COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` VARCHAR(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'draft',
+  `published_at` DATETIME DEFAULT NULL,
+  `updated_at` DATETIME NOT NULL
+    DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `author_id` INT NOT NULL,
+  `category_id` INT DEFAULT NULL,
+  `order_item_id` INT DEFAULT NULL,
+  `review_note` TEXT COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+
+  PRIMARY KEY (`id`),
+
+  UNIQUE KEY `uk_posts_slug` (`slug`),
+  UNIQUE KEY `uk_posts_order_item_id` (`order_item_id`),
+
+  KEY `idx_posts_title` (`title`),
+  KEY `idx_posts_author_id` (`author_id`),
+  KEY `idx_posts_category_id` (`category_id`),
+  KEY `idx_posts_status_published` (`status`, `published_at`),
+
+  CONSTRAINT `fk_posts_author`
+    FOREIGN KEY (`author_id`)
+    REFERENCES `member` (`id`),
+
+  CONSTRAINT `fk_posts_category`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `experience_categories` (`id`),
+
+  CONSTRAINT `fk_posts_order_item`
+    FOREIGN KEY (`order_item_id`)
+    REFERENCES `order_items` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=11;
 
 --
--- 傾印資料表的資料 `posts`
+-- 資料表結構 `posts`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `blog_comments`
+--
+
+CREATE TABLE `blog_comments` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `post_id` BIGINT UNSIGNED NOT NULL,
+  `member_id` INT NOT NULL,
+  `content` VARCHAR(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (`id`),
+  KEY `idx_blog_comments_post_created` (`post_id`, `created_at`),
+  KEY `idx_blog_comments_member_id` (`member_id`),
+
+  CONSTRAINT `fk_blog_comments_post`
+    FOREIGN KEY (`post_id`)
+    REFERENCES `posts` (`id`)
+    ON DELETE CASCADE,
+
+  CONSTRAINT `fk_blog_comments_member`
+    FOREIGN KEY (`member_id`)
+    REFERENCES `member` (`id`)
+    ON DELETE CASCADE
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
+  
+--
+-- 資料表結構 `blog_comments`
 --
 
 -- --------------------------------------------------------
