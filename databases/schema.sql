@@ -213,7 +213,7 @@ CREATE TABLE `member` (
     `gender` enum('男','女','其他') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `birthday` date DEFAULT NULL,
     `avatar_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `member_level` enum('銅','銀','金') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '銅',
+    `member_level` enum('啟程旅人','探索旅人','環遊旅人') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '銅',
     `is_email_verified` datetime DEFAULT NULL,
     `google_uid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `current_points` int NOT NULL DEFAULT '0',

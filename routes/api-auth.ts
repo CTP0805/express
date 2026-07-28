@@ -14,7 +14,7 @@ const { FRONTEND_ORIGIN } = process.env;
 
 const router: Router = Router();
 
-// TypeScript 型別
+// TS 型別專區
 type MemberRow = {
   id?: number;
   name?: string;
@@ -250,9 +250,10 @@ router.get("/me", authenticate, async (req: Request, res: Response) => {
   // 前端收到這份資料後，就知道目前已登入。
   res.status(200).json({
     success: true,
+    message: "目前使用者資料取得成功",
     data: {
       id: member.id,
-      name: member.name || "",
+      name: member.name,
       email: member.email,
       role: member.role,
     },
@@ -288,9 +289,7 @@ router.post("/register", async (req: Request, res: Response) => {
 
   if (existingMember.length) {
     // 409 Conflict
-    res
-      .status(409)
-      .json({ success: false, message: "此 Email 已註冊過(後端)" });
+    res.status(409).json({ success: false, message: "此 Email 已註冊過(後端)" });
     return;
   }
 

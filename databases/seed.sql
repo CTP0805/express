@@ -20,69 +20,69 @@ INSERT INTO `member` (
   `current_points`, `total_spent`, `total_orders`,
   `created_at`, `updated_at`, `token_version`, `role`, `city`
 ) VALUES
-(1, '陳柏宇', 'chen.boyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0912345678', '男', '1995-03-18', '/avatars/default/men/1.jpg', '金', '2025-01-12 09:15:00', NULL, 2450, 38600, 18, '2024-03-05 10:20:00', '2025-06-18 14:30:00', 1, '會員', '台北市'),
-(2, '林冠廷', 'lin.guanding@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1998-11-02', '/avatars/default/men/2.jpg', '銀', '2024-08-21 16:42:00', NULL, 860, 12450, 7, '2024-04-12 15:10:00', '2025-05-09 11:25:00', 1, '會員', '新北市'),
-(3, '黃志豪', 'huang.zhihao@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0987654321', '男', NULL, '/avatars/default/men/3.jpg', '銅', NULL, NULL, 120, 2450, 2, '2024-05-01 08:30:00', '2025-04-22 19:05:00', 1, '會員', '台中市'),
-(4, '張家豪', 'chang.jiahao@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0923456789', '男', '1992-07-25', '/avatars/default/men/4.jpg', '金', '2024-06-08 12:20:00', NULL, 4320, 68700, 31, '2024-01-18 13:45:00', '2025-07-02 09:10:00', 2, '會員', '桃園市'),
-(5, '李承恩', 'li.chengen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '2000-01-14', '/avatars/default/men/5.jpg', '銅', '2025-02-15 10:00:00', NULL, 50, 980, 1, '2025-02-15 09:50:00', '2025-02-15 10:00:00', 1, '會員', '台南市'),
-(6, '王俊傑', 'wang.junjie@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0934567890', '男', '1989-09-08', '/avatars/default/men/6.jpg', '銀', '2024-03-22 14:18:00', NULL, 1560, 25100, 14, '2024-03-20 14:00:00', '2025-06-01 17:40:00', 1, '會員', '高雄市'),
-(7, '吳宇軒', 'wu.yuxuan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0955123456', '男', NULL, '/avatars/default/men/7.jpg', '銅', '2025-03-03 08:25:00', NULL, 280, 4300, 3, '2025-03-02 21:15:00', '2025-06-20 13:05:00', 1, '會員', '新竹市'),
-(8, '劉建宏', 'liu.jianhong@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1985-12-30', '/avatars/default/men/8.jpg', '金', '2024-02-10 11:30:00', NULL, 6780, 105200, 52, '2023-11-07 09:10:00', '2025-07-10 16:22:00', 1, '會員', '台北市'),
-(9, '蔡明哲', 'cai.mingzhe@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0977123456', '男', '1997-05-11', '/avatars/default/men/9.jpg', '銀', '2024-10-05 18:00:00', NULL, 990, 15980, 9, '2024-09-28 12:45:00', '2025-05-15 10:35:00', 1, '會員', '彰化縣'),
-(10, '楊子維', 'yang.ziwei@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0966234567', '男', NULL, '/avatars/default/men/10.jpg', '銅', NULL, NULL, 0, 0, 0, '2025-07-01 09:00:00', '2025-07-01 09:00:00', 1, '會員', '台中市'),
-(11, '許博翔', 'xu.boxiang@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1993-04-19', '/avatars/default/men/11.jpg', '銀', '2024-07-14 13:50:00', NULL, 1870, 30200, 16, '2024-06-29 16:30:00', '2025-06-28 20:10:00', 1, '會員', '嘉義市'),
-(12, '鄭凱文', 'zheng.kaiwen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0908123456', '男', '1996-08-22', '/avatars/default/men/12.jpg', '銅', '2025-01-08 15:45:00', NULL, 430, 7250, 4, '2024-12-20 11:20:00', '2025-06-05 12:00:00', 1, '會員', '新北市'),
-(13, '謝宗翰', 'xie.zonghan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0918765432', '男', NULL, '/avatars/default/men/13.jpg', '銅', '2025-04-18 09:10:00', NULL, 160, 2800, 2, '2025-04-16 14:00:00', '2025-05-22 18:35:00', 1, '會員', '宜蘭縣'),
-(14, '郭書豪', 'guo.shuhao@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1991-02-06', '/avatars/default/men/14.jpg', '金', '2024-01-25 10:22:00', NULL, 5030, 81700, 39, '2023-08-10 08:45:00', '2025-07-12 11:30:00', 2, '會員', '台北市'),
-(15, '洪偉倫', 'hong.weilun@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0945123456', '男', '1999-06-28', '/avatars/default/men/15.jpg', '銀', '2024-11-20 19:15:00', NULL, 1320, 21350, 11, '2024-11-18 10:15:00', '2025-06-11 14:50:00', 1, '會員', '屏東縣'),
-(16, '邱柏翰', 'qiu.bohan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1988-10-17', '/avatars/default/men/16.jpg', '金', '2024-05-30 11:05:00', NULL, 7210, 118900, 58, '2024-01-03 15:45:00', '2025-07-16 09:20:00', 1, '會員', '桃園市'),
-(17, '曾俊霖', 'zeng.junlin@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0928123456', '男', NULL, '/avatars/default/men/17.jpg', '銅', NULL, NULL, 0, 0, 0, '2025-07-08 17:20:00', '2025-07-08 17:20:00', 1, '會員', '花蓮縣'),
-(18, '廖威廷', 'liao.weiting@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0933123456', '男', '1994-03-04', '/avatars/default/men/18.jpg', '銀', '2024-09-12 14:00:00', NULL, 2100, 34700, 19, '2024-08-25 09:30:00', '2025-06-30 13:25:00', 1, '會員', '台中市'),
-(19, '賴冠宇', 'lai.guanyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1990-07-16', '/avatars/default/men/19.jpg', '金', '2024-04-07 16:10:00', NULL, 3890, 62100, 29, '2024-02-12 11:40:00', '2025-07-03 15:10:00', 1, '會員', '新竹縣'),
-(20, '蘇彥廷', 'su.yanting@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0978123456', '男', NULL, '/avatars/default/men/20.jpg', '銅', '2025-05-06 10:30:00', NULL, 300, 5180, 3, '2025-05-01 13:20:00', '2025-07-05 09:45:00', 1, '會員', '台南市'),
-(21, '徐正宇', 'xu.zhengyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '2001-09-12', '/avatars/default/men/21.jpg', '銅', '2025-06-02 12:00:00', NULL, 80, 1200, 1, '2025-06-01 19:40:00', '2025-06-25 08:15:00', 1, '會員', '高雄市'),
-(22, '何承翰', 'he.chenghan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0909123456', '男', '1995-01-31', '/avatars/default/men/22.jpg', '銀', '2024-12-08 18:30:00', NULL, 1140, 18400, 10, '2024-10-22 14:15:00', '2025-07-09 16:05:00', 1, '會員', '台北市'),
-(23, '高子軒', 'gao.zixuan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', NULL, '/avatars/default/men/23.jpg', '銅', NULL, NULL, 0, 0, 0, '2025-07-15 10:05:00', '2025-07-15 10:05:00', 1, '會員', '基隆市'),
-(24, '羅士傑', 'luo.shijie@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0956123456', '男', '1987-11-09', '/avatars/default/men/24.jpg', '金', '2024-03-16 09:55:00', NULL, 8490, 136500, 67, '2023-10-05 08:00:00', '2025-07-18 12:30:00', 2, '會員', '台中市'),
-(25, '梁育誠', 'liang.yucheng@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1996-04-27', '/avatars/default/men/25.jpg', '銀', '2024-08-09 13:30:00', NULL, 1760, 28600, 15, '2024-07-30 10:10:00', '2025-06-17 19:20:00', 1, '會員', '雲林縣'),
-(26, '宋柏勳', 'song.boxun@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0911123456', '男', NULL, '/avatars/default/men/26.jpg', '銅', '2025-02-24 17:45:00', NULL, 540, 8900, 5, '2025-02-20 15:00:00', '2025-06-08 10:25:00', 1, '會員', '嘉義縣'),
-(27, '方奕辰', 'fang.yichen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1993-08-03', '/avatars/default/men/27.jpg', '銀', '2024-06-15 11:10:00', NULL, 2250, 36200, 18, '2024-05-12 09:20:00', '2025-07-01 14:40:00', 1, '會員', '新北市'),
-(28, '杜俊賢', 'du.junxian@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0946123456', '男', '1998-02-20', '/avatars/default/men/28.jpg', '銅', '2025-01-31 08:40:00', NULL, 680, 11200, 6, '2025-01-25 13:10:00', '2025-07-14 18:10:00', 1, '會員', '苗栗縣'),
-(29, '程浩然', 'cheng.haoran@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', NULL, '/avatars/default/men/29.jpg', '銅', NULL, NULL, 30, 500, 1, '2025-06-30 08:20:00', '2025-07-12 09:50:00', 1, '會員', '台東縣'),
-(30, '鍾睿哲', 'zhong.ruizhe@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0988123456', '男', '1991-06-15', '/avatars/default/men/30.jpg', '金', '2024-02-28 15:20:00', NULL, 5680, 91500, 43, '2023-12-18 16:00:00', '2025-07-17 11:15:00', 1, '會員', '台北市'),
-(31, '林雅婷', 'lin.yating@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0919234567', '女', '1996-05-23', '/avatars/default/women/1.jpg', '金', '2024-04-12 10:30:00', NULL, 4620, 74200, 36, '2024-01-25 11:10:00', '2025-07-11 13:50:00', 1, '會員', '台北市'),
-(32, '陳怡君', 'chen.yijun@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1993-10-08', '/avatars/default/women/2.jpg', '銀', '2024-09-03 09:25:00', NULL, 1980, 32100, 17, '2024-08-18 14:30:00', '2025-06-23 16:15:00', 1, '會員', '新北市'),
-(33, '張芸瑄', 'chang.yunxuan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0922345678', '女', NULL, '/avatars/default/women/3.jpg', '銅', '2025-03-28 14:10:00', NULL, 340, 5600, 3, '2025-03-26 10:20:00', '2025-06-15 09:30:00', 1, '會員', '桃園市'),
-(34, '黃詩涵', 'huang.shihan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0935234567', '女', '1998-01-16', '/avatars/default/women/4.jpg', '銅', '2025-02-01 11:45:00', NULL, 710, 11700, 6, '2025-01-28 08:40:00', '2025-07-06 17:20:00', 1, '會員', '台中市'),
-(35, '李欣妤', 'li.xinyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1990-06-30', '/avatars/default/women/5.jpg', '金', '2024-05-18 15:30:00', NULL, 7560, 120800, 61, '2023-09-15 09:10:00', '2025-07-19 10:45:00', 2, '會員', '高雄市'),
-(36, '王筱晴', 'wang.xiaoqing@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0971234567', '女', NULL, '/avatars/default/women/6.jpg', '銅', NULL, NULL, 0, 0, 0, '2025-07-10 12:15:00', '2025-07-10 12:15:00', 1, '會員', '台南市'),
-(37, '吳佩珊', 'wu.peishan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1995-09-14', '/avatars/default/women/7.jpg', '銀', '2024-11-06 18:40:00', NULL, 1480, 23900, 13, '2024-10-30 13:00:00', '2025-06-12 15:30:00', 1, '會員', '新竹市'),
-(38, '劉雨柔', 'liu.yurou@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0967234567', '女', '2000-03-05', '/avatars/default/women/8.jpg', '銅', '2025-05-12 10:00:00', NULL, 190, 3150, 2, '2025-05-10 16:30:00', '2025-06-29 11:40:00', 1, '會員', '台北市'),
-(39, '蔡宜臻', 'cai.yizhen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1992-12-21', '/avatars/default/women/9.jpg', '銀', '2024-07-22 09:50:00', NULL, 2540, 41100, 21, '2024-06-30 15:20:00', '2025-07-04 18:10:00', 1, '會員', '彰化縣'),
-(40, '楊思妤', 'yang.siyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0955234567', '女', NULL, '/avatars/default/women/10.jpg', '銅', '2025-06-09 13:15:00', NULL, 90, 1500, 1, '2025-06-08 10:45:00', '2025-07-08 14:25:00', 1, '會員', '嘉義市'),
-(41, '許婉庭', 'xu.wanting@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1989-08-18', '/avatars/default/women/11.jpg', '金', '2024-02-20 11:25:00', NULL, 6350, 101600, 49, '2023-11-22 14:30:00', '2025-07-15 09:10:00', 1, '會員', '新北市'),
-(42, '鄭佳穎', 'zheng.jiaying@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0908234567', '女', '1997-04-01', '/avatars/default/women/12.jpg', '銀', '2024-12-14 16:20:00', NULL, 1640, 26700, 14, '2024-11-25 10:00:00', '2025-06-24 13:15:00', 1, '會員', '台中市'),
-(43, '謝依庭', 'xie.yiting@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', NULL, '/avatars/default/women/13.jpg', '銅', NULL, NULL, 0, 0, 0, '2025-07-14 08:30:00', '2025-07-14 08:30:00', 1, '會員', '宜蘭縣'),
-(44, '郭芷晴', 'guo.zhiqing@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0945234567', '女', '1994-07-09', '/avatars/default/women/14.jpg', '銀', '2024-08-28 12:10:00', NULL, 2190, 35400, 18, '2024-08-10 09:15:00', '2025-07-02 16:50:00', 1, '會員', '桃園市'),
-(45, '洪語彤', 'hong.yutong@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1999-11-26', '/avatars/default/women/15.jpg', '銅', '2025-01-19 17:55:00', NULL, 460, 7600, 4, '2025-01-16 11:30:00', '2025-06-03 10:10:00', 1, '會員', '屏東縣'),
-(46, '邱鈺婷', 'qiu.yuting@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0981234567', '女', NULL, '/avatars/default/women/16.jpg', '銅', '2025-04-05 09:35:00', NULL, 250, 4150, 2, '2025-04-03 18:25:00', '2025-06-21 15:00:00', 1, '會員', '花蓮縣'),
-(47, '曾心怡', 'zeng.xinyi@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1991-02-13', '/avatars/default/women/17.jpg', '金', '2024-03-10 10:45:00', NULL, 5870, 94600, 45, '2023-12-05 13:30:00', '2025-07-17 17:40:00', 1, '會員', '台北市'),
-(48, '廖品妍', 'liao.pinyan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0929234567', '女', '1996-06-07', '/avatars/default/women/18.jpg', '銀', '2024-10-16 14:35:00', NULL, 1210, 19600, 10, '2024-10-01 09:00:00', '2025-06-10 12:25:00', 1, '會員', '高雄市'),
-(49, '賴郁雯', 'lai.yuwen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', NULL, '/avatars/default/women/19.jpg', '銅', '2025-05-25 11:20:00', NULL, 110, 1800, 1, '2025-05-23 10:45:00', '2025-06-26 14:10:00', 1, '會員', '新竹縣'),
-(50, '蘇靜怡', 'su.jingyi@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0934234567', '女', '1988-09-29', '/avatars/default/women/20.jpg', '金', '2024-01-15 15:15:00', NULL, 9140, 147300, 72, '2023-07-18 08:50:00', '2025-07-18 10:30:00', 2, '會員', '台中市'),
-(51, '徐若琳', 'xu.ruolin@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1995-03-16', '/avatars/default/women/21.jpg', '銀', '2024-06-20 18:15:00', NULL, 1930, 31300, 16, '2024-06-12 11:20:00', '2025-07-07 09:40:00', 1, '會員', '台南市'),
-(52, '何佳蓉', 'he.jiarong@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0968234567', '女', NULL, '/avatars/default/women/22.jpg', '銅', '2025-02-08 10:50:00', NULL, 520, 8500, 5, '2025-02-05 14:10:00', '2025-06-16 18:20:00', 1, '會員', '雲林縣'),
-(53, '高雅雯', 'gao.yawen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1992-05-02', '/avatars/default/women/23.jpg', '銀', '2024-07-01 09:30:00', NULL, 2370, 38400, 20, '2024-06-20 08:15:00', '2025-07-13 16:00:00', 1, '會員', '台北市'),
-(54, '羅欣儀', 'luo.xinyi@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0956234567', '女', '1998-08-11', '/avatars/default/women/24.jpg', '銅', '2025-03-12 13:40:00', NULL, 390, 6400, 3, '2025-03-10 09:55:00', '2025-06-27 11:15:00', 1, '會員', '基隆市'),
-(55, '梁舒涵', 'liang.shuhan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', NULL, '/avatars/default/women/25.jpg', '銅', NULL, NULL, 0, 0, 0, '2025-07-16 15:40:00', '2025-07-16 15:40:00', 1, '會員', '苗栗縣'),
-(56, '宋婕妤', 'song.jieyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0912234567', '女', '1994-01-24', '/avatars/default/women/26.jpg', '銀', '2024-09-30 17:00:00', NULL, 1450, 23500, 12, '2024-09-12 12:40:00', '2025-06-06 10:05:00', 1, '會員', '嘉義縣'),
-(57, '方芝羽', 'fang.zhiyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '2001-07-19', '/avatars/default/women/27.jpg', '銅', '2025-06-28 09:10:00', NULL, 60, 1000, 1, '2025-06-27 16:20:00', '2025-07-15 12:00:00', 1, '會員', '台東縣'),
-(58, '杜怡萱', 'du.yixuan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0947234567', '女', '1993-11-05', '/avatars/default/women/28.jpg', '金', '2024-04-25 12:30:00', NULL, 4730, 76100, 37, '2024-02-28 10:30:00', '2025-07-08 18:35:00', 1, '會員', '新北市'),
-(59, '程安琪', 'cheng.anqi@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', NULL, '/avatars/default/women/29.jpg', '銅', '2025-04-29 16:10:00', NULL, 240, 3950, 2, '2025-04-27 10:10:00', '2025-06-22 14:20:00', 1, '會員', '嘉義市'),
-(60, '鍾語嫣', 'zhong.yuyan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0989234567', '女', '1990-04-12', '/avatars/default/women/30.jpg', '金', '2024-02-05 09:20:00', NULL, 6940, 111500, 54, '2023-10-30 15:20:00', '2025-07-20 08:30:00', 2, '會員', '桃園市'),
-(101, '一般會員(測試)', 'member@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '銅', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:42:45', '2026-07-21 09:44:46', 1, '會員', NULL),
-(102, '管理員(測試)', 'admin@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '銅', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:44:46', '2026-07-21 09:44:46', 1, '管理者', NULL),
-(103, '客服(測試)', 'support@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '銅', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:46:55', '2026-07-21 09:46:55', 1, '客服', NULL);
+(1, '陳柏宇', 'chen.boyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0912345678', '男', '1995-03-18', '/avatars/default/men/1.jpg', '環遊旅人', '2025-01-12 09:15:00', NULL, 2450, 38600, 18, '2024-03-05 10:20:00', '2025-06-18 14:30:00', 1, '會員', '台北市'),
+(2, '林冠廷', 'lin.guanding@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1998-11-02', '/avatars/default/men/2.jpg', '探索旅人', '2024-08-21 16:42:00', NULL, 860, 12450, 7, '2024-04-12 15:10:00', '2025-05-09 11:25:00', 1, '會員', '新北市'),
+(3, '黃志豪', 'huang.zhihao@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0987654321', '男', NULL, '/avatars/default/men/3.jpg', '啟程旅人', NULL, NULL, 120, 2450, 2, '2024-05-01 08:30:00', '2025-04-22 19:05:00', 1, '會員', '台中市'),
+(4, '張家豪', 'chang.jiahao@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0923456789', '男', '1992-07-25', '/avatars/default/men/4.jpg', '環遊旅人', '2024-06-08 12:20:00', NULL, 4320, 68700, 31, '2024-01-18 13:45:00', '2025-07-02 09:10:00', 2, '會員', '桃園市'),
+(5, '李承恩', 'li.chengen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '2000-01-14', '/avatars/default/men/5.jpg', '啟程旅人', '2025-02-15 10:00:00', NULL, 50, 980, 1, '2025-02-15 09:50:00', '2025-02-15 10:00:00', 1, '會員', '台南市'),
+(6, '王俊傑', 'wang.junjie@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0934567890', '男', '1989-09-08', '/avatars/default/men/6.jpg', '探索旅人', '2024-03-22 14:18:00', NULL, 1560, 25100, 14, '2024-03-20 14:00:00', '2025-06-01 17:40:00', 1, '會員', '高雄市'),
+(7, '吳宇軒', 'wu.yuxuan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0955123456', '男', NULL, '/avatars/default/men/7.jpg', '啟程旅人', '2025-03-03 08:25:00', NULL, 280, 4300, 3, '2025-03-02 21:15:00', '2025-06-20 13:05:00', 1, '會員', '新竹市'),
+(8, '劉建宏', 'liu.jianhong@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1985-12-30', '/avatars/default/men/8.jpg', '環遊旅人', '2024-02-10 11:30:00', NULL, 6780, 105200, 52, '2023-11-07 09:10:00', '2025-07-10 16:22:00', 1, '會員', '台北市'),
+(9, '蔡明哲', 'cai.mingzhe@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0977123456', '男', '1997-05-11', '/avatars/default/men/9.jpg', '探索旅人', '2024-10-05 18:00:00', NULL, 990, 15980, 9, '2024-09-28 12:45:00', '2025-05-15 10:35:00', 1, '會員', '彰化縣'),
+(10, '楊子維', 'yang.ziwei@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0966234567', '男', NULL, '/avatars/default/men/10.jpg', '啟程旅人', NULL, NULL, 0, 0, 0, '2025-07-01 09:00:00', '2025-07-01 09:00:00', 1, '會員', '台中市'),
+(11, '許博翔', 'xu.boxiang@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1993-04-19', '/avatars/default/men/11.jpg', '探索旅人', '2024-07-14 13:50:00', NULL, 1870, 30200, 16, '2024-06-29 16:30:00', '2025-06-28 20:10:00', 1, '會員', '嘉義市'),
+(12, '鄭凱文', 'zheng.kaiwen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0908123456', '男', '1996-08-22', '/avatars/default/men/12.jpg', '啟程旅人', '2025-01-08 15:45:00', NULL, 430, 7250, 4, '2024-12-20 11:20:00', '2025-06-05 12:00:00', 1, '會員', '新北市'),
+(13, '謝宗翰', 'xie.zonghan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0918765432', '男', NULL, '/avatars/default/men/13.jpg', '啟程旅人', '2025-04-18 09:10:00', NULL, 160, 2800, 2, '2025-04-16 14:00:00', '2025-05-22 18:35:00', 1, '會員', '宜蘭縣'),
+(14, '郭書豪', 'guo.shuhao@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1991-02-06', '/avatars/default/men/14.jpg', '環遊旅人', '2024-01-25 10:22:00', NULL, 5030, 81700, 39, '2023-08-10 08:45:00', '2025-07-12 11:30:00', 2, '會員', '台北市'),
+(15, '洪偉倫', 'hong.weilun@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0945123456', '男', '1999-06-28', '/avatars/default/men/15.jpg', '探索旅人', '2024-11-20 19:15:00', NULL, 1320, 21350, 11, '2024-11-18 10:15:00', '2025-06-11 14:50:00', 1, '會員', '屏東縣'),
+(16, '邱柏翰', 'qiu.bohan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1988-10-17', '/avatars/default/men/16.jpg', '環遊旅人', '2024-05-30 11:05:00', NULL, 7210, 118900, 58, '2024-01-03 15:45:00', '2025-07-16 09:20:00', 1, '會員', '桃園市'),
+(17, '曾俊霖', 'zeng.junlin@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0928123456', '男', NULL, '/avatars/default/men/17.jpg', '啟程旅人', NULL, NULL, 0, 0, 0, '2025-07-08 17:20:00', '2025-07-08 17:20:00', 1, '會員', '花蓮縣'),
+(18, '廖威廷', 'liao.weiting@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0933123456', '男', '1994-03-04', '/avatars/default/men/18.jpg', '探索旅人', '2024-09-12 14:00:00', NULL, 2100, 34700, 19, '2024-08-25 09:30:00', '2025-06-30 13:25:00', 1, '會員', '台中市'),
+(19, '賴冠宇', 'lai.guanyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1990-07-16', '/avatars/default/men/19.jpg', '環遊旅人', '2024-04-07 16:10:00', NULL, 3890, 62100, 29, '2024-02-12 11:40:00', '2025-07-03 15:10:00', 1, '會員', '新竹縣'),
+(20, '蘇彥廷', 'su.yanting@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0978123456', '男', NULL, '/avatars/default/men/20.jpg', '啟程旅人', '2025-05-06 10:30:00', NULL, 300, 5180, 3, '2025-05-01 13:20:00', '2025-07-05 09:45:00', 1, '會員', '台南市'),
+(21, '徐正宇', 'xu.zhengyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '2001-09-12', '/avatars/default/men/21.jpg', '啟程旅人', '2025-06-02 12:00:00', NULL, 80, 1200, 1, '2025-06-01 19:40:00', '2025-06-25 08:15:00', 1, '會員', '高雄市'),
+(22, '何承翰', 'he.chenghan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0909123456', '男', '1995-01-31', '/avatars/default/men/22.jpg', '探索旅人', '2024-12-08 18:30:00', NULL, 1140, 18400, 10, '2024-10-22 14:15:00', '2025-07-09 16:05:00', 1, '會員', '台北市'),
+(23, '高子軒', 'gao.zixuan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', NULL, '/avatars/default/men/23.jpg', '啟程旅人', NULL, NULL, 0, 0, 0, '2025-07-15 10:05:00', '2025-07-15 10:05:00', 1, '會員', '基隆市'),
+(24, '羅士傑', 'luo.shijie@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0956123456', '男', '1987-11-09', '/avatars/default/men/24.jpg', '環遊旅人', '2024-03-16 09:55:00', NULL, 8490, 136500, 67, '2023-10-05 08:00:00', '2025-07-18 12:30:00', 2, '會員', '台中市'),
+(25, '梁育誠', 'liang.yucheng@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1996-04-27', '/avatars/default/men/25.jpg', '探索旅人', '2024-08-09 13:30:00', NULL, 1760, 28600, 15, '2024-07-30 10:10:00', '2025-06-17 19:20:00', 1, '會員', '雲林縣'),
+(26, '宋柏勳', 'song.boxun@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0911123456', '男', NULL, '/avatars/default/men/26.jpg', '啟程旅人', '2025-02-24 17:45:00', NULL, 540, 8900, 5, '2025-02-20 15:00:00', '2025-06-08 10:25:00', 1, '會員', '嘉義縣'),
+(27, '方奕辰', 'fang.yichen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', '1993-08-03', '/avatars/default/men/27.jpg', '探索旅人', '2024-06-15 11:10:00', NULL, 2250, 36200, 18, '2024-05-12 09:20:00', '2025-07-01 14:40:00', 1, '會員', '新北市'),
+(28, '杜俊賢', 'du.junxian@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0946123456', '男', '1998-02-20', '/avatars/default/men/28.jpg', '啟程旅人', '2025-01-31 08:40:00', NULL, 680, 11200, 6, '2025-01-25 13:10:00', '2025-07-14 18:10:00', 1, '會員', '苗栗縣'),
+(29, '程浩然', 'cheng.haoran@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '男', NULL, '/avatars/default/men/29.jpg', '啟程旅人', NULL, NULL, 30, 500, 1, '2025-06-30 08:20:00', '2025-07-12 09:50:00', 1, '會員', '台東縣'),
+(30, '鍾睿哲', 'zhong.ruizhe@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0988123456', '男', '1991-06-15', '/avatars/default/men/30.jpg', '環遊旅人', '2024-02-28 15:20:00', NULL, 5680, 91500, 43, '2023-12-18 16:00:00', '2025-07-17 11:15:00', 1, '會員', '台北市'),
+(31, '林雅婷', 'lin.yating@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0919234567', '女', '1996-05-23', '/avatars/default/women/1.jpg', '環遊旅人', '2024-04-12 10:30:00', NULL, 4620, 74200, 36, '2024-01-25 11:10:00', '2025-07-11 13:50:00', 1, '會員', '台北市'),
+(32, '陳怡君', 'chen.yijun@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1993-10-08', '/avatars/default/women/2.jpg', '探索旅人', '2024-09-03 09:25:00', NULL, 1980, 32100, 17, '2024-08-18 14:30:00', '2025-06-23 16:15:00', 1, '會員', '新北市'),
+(33, '張芸瑄', 'chang.yunxuan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0922345678', '女', NULL, '/avatars/default/women/3.jpg', '啟程旅人', '2025-03-28 14:10:00', NULL, 340, 5600, 3, '2025-03-26 10:20:00', '2025-06-15 09:30:00', 1, '會員', '桃園市'),
+(34, '黃詩涵', 'huang.shihan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0935234567', '女', '1998-01-16', '/avatars/default/women/4.jpg', '啟程旅人', '2025-02-01 11:45:00', NULL, 710, 11700, 6, '2025-01-28 08:40:00', '2025-07-06 17:20:00', 1, '會員', '台中市'),
+(35, '李欣妤', 'li.xinyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1990-06-30', '/avatars/default/women/5.jpg', '環遊旅人', '2024-05-18 15:30:00', NULL, 7560, 120800, 61, '2023-09-15 09:10:00', '2025-07-19 10:45:00', 2, '會員', '高雄市'),
+(36, '王筱晴', 'wang.xiaoqing@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0971234567', '女', NULL, '/avatars/default/women/6.jpg', '啟程旅人', NULL, NULL, 0, 0, 0, '2025-07-10 12:15:00', '2025-07-10 12:15:00', 1, '會員', '台南市'),
+(37, '吳佩珊', 'wu.peishan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1995-09-14', '/avatars/default/women/7.jpg', '探索旅人', '2024-11-06 18:40:00', NULL, 1480, 23900, 13, '2024-10-30 13:00:00', '2025-06-12 15:30:00', 1, '會員', '新竹市'),
+(38, '劉雨柔', 'liu.yurou@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0967234567', '女', '2000-03-05', '/avatars/default/women/8.jpg', '啟程旅人', '2025-05-12 10:00:00', NULL, 190, 3150, 2, '2025-05-10 16:30:00', '2025-06-29 11:40:00', 1, '會員', '台北市'),
+(39, '蔡宜臻', 'cai.yizhen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1992-12-21', '/avatars/default/women/9.jpg', '探索旅人', '2024-07-22 09:50:00', NULL, 2540, 41100, 21, '2024-06-30 15:20:00', '2025-07-04 18:10:00', 1, '會員', '彰化縣'),
+(40, '楊思妤', 'yang.siyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0955234567', '女', NULL, '/avatars/default/women/10.jpg', '啟程旅人', '2025-06-09 13:15:00', NULL, 90, 1500, 1, '2025-06-08 10:45:00', '2025-07-08 14:25:00', 1, '會員', '嘉義市'),
+(41, '許婉庭', 'xu.wanting@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1989-08-18', '/avatars/default/women/11.jpg', '環遊旅人', '2024-02-20 11:25:00', NULL, 6350, 101600, 49, '2023-11-22 14:30:00', '2025-07-15 09:10:00', 1, '會員', '新北市'),
+(42, '鄭佳穎', 'zheng.jiaying@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0908234567', '女', '1997-04-01', '/avatars/default/women/12.jpg', '探索旅人', '2024-12-14 16:20:00', NULL, 1640, 26700, 14, '2024-11-25 10:00:00', '2025-06-24 13:15:00', 1, '會員', '台中市'),
+(43, '謝依庭', 'xie.yiting@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', NULL, '/avatars/default/women/13.jpg', '啟程旅人', NULL, NULL, 0, 0, 0, '2025-07-14 08:30:00', '2025-07-14 08:30:00', 1, '會員', '宜蘭縣'),
+(44, '郭芷晴', 'guo.zhiqing@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0945234567', '女', '1994-07-09', '/avatars/default/women/14.jpg', '探索旅人', '2024-08-28 12:10:00', NULL, 2190, 35400, 18, '2024-08-10 09:15:00', '2025-07-02 16:50:00', 1, '會員', '桃園市'),
+(45, '洪語彤', 'hong.yutong@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1999-11-26', '/avatars/default/women/15.jpg', '啟程旅人', '2025-01-19 17:55:00', NULL, 460, 7600, 4, '2025-01-16 11:30:00', '2025-06-03 10:10:00', 1, '會員', '屏東縣'),
+(46, '邱鈺婷', 'qiu.yuting@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0981234567', '女', NULL, '/avatars/default/women/16.jpg', '啟程旅人', '2025-04-05 09:35:00', NULL, 250, 4150, 2, '2025-04-03 18:25:00', '2025-06-21 15:00:00', 1, '會員', '花蓮縣'),
+(47, '曾心怡', 'zeng.xinyi@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1991-02-13', '/avatars/default/women/17.jpg', '環遊旅人', '2024-03-10 10:45:00', NULL, 5870, 94600, 45, '2023-12-05 13:30:00', '2025-07-17 17:40:00', 1, '會員', '台北市'),
+(48, '廖品妍', 'liao.pinyan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0929234567', '女', '1996-06-07', '/avatars/default/women/18.jpg', '探索旅人', '2024-10-16 14:35:00', NULL, 1210, 19600, 10, '2024-10-01 09:00:00', '2025-06-10 12:25:00', 1, '會員', '高雄市'),
+(49, '賴郁雯', 'lai.yuwen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', NULL, '/avatars/default/women/19.jpg', '啟程旅人', '2025-05-25 11:20:00', NULL, 110, 1800, 1, '2025-05-23 10:45:00', '2025-06-26 14:10:00', 1, '會員', '新竹縣'),
+(50, '蘇靜怡', 'su.jingyi@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0934234567', '女', '1988-09-29', '/avatars/default/women/20.jpg', '環遊旅人', '2024-01-15 15:15:00', NULL, 9140, 147300, 72, '2023-07-18 08:50:00', '2025-07-18 10:30:00', 2, '會員', '台中市'),
+(51, '徐若琳', 'xu.ruolin@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1995-03-16', '/avatars/default/women/21.jpg', '探索旅人', '2024-06-20 18:15:00', NULL, 1930, 31300, 16, '2024-06-12 11:20:00', '2025-07-07 09:40:00', 1, '會員', '台南市'),
+(52, '何佳蓉', 'he.jiarong@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0968234567', '女', NULL, '/avatars/default/women/22.jpg', '啟程旅人', '2025-02-08 10:50:00', NULL, 520, 8500, 5, '2025-02-05 14:10:00', '2025-06-16 18:20:00', 1, '會員', '雲林縣'),
+(53, '高雅雯', 'gao.yawen@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '1992-05-02', '/avatars/default/women/23.jpg', '探索旅人', '2024-07-01 09:30:00', NULL, 2370, 38400, 20, '2024-06-20 08:15:00', '2025-07-13 16:00:00', 1, '會員', '台北市'),
+(54, '羅欣儀', 'luo.xinyi@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0956234567', '女', '1998-08-11', '/avatars/default/women/24.jpg', '啟程旅人', '2025-03-12 13:40:00', NULL, 390, 6400, 3, '2025-03-10 09:55:00', '2025-06-27 11:15:00', 1, '會員', '基隆市'),
+(55, '梁舒涵', 'liang.shuhan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', NULL, '/avatars/default/women/25.jpg', '啟程旅人', NULL, NULL, 0, 0, 0, '2025-07-16 15:40:00', '2025-07-16 15:40:00', 1, '會員', '苗栗縣'),
+(56, '宋婕妤', 'song.jieyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0912234567', '女', '1994-01-24', '/avatars/default/women/26.jpg', '探索旅人', '2024-09-30 17:00:00', NULL, 1450, 23500, 12, '2024-09-12 12:40:00', '2025-06-06 10:05:00', 1, '會員', '嘉義縣'),
+(57, '方芝羽', 'fang.zhiyu@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', '2001-07-19', '/avatars/default/women/27.jpg', '啟程旅人', '2025-06-28 09:10:00', NULL, 60, 1000, 1, '2025-06-27 16:20:00', '2025-07-15 12:00:00', 1, '會員', '台東縣'),
+(58, '杜怡萱', 'du.yixuan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0947234567', '女', '1993-11-05', '/avatars/default/women/28.jpg', '環遊旅人', '2024-04-25 12:30:00', NULL, 4730, 76100, 37, '2024-02-28 10:30:00', '2025-07-08 18:35:00', 1, '會員', '新北市'),
+(59, '程安琪', 'cheng.anqi@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', NULL, '女', NULL, '/avatars/default/women/29.jpg', '啟程旅人', '2025-04-29 16:10:00', NULL, 240, 3950, 2, '2025-04-27 10:10:00', '2025-06-22 14:20:00', 1, '會員', '嘉義市'),
+(60, '鍾語嫣', 'zhong.yuyan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0989234567', '女', '1990-04-12', '/avatars/default/women/30.jpg', '環遊旅人', '2024-02-05 09:20:00', NULL, 6940, 111500, 54, '2023-10-30 15:20:00', '2025-07-20 08:30:00', 2, '會員', '桃園市'),
+(101, '一般會員(測試)', 'member@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '啟程旅人', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:42:45', '2026-07-21 09:44:46', 1, '會員', NULL),
+(102, '管理員(測試)', 'admin@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '啟程旅人', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:44:46', '2026-07-21 09:44:46', 1, '管理者', NULL),
+(103, '客服(測試)', 'support@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '啟程旅人', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:46:55', '2026-07-21 09:46:55', 1, '客服', NULL);
 
 -- --------------------------------------------------------
 -- Seed data for `coupons`
@@ -130,7 +130,7 @@ INSERT INTO `hosts` (`id`, `name`, `role`,`bio`, `avatar`) VALUES
 
 INSERT INTO `experiences` (`id`, `category_id`, `host_id`, `title`, `description`, `meeting_point`, `city`, `longitude`, `latitude`, `created_at`) VALUES
 (1, 5, 1, '倫敦經典街景自然光旅拍', '由專業攝影師帶領，在倫敦經典街區捕捉自然生動的人像。走訪大笨鐘、紅色電話亭與泰晤士河畔等代表性場景。攝影師會提供簡單易懂的姿勢與取景指導，即使第一次拍攝也能自在入鏡。行程結束後將獲得精選調色照片，留下專屬於你的倫敦旅行回憶。', 'Westminster Station 1 號出口', '倫敦', -0.124625, 51.500729, '2026-07-13 12:05:00'),
-(2, 2, 2, '羅浮宮經典藝術深度導覽之旅', '由專業藝文導覽員帶領，認識羅浮宮重要館藏與建築歷史。精選蒙娜麗莎、米洛的維納斯與勝利女神等經典作品進行解說。透過作品背後的時代故事與創作細節，輕鬆理解西方藝術發展。適合第一次造訪羅浮宮的旅客，在有限時間內掌握最具代表性的藝術精華。', '羅浮宮玻璃金字塔入口附近', '巴黎', 2.337644, 48.860611, '2026-07-13 12:10:00'),
+(2, 2, 2, '羅浮宮經典藝術深度導覽之旅', '由專業藝文導覽員帶領，認識羅浮宮重要館藏與建築歷史。精選蒙娜麗莎、米洛的維納斯與勝利女神等經典作品進行解說。透過作品背後的時代故事與創作細節，輕鬆理解西方藝術發展。適合第一次造訪羅浮宮的旅客，在有限時間內掌握最具代表性的藝術精華。', '羅浮宮玻璃環遊旅人字塔入口附近', '巴黎', 2.337644, 48.860611, '2026-07-13 12:10:00'),
 (3, 3, 3, '法餐私廚經典料理品味之夜', '走進巴黎私廚餐桌，品嚐以當季食材設計的經典法式料理。由主廚介紹每道菜的烹調方式、食材來源與法國飲食文化。餐點包含前菜、主餐及甜點，並搭配適合的葡萄酒或無酒精飲品。透過小班制用餐與主廚交流，在自在氛圍中感受巴黎人的精緻生活。', '巴黎瑪黑區聖保羅地鐵站出口', '巴黎', 2.360137, 48.855281, '2026-07-13 12:15:00'),
 (4, 4, 4, '腳踏車市區深度探索漫遊之旅', '騎乘舒適的城市腳踏車，跟著在地嚮導探索阿姆斯特丹的大街小巷。沿途經過運河、特色橋梁與充滿生活感的社區。導覽員將分享城市發展、自行車文化與居民的日常故事。行程步調輕鬆並安排多次停留，適合具備基本騎乘能力的旅客。', '阿姆斯特丹中央車站正門廣場', '阿姆斯特丹', 4.900272, 52.379189, '2026-07-13 12:20:00'),
 (5, 1, 5, '聖家堂建築藝術古蹟深度導覽', '由專業導覽員帶領，深入認識聖家堂的建築構造與歷史背景。欣賞高第運用自然光線、幾何圖形與宗教意象打造的空間。透過立面雕刻與教堂內部細節，了解不同時期的設計故事。適合喜愛建築與文化的旅客，完整感受巴賽隆納最具代表性的地標。', '聖家堂誕生立面入口附近', '巴賽隆納', 2.174355, 41.403629, '2026-07-13 12:25:00'),
@@ -140,9 +140,9 @@ INSERT INTO `experiences` (`id`, `category_id`, `host_id`, `title`, `description
 (9, 6, 9, '啤酒節慕尼黑經典狂歡之夜', '走進慕尼黑熱鬧的啤酒節會場，感受巴伐利亞最具代表性的節慶氣氛。品嚐當地啤酒與傳統料理，並認識不同酒款及飲食文化。現場樂隊、民族服飾與大型帳篷共同營造歡樂的夜間體驗。由熟悉會場的帶隊人員協助安排動線，讓旅客安心參與這場城市盛會。', 'Theresienwiese 地鐵站出口', '慕尼黑', 11.549143, 48.131929, '2026-07-13 12:45:00'),
 (10, 6, 10, '紅磨坊歌舞盛宴璀璨巴黎之夜', '走進巴黎蒙馬特的紅磨坊劇場，欣賞充滿華麗服裝與舞台效果的歌舞演出。專業舞者以經典康康舞、音樂與燈光呈現法式夜生活魅力。劇院歷史悠久且氣氛熱鬧，讓旅客感受巴黎娛樂文化的代表性場景。適合安排為旅行中的特別夜晚，在璀璨演出中留下難忘回憶。', 'Moulin Rouge 劇場正門入口', '巴黎', 2.332260, 48.884139, '2026-07-13 12:50:00'),
 (11, 5, 1, '倫敦塔橋晨光人像寫真旅拍', '在清晨柔和光線下拍攝倫敦塔橋與泰晤士河畔景色。攝影師會協助引導自然姿勢與適合你的拍照角度。行程包含橋邊街景與具有倫敦特色的建築背景。結束後將提供精選修圖照片，留下專屬倫敦回憶。', 'Tower Bridge 正門', '倫敦', -0.075400, 51.505500, '2026-07-21 18:43:34'),
-(12, 2, 2, '巴黎羅浮宮藝術名作深度導覽', '由導覽員帶領認識羅浮宮最具代表性的館藏與故事。用容易理解的方式欣賞蒙娜麗莎與古典人體藝術作品。行程也會分享建築改建與宮殿歷史留下的重要痕跡。適合第一次參觀羅浮宮又想深入了解藝術的旅人。', 'Musée du Louvre 金字塔入口', '巴黎', 2.336400, 48.860600, '2026-07-21 18:43:34'),
+(12, 2, 2, '巴黎羅浮宮藝術名作深度導覽', '由導覽員帶領認識羅浮宮最具代表性的館藏與故事。用容易理解的方式欣賞蒙娜麗莎與古典人體藝術作品。行程也會分享建築改建與宮殿歷史留下的重要痕跡。適合第一次參觀羅浮宮又想深入了解藝術的旅人。', 'Musée du Louvre 環遊旅人字塔入口', '巴黎', 2.336400, 48.860600, '2026-07-21 18:43:34'),
 (13, 6, 3, '慕尼黑啤酒花園微醺夜遊體驗', '走進慕尼黑當地人喜愛的傳統啤酒花園感受夜晚氣氛。認識不同德國啤酒風味與巴伐利亞飲酒文化特色。品嚐經典香腸、椒鹽捲餅與適合搭配的在地小食。適合想輕鬆認識慕尼黑夜生活的成年旅人。', 'Marienplatz 新市政廳前', '慕尼黑', 11.575500, 48.137400, '2026-07-21 18:43:34'),
-(14, 1, 4, '阿姆斯特丹王宮歷史文化導覽', '從水壩廣場出發認識阿姆斯特丹王宮與城市發展故事。導覽員會介紹荷蘭黃金時代留下的重要建築與文化。沿途欣賞老城街道、運河景觀和具有特色的山形屋。適合喜歡歐洲歷史建築與城市文化的旅人。', 'Dam Square 水壩廣場', '阿姆斯特丹', 4.891000, 52.373100, '2026-07-21 18:43:34'),
+(14, 1, 4, '阿姆斯特丹王宮歷史文化導覽', '從水壩廣場出發認識阿姆斯特丹王宮與城市發展故事。導覽員會介紹荷蘭黃環遊旅人時代留下的重要建築與文化。沿途欣賞老城街道、運河景觀和具有特色的山形屋。適合喜歡歐洲歷史建築與城市文化的旅人。', 'Dam Square 水壩廣場', '阿姆斯特丹', 4.891000, 52.373100, '2026-07-21 18:43:34'),
 (15, 1, 5, '威尼斯聖馬可廣場古蹟巡禮', '走訪聖馬可廣場周邊的重要建築與威尼斯共和國歷史。認識聖馬可大教堂、鐘樓和總督宮背後的城市故事。導覽員會分享威尼斯商業繁盛時期留下的文化痕跡。適合第一次造訪威尼斯並想掌握必看景點的旅人。', 'Piazza San Marco 廣場入口', '威尼斯', 12.337000, 45.434000, '2026-07-21 18:43:34'),
 (16, 3, 6, '巴賽隆納海鮮燉飯料理體驗', '跟著主廚前往市場挑選當季海鮮與西班牙特色食材。學習製作香氣濃郁的傳統海鮮燉飯與經典小菜。課程會介紹橄欖油、香料和高湯對風味的重要影響。完成後能和同行旅人一起享用親手製作的料理。', 'Mercat de la Boqueria 正門', '巴賽隆納', 2.171800, 41.382600, '2026-07-21 18:43:34'),
 (17, 4, 7, '倫敦泰晤士河畔健走探索', '沿著泰晤士河步行欣賞倫敦眼、大笨鐘與河岸風景。導覽員會分享河畔地標與倫敦城市發展的有趣故事。路線安排平緩好走，也會保留時間讓旅人拍照休息。適合喜歡輕鬆散步並認識倫敦經典景點的旅人。', 'London Eye 入口前', '倫敦', -0.119500, 51.503300, '2026-07-21 18:43:34'),
@@ -168,7 +168,7 @@ INSERT INTO `experiences` (`id`, `category_id`, `host_id`, `title`, `description
 (37, 3, 3, '巴伐利亞家常料理手作體驗', '在溫暖的料理空間中學習巴伐利亞家庭常見菜色，感受樸實豐富的味道。從備料到擺盤都有主廚示範，讓每個步驟都能輕鬆跟上。完成後一起分享料理，認識當地人聚餐時重視的餐桌習慣。適合想離開觀光餐廳，親手體驗慕尼黑日常風味的旅人。', 'Viktualienmarkt 正門入口', '慕尼黑', 11.576100, 48.135100, '2026-07-21 20:14:21'),
 (38, 2, 2, '慕尼黑宮廷藝術典藏導覽之旅', '走入昔日王室收藏空間，欣賞宮廷建築、人體藝術與珍貴裝飾作品。導覽員用生動故事介紹巴伐利亞王室，讓歷史人物更加貼近生活。行程安排重點展廳與拍照角度，避免在龐大館舍中迷失方向。適合喜歡藝術與歐洲歷史，希望深入認識慕尼黑文化的旅人。', 'Residenz München 售票處前', '慕尼黑', 11.577800, 48.141400, '2026-07-21 20:14:21'),
 (39, 5, 5, '慕尼黑老城人像旅拍寫真體驗', '跟著在地攝影師走進老城廣場與彩色街角，拍下自然又有旅行感的人像。拍攝前會先了解你的穿搭與風格，安排最適合的取景路線。攝影師提供表情與動作引導，不必擔心面對鏡頭會尷尬。完成後取得精選成品，帶走一份有溫度的慕尼黑回憶。', 'Marienplatz 新市政廳前', '慕尼黑', 11.575500, 48.137400, '2026-07-21 20:14:21'),
-(40, 1, 1, '運河金色年代歷史漫步導覽', '沿著運河與老宅漫步，認識阿姆斯特丹從貿易港口發展而來的歷史。導覽員會分享商人宅邸、倉庫與橋梁背後的城市生活故事。路線穿插較少遊客知道的巷弄，感受水都安靜而迷人的一面。適合想慢慢走讀城市，不只拍照打卡的文化旅行者。', 'Dam Square 國家紀念碑前', '阿姆斯特丹', 4.893600, 52.373100, '2026-07-21 20:14:21'),
+(40, 1, 1, '運河環遊旅人色年代歷史漫步導覽', '沿著運河與老宅漫步，認識阿姆斯特丹從貿易港口發展而來的歷史。導覽員會分享商人宅邸、倉庫與橋梁背後的城市生活故事。路線穿插較少遊客知道的巷弄，感受水都安靜而迷人的一面。適合想慢慢走讀城市，不只拍照打卡的文化旅行者。', 'Dam Square 國家紀念碑前', '阿姆斯特丹', 4.893600, 52.373100, '2026-07-21 20:14:21'),
 (41, 4, 4, '風車村落單車田園探索之旅', '騎車前往運河旁的田園與風車村，感受阿姆斯特丹近郊開闊的風景。帶領者會安排平緩安全的路線，讓旅人能自在欣賞沿途景色。途中介紹乳酪、木鞋與水利文化，理解荷蘭人如何與水共存。適合喜歡戶外活動，也想拍下明亮鄉村畫面的旅人。', 'Amsterdam Centraal 車站前廣場', '阿姆斯特丹', 4.900300, 52.379100, '2026-07-21 20:14:21'),
 (42, 6, 6, '城市秘境爵士夜生活體驗之旅', '傍晚走入運河旁的特色酒吧與爵士空間，感受城市夜晚的自在節奏。帶領者會介紹不同音樂場地的故事，找到旅人較少知道的演出角落。行程包含一杯在地飲品，讓你自然融入阿姆斯特丹夜生活。適合喜歡音樂、社交與輕鬆氛圍的成年旅人參加。', 'Leidseplein 廣場中央', '阿姆斯特丹', 4.881000, 52.364700, '2026-07-21 20:14:21'),
 (43, 2, 2, '威尼斯面具工坊藝術導覽體驗', '走進傳統面具工坊，認識威尼斯嘉年華面具的色彩、工法與象徵意義。職人會示範手工裝飾細節，讓你看見精緻作品背後需要的耐心。導覽過程分享面具在戲劇與社交文化中的重要角色。適合喜歡手作藝術，也想認識水都另一面歷史的旅人。', 'Campo Santo Stefano 廣場中央', '威尼斯', 12.327900, 45.431300, '2026-07-21 20:14:21'),
@@ -179,11 +179,11 @@ INSERT INTO `experiences` (`id`, `category_id`, `host_id`, `title`, `description
 (48, 6, 6, '加泰隆尼亞燈光夜生活體驗', '從熱鬧廣場出發探索夜晚街區，感受加泰隆尼亞城市獨有的活力與節奏。帶領者會介紹特色酒吧、音樂空間與適合拍照的燈光街景。行程保留自由交流時間，讓旅人能用自己的步調享受夜晚。適合成年旅客參加，喜歡社交、音樂與城市夜色的人。', 'Plaça de Catalunya 廣場中央', '巴賽隆納', 2.170100, 41.387000, '2026-07-21 20:14:21'),
 (49, 2, 2, '畢卡索足跡藝術故事導覽之旅', '循著畢卡索早年在巴賽隆納留下的足跡，認識他如何受到城市文化啟發。導覽員會連結街區、藝術學院與作品故事，讓畫家的成長歷程更立體。行程以輕鬆方式介紹現代藝術，不需要任何專業背景也能理解。適合想從城市街景走進藝術世界的旅人參加。', 'Museu Picasso Barcelona 門口', '巴賽隆納', 2.181600, 41.385100, '2026-07-21 20:14:21'),
 (50, 3, 3, '地中海市場料理手作體驗之旅', '從市場採買新鮮蔬果與海鮮，認識地中海料理重視簡單食材的美味。跟著主廚完成多道家常菜，學習橄欖油、香料與火候的搭配方式。用餐時分享巴賽隆納飲食文化，感受熱情自在的餐桌氣氛。適合想親手做菜，也想深入了解當地生活的美食旅人。', 'Mercat de la Boqueria 正門', '巴賽隆納', 2.172300, 41.382600, '2026-07-21 20:14:21'),
-(51, 1, 1, '皇家衛兵儀式深度導覽體驗', '從白金漢宮周邊出發，認識衛兵交接儀式的歷史背景與觀看重點。帶你走訪王室地標並分享最佳拍攝角度。以輕鬆節奏了解倫敦的王室文化。適合第一次造訪倫敦的旅人。', 'Buckingham Palace 正門前', '倫敦', -0.141890, 51.501364, '2026-07-23 09:25:43'),
+(51, 1, 1, '皇家衛兵儀式深度導覽體驗', '從白環遊旅人漢宮周邊出發，認識衛兵交接儀式的歷史背景與觀看重點。帶你走訪王室地標並分享最佳拍攝角度。以輕鬆節奏了解倫敦的王室文化。適合第一次造訪倫敦的旅人。', 'Buckingham Palace 正門前', '倫敦', -0.141890, 51.501364, '2026-07-23 09:25:43'),
 (52, 4, 4, '泰晤士河畔夜景攝影散步之旅', '沿著泰晤士河畔展開黃昏散步，欣賞倫敦眼與大笨鐘逐漸亮起的夜景。帶領你尋找適合拍照的河岸視角。途中會分享城市地標背後的小故事。適合喜歡夜景與慢旅行的人。', 'Westminster Bridge 北端', '倫敦', -0.121819, 51.500729, '2026-07-23 09:25:43'),
 (53, 5, 5, '攝政公園晨光人像攝影體驗', '在柔和晨光中於攝政公園進行自然風格人像拍攝。攝影師會協助引導姿勢與表情，讓畫面看起來更放鬆自然。行程會結合草地、湖畔與樹蔭場景。留下專屬於倫敦旅行的照片記憶。', 'Regent\'s Park 南門', '倫敦', -0.152778, 51.531270, '2026-07-23 09:25:43'),
 (54, 6, 6, '西區歌劇魅影夜晚觀賞體驗', '走進倫敦西區劇院，欣賞經典音樂劇的舞台魅力與現場演出能量。行前會介紹劇院文化與觀賞禮儀。演出後可在周邊街區散步感受夜晚氛圍。適合想體驗倫敦娛樂文化的旅人。', 'His Majesty\'s Theatre 門口', '倫敦', -0.131705, 51.509439, '2026-07-23 09:25:43'),
-(55, 2, 2, '羅浮宮人體藝術深度導覽之旅', '由導覽員帶領認識羅浮宮的重要館藏與人體藝術發展脈絡。避開容易迷路的動線，將有限時間放在最值得看的作品。途中會分享畫作背後的故事與時代背景。適合想深入理解藝術而非只打卡的旅人。', 'Musée du Louvre 金字塔前', '巴黎', 2.336443, 48.860611, '2026-07-23 09:25:43'),
+(55, 2, 2, '羅浮宮人體藝術深度導覽之旅', '由導覽員帶領認識羅浮宮的重要館藏與人體藝術發展脈絡。避開容易迷路的動線，將有限時間放在最值得看的作品。途中會分享畫作背後的故事與時代背景。適合想深入理解藝術而非只打卡的旅人。', 'Musée du Louvre 環遊旅人字塔前', '巴黎', 2.336443, 48.860611, '2026-07-23 09:25:43'),
 (56, 3, 3, '左岸私廚法式晚餐品味之夜', '在巴黎左岸的私廚空間品嘗以當季食材設計的法式料理。主廚會介紹料理靈感與搭配方式，讓用餐不只是吃一頓飯。餐桌氣氛輕鬆並可與其他旅人交流。適合喜歡美食與生活感體驗的人。', 'Saint-Germain-des-Prés 附近', '巴黎', 2.333333, 48.854722, '2026-07-23 09:25:43'),
 (57, 5, 5, '塞納河畔黃昏人像旅拍體驗', '在塞納河畔與巴黎街角進行黃昏人像拍攝，捕捉城市最柔和的光線。攝影師會協助規劃拍攝路線與自然互動姿勢。畫面將結合橋梁、河景與經典建築。適合情侶、朋友或獨旅紀念。', 'Pont Alexandre III 橋旁', '巴黎', 2.313644, 48.863796, '2026-07-23 09:25:43'),
 (58, 1, 1, '聖心堂街區故事漫步導覽體驗', '從蒙馬特山腳慢慢步行至聖心堂，認識藝術家與街頭文化留下的痕跡。導覽員會分享街區轉角的小故事與私房視角。沿途可欣賞巴黎市景與特色店家。適合喜歡歷史與散步節奏的旅人。', 'Anvers 地鐵站出口', '巴黎', 2.344720, 48.882117, '2026-07-23 09:25:43'),
@@ -215,7 +215,7 @@ INSERT INTO `experiences` (`id`, `category_id`, `host_id`, `title`, `description
 (84, 5, 5, '慕尼黑老城街頭人像旅拍體驗', '在瑪利亞廣場與老城巷弄中拍攝帶有歐洲建築風格的人像照片。攝影師會協助安排自然走動與互動畫面。適合想留下慕尼黑旅行紀念的獨旅與情侶。', 'Marienplatz 新市政廳前', '慕尼黑', 11.575490, 48.137154, '2026-07-23 10:07:01'),
 (85, 6, 6, '啤酒花園民謠夜晚同樂體驗', '在慕尼黑傳統啤酒花園感受民謠演出與熱鬧的晚間氛圍。行程會介紹啤酒文化與基本點餐方式。適合想認識巴伐利亞在地社交生活的旅人。', 'Chinesischer Turm 啤酒花園', '慕尼黑', 11.592477, 48.155190, '2026-07-23 10:07:01'),
 (86, 1, 1, '安妮之家歷史記憶導覽體驗', '從安妮之家周邊街區了解二戰時期阿姆斯特丹的生活記憶與歷史脈絡。導覽員會以尊重且易理解的方式分享故事。適合希望更深入理解城市歷史的旅人。', 'Anne Frank House 附近', '阿姆斯特丹', 4.883977, 52.375218, '2026-07-23 10:07:01'),
-(87, 2, 2, '荷蘭國立博物館名作導覽之旅', '由導覽員帶領認識荷蘭黃金時代的重要畫作與藝術家故事。行程聚焦幾件代表作品，避免走馬看花。適合對林布蘭、維梅爾與歐洲藝術有興趣的旅人。', 'Rijksmuseum 主入口', '阿姆斯特丹', 4.885219, 52.359998, '2026-07-23 10:07:01'),
+(87, 2, 2, '荷蘭國立博物館名作導覽之旅', '由導覽員帶領認識荷蘭黃環遊旅人時代的重要畫作與藝術家故事。行程聚焦幾件代表作品，避免走馬看花。適合對林布蘭、維梅爾與歐洲藝術有興趣的旅人。', 'Rijksmuseum 主入口', '阿姆斯特丹', 4.885219, 52.359998, '2026-07-23 10:07:01'),
 (88, 3, 3, '運河起司品鑑手作午茶體驗', '在運河旁的溫馨空間品嘗荷蘭起司、麵包與小點心。體驗會介紹不同熟成方式與風味搭配。適合喜歡下午茶、在地食材與悠閒聊天氛圍的旅人。', 'Nine Streets 附近', '阿姆斯特丹', 4.885472, 52.370488, '2026-07-23 10:07:01'),
 (89, 5, 5, '約旦區運河晨光人像旅拍體驗', '在約旦區的運河、橋梁與晨光街景中拍攝自然風格照片。攝影師會幫你找到不擁擠又有城市感的取景點。適合想留下一組阿姆斯特丹旅行寫真的旅人。', 'Noordermarkt 廣場', '阿姆斯特丹', 4.887889, 52.379415, '2026-07-23 10:07:01'),
 (90, 6, 6, '紅燈區夜遊文化故事體驗之旅', '透過在地導覽認識紅燈區的歷史、法律文化與城市多元面貌。行程以尊重居民與安全為原則，不打擾當地生活。適合想理解城市不同面向的成年旅人。', 'Dam Square 廣場', '阿姆斯特丹', 4.893604, 52.373093, '2026-07-23 10:07:01'),
@@ -375,7 +375,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -391,7 +391,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/London/London26.jpg" alt="倫敦風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -408,7 +408,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -425,7 +425,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -441,7 +441,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/London/London27.jpg" alt="倫敦風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -458,7 +458,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -475,7 +475,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -491,7 +491,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/London/London12.jpg" alt="倫敦風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -508,7 +508,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -525,7 +525,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -541,7 +541,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/London/London16.jpg" alt="倫敦風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -558,7 +558,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -575,7 +575,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -591,7 +591,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/London/London01.jpg" alt="倫敦風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -608,7 +608,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -625,7 +625,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -641,7 +641,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/London/London15.jpg" alt="倫敦風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -658,7 +658,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -675,7 +675,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -691,7 +691,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Paris/Paris30.jpg" alt="巴黎風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -708,7 +708,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -725,7 +725,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -741,7 +741,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Paris/Paris04.jpg" alt="巴黎風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -758,7 +758,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -775,7 +775,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -791,7 +791,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Paris/Paris09.jpg" alt="巴黎風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -808,7 +808,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -825,7 +825,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -841,7 +841,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Paris/Paris04.jpg" alt="巴黎風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -858,7 +858,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -875,7 +875,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -891,7 +891,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Paris/Paris12.jpg" alt="巴黎風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -908,7 +908,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -925,7 +925,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -941,7 +941,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Paris/Paris03.jpg" alt="巴黎風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -958,7 +958,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -975,7 +975,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -991,7 +991,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Munich/Munich21.jpg" alt="慕尼黑風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1008,7 +1008,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1025,7 +1025,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1041,7 +1041,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Munich/Munich25.jpg" alt="慕尼黑風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1058,7 +1058,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1075,7 +1075,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1091,7 +1091,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Munich/Munich30.jpg" alt="慕尼黑風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1108,7 +1108,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1125,7 +1125,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1141,7 +1141,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Munich/Munich20.jpg" alt="慕尼黑風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1158,7 +1158,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1175,7 +1175,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1191,7 +1191,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Munich/Munich19.jpg" alt="慕尼黑風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1208,7 +1208,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1225,7 +1225,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1241,7 +1241,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Munich/Munich16.jpg" alt="慕尼黑風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1258,7 +1258,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1275,7 +1275,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1291,7 +1291,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Amsterdam/Amsterdam08.jpg" alt="阿姆斯特丹風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1308,7 +1308,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1324,7 +1324,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1340,7 +1340,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Amsterdam/Amsterdam02.jpg" alt="阿姆斯特丹風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1357,7 +1357,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1373,7 +1373,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1389,7 +1389,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Amsterdam/Amsterdam15.jpg" alt="阿姆斯特丹風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1406,7 +1406,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1422,7 +1422,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1438,7 +1438,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Amsterdam/Amsterdam17.jpg" alt="阿姆斯特丹風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1455,7 +1455,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1471,7 +1471,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1487,7 +1487,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Amsterdam/Amsterdam29.jpg" alt="阿姆斯特丹風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1504,7 +1504,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1520,7 +1520,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1536,7 +1536,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Amsterdam/Amsterdam18.jpg" alt="阿姆斯特丹風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1553,7 +1553,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1569,7 +1569,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1585,7 +1585,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Venice/Venice22.jpg" alt="威尼斯風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1602,7 +1602,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1619,7 +1619,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1635,7 +1635,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Venice/Venice24.jpg" alt="威尼斯風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1652,7 +1652,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1669,7 +1669,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1685,7 +1685,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Venice/Venice13.jpg" alt="威尼斯風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1702,7 +1702,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1719,7 +1719,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1735,7 +1735,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Venice/Venice06.jpg" alt="威尼斯風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1752,7 +1752,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1769,7 +1769,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1785,7 +1785,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Venice/Venice04.jpg" alt="威尼斯風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1802,7 +1802,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1819,7 +1819,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1835,7 +1835,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Venice/Venice17.jpg" alt="威尼斯風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1852,7 +1852,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1869,7 +1869,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1885,7 +1885,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Barcelona/Barcelona04.jpg" alt="巴賽隆納風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1902,7 +1902,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1918,7 +1918,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1934,7 +1934,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Barcelona/Barcelona08.jpg" alt="巴賽隆納風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -1951,7 +1951,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1967,7 +1967,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -1983,7 +1983,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Barcelona/Barcelona19.jpg" alt="巴賽隆納風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -2000,7 +2000,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -2016,7 +2016,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -2032,7 +2032,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Barcelona/Barcelona12.jpg" alt="巴賽隆納風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -2049,7 +2049,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -2065,7 +2065,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -2081,7 +2081,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Barcelona/Barcelona26.jpg" alt="巴賽隆納風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -2098,7 +2098,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -2114,7 +2114,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -2130,7 +2130,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <figure class="image"><img src="/Barcelona/Barcelona06.jpg" alt="巴賽隆納風景2"></figure></p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
@@ -2147,7 +2147,7 @@ INSERT INTO `posts` (
 <p>建議預留彈性行程：迷路是認識街區的最快方法，也別急著趕下一站，找一間小店坐下，觀察窗外流動的生活。</p>
 <p>中午可以走進在地市場，嘗試當季食材與簡單料理；價格透明、份量扎實，也是認識文化差異最輕鬆的入口。</p>
 <p>午後適合走進博物館或小型藝廊，不必追求看完所有展品，挑兩三件作品慢慢看，反而記得更清楚。</p>
-<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃金時段，也是與城市告別前最溫柔的時刻。</p>
+<p>黃昏時光線變得柔軟，河岸、廣場與橋面開始聚集人群，這是拍照與散步的黃環遊旅人時段，也是與城市告別前最溫柔的時刻。</p>
 <p>若行程允許，傍晚再走一段夜路，燈火與店招會重新定義你對白天路線的印象，安全感與熱鬧程度也因城而異。</p>
 <p>交通上優先使用大眾運輸與步行，不但省錢，也能捕捉轉角風景；重要景點可先查開放時間，避開尖峰人潮。</p>
 <p>預算方面，把「體驗」與「紀念」分開規劃：一頓好的在地餐、一場小型表演，往往比大量伴手禮更值得。</p>
@@ -2220,7 +2220,7 @@ ORDER BY e.experience_id, i.image_number;
 -- --------------------------------------------------------
 -- Seed data for `order_main`
 -- 阿偉：每位會員 4 筆 paid 訂單 → M幣獲得/折抵流水
-INSERT INTO `order_main` (`id`, `member_id`, `contact_name`, `contact_phone`, `contact_email`, `payment_method`, `order_status`, `original_amount`, `coupon_id`, `coupon_discount`, `points_redeemed`, `final_amount`, `points_earned`, `created_at`, `updated_at`) VALUES
+/*INSERT INTO `order_main` (`id`, `member_id`, `contact_name`, `contact_phone`, `contact_email`, `payment_method`, `order_status`, `original_amount`, `coupon_id`, `coupon_discount`, `points_redeemed`, `final_amount`, `points_earned`, `created_at`, `updated_at`) VALUES
 ('EU26M0011', 1, 'Seed User 1', '0910000001', 'member1@seed.example.com', 'credit_card', 'paid', 875.00, NULL, 0.00, 0, 875.00, 79, '2026-07-03 10:00:00', '2026-07-03 10:00:00'),
 ('EU26M0012', 1, 'Seed User 1', '0910000001', 'member1@seed.example.com', 'line_pay', 'paid', 975.00, 5, 700.00, 15, 260.00, 43, '2026-07-08 11:10:00', '2026-07-08 11:10:00'),
 ('EU26M0013', 1, 'Seed User 1', '0910000001', 'member1@seed.example.com', 'credit_card', 'paid', 1075.00, NULL, 0.00, 0, 1075.00, 23, '2026-07-12 12:20:00', '2026-07-12 12:20:00'),
@@ -2473,10 +2473,813 @@ INSERT INTO `order_main` (`id`, `member_id`, `contact_name`, `contact_phone`, `c
 ('EU26M1032', 103, 'Seed User 103', '0910000103', 'member103@seed.example.com', 'line_pay', 'paid', 5600.00, 5, 700.00, 50, 4850.00, 90, '2026-07-08 11:10:00', '2026-07-08 11:10:00'),
 ('EU26M1033', 103, 'Seed User 103', '0910000103', 'member103@seed.example.com', 'credit_card', 'paid', 5700.00, NULL, 0.00, 0, 5700.00, 70, '2026-07-12 12:20:00', '2026-07-12 12:20:00'),
 ('EU26M1034', 103, 'Seed User 103', '0910000103', 'member103@seed.example.com', 'line_pay', 'paid', 5800.00, 6, 450.00, 100, 5250.00, 95, '2026-07-18 13:30:00', '2026-07-18 13:30:00');
+*/
 
+INSERT INTO `order_main` (`id`, `member_id`, `contact_name`, `contact_phone`, `contact_email`, `payment_method`, `order_status`, `original_amount`, `coupon_id`, `coupon_discount`, `points_redeemed`, `final_amount`, `points_earned`, `created_at`, `updated_at`) VALUES
+('EU26R0001', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 09:07:00', '2026-07-20 09:07:00'),
+('EU26R0002', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:14:00', '2026-07-21 10:14:00'),
+('EU26R0003', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 11:21:00', '2026-07-22 11:21:00'),
+('EU26R0004', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 12:28:00', '2026-07-23 12:28:00'),
+('EU26R0005', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 13:35:00', '2026-07-24 13:35:00'),
+('EU26R0006', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 14:42:00', '2026-07-20 14:42:00'),
+('EU26R0007', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 15:49:00', '2026-07-21 15:49:00'),
+('EU26R0008', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 16:56:00', '2026-07-22 16:56:00'),
+('EU26R0009', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 09:03:00', '2026-07-23 09:03:00'),
+('EU26R0010', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 10:10:00', '2026-07-24 10:10:00'),
+('EU26R0011', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 11:17:00', '2026-07-20 11:17:00'),
+('EU26R0012', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 12:24:00', '2026-07-21 12:24:00'),
+('EU26R0013', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 13:31:00', '2026-07-22 13:31:00'),
+('EU26R0014', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 14:38:00', '2026-07-23 14:38:00'),
+('EU26R0015', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 15:45:00', '2026-07-24 15:45:00'),
+('EU26R0016', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 16:52:00', '2026-07-20 16:52:00'),
+('EU26R0017', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 09:59:00', '2026-07-21 09:59:00'),
+('EU26R0018', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 10:06:00', '2026-07-22 10:06:00'),
+('EU26R0019', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 11:13:00', '2026-07-23 11:13:00'),
+('EU26R0020', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 12:20:00', '2026-07-24 12:20:00'),
+('EU26R0021', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 13:27:00', '2026-07-20 13:27:00'),
+('EU26R0022', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:34:00', '2026-07-21 14:34:00'),
+('EU26R0023', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 15:41:00', '2026-07-22 15:41:00'),
+('EU26R0024', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 16:48:00', '2026-07-23 16:48:00'),
+('EU26R0025', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 09:55:00', '2026-07-24 09:55:00'),
+('EU26R0026', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 10:02:00', '2026-07-20 10:02:00'),
+('EU26R0027', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 11:09:00', '2026-07-21 11:09:00'),
+('EU26R0028', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 12:16:00', '2026-07-22 12:16:00'),
+('EU26R0029', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 13:23:00', '2026-07-23 13:23:00'),
+('EU26R0030', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 14:30:00', '2026-07-24 14:30:00'),
+('EU26R0031', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 15:37:00', '2026-07-20 15:37:00'),
+('EU26R0032', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 16:44:00', '2026-07-21 16:44:00'),
+('EU26R0033', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 09:51:00', '2026-07-22 09:51:00'),
+('EU26R0034', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 10:58:00', '2026-07-23 10:58:00'),
+('EU26R0035', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 11:05:00', '2026-07-24 11:05:00'),
+('EU26R0036', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 12:12:00', '2026-07-20 12:12:00'),
+('EU26R0037', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 13:19:00', '2026-07-21 13:19:00'),
+('EU26R0038', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 14:26:00', '2026-07-22 14:26:00'),
+('EU26R0039', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 15:33:00', '2026-07-23 15:33:00'),
+('EU26R0040', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 16:40:00', '2026-07-24 16:40:00'),
+('EU26R0041', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-20 09:47:00', '2026-07-20 09:47:00'),
+('EU26R0042', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 10:54:00', '2026-07-21 10:54:00'),
+('EU26R0043', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 11:01:00', '2026-07-22 11:01:00'),
+('EU26R0044', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 12:08:00', '2026-07-23 12:08:00'),
+('EU26R0045', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 13:15:00', '2026-07-24 13:15:00'),
+('EU26R0046', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 14:22:00', '2026-07-20 14:22:00'),
+('EU26R0047', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 15:29:00', '2026-07-21 15:29:00'),
+('EU26R0048', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 16:36:00', '2026-07-22 16:36:00'),
+('EU26R0049', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 09:43:00', '2026-07-23 09:43:00'),
+('EU26R0050', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 10:50:00', '2026-07-24 10:50:00'),
+('EU26R0051', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 11:57:00', '2026-07-20 11:57:00'),
+('EU26R0052', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 12:04:00', '2026-07-21 12:04:00'),
+('EU26R0053', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 13:11:00', '2026-07-22 13:11:00'),
+('EU26R0054', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 14:18:00', '2026-07-23 14:18:00'),
+('EU26R0055', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 15:25:00', '2026-07-24 15:25:00'),
+('EU26R0056', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 16:32:00', '2026-07-20 16:32:00'),
+('EU26R0057', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-21 09:39:00', '2026-07-21 09:39:00'),
+('EU26R0058', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 10:46:00', '2026-07-22 10:46:00'),
+('EU26R0059', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 11:53:00', '2026-07-23 11:53:00'),
+('EU26R0060', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 12:00:00', '2026-07-24 12:00:00'),
+('EU26R0061', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 13:07:00', '2026-07-20 13:07:00'),
+('EU26R0062', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:14:00', '2026-07-21 14:14:00'),
+('EU26R0063', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 15:21:00', '2026-07-22 15:21:00'),
+('EU26R0064', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 16:28:00', '2026-07-23 16:28:00'),
+('EU26R0065', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 09:35:00', '2026-07-24 09:35:00'),
+('EU26R0066', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 10:42:00', '2026-07-20 10:42:00'),
+('EU26R0067', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 11:49:00', '2026-07-21 11:49:00'),
+('EU26R0068', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 12:56:00', '2026-07-22 12:56:00'),
+('EU26R0069', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 13:03:00', '2026-07-23 13:03:00'),
+('EU26R0070', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 14:10:00', '2026-07-24 14:10:00'),
+('EU26R0071', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 15:17:00', '2026-07-20 15:17:00'),
+('EU26R0072', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 16:24:00', '2026-07-21 16:24:00'),
+('EU26R0073', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 09:31:00', '2026-07-22 09:31:00'),
+('EU26R0074', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 10:38:00', '2026-07-23 10:38:00'),
+('EU26R0075', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 11:45:00', '2026-07-24 11:45:00'),
+('EU26R0076', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 12:52:00', '2026-07-20 12:52:00'),
+('EU26R0077', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 13:59:00', '2026-07-21 13:59:00'),
+('EU26R0078', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 14:06:00', '2026-07-22 14:06:00'),
+('EU26R0079', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 15:13:00', '2026-07-23 15:13:00'),
+('EU26R0080', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 16:20:00', '2026-07-24 16:20:00'),
+('EU26R0081', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 09:27:00', '2026-07-20 09:27:00'),
+('EU26R0082', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:34:00', '2026-07-21 10:34:00'),
+('EU26R0083', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 11:41:00', '2026-07-22 11:41:00'),
+('EU26R0084', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 12:48:00', '2026-07-23 12:48:00'),
+('EU26R0085', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 13:55:00', '2026-07-24 13:55:00'),
+('EU26R0086', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 14:02:00', '2026-07-20 14:02:00'),
+('EU26R0087', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 15:09:00', '2026-07-21 15:09:00'),
+('EU26R0088', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 16:16:00', '2026-07-22 16:16:00'),
+('EU26R0089', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 09:23:00', '2026-07-23 09:23:00'),
+('EU26R0090', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 10:30:00', '2026-07-24 10:30:00'),
+('EU26R0091', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 11:37:00', '2026-07-20 11:37:00'),
+('EU26R0092', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 12:44:00', '2026-07-21 12:44:00'),
+('EU26R0093', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 13:51:00', '2026-07-22 13:51:00'),
+('EU26R0094', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 14:58:00', '2026-07-23 14:58:00'),
+('EU26R0095', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 15:05:00', '2026-07-24 15:05:00'),
+('EU26R0096', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 16:12:00', '2026-07-20 16:12:00'),
+('EU26R0097', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 09:19:00', '2026-07-21 09:19:00'),
+('EU26R0098', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 10:26:00', '2026-07-22 10:26:00'),
+('EU26R0099', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 11:33:00', '2026-07-23 11:33:00'),
+('EU26R0100', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 12:40:00', '2026-07-24 12:40:00'),
+('EU26R0101', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 13:47:00', '2026-07-20 13:47:00'),
+('EU26R0102', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:54:00', '2026-07-21 14:54:00'),
+('EU26R0103', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 15:01:00', '2026-07-22 15:01:00'),
+('EU26R0104', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 16:08:00', '2026-07-23 16:08:00'),
+('EU26R0105', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 09:15:00', '2026-07-24 09:15:00'),
+('EU26R0106', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 10:22:00', '2026-07-20 10:22:00'),
+('EU26R0107', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 11:29:00', '2026-07-21 11:29:00'),
+('EU26R0108', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 12:36:00', '2026-07-22 12:36:00'),
+('EU26R0109', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 13:43:00', '2026-07-23 13:43:00'),
+('EU26R0110', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 14:50:00', '2026-07-24 14:50:00'),
+('EU26R0111', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 15:57:00', '2026-07-20 15:57:00'),
+('EU26R0112', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 16:04:00', '2026-07-21 16:04:00'),
+('EU26R0113', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 09:11:00', '2026-07-22 09:11:00'),
+('EU26R0114', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 10:18:00', '2026-07-23 10:18:00'),
+('EU26R0115', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 11:25:00', '2026-07-24 11:25:00'),
+('EU26R0116', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 12:32:00', '2026-07-20 12:32:00'),
+('EU26R0117', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 13:39:00', '2026-07-21 13:39:00'),
+('EU26R0118', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 14:46:00', '2026-07-22 14:46:00'),
+('EU26R0119', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 15:53:00', '2026-07-23 15:53:00'),
+('EU26R0120', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 16:00:00', '2026-07-24 16:00:00'),
+('EU26R0121', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 09:07:00', '2026-07-20 09:07:00'),
+('EU26R0122', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:14:00', '2026-07-21 10:14:00'),
+('EU26R0123', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 11:21:00', '2026-07-22 11:21:00'),
+('EU26R0124', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 12:28:00', '2026-07-23 12:28:00'),
+('EU26R0125', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 13:35:00', '2026-07-24 13:35:00'),
+('EU26R0126', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 14:42:00', '2026-07-20 14:42:00'),
+('EU26R0127', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 15:49:00', '2026-07-21 15:49:00'),
+('EU26R0128', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 16:56:00', '2026-07-22 16:56:00'),
+('EU26R0129', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 09:03:00', '2026-07-23 09:03:00'),
+('EU26R0130', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 10:10:00', '2026-07-24 10:10:00'),
+('EU26R0131', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 11:17:00', '2026-07-20 11:17:00'),
+('EU26R0132', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 12:24:00', '2026-07-21 12:24:00'),
+('EU26R0133', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 13:31:00', '2026-07-22 13:31:00'),
+('EU26R0134', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 14:38:00', '2026-07-23 14:38:00'),
+('EU26R0135', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 15:45:00', '2026-07-24 15:45:00'),
+('EU26R0136', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 16:52:00', '2026-07-20 16:52:00'),
+('EU26R0137', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 09:59:00', '2026-07-21 09:59:00'),
+('EU26R0138', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 10:06:00', '2026-07-22 10:06:00'),
+('EU26R0139', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 11:13:00', '2026-07-23 11:13:00'),
+('EU26R0140', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 12:20:00', '2026-07-24 12:20:00'),
+('EU26R0141', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-20 13:27:00', '2026-07-20 13:27:00'),
+('EU26R0142', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 14:34:00', '2026-07-21 14:34:00'),
+('EU26R0143', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 15:41:00', '2026-07-22 15:41:00'),
+('EU26R0144', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 16:48:00', '2026-07-23 16:48:00'),
+('EU26R0145', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 09:55:00', '2026-07-24 09:55:00'),
+('EU26R0146', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 10:02:00', '2026-07-20 10:02:00'),
+('EU26R0147', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 11:09:00', '2026-07-21 11:09:00'),
+('EU26R0148', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 12:16:00', '2026-07-22 12:16:00'),
+('EU26R0149', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 13:23:00', '2026-07-23 13:23:00'),
+('EU26R0150', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 14:30:00', '2026-07-24 14:30:00'),
+('EU26R0151', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 15:37:00', '2026-07-20 15:37:00'),
+('EU26R0152', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 16:44:00', '2026-07-21 16:44:00'),
+('EU26R0153', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 09:51:00', '2026-07-22 09:51:00'),
+('EU26R0154', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 10:58:00', '2026-07-23 10:58:00'),
+('EU26R0155', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 11:05:00', '2026-07-24 11:05:00'),
+('EU26R0156', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 12:12:00', '2026-07-20 12:12:00'),
+('EU26R0157', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-21 13:19:00', '2026-07-21 13:19:00'),
+('EU26R0158', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 14:26:00', '2026-07-22 14:26:00'),
+('EU26R0159', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 15:33:00', '2026-07-23 15:33:00'),
+('EU26R0160', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 16:40:00', '2026-07-24 16:40:00'),
+('EU26R0161', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 09:47:00', '2026-07-20 09:47:00'),
+('EU26R0162', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:54:00', '2026-07-21 10:54:00'),
+('EU26R0163', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 11:01:00', '2026-07-22 11:01:00'),
+('EU26R0164', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 12:08:00', '2026-07-23 12:08:00'),
+('EU26R0165', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 13:15:00', '2026-07-24 13:15:00'),
+('EU26R0166', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 14:22:00', '2026-07-20 14:22:00'),
+('EU26R0167', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 15:29:00', '2026-07-21 15:29:00'),
+('EU26R0168', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 16:36:00', '2026-07-22 16:36:00'),
+('EU26R0169', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 09:43:00', '2026-07-23 09:43:00'),
+('EU26R0170', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 10:50:00', '2026-07-24 10:50:00'),
+('EU26R0171', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 11:57:00', '2026-07-20 11:57:00'),
+('EU26R0172', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 12:04:00', '2026-07-21 12:04:00'),
+('EU26R0173', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 13:11:00', '2026-07-22 13:11:00'),
+('EU26R0174', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 14:18:00', '2026-07-23 14:18:00'),
+('EU26R0175', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 15:25:00', '2026-07-24 15:25:00'),
+('EU26R0176', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 16:32:00', '2026-07-20 16:32:00'),
+('EU26R0177', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 09:39:00', '2026-07-21 09:39:00'),
+('EU26R0178', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 10:46:00', '2026-07-22 10:46:00'),
+('EU26R0179', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 11:53:00', '2026-07-23 11:53:00'),
+('EU26R0180', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 12:00:00', '2026-07-24 12:00:00'),
+('EU26R0181', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 13:07:00', '2026-07-20 13:07:00'),
+('EU26R0182', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:14:00', '2026-07-21 14:14:00'),
+('EU26R0183', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 15:21:00', '2026-07-22 15:21:00'),
+('EU26R0184', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 16:28:00', '2026-07-23 16:28:00'),
+('EU26R0185', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 09:35:00', '2026-07-24 09:35:00'),
+('EU26R0186', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 10:42:00', '2026-07-20 10:42:00'),
+('EU26R0187', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 11:49:00', '2026-07-21 11:49:00'),
+('EU26R0188', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 12:56:00', '2026-07-22 12:56:00'),
+('EU26R0189', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 13:03:00', '2026-07-23 13:03:00'),
+('EU26R0190', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 14:10:00', '2026-07-24 14:10:00'),
+('EU26R0191', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 15:17:00', '2026-07-20 15:17:00'),
+('EU26R0192', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 16:24:00', '2026-07-21 16:24:00'),
+('EU26R0193', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 09:31:00', '2026-07-22 09:31:00'),
+('EU26R0194', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 10:38:00', '2026-07-23 10:38:00'),
+('EU26R0195', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 11:45:00', '2026-07-24 11:45:00'),
+('EU26R0196', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 12:52:00', '2026-07-20 12:52:00'),
+('EU26R0197', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 13:59:00', '2026-07-21 13:59:00'),
+('EU26R0198', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 14:06:00', '2026-07-22 14:06:00'),
+('EU26R0199', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 15:13:00', '2026-07-23 15:13:00'),
+('EU26R0200', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 16:20:00', '2026-07-24 16:20:00'),
+('EU26R0201', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 09:27:00', '2026-07-20 09:27:00'),
+('EU26R0202', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:34:00', '2026-07-21 10:34:00'),
+('EU26R0203', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 11:41:00', '2026-07-22 11:41:00'),
+('EU26R0204', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 12:48:00', '2026-07-23 12:48:00'),
+('EU26R0205', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 13:55:00', '2026-07-24 13:55:00'),
+('EU26R0206', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 14:02:00', '2026-07-20 14:02:00'),
+('EU26R0207', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 15:09:00', '2026-07-21 15:09:00'),
+('EU26R0208', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 16:16:00', '2026-07-22 16:16:00'),
+('EU26R0209', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 09:23:00', '2026-07-23 09:23:00'),
+('EU26R0210', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 10:30:00', '2026-07-24 10:30:00'),
+('EU26R0211', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 11:37:00', '2026-07-20 11:37:00'),
+('EU26R0212', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 12:44:00', '2026-07-21 12:44:00'),
+('EU26R0213', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 13:51:00', '2026-07-22 13:51:00'),
+('EU26R0214', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 14:58:00', '2026-07-23 14:58:00'),
+('EU26R0215', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 15:05:00', '2026-07-24 15:05:00'),
+('EU26R0216', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 16:12:00', '2026-07-20 16:12:00'),
+('EU26R0217', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 09:19:00', '2026-07-21 09:19:00'),
+('EU26R0218', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 10:26:00', '2026-07-22 10:26:00'),
+('EU26R0219', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 11:33:00', '2026-07-23 11:33:00'),
+('EU26R0220', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 12:40:00', '2026-07-24 12:40:00'),
+('EU26R0221', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 13:47:00', '2026-07-20 13:47:00'),
+('EU26R0222', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:54:00', '2026-07-21 14:54:00'),
+('EU26R0223', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 15:01:00', '2026-07-22 15:01:00'),
+('EU26R0224', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 16:08:00', '2026-07-23 16:08:00'),
+('EU26R0225', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 09:15:00', '2026-07-24 09:15:00'),
+('EU26R0226', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 10:22:00', '2026-07-20 10:22:00'),
+('EU26R0227', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 11:29:00', '2026-07-21 11:29:00'),
+('EU26R0228', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 12:36:00', '2026-07-22 12:36:00'),
+('EU26R0229', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 13:43:00', '2026-07-23 13:43:00'),
+('EU26R0230', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 14:50:00', '2026-07-24 14:50:00'),
+('EU26R0231', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 15:57:00', '2026-07-20 15:57:00'),
+('EU26R0232', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 16:04:00', '2026-07-21 16:04:00'),
+('EU26R0233', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 09:11:00', '2026-07-22 09:11:00'),
+('EU26R0234', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 10:18:00', '2026-07-23 10:18:00'),
+('EU26R0235', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 11:25:00', '2026-07-24 11:25:00'),
+('EU26R0236', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 12:32:00', '2026-07-20 12:32:00'),
+('EU26R0237', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 13:39:00', '2026-07-21 13:39:00'),
+('EU26R0238', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 14:46:00', '2026-07-22 14:46:00'),
+('EU26R0239', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 15:53:00', '2026-07-23 15:53:00'),
+('EU26R0240', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 16:00:00', '2026-07-24 16:00:00'),
+('EU26R0241', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-20 09:07:00', '2026-07-20 09:07:00'),
+('EU26R0242', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 10:14:00', '2026-07-21 10:14:00'),
+('EU26R0243', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 11:21:00', '2026-07-22 11:21:00'),
+('EU26R0244', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 12:28:00', '2026-07-23 12:28:00'),
+('EU26R0245', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 13:35:00', '2026-07-24 13:35:00'),
+('EU26R0246', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 14:42:00', '2026-07-20 14:42:00'),
+('EU26R0247', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 15:49:00', '2026-07-21 15:49:00'),
+('EU26R0248', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 16:56:00', '2026-07-22 16:56:00'),
+('EU26R0249', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 09:03:00', '2026-07-23 09:03:00'),
+('EU26R0250', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 10:10:00', '2026-07-24 10:10:00'),
+('EU26R0251', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 11:17:00', '2026-07-20 11:17:00'),
+('EU26R0252', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 12:24:00', '2026-07-21 12:24:00'),
+('EU26R0253', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 13:31:00', '2026-07-22 13:31:00'),
+('EU26R0254', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 14:38:00', '2026-07-23 14:38:00'),
+('EU26R0255', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 15:45:00', '2026-07-24 15:45:00'),
+('EU26R0256', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 16:52:00', '2026-07-20 16:52:00'),
+('EU26R0257', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-21 09:59:00', '2026-07-21 09:59:00'),
+('EU26R0258', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 10:06:00', '2026-07-22 10:06:00'),
+('EU26R0259', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 11:13:00', '2026-07-23 11:13:00'),
+('EU26R0260', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 12:20:00', '2026-07-24 12:20:00'),
+('EU26R0261', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 13:27:00', '2026-07-20 13:27:00'),
+('EU26R0262', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:34:00', '2026-07-21 14:34:00'),
+('EU26R0263', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 15:41:00', '2026-07-22 15:41:00'),
+('EU26R0264', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 16:48:00', '2026-07-23 16:48:00'),
+('EU26R0265', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 09:55:00', '2026-07-24 09:55:00'),
+('EU26R0266', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 10:02:00', '2026-07-20 10:02:00'),
+('EU26R0267', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 11:09:00', '2026-07-21 11:09:00'),
+('EU26R0268', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 12:16:00', '2026-07-22 12:16:00'),
+('EU26R0269', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 13:23:00', '2026-07-23 13:23:00'),
+('EU26R0270', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 14:30:00', '2026-07-24 14:30:00'),
+('EU26R0271', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 15:37:00', '2026-07-20 15:37:00'),
+('EU26R0272', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 16:44:00', '2026-07-21 16:44:00'),
+('EU26R0273', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 09:51:00', '2026-07-22 09:51:00'),
+('EU26R0274', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 10:58:00', '2026-07-23 10:58:00'),
+('EU26R0275', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 11:05:00', '2026-07-24 11:05:00'),
+('EU26R0276', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 12:12:00', '2026-07-20 12:12:00'),
+('EU26R0277', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 13:19:00', '2026-07-21 13:19:00'),
+('EU26R0278', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 14:26:00', '2026-07-22 14:26:00'),
+('EU26R0279', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 15:33:00', '2026-07-23 15:33:00'),
+('EU26R0280', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 16:40:00', '2026-07-24 16:40:00'),
+('EU26R0281', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 09:47:00', '2026-07-20 09:47:00'),
+('EU26R0282', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:54:00', '2026-07-21 10:54:00'),
+('EU26R0283', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 11:01:00', '2026-07-22 11:01:00'),
+('EU26R0284', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 12:08:00', '2026-07-23 12:08:00'),
+('EU26R0285', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 13:15:00', '2026-07-24 13:15:00'),
+('EU26R0286', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 14:22:00', '2026-07-20 14:22:00'),
+('EU26R0287', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 15:29:00', '2026-07-21 15:29:00'),
+('EU26R0288', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 16:36:00', '2026-07-22 16:36:00'),
+('EU26R0289', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 09:43:00', '2026-07-23 09:43:00'),
+('EU26R0290', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 10:50:00', '2026-07-24 10:50:00'),
+('EU26R0291', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 11:57:00', '2026-07-20 11:57:00'),
+('EU26R0292', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 12:04:00', '2026-07-21 12:04:00'),
+('EU26R0293', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 13:11:00', '2026-07-22 13:11:00'),
+('EU26R0294', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 14:18:00', '2026-07-23 14:18:00'),
+('EU26R0295', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 15:25:00', '2026-07-24 15:25:00'),
+('EU26R0296', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 16:32:00', '2026-07-20 16:32:00'),
+('EU26R0297', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 09:39:00', '2026-07-21 09:39:00'),
+('EU26R0298', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 10:46:00', '2026-07-22 10:46:00'),
+('EU26R0299', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 11:53:00', '2026-07-23 11:53:00'),
+('EU26R0300', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 12:00:00', '2026-07-24 12:00:00'),
+('EU26R0301', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 13:07:00', '2026-07-20 13:07:00'),
+('EU26R0302', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:14:00', '2026-07-21 14:14:00'),
+('EU26R0303', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 15:21:00', '2026-07-22 15:21:00'),
+('EU26R0304', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 16:28:00', '2026-07-23 16:28:00'),
+('EU26R0305', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 09:35:00', '2026-07-24 09:35:00'),
+('EU26R0306', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 10:42:00', '2026-07-20 10:42:00'),
+('EU26R0307', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 11:49:00', '2026-07-21 11:49:00'),
+('EU26R0308', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 12:56:00', '2026-07-22 12:56:00'),
+('EU26R0309', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 13:03:00', '2026-07-23 13:03:00'),
+('EU26R0310', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 14:10:00', '2026-07-24 14:10:00'),
+('EU26R0311', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 15:17:00', '2026-07-20 15:17:00'),
+('EU26R0312', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 16:24:00', '2026-07-21 16:24:00'),
+('EU26R0313', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 09:31:00', '2026-07-22 09:31:00'),
+('EU26R0314', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 10:38:00', '2026-07-23 10:38:00'),
+('EU26R0315', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 11:45:00', '2026-07-24 11:45:00'),
+('EU26R0316', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 12:52:00', '2026-07-20 12:52:00'),
+('EU26R0317', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 13:59:00', '2026-07-21 13:59:00'),
+('EU26R0318', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 14:06:00', '2026-07-22 14:06:00'),
+('EU26R0319', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 15:13:00', '2026-07-23 15:13:00'),
+('EU26R0320', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 16:20:00', '2026-07-24 16:20:00'),
+('EU26R0321', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 09:27:00', '2026-07-20 09:27:00'),
+('EU26R0322', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:34:00', '2026-07-21 10:34:00'),
+('EU26R0323', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 11:41:00', '2026-07-22 11:41:00'),
+('EU26R0324', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 12:48:00', '2026-07-23 12:48:00'),
+('EU26R0325', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 13:55:00', '2026-07-24 13:55:00'),
+('EU26R0326', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 14:02:00', '2026-07-20 14:02:00'),
+('EU26R0327', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 15:09:00', '2026-07-21 15:09:00'),
+('EU26R0328', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 16:16:00', '2026-07-22 16:16:00'),
+('EU26R0329', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 09:23:00', '2026-07-23 09:23:00'),
+('EU26R0330', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 10:30:00', '2026-07-24 10:30:00'),
+('EU26R0331', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 11:37:00', '2026-07-20 11:37:00'),
+('EU26R0332', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 12:44:00', '2026-07-21 12:44:00'),
+('EU26R0333', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 13:51:00', '2026-07-22 13:51:00'),
+('EU26R0334', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 14:58:00', '2026-07-23 14:58:00'),
+('EU26R0335', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 15:05:00', '2026-07-24 15:05:00'),
+('EU26R0336', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 16:12:00', '2026-07-20 16:12:00'),
+('EU26R0337', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 09:19:00', '2026-07-21 09:19:00'),
+('EU26R0338', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 10:26:00', '2026-07-22 10:26:00'),
+('EU26R0339', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 11:33:00', '2026-07-23 11:33:00'),
+('EU26R0340', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 12:40:00', '2026-07-24 12:40:00'),
+('EU26R0341', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-20 13:47:00', '2026-07-20 13:47:00'),
+('EU26R0342', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 14:54:00', '2026-07-21 14:54:00'),
+('EU26R0343', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 15:01:00', '2026-07-22 15:01:00'),
+('EU26R0344', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 16:08:00', '2026-07-23 16:08:00'),
+('EU26R0345', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 09:15:00', '2026-07-24 09:15:00'),
+('EU26R0346', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 10:22:00', '2026-07-20 10:22:00'),
+('EU26R0347', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 11:29:00', '2026-07-21 11:29:00'),
+('EU26R0348', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 12:36:00', '2026-07-22 12:36:00'),
+('EU26R0349', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 13:43:00', '2026-07-23 13:43:00'),
+('EU26R0350', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 14:50:00', '2026-07-24 14:50:00'),
+('EU26R0351', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 15:57:00', '2026-07-20 15:57:00'),
+('EU26R0352', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 16:04:00', '2026-07-21 16:04:00'),
+('EU26R0353', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 09:11:00', '2026-07-22 09:11:00'),
+('EU26R0354', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 10:18:00', '2026-07-23 10:18:00'),
+('EU26R0355', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 11:25:00', '2026-07-24 11:25:00'),
+('EU26R0356', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 12:32:00', '2026-07-20 12:32:00'),
+('EU26R0357', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-21 13:39:00', '2026-07-21 13:39:00'),
+('EU26R0358', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 14:46:00', '2026-07-22 14:46:00'),
+('EU26R0359', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 15:53:00', '2026-07-23 15:53:00'),
+('EU26R0360', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 16:00:00', '2026-07-24 16:00:00'),
+('EU26R0361', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 09:07:00', '2026-07-20 09:07:00'),
+('EU26R0362', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:14:00', '2026-07-21 10:14:00'),
+('EU26R0363', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 11:21:00', '2026-07-22 11:21:00'),
+('EU26R0364', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 12:28:00', '2026-07-23 12:28:00'),
+('EU26R0365', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 13:35:00', '2026-07-24 13:35:00'),
+('EU26R0366', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 14:42:00', '2026-07-20 14:42:00'),
+('EU26R0367', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 15:49:00', '2026-07-21 15:49:00'),
+('EU26R0368', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 16:56:00', '2026-07-22 16:56:00'),
+('EU26R0369', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 09:03:00', '2026-07-23 09:03:00'),
+('EU26R0370', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 10:10:00', '2026-07-24 10:10:00'),
+('EU26R0371', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 11:17:00', '2026-07-20 11:17:00'),
+('EU26R0372', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 12:24:00', '2026-07-21 12:24:00'),
+('EU26R0373', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 13:31:00', '2026-07-22 13:31:00'),
+('EU26R0374', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 14:38:00', '2026-07-23 14:38:00'),
+('EU26R0375', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 15:45:00', '2026-07-24 15:45:00'),
+('EU26R0376', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 16:52:00', '2026-07-20 16:52:00'),
+('EU26R0377', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 09:59:00', '2026-07-21 09:59:00'),
+('EU26R0378', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 10:06:00', '2026-07-22 10:06:00'),
+('EU26R0379', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 11:13:00', '2026-07-23 11:13:00'),
+('EU26R0380', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 12:20:00', '2026-07-24 12:20:00'),
+('EU26R0381', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 13:27:00', '2026-07-20 13:27:00'),
+('EU26R0382', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:34:00', '2026-07-21 14:34:00'),
+('EU26R0383', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 15:41:00', '2026-07-22 15:41:00'),
+('EU26R0384', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 16:48:00', '2026-07-23 16:48:00'),
+('EU26R0385', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 09:55:00', '2026-07-24 09:55:00'),
+('EU26R0386', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 10:02:00', '2026-07-20 10:02:00'),
+('EU26R0387', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 11:09:00', '2026-07-21 11:09:00'),
+('EU26R0388', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 12:16:00', '2026-07-22 12:16:00'),
+('EU26R0389', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 13:23:00', '2026-07-23 13:23:00'),
+('EU26R0390', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 14:30:00', '2026-07-24 14:30:00'),
+('EU26R0391', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 15:37:00', '2026-07-20 15:37:00'),
+('EU26R0392', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 16:44:00', '2026-07-21 16:44:00'),
+('EU26R0393', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 09:51:00', '2026-07-22 09:51:00'),
+('EU26R0394', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 10:58:00', '2026-07-23 10:58:00'),
+('EU26R0395', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 11:05:00', '2026-07-24 11:05:00'),
+('EU26R0396', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 12:12:00', '2026-07-20 12:12:00'),
+('EU26R0397', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 13:19:00', '2026-07-21 13:19:00'),
+('EU26R0398', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 14:26:00', '2026-07-22 14:26:00'),
+('EU26R0399', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 15:33:00', '2026-07-23 15:33:00'),
+('EU26R0400', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 16:40:00', '2026-07-24 16:40:00'),
+('EU26R0401', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 09:47:00', '2026-07-20 09:47:00'),
+('EU26R0402', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:54:00', '2026-07-21 10:54:00'),
+('EU26R0403', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 11:01:00', '2026-07-22 11:01:00'),
+('EU26R0404', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 12:08:00', '2026-07-23 12:08:00'),
+('EU26R0405', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 13:15:00', '2026-07-24 13:15:00'),
+('EU26R0406', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 14:22:00', '2026-07-20 14:22:00'),
+('EU26R0407', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 15:29:00', '2026-07-21 15:29:00'),
+('EU26R0408', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 16:36:00', '2026-07-22 16:36:00'),
+('EU26R0409', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 09:43:00', '2026-07-23 09:43:00'),
+('EU26R0410', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 10:50:00', '2026-07-24 10:50:00'),
+('EU26R0411', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 11:57:00', '2026-07-20 11:57:00'),
+('EU26R0412', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 12:04:00', '2026-07-21 12:04:00'),
+('EU26R0413', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 13:11:00', '2026-07-22 13:11:00'),
+('EU26R0414', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 14:18:00', '2026-07-23 14:18:00'),
+('EU26R0415', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 15:25:00', '2026-07-24 15:25:00'),
+('EU26R0416', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 16:32:00', '2026-07-20 16:32:00'),
+('EU26R0417', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 09:39:00', '2026-07-21 09:39:00'),
+('EU26R0418', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 10:46:00', '2026-07-22 10:46:00'),
+('EU26R0419', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 11:53:00', '2026-07-23 11:53:00'),
+('EU26R0420', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 12:00:00', '2026-07-24 12:00:00'),
+('EU26R0421', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 13:07:00', '2026-07-20 13:07:00'),
+('EU26R0422', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:14:00', '2026-07-21 14:14:00'),
+('EU26R0423', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 15:21:00', '2026-07-22 15:21:00'),
+('EU26R0424', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 16:28:00', '2026-07-23 16:28:00'),
+('EU26R0425', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 09:35:00', '2026-07-24 09:35:00'),
+('EU26R0426', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 10:42:00', '2026-07-20 10:42:00'),
+('EU26R0427', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 11:49:00', '2026-07-21 11:49:00'),
+('EU26R0428', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 12:56:00', '2026-07-22 12:56:00'),
+('EU26R0429', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 13:03:00', '2026-07-23 13:03:00'),
+('EU26R0430', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 14:10:00', '2026-07-24 14:10:00'),
+('EU26R0431', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 15:17:00', '2026-07-20 15:17:00'),
+('EU26R0432', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 16:24:00', '2026-07-21 16:24:00'),
+('EU26R0433', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 09:31:00', '2026-07-22 09:31:00'),
+('EU26R0434', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 10:38:00', '2026-07-23 10:38:00'),
+('EU26R0435', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 11:45:00', '2026-07-24 11:45:00'),
+('EU26R0436', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 12:52:00', '2026-07-20 12:52:00'),
+('EU26R0437', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 13:59:00', '2026-07-21 13:59:00'),
+('EU26R0438', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 14:06:00', '2026-07-22 14:06:00'),
+('EU26R0439', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 15:13:00', '2026-07-23 15:13:00'),
+('EU26R0440', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 16:20:00', '2026-07-24 16:20:00'),
+('EU26R0441', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-20 09:27:00', '2026-07-20 09:27:00'),
+('EU26R0442', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 10:34:00', '2026-07-21 10:34:00'),
+('EU26R0443', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 11:41:00', '2026-07-22 11:41:00'),
+('EU26R0444', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 12:48:00', '2026-07-23 12:48:00'),
+('EU26R0445', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 13:55:00', '2026-07-24 13:55:00'),
+('EU26R0446', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 14:02:00', '2026-07-20 14:02:00'),
+('EU26R0447', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 15:09:00', '2026-07-21 15:09:00'),
+('EU26R0448', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 16:16:00', '2026-07-22 16:16:00'),
+('EU26R0449', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 09:23:00', '2026-07-23 09:23:00'),
+('EU26R0450', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 10:30:00', '2026-07-24 10:30:00'),
+('EU26R0451', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 11:37:00', '2026-07-20 11:37:00'),
+('EU26R0452', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 12:44:00', '2026-07-21 12:44:00'),
+('EU26R0453', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 13:51:00', '2026-07-22 13:51:00'),
+('EU26R0454', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 14:58:00', '2026-07-23 14:58:00'),
+('EU26R0455', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 15:05:00', '2026-07-24 15:05:00'),
+('EU26R0456', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 16:12:00', '2026-07-20 16:12:00'),
+('EU26R0457', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-21 09:19:00', '2026-07-21 09:19:00'),
+('EU26R0458', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 10:26:00', '2026-07-22 10:26:00'),
+('EU26R0459', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 11:33:00', '2026-07-23 11:33:00'),
+('EU26R0460', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 12:40:00', '2026-07-24 12:40:00'),
+('EU26R0461', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 13:47:00', '2026-07-20 13:47:00'),
+('EU26R0462', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:54:00', '2026-07-21 14:54:00'),
+('EU26R0463', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 15:01:00', '2026-07-22 15:01:00'),
+('EU26R0464', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 16:08:00', '2026-07-23 16:08:00'),
+('EU26R0465', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 09:15:00', '2026-07-24 09:15:00'),
+('EU26R0466', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 10:22:00', '2026-07-20 10:22:00'),
+('EU26R0467', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 11:29:00', '2026-07-21 11:29:00'),
+('EU26R0468', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 12:36:00', '2026-07-22 12:36:00'),
+('EU26R0469', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 13:43:00', '2026-07-23 13:43:00'),
+('EU26R0470', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 14:50:00', '2026-07-24 14:50:00'),
+('EU26R0471', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 15:57:00', '2026-07-20 15:57:00'),
+('EU26R0472', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 16:04:00', '2026-07-21 16:04:00'),
+('EU26R0473', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 09:11:00', '2026-07-22 09:11:00'),
+('EU26R0474', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 10:18:00', '2026-07-23 10:18:00'),
+('EU26R0475', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 11:25:00', '2026-07-24 11:25:00'),
+('EU26R0476', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 12:32:00', '2026-07-20 12:32:00'),
+('EU26R0477', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 13:39:00', '2026-07-21 13:39:00'),
+('EU26R0478', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 14:46:00', '2026-07-22 14:46:00'),
+('EU26R0479', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 15:53:00', '2026-07-23 15:53:00'),
+('EU26R0480', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 16:00:00', '2026-07-24 16:00:00'),
+('EU26R0481', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 09:07:00', '2026-07-20 09:07:00'),
+('EU26R0482', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:14:00', '2026-07-21 10:14:00'),
+('EU26R0483', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 11:21:00', '2026-07-22 11:21:00'),
+('EU26R0484', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 12:28:00', '2026-07-23 12:28:00'),
+('EU26R0485', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 13:35:00', '2026-07-24 13:35:00'),
+('EU26R0486', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 14:42:00', '2026-07-20 14:42:00'),
+('EU26R0487', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 15:49:00', '2026-07-21 15:49:00'),
+('EU26R0488', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 16:56:00', '2026-07-22 16:56:00'),
+('EU26R0489', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 09:03:00', '2026-07-23 09:03:00'),
+('EU26R0490', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 10:10:00', '2026-07-24 10:10:00'),
+('EU26R0491', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 11:17:00', '2026-07-20 11:17:00'),
+('EU26R0492', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 12:24:00', '2026-07-21 12:24:00'),
+('EU26R0493', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 13:31:00', '2026-07-22 13:31:00'),
+('EU26R0494', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 14:38:00', '2026-07-23 14:38:00'),
+('EU26R0495', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 15:45:00', '2026-07-24 15:45:00'),
+('EU26R0496', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 16:52:00', '2026-07-20 16:52:00'),
+('EU26R0497', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 09:59:00', '2026-07-21 09:59:00'),
+('EU26R0498', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 10:06:00', '2026-07-22 10:06:00'),
+('EU26R0499', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 11:13:00', '2026-07-23 11:13:00'),
+('EU26R0500', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 12:20:00', '2026-07-24 12:20:00'),
+('EU26R0501', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 13:27:00', '2026-07-20 13:27:00'),
+('EU26R0502', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:34:00', '2026-07-21 14:34:00'),
+('EU26R0503', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 15:41:00', '2026-07-22 15:41:00'),
+('EU26R0504', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 16:48:00', '2026-07-23 16:48:00'),
+('EU26R0505', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 09:55:00', '2026-07-24 09:55:00'),
+('EU26R0506', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 10:02:00', '2026-07-20 10:02:00'),
+('EU26R0507', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 11:09:00', '2026-07-21 11:09:00'),
+('EU26R0508', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 12:16:00', '2026-07-22 12:16:00'),
+('EU26R0509', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 13:23:00', '2026-07-23 13:23:00'),
+('EU26R0510', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 14:30:00', '2026-07-24 14:30:00'),
+('EU26R0511', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 15:37:00', '2026-07-20 15:37:00'),
+('EU26R0512', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 16:44:00', '2026-07-21 16:44:00'),
+('EU26R0513', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 09:51:00', '2026-07-22 09:51:00'),
+('EU26R0514', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 10:58:00', '2026-07-23 10:58:00'),
+('EU26R0515', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 11:05:00', '2026-07-24 11:05:00'),
+('EU26R0516', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 12:12:00', '2026-07-20 12:12:00'),
+('EU26R0517', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 13:19:00', '2026-07-21 13:19:00'),
+('EU26R0518', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 14:26:00', '2026-07-22 14:26:00'),
+('EU26R0519', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 15:33:00', '2026-07-23 15:33:00'),
+('EU26R0520', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 16:40:00', '2026-07-24 16:40:00'),
+('EU26R0521', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 09:47:00', '2026-07-20 09:47:00'),
+('EU26R0522', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:54:00', '2026-07-21 10:54:00'),
+('EU26R0523', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 11:01:00', '2026-07-22 11:01:00'),
+('EU26R0524', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 12:08:00', '2026-07-23 12:08:00'),
+('EU26R0525', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 13:15:00', '2026-07-24 13:15:00'),
+('EU26R0526', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 14:22:00', '2026-07-20 14:22:00'),
+('EU26R0527', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 15:29:00', '2026-07-21 15:29:00'),
+('EU26R0528', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 16:36:00', '2026-07-22 16:36:00'),
+('EU26R0529', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 09:43:00', '2026-07-23 09:43:00'),
+('EU26R0530', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 10:50:00', '2026-07-24 10:50:00'),
+('EU26R0531', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 11:57:00', '2026-07-20 11:57:00'),
+('EU26R0532', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 12:04:00', '2026-07-21 12:04:00'),
+('EU26R0533', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 13:11:00', '2026-07-22 13:11:00'),
+('EU26R0534', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 14:18:00', '2026-07-23 14:18:00'),
+('EU26R0535', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 15:25:00', '2026-07-24 15:25:00'),
+('EU26R0536', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 16:32:00', '2026-07-20 16:32:00'),
+('EU26R0537', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 09:39:00', '2026-07-21 09:39:00'),
+('EU26R0538', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 10:46:00', '2026-07-22 10:46:00'),
+('EU26R0539', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 11:53:00', '2026-07-23 11:53:00'),
+('EU26R0540', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 12:00:00', '2026-07-24 12:00:00'),
+('EU26R0541', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-20 13:07:00', '2026-07-20 13:07:00'),
+('EU26R0542', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 14:14:00', '2026-07-21 14:14:00'),
+('EU26R0543', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 15:21:00', '2026-07-22 15:21:00'),
+('EU26R0544', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 16:28:00', '2026-07-23 16:28:00'),
+('EU26R0545', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 09:35:00', '2026-07-24 09:35:00'),
+('EU26R0546', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 10:42:00', '2026-07-20 10:42:00'),
+('EU26R0547', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 11:49:00', '2026-07-21 11:49:00'),
+('EU26R0548', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 12:56:00', '2026-07-22 12:56:00'),
+('EU26R0549', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 13:03:00', '2026-07-23 13:03:00'),
+('EU26R0550', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 14:10:00', '2026-07-24 14:10:00'),
+('EU26R0551', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 15:17:00', '2026-07-20 15:17:00'),
+('EU26R0552', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 16:24:00', '2026-07-21 16:24:00'),
+('EU26R0553', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 09:31:00', '2026-07-22 09:31:00'),
+('EU26R0554', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 10:38:00', '2026-07-23 10:38:00'),
+('EU26R0555', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 11:45:00', '2026-07-24 11:45:00'),
+('EU26R0556', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 12:52:00', '2026-07-20 12:52:00'),
+('EU26R0557', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-21 13:59:00', '2026-07-21 13:59:00'),
+('EU26R0558', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 14:06:00', '2026-07-22 14:06:00'),
+('EU26R0559', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 15:13:00', '2026-07-23 15:13:00'),
+('EU26R0560', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 16:20:00', '2026-07-24 16:20:00'),
+('EU26R0561', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 09:27:00', '2026-07-20 09:27:00'),
+('EU26R0562', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:34:00', '2026-07-21 10:34:00'),
+('EU26R0563', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 11:41:00', '2026-07-22 11:41:00'),
+('EU26R0564', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 12:48:00', '2026-07-23 12:48:00'),
+('EU26R0565', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 13:55:00', '2026-07-24 13:55:00'),
+('EU26R0566', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 14:02:00', '2026-07-20 14:02:00'),
+('EU26R0567', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 15:09:00', '2026-07-21 15:09:00'),
+('EU26R0568', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 16:16:00', '2026-07-22 16:16:00'),
+('EU26R0569', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 09:23:00', '2026-07-23 09:23:00'),
+('EU26R0570', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 10:30:00', '2026-07-24 10:30:00'),
+('EU26R0571', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 11:37:00', '2026-07-20 11:37:00'),
+('EU26R0572', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 12:44:00', '2026-07-21 12:44:00'),
+('EU26R0573', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 13:51:00', '2026-07-22 13:51:00'),
+('EU26R0574', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 14:58:00', '2026-07-23 14:58:00'),
+('EU26R0575', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 15:05:00', '2026-07-24 15:05:00'),
+('EU26R0576', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 16:12:00', '2026-07-20 16:12:00'),
+('EU26R0577', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 09:19:00', '2026-07-21 09:19:00'),
+('EU26R0578', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 10:26:00', '2026-07-22 10:26:00'),
+('EU26R0579', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 11:33:00', '2026-07-23 11:33:00'),
+('EU26R0580', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 12:40:00', '2026-07-24 12:40:00'),
+('EU26R0581', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 13:47:00', '2026-07-20 13:47:00'),
+('EU26R0582', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:54:00', '2026-07-21 14:54:00'),
+('EU26R0583', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 15:01:00', '2026-07-22 15:01:00'),
+('EU26R0584', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 16:08:00', '2026-07-23 16:08:00'),
+('EU26R0585', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 09:15:00', '2026-07-24 09:15:00'),
+('EU26R0586', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 10:22:00', '2026-07-20 10:22:00'),
+('EU26R0587', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 11:29:00', '2026-07-21 11:29:00'),
+('EU26R0588', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 12:36:00', '2026-07-22 12:36:00'),
+('EU26R0589', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 13:43:00', '2026-07-23 13:43:00'),
+('EU26R0590', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 14:50:00', '2026-07-24 14:50:00'),
+('EU26R0591', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 15:57:00', '2026-07-20 15:57:00'),
+('EU26R0592', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 16:04:00', '2026-07-21 16:04:00'),
+('EU26R0593', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 09:11:00', '2026-07-22 09:11:00'),
+('EU26R0594', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 10:18:00', '2026-07-23 10:18:00'),
+('EU26R0595', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 11:25:00', '2026-07-24 11:25:00'),
+('EU26R0596', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 12:32:00', '2026-07-20 12:32:00'),
+('EU26R0597', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 13:39:00', '2026-07-21 13:39:00'),
+('EU26R0598', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 14:46:00', '2026-07-22 14:46:00'),
+('EU26R0599', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 15:53:00', '2026-07-23 15:53:00'),
+('EU26R0600', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 16:00:00', '2026-07-24 16:00:00'),
+('EU26R0601', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 09:07:00', '2026-07-20 09:07:00'),
+('EU26R0602', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:14:00', '2026-07-21 10:14:00'),
+('EU26R0603', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 11:21:00', '2026-07-22 11:21:00'),
+('EU26R0604', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 12:28:00', '2026-07-23 12:28:00'),
+('EU26R0605', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 13:35:00', '2026-07-24 13:35:00'),
+('EU26R0606', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 14:42:00', '2026-07-20 14:42:00'),
+('EU26R0607', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 15:49:00', '2026-07-21 15:49:00'),
+('EU26R0608', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 16:56:00', '2026-07-22 16:56:00'),
+('EU26R0609', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 09:03:00', '2026-07-23 09:03:00'),
+('EU26R0610', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 10:10:00', '2026-07-24 10:10:00'),
+('EU26R0611', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 11:17:00', '2026-07-20 11:17:00'),
+('EU26R0612', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 12:24:00', '2026-07-21 12:24:00'),
+('EU26R0613', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 13:31:00', '2026-07-22 13:31:00'),
+('EU26R0614', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 14:38:00', '2026-07-23 14:38:00'),
+('EU26R0615', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 15:45:00', '2026-07-24 15:45:00'),
+('EU26R0616', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 16:52:00', '2026-07-20 16:52:00'),
+('EU26R0617', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 09:59:00', '2026-07-21 09:59:00'),
+('EU26R0618', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 10:06:00', '2026-07-22 10:06:00'),
+('EU26R0619', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 11:13:00', '2026-07-23 11:13:00'),
+('EU26R0620', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 12:20:00', '2026-07-24 12:20:00'),
+('EU26R0621', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 13:27:00', '2026-07-20 13:27:00'),
+('EU26R0622', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:34:00', '2026-07-21 14:34:00'),
+('EU26R0623', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 15:41:00', '2026-07-22 15:41:00'),
+('EU26R0624', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 16:48:00', '2026-07-23 16:48:00'),
+('EU26R0625', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 09:55:00', '2026-07-24 09:55:00'),
+('EU26R0626', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 10:02:00', '2026-07-20 10:02:00'),
+('EU26R0627', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 11:09:00', '2026-07-21 11:09:00'),
+('EU26R0628', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 12:16:00', '2026-07-22 12:16:00'),
+('EU26R0629', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 13:23:00', '2026-07-23 13:23:00'),
+('EU26R0630', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 14:30:00', '2026-07-24 14:30:00'),
+('EU26R0631', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 15:37:00', '2026-07-20 15:37:00'),
+('EU26R0632', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 16:44:00', '2026-07-21 16:44:00'),
+('EU26R0633', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 09:51:00', '2026-07-22 09:51:00'),
+('EU26R0634', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 10:58:00', '2026-07-23 10:58:00'),
+('EU26R0635', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 11:05:00', '2026-07-24 11:05:00'),
+('EU26R0636', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 12:12:00', '2026-07-20 12:12:00'),
+('EU26R0637', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 13:19:00', '2026-07-21 13:19:00'),
+('EU26R0638', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 14:26:00', '2026-07-22 14:26:00'),
+('EU26R0639', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 15:33:00', '2026-07-23 15:33:00'),
+('EU26R0640', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 16:40:00', '2026-07-24 16:40:00'),
+('EU26R0641', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-20 09:47:00', '2026-07-20 09:47:00'),
+('EU26R0642', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 10:54:00', '2026-07-21 10:54:00'),
+('EU26R0643', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 11:01:00', '2026-07-22 11:01:00'),
+('EU26R0644', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 12:08:00', '2026-07-23 12:08:00'),
+('EU26R0645', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 13:15:00', '2026-07-24 13:15:00'),
+('EU26R0646', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 14:22:00', '2026-07-20 14:22:00'),
+('EU26R0647', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 15:29:00', '2026-07-21 15:29:00'),
+('EU26R0648', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 16:36:00', '2026-07-22 16:36:00'),
+('EU26R0649', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 09:43:00', '2026-07-23 09:43:00'),
+('EU26R0650', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 10:50:00', '2026-07-24 10:50:00'),
+('EU26R0651', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 11:57:00', '2026-07-20 11:57:00'),
+('EU26R0652', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 12:04:00', '2026-07-21 12:04:00'),
+('EU26R0653', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 13:11:00', '2026-07-22 13:11:00'),
+('EU26R0654', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 14:18:00', '2026-07-23 14:18:00'),
+('EU26R0655', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 15:25:00', '2026-07-24 15:25:00'),
+('EU26R0656', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 16:32:00', '2026-07-20 16:32:00'),
+('EU26R0657', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-21 09:39:00', '2026-07-21 09:39:00'),
+('EU26R0658', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 10:46:00', '2026-07-22 10:46:00'),
+('EU26R0659', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 11:53:00', '2026-07-23 11:53:00'),
+('EU26R0660', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 12:00:00', '2026-07-24 12:00:00'),
+('EU26R0661', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 13:07:00', '2026-07-20 13:07:00'),
+('EU26R0662', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:14:00', '2026-07-21 14:14:00'),
+('EU26R0663', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 15:21:00', '2026-07-22 15:21:00'),
+('EU26R0664', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 16:28:00', '2026-07-23 16:28:00'),
+('EU26R0665', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 09:35:00', '2026-07-24 09:35:00'),
+('EU26R0666', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 10:42:00', '2026-07-20 10:42:00'),
+('EU26R0667', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 11:49:00', '2026-07-21 11:49:00'),
+('EU26R0668', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 12:56:00', '2026-07-22 12:56:00'),
+('EU26R0669', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 13:03:00', '2026-07-23 13:03:00'),
+('EU26R0670', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 14:10:00', '2026-07-24 14:10:00'),
+('EU26R0671', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 15:17:00', '2026-07-20 15:17:00'),
+('EU26R0672', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 16:24:00', '2026-07-21 16:24:00'),
+('EU26R0673', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 09:31:00', '2026-07-22 09:31:00'),
+('EU26R0674', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 10:38:00', '2026-07-23 10:38:00'),
+('EU26R0675', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 11:45:00', '2026-07-24 11:45:00'),
+('EU26R0676', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 12:52:00', '2026-07-20 12:52:00'),
+('EU26R0677', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 13:59:00', '2026-07-21 13:59:00'),
+('EU26R0678', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 14:06:00', '2026-07-22 14:06:00'),
+('EU26R0679', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 15:13:00', '2026-07-23 15:13:00'),
+('EU26R0680', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 16:20:00', '2026-07-24 16:20:00'),
+('EU26R0681', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 09:27:00', '2026-07-20 09:27:00'),
+('EU26R0682', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:34:00', '2026-07-21 10:34:00'),
+('EU26R0683', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 11:41:00', '2026-07-22 11:41:00'),
+('EU26R0684', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 12:48:00', '2026-07-23 12:48:00'),
+('EU26R0685', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 13:55:00', '2026-07-24 13:55:00'),
+('EU26R0686', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 14:02:00', '2026-07-20 14:02:00'),
+('EU26R0687', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 15:09:00', '2026-07-21 15:09:00'),
+('EU26R0688', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 16:16:00', '2026-07-22 16:16:00'),
+('EU26R0689', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 09:23:00', '2026-07-23 09:23:00'),
+('EU26R0690', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 10:30:00', '2026-07-24 10:30:00'),
+('EU26R0691', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 11:37:00', '2026-07-20 11:37:00'),
+('EU26R0692', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 12:44:00', '2026-07-21 12:44:00'),
+('EU26R0693', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 13:51:00', '2026-07-22 13:51:00'),
+('EU26R0694', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 14:58:00', '2026-07-23 14:58:00'),
+('EU26R0695', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 15:05:00', '2026-07-24 15:05:00'),
+('EU26R0696', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 16:12:00', '2026-07-20 16:12:00'),
+('EU26R0697', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 09:19:00', '2026-07-21 09:19:00'),
+('EU26R0698', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 10:26:00', '2026-07-22 10:26:00'),
+('EU26R0699', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 11:33:00', '2026-07-23 11:33:00'),
+('EU26R0700', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 12:40:00', '2026-07-24 12:40:00'),
+('EU26R0701', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 13:47:00', '2026-07-20 13:47:00'),
+('EU26R0702', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:54:00', '2026-07-21 14:54:00'),
+('EU26R0703', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 15:01:00', '2026-07-22 15:01:00'),
+('EU26R0704', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 16:08:00', '2026-07-23 16:08:00'),
+('EU26R0705', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 09:15:00', '2026-07-24 09:15:00'),
+('EU26R0706', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 10:22:00', '2026-07-20 10:22:00'),
+('EU26R0707', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 11:29:00', '2026-07-21 11:29:00'),
+('EU26R0708', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 12:36:00', '2026-07-22 12:36:00'),
+('EU26R0709', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 13:43:00', '2026-07-23 13:43:00'),
+('EU26R0710', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 14:50:00', '2026-07-24 14:50:00'),
+('EU26R0711', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 15:57:00', '2026-07-20 15:57:00'),
+('EU26R0712', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 16:04:00', '2026-07-21 16:04:00'),
+('EU26R0713', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 09:11:00', '2026-07-22 09:11:00'),
+('EU26R0714', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 10:18:00', '2026-07-23 10:18:00'),
+('EU26R0715', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 11:25:00', '2026-07-24 11:25:00'),
+('EU26R0716', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 12:32:00', '2026-07-20 12:32:00'),
+('EU26R0717', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 13:39:00', '2026-07-21 13:39:00'),
+('EU26R0718', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 14:46:00', '2026-07-22 14:46:00'),
+('EU26R0719', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 15:53:00', '2026-07-23 15:53:00'),
+('EU26R0720', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 16:00:00', '2026-07-24 16:00:00'),
+('EU26R0721', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 09:07:00', '2026-07-20 09:07:00'),
+('EU26R0722', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:14:00', '2026-07-21 10:14:00'),
+('EU26R0723', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 11:21:00', '2026-07-22 11:21:00'),
+('EU26R0724', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 12:28:00', '2026-07-23 12:28:00'),
+('EU26R0725', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 13:35:00', '2026-07-24 13:35:00'),
+('EU26R0726', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 14:42:00', '2026-07-20 14:42:00'),
+('EU26R0727', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 15:49:00', '2026-07-21 15:49:00'),
+('EU26R0728', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 16:56:00', '2026-07-22 16:56:00'),
+('EU26R0729', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 09:03:00', '2026-07-23 09:03:00'),
+('EU26R0730', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 10:10:00', '2026-07-24 10:10:00'),
+('EU26R0731', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 11:17:00', '2026-07-20 11:17:00'),
+('EU26R0732', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 12:24:00', '2026-07-21 12:24:00'),
+('EU26R0733', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 13:31:00', '2026-07-22 13:31:00'),
+('EU26R0734', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-23 14:38:00', '2026-07-23 14:38:00'),
+('EU26R0735', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-24 15:45:00', '2026-07-24 15:45:00'),
+('EU26R0736', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 16:52:00', '2026-07-20 16:52:00'),
+('EU26R0737', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 09:59:00', '2026-07-21 09:59:00'),
+('EU26R0738', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 10:06:00', '2026-07-22 10:06:00'),
+('EU26R0739', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 11:13:00', '2026-07-23 11:13:00'),
+('EU26R0740', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 12:20:00', '2026-07-24 12:20:00'),
+('EU26R0741', 21, '徐正宇', '0900000021', 'xu.zhengyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-20 13:27:00', '2026-07-20 13:27:00'),
+('EU26R0742', 22, '何承翰', '0909123456', 'he.chenghan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-21 14:34:00', '2026-07-21 14:34:00'),
+('EU26R0743', 23, '高子軒', '0900000023', 'gao.zixuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-22 15:41:00', '2026-07-22 15:41:00'),
+('EU26R0744', 24, '羅士傑', '0956123456', 'luo.shijie@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 16:48:00', '2026-07-23 16:48:00'),
+('EU26R0745', 25, '梁育誠', '0900000025', 'liang.yucheng@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 09:55:00', '2026-07-24 09:55:00'),
+('EU26R0746', 26, '宋柏勳', '0911123456', 'song.boxun@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 10:02:00', '2026-07-20 10:02:00'),
+('EU26R0747', 27, '方奕辰', '0900000027', 'fang.yichen@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 11:09:00', '2026-07-21 11:09:00'),
+('EU26R0748', 28, '杜俊賢', '0946123456', 'du.junxian@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-22 12:16:00', '2026-07-22 12:16:00'),
+('EU26R0749', 29, '程浩然', '0900000029', 'cheng.haoran@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 13:23:00', '2026-07-23 13:23:00'),
+('EU26R0750', 30, '鍾睿哲', '0988123456', 'zhong.ruizhe@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 14:30:00', '2026-07-24 14:30:00'),
+('EU26R0751', 31, '林雅婷', '0919234567', 'lin.yating@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 15:37:00', '2026-07-20 15:37:00'),
+('EU26R0752', 32, '陳怡君', '0900000032', 'chen.yijun@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 16:44:00', '2026-07-21 16:44:00'),
+('EU26R0753', 33, '張芸瑄', '0922345678', 'chang.yunxuan@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-22 09:51:00', '2026-07-22 09:51:00'),
+('EU26R0754', 34, '黃詩涵', '0935234567', 'huang.shihan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 10:58:00', '2026-07-23 10:58:00'),
+('EU26R0755', 35, '李欣妤', '0900000035', 'li.xinyu@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-24 11:05:00', '2026-07-24 11:05:00'),
+('EU26R0756', 36, '王筱晴', '0971234567', 'wang.xiaoqing@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-20 12:12:00', '2026-07-20 12:12:00'),
+('EU26R0757', 37, '吳佩珊', '0900000037', 'wu.peishan@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-21 13:19:00', '2026-07-21 13:19:00'),
+('EU26R0758', 38, '劉雨柔', '0967234567', 'liu.yurou@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 14:26:00', '2026-07-22 14:26:00'),
+('EU26R0759', 39, '蔡宜臻', '0900000039', 'cai.yizhen@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-23 15:33:00', '2026-07-23 15:33:00'),
+('EU26R0760', 40, '楊思妤', '0955234567', 'yang.siyu@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-24 16:40:00', '2026-07-24 16:40:00'),
+('EU26R0761', 41, '許婉庭', '0900000041', 'xu.wanting@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-20 09:47:00', '2026-07-20 09:47:00'),
+('EU26R0762', 42, '鄭佳穎', '0908234567', 'zheng.jiaying@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:54:00', '2026-07-21 10:54:00'),
+('EU26R0763', 43, '謝依庭', '0900000043', 'xie.yiting@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 11:01:00', '2026-07-22 11:01:00'),
+('EU26R0764', 44, '郭芷晴', '0945234567', 'guo.zhiqing@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-23 12:08:00', '2026-07-23 12:08:00'),
+('EU26R0765', 45, '洪語彤', '0900000045', 'hong.yutong@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-24 13:15:00', '2026-07-24 13:15:00'),
+('EU26R0766', 46, '邱鈺婷', '0981234567', 'qiu.yuting@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 14:22:00', '2026-07-20 14:22:00'),
+('EU26R0767', 47, '曾心怡', '0900000047', 'zeng.xinyi@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-21 15:29:00', '2026-07-21 15:29:00'),
+('EU26R0768', 48, '廖品妍', '0929234567', 'liao.pinyan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-22 16:36:00', '2026-07-22 16:36:00'),
+('EU26R0769', 49, '賴郁雯', '0900000049', 'lai.yuwen@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-23 09:43:00', '2026-07-23 09:43:00'),
+('EU26R0770', 50, '蘇靜怡', '0934234567', 'su.jingyi@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 10:50:00', '2026-07-24 10:50:00'),
+('EU26R0771', 51, '徐若琳', '0900000051', 'xu.ruolin@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-20 11:57:00', '2026-07-20 11:57:00'),
+('EU26R0772', 52, '何佳蓉', '0968234567', 'he.jiarong@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 12:04:00', '2026-07-21 12:04:00'),
+('EU26R0773', 53, '高雅雯', '0900000053', 'gao.yawen@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 13:11:00', '2026-07-22 13:11:00'),
+('EU26R0774', 54, '羅欣儀', '0956234567', 'luo.xinyi@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 14:18:00', '2026-07-23 14:18:00'),
+('EU26R0775', 55, '梁舒涵', '0900000055', 'liang.shuhan@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 15:25:00', '2026-07-24 15:25:00'),
+('EU26R0776', 56, '宋婕妤', '0912234567', 'song.jieyu@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 16:32:00', '2026-07-20 16:32:00'),
+('EU26R0777', 57, '方芝羽', '0900000057', 'fang.zhiyu@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-21 09:39:00', '2026-07-21 09:39:00'),
+('EU26R0778', 58, '杜怡萱', '0947234567', 'du.yixuan@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 10:46:00', '2026-07-22 10:46:00'),
+('EU26R0779', 59, '程安琪', '0900000059', 'cheng.anqi@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 11:53:00', '2026-07-23 11:53:00'),
+('EU26R0780', 60, '鍾語嫣', '0989234567', 'zhong.yuyan@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 12:00:00', '2026-07-24 12:00:00'),
+('EU26R0781', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 13:07:00', '2026-07-20 13:07:00'),
+('EU26R0782', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 14:14:00', '2026-07-21 14:14:00'),
+('EU26R0783', 3, '黃志豪', '0987654321', 'huang.zhihao@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-22 15:21:00', '2026-07-22 15:21:00'),
+('EU26R0784', 4, '張家豪', '0923456789', 'chang.jiahao@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 16:28:00', '2026-07-23 16:28:00'),
+('EU26R0785', 5, '李承恩', '0900000005', 'li.chengen@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 09:35:00', '2026-07-24 09:35:00'),
+('EU26R0786', 6, '王俊傑', '0934567890', 'wang.junjie@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 10:42:00', '2026-07-20 10:42:00'),
+('EU26R0787', 7, '吳宇軒', '0955123456', 'wu.yuxuan@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 11:49:00', '2026-07-21 11:49:00'),
+('EU26R0788', 8, '劉建宏', '0900000008', 'liu.jianhong@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 12:56:00', '2026-07-22 12:56:00'),
+('EU26R0789', 9, '蔡明哲', '0977123456', 'cai.mingzhe@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-23 13:03:00', '2026-07-23 13:03:00'),
+('EU26R0790', 10, '楊子維', '0966234567', 'yang.ziwei@example.com', 'line_pay', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 14:10:00', '2026-07-24 14:10:00'),
+('EU26R0791', 11, '許博翔', '0900000011', 'xu.boxiang@example.com', 'credit_card', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 15:17:00', '2026-07-20 15:17:00'),
+('EU26R0792', 12, '鄭凱文', '0908123456', 'zheng.kaiwen@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 16:24:00', '2026-07-21 16:24:00'),
+('EU26R0793', 13, '謝宗翰', '0918765432', 'xie.zonghan@example.com', 'credit_card', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 09:31:00', '2026-07-22 09:31:00'),
+('EU26R0794', 14, '郭書豪', '0900000014', 'guo.shuhao@example.com', 'line_pay', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 10:38:00', '2026-07-23 10:38:00'),
+('EU26R0795', 15, '洪偉倫', '0945123456', 'hong.weilun@example.com', 'credit_card', 'paid', 5600.00, 1, 300.00, 20, 5280.00, 528, '2026-07-24 11:45:00', '2026-07-24 11:45:00'),
+('EU26R0796', 16, '邱柏翰', '0900000016', 'qiu.bohan@example.com', 'line_pay', 'paid', 4400.00, 1, 300.00, 20, 4080.00, 408, '2026-07-20 12:52:00', '2026-07-20 12:52:00'),
+('EU26R0797', 17, '曾俊霖', '0928123456', 'zeng.junlin@example.com', 'credit_card', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 13:59:00', '2026-07-21 13:59:00'),
+('EU26R0798', 18, '廖威廷', '0933123456', 'liao.weiting@example.com', 'line_pay', 'paid', 4800.00, 1, 300.00, 20, 4480.00, 448, '2026-07-22 14:06:00', '2026-07-22 14:06:00'),
+('EU26R0799', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 15:13:00', '2026-07-23 15:13:00'),
+('EU26R0800', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 16:20:00', '2026-07-24 16:20:00');
 
 -- --------------------------------------------------------
 -- Seed data for `order_items`
+/*
 INSERT INTO `order_items` (`id`, `order_id`, `experience_id`, `session_id`, `original_unit_price`, `quantity`, `subtotal`, `item_status`, `special_request`, `updated_at`) VALUES
 (1, 'EU26M0011', 1, 1, 875.00, 1, 875.00, 'confirmed', NULL, '2026-07-03 10:00:00'),
 (2, 'EU26M0012', 2, 2, 975.00, 1, 975.00, 'confirmed', NULL, '2026-07-08 11:10:00'),
@@ -2730,7 +3533,808 @@ INSERT INTO `order_items` (`id`, `order_id`, `experience_id`, `session_id`, `ori
 (250, 'EU26M1032', 4, 4, 5600.00, 1, 5600.00, 'confirmed', NULL, '2026-07-08 11:10:00'),
 (251, 'EU26M1033', 5, 5, 5700.00, 1, 5700.00, 'confirmed', NULL, '2026-07-12 12:20:00'),
 (252, 'EU26M1034', 6, 6, 5800.00, 1, 5800.00, 'confirmed', NULL, '2026-07-18 13:30:00');
-
+*/
+INSERT INTO `order_items` (`id`, `order_id`, `experience_id`, `session_id`, `original_unit_price`, `quantity`, `subtotal`, `item_status`, `special_request`, `updated_at`) VALUES
+(253, 'EU26R0001', 1, 1, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-20 09:07:00'),
+(254, 'EU26R0002', 2, 2, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 10:14:00'),
+(255, 'EU26R0003', 3, 3, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 11:21:00'),
+(256, 'EU26R0004', 4, 4, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-23 12:28:00'),
+(257, 'EU26R0005', 5, 5, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-24 13:35:00'),
+(258, 'EU26R0006', 6, 6, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-20 14:42:00'),
+(259, 'EU26R0007', 7, 7, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-21 15:49:00'),
+(260, 'EU26R0008', 8, 8, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 16:56:00'),
+(261, 'EU26R0009', 9, 9, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-23 09:03:00'),
+(262, 'EU26R0010', 10, 10, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 10:10:00'),
+(263, 'EU26R0011', 11, 11, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 11:17:00'),
+(264, 'EU26R0012', 12, 12, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 12:24:00'),
+(265, 'EU26R0013', 13, 13, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-22 13:31:00'),
+(266, 'EU26R0014', 14, 14, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-23 14:38:00'),
+(267, 'EU26R0015', 15, 15, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-24 15:45:00'),
+(268, 'EU26R0016', 16, 16, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-20 16:52:00'),
+(269, 'EU26R0017', 17, 17, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 09:59:00'),
+(270, 'EU26R0018', 18, 18, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 10:06:00'),
+(271, 'EU26R0019', 19, 19, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-23 11:13:00'),
+(272, 'EU26R0020', 20, 20, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-24 12:20:00'),
+(273, 'EU26R0021', 21, 21, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 13:27:00'),
+(274, 'EU26R0022', 22, 22, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 14:34:00'),
+(275, 'EU26R0023', 23, 23, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-22 15:41:00'),
+(276, 'EU26R0024', 24, 24, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-23 16:48:00'),
+(277, 'EU26R0025', 25, 25, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-24 09:55:00'),
+(278, 'EU26R0026', 26, 26, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 10:02:00'),
+(279, 'EU26R0027', 27, 27, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 11:09:00'),
+(280, 'EU26R0028', 28, 28, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 12:16:00'),
+(281, 'EU26R0029', 29, 29, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 13:23:00'),
+(282, 'EU26R0030', 30, 30, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-24 14:30:00'),
+(283, 'EU26R0031', 31, 31, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-20 15:37:00'),
+(284, 'EU26R0032', 32, 32, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-21 16:44:00'),
+(285, 'EU26R0033', 33, 33, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-22 09:51:00'),
+(286, 'EU26R0034', 34, 34, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-23 10:58:00'),
+(287, 'EU26R0035', 35, 35, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-24 11:05:00'),
+(288, 'EU26R0036', 36, 36, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-20 12:12:00'),
+(289, 'EU26R0037', 37, 37, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-21 13:19:00'),
+(290, 'EU26R0038', 38, 38, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-22 14:26:00'),
+(291, 'EU26R0039', 39, 39, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 15:33:00'),
+(292, 'EU26R0040', 40, 40, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-24 16:40:00'),
+(293, 'EU26R0041', 41, 41, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-20 09:47:00'),
+(294, 'EU26R0042', 42, 42, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-21 10:54:00'),
+(295, 'EU26R0043', 43, 43, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-22 11:01:00'),
+(296, 'EU26R0044', 44, 44, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-23 12:08:00'),
+(297, 'EU26R0045', 45, 45, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-24 13:15:00'),
+(298, 'EU26R0046', 46, 46, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 14:22:00'),
+(299, 'EU26R0047', 47, 47, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 15:29:00'),
+(300, 'EU26R0048', 48, 48, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-22 16:36:00'),
+(301, 'EU26R0049', 49, 49, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-23 09:43:00'),
+(302, 'EU26R0050', 50, 50, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-24 10:50:00'),
+(303, 'EU26R0051', 51, 51, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 11:57:00'),
+(304, 'EU26R0052', 52, 52, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-21 12:04:00'),
+(305, 'EU26R0053', 53, 53, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-22 13:11:00'),
+(306, 'EU26R0054', 54, 54, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-23 14:18:00'),
+(307, 'EU26R0055', 55, 55, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-24 15:25:00'),
+(308, 'EU26R0056', 56, 56, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-20 16:32:00'),
+(309, 'EU26R0057', 57, 57, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-21 09:39:00'),
+(310, 'EU26R0058', 58, 58, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-22 10:46:00'),
+(311, 'EU26R0059', 59, 59, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-23 11:53:00'),
+(312, 'EU26R0060', 60, 60, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-24 12:00:00'),
+(313, 'EU26R0061', 61, 61, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-20 13:07:00'),
+(314, 'EU26R0062', 62, 62, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 14:14:00'),
+(315, 'EU26R0063', 63, 63, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 15:21:00'),
+(316, 'EU26R0064', 64, 64, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-23 16:28:00'),
+(317, 'EU26R0065', 65, 65, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-24 09:35:00'),
+(318, 'EU26R0066', 66, 66, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-20 10:42:00'),
+(319, 'EU26R0067', 67, 67, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-21 11:49:00'),
+(320, 'EU26R0068', 68, 68, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-22 12:56:00'),
+(321, 'EU26R0069', 69, 69, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-23 13:03:00'),
+(322, 'EU26R0070', 70, 70, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-24 14:10:00'),
+(323, 'EU26R0071', 71, 71, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-20 15:17:00'),
+(324, 'EU26R0072', 72, 72, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-21 16:24:00'),
+(325, 'EU26R0073', 73, 73, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 09:31:00'),
+(326, 'EU26R0074', 74, 74, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 10:38:00'),
+(327, 'EU26R0075', 75, 75, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 11:45:00'),
+(328, 'EU26R0076', 76, 76, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 12:52:00'),
+(329, 'EU26R0077', 77, 77, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-21 13:59:00'),
+(330, 'EU26R0078', 78, 78, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 14:06:00'),
+(331, 'EU26R0079', 79, 79, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 15:13:00'),
+(332, 'EU26R0080', 80, 80, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 16:20:00'),
+(333, 'EU26R0081', 81, 81, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 09:27:00'),
+(334, 'EU26R0082', 82, 82, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 10:34:00'),
+(335, 'EU26R0083', 83, 83, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 11:41:00'),
+(336, 'EU26R0084', 84, 84, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 12:48:00'),
+(337, 'EU26R0085', 85, 85, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 13:55:00'),
+(338, 'EU26R0086', 86, 86, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 14:02:00'),
+(339, 'EU26R0087', 87, 87, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 15:09:00'),
+(340, 'EU26R0088', 88, 88, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 16:16:00'),
+(341, 'EU26R0089', 89, 89, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 09:23:00'),
+(342, 'EU26R0090', 90, 90, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 10:30:00'),
+(343, 'EU26R0091', 91, 91, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 11:37:00'),
+(344, 'EU26R0092', 92, 92, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 12:44:00'),
+(345, 'EU26R0093', 93, 93, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 13:51:00'),
+(346, 'EU26R0094', 94, 94, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-23 14:58:00'),
+(347, 'EU26R0095', 95, 95, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 15:05:00'),
+(348, 'EU26R0096', 96, 96, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 16:12:00'),
+(349, 'EU26R0097', 97, 97, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 09:19:00'),
+(350, 'EU26R0098', 98, 98, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 10:26:00'),
+(351, 'EU26R0099', 99, 99, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-23 11:33:00'),
+(352, 'EU26R0100', 100, 100, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-24 12:40:00'),
+(353, 'EU26R0101', 1, 1, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 13:47:00'),
+(354, 'EU26R0102', 2, 2, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 14:54:00'),
+(355, 'EU26R0103', 3, 3, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 15:01:00'),
+(356, 'EU26R0104', 4, 4, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-23 16:08:00'),
+(357, 'EU26R0105', 5, 5, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-24 09:15:00'),
+(358, 'EU26R0106', 6, 6, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-20 10:22:00'),
+(359, 'EU26R0107', 7, 7, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-21 11:29:00'),
+(360, 'EU26R0108', 8, 8, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 12:36:00'),
+(361, 'EU26R0109', 9, 9, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-23 13:43:00'),
+(362, 'EU26R0110', 10, 10, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 14:50:00'),
+(363, 'EU26R0111', 11, 11, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-20 15:57:00'),
+(364, 'EU26R0112', 12, 12, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 16:04:00'),
+(365, 'EU26R0113', 13, 13, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-22 09:11:00'),
+(366, 'EU26R0114', 14, 14, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-23 10:18:00'),
+(367, 'EU26R0115', 15, 15, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-24 11:25:00'),
+(368, 'EU26R0116', 16, 16, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-20 12:32:00'),
+(369, 'EU26R0117', 17, 17, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-21 13:39:00'),
+(370, 'EU26R0118', 18, 18, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 14:46:00'),
+(371, 'EU26R0119', 19, 19, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-23 15:53:00'),
+(372, 'EU26R0120', 20, 20, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-24 16:00:00'),
+(373, 'EU26R0121', 21, 21, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 09:07:00'),
+(374, 'EU26R0122', 22, 22, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 10:14:00'),
+(375, 'EU26R0123', 23, 23, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-22 11:21:00'),
+(376, 'EU26R0124', 24, 24, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-23 12:28:00'),
+(377, 'EU26R0125', 25, 25, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-24 13:35:00'),
+(378, 'EU26R0126', 26, 26, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-20 14:42:00'),
+(379, 'EU26R0127', 27, 27, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 15:49:00'),
+(380, 'EU26R0128', 28, 28, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 16:56:00'),
+(381, 'EU26R0129', 29, 29, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 09:03:00'),
+(382, 'EU26R0130', 30, 30, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-24 10:10:00'),
+(383, 'EU26R0131', 31, 31, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 11:17:00'),
+(384, 'EU26R0132', 32, 32, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-21 12:24:00'),
+(385, 'EU26R0133', 33, 33, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-22 13:31:00'),
+(386, 'EU26R0134', 34, 34, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-23 14:38:00'),
+(387, 'EU26R0135', 35, 35, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-24 15:45:00'),
+(388, 'EU26R0136', 36, 36, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-20 16:52:00'),
+(389, 'EU26R0137', 37, 37, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-21 09:59:00'),
+(390, 'EU26R0138', 38, 38, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-22 10:06:00'),
+(391, 'EU26R0139', 39, 39, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 11:13:00'),
+(392, 'EU26R0140', 40, 40, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-24 12:20:00'),
+(393, 'EU26R0141', 41, 41, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-20 13:27:00'),
+(394, 'EU26R0142', 42, 42, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-21 14:34:00'),
+(395, 'EU26R0143', 43, 43, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-22 15:41:00'),
+(396, 'EU26R0144', 44, 44, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-23 16:48:00'),
+(397, 'EU26R0145', 45, 45, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-24 09:55:00'),
+(398, 'EU26R0146', 46, 46, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 10:02:00'),
+(399, 'EU26R0147', 47, 47, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-21 11:09:00'),
+(400, 'EU26R0148', 48, 48, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-22 12:16:00'),
+(401, 'EU26R0149', 49, 49, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-23 13:23:00'),
+(402, 'EU26R0150', 50, 50, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-24 14:30:00'),
+(403, 'EU26R0151', 51, 51, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 15:37:00'),
+(404, 'EU26R0152', 52, 52, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 16:44:00'),
+(405, 'EU26R0153', 53, 53, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-22 09:51:00'),
+(406, 'EU26R0154', 54, 54, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-23 10:58:00'),
+(407, 'EU26R0155', 55, 55, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-24 11:05:00'),
+(408, 'EU26R0156', 56, 56, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-20 12:12:00'),
+(409, 'EU26R0157', 57, 57, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-21 13:19:00'),
+(410, 'EU26R0158', 58, 58, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-22 14:26:00'),
+(411, 'EU26R0159', 59, 59, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-23 15:33:00'),
+(412, 'EU26R0160', 60, 60, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-24 16:40:00'),
+(413, 'EU26R0161', 61, 61, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-20 09:47:00'),
+(414, 'EU26R0162', 62, 62, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 10:54:00'),
+(415, 'EU26R0163', 63, 63, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 11:01:00'),
+(416, 'EU26R0164', 64, 64, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-23 12:08:00'),
+(417, 'EU26R0165', 65, 65, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-24 13:15:00'),
+(418, 'EU26R0166', 66, 66, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-20 14:22:00'),
+(419, 'EU26R0167', 67, 67, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 15:29:00'),
+(420, 'EU26R0168', 68, 68, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-22 16:36:00'),
+(421, 'EU26R0169', 69, 69, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-23 09:43:00'),
+(422, 'EU26R0170', 70, 70, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-24 10:50:00'),
+(423, 'EU26R0171', 71, 71, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-20 11:57:00'),
+(424, 'EU26R0172', 72, 72, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-21 12:04:00'),
+(425, 'EU26R0173', 73, 73, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 13:11:00'),
+(426, 'EU26R0174', 74, 74, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 14:18:00'),
+(427, 'EU26R0175', 75, 75, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 15:25:00'),
+(428, 'EU26R0176', 76, 76, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 16:32:00'),
+(429, 'EU26R0177', 77, 77, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-21 09:39:00'),
+(430, 'EU26R0178', 78, 78, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 10:46:00'),
+(431, 'EU26R0179', 79, 79, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 11:53:00'),
+(432, 'EU26R0180', 80, 80, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 12:00:00'),
+(433, 'EU26R0181', 81, 81, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 13:07:00'),
+(434, 'EU26R0182', 82, 82, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 14:14:00'),
+(435, 'EU26R0183', 83, 83, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 15:21:00'),
+(436, 'EU26R0184', 84, 84, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 16:28:00'),
+(437, 'EU26R0185', 85, 85, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 09:35:00'),
+(438, 'EU26R0186', 86, 86, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 10:42:00'),
+(439, 'EU26R0187', 87, 87, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 11:49:00'),
+(440, 'EU26R0188', 88, 88, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 12:56:00'),
+(441, 'EU26R0189', 89, 89, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 13:03:00'),
+(442, 'EU26R0190', 90, 90, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 14:10:00'),
+(443, 'EU26R0191', 91, 91, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 15:17:00'),
+(444, 'EU26R0192', 92, 92, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 16:24:00'),
+(445, 'EU26R0193', 93, 93, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 09:31:00'),
+(446, 'EU26R0194', 94, 94, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-23 10:38:00'),
+(447, 'EU26R0195', 95, 95, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 11:45:00'),
+(448, 'EU26R0196', 96, 96, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 12:52:00'),
+(449, 'EU26R0197', 97, 97, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 13:59:00'),
+(450, 'EU26R0198', 98, 98, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 14:06:00'),
+(451, 'EU26R0199', 99, 99, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-23 15:13:00'),
+(452, 'EU26R0200', 100, 100, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-24 16:20:00'),
+(453, 'EU26R0201', 1, 1, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-20 09:27:00'),
+(454, 'EU26R0202', 2, 2, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 10:34:00'),
+(455, 'EU26R0203', 3, 3, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 11:41:00'),
+(456, 'EU26R0204', 4, 4, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-23 12:48:00'),
+(457, 'EU26R0205', 5, 5, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-24 13:55:00'),
+(458, 'EU26R0206', 6, 6, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-20 14:02:00'),
+(459, 'EU26R0207', 7, 7, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-21 15:09:00'),
+(460, 'EU26R0208', 8, 8, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 16:16:00'),
+(461, 'EU26R0209', 9, 9, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-23 09:23:00'),
+(462, 'EU26R0210', 10, 10, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 10:30:00'),
+(463, 'EU26R0211', 11, 11, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-20 11:37:00'),
+(464, 'EU26R0212', 12, 12, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 12:44:00'),
+(465, 'EU26R0213', 13, 13, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-22 13:51:00'),
+(466, 'EU26R0214', 14, 14, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-23 14:58:00'),
+(467, 'EU26R0215', 15, 15, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-24 15:05:00'),
+(468, 'EU26R0216', 16, 16, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-20 16:12:00'),
+(469, 'EU26R0217', 17, 17, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-21 09:19:00'),
+(470, 'EU26R0218', 18, 18, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 10:26:00'),
+(471, 'EU26R0219', 19, 19, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-23 11:33:00'),
+(472, 'EU26R0220', 20, 20, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-24 12:40:00'),
+(473, 'EU26R0221', 21, 21, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 13:47:00'),
+(474, 'EU26R0222', 22, 22, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 14:54:00'),
+(475, 'EU26R0223', 23, 23, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-22 15:01:00'),
+(476, 'EU26R0224', 24, 24, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-23 16:08:00'),
+(477, 'EU26R0225', 25, 25, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-24 09:15:00'),
+(478, 'EU26R0226', 26, 26, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-20 10:22:00'),
+(479, 'EU26R0227', 27, 27, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 11:29:00'),
+(480, 'EU26R0228', 28, 28, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 12:36:00'),
+(481, 'EU26R0229', 29, 29, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 13:43:00'),
+(482, 'EU26R0230', 30, 30, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-24 14:50:00'),
+(483, 'EU26R0231', 31, 31, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-20 15:57:00'),
+(484, 'EU26R0232', 32, 32, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-21 16:04:00'),
+(485, 'EU26R0233', 33, 33, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-22 09:11:00'),
+(486, 'EU26R0234', 34, 34, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-23 10:18:00'),
+(487, 'EU26R0235', 35, 35, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-24 11:25:00'),
+(488, 'EU26R0236', 36, 36, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-20 12:32:00'),
+(489, 'EU26R0237', 37, 37, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-21 13:39:00'),
+(490, 'EU26R0238', 38, 38, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-22 14:46:00'),
+(491, 'EU26R0239', 39, 39, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 15:53:00'),
+(492, 'EU26R0240', 40, 40, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-24 16:00:00'),
+(493, 'EU26R0241', 41, 41, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-20 09:07:00'),
+(494, 'EU26R0242', 42, 42, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-21 10:14:00'),
+(495, 'EU26R0243', 43, 43, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-22 11:21:00'),
+(496, 'EU26R0244', 44, 44, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-23 12:28:00'),
+(497, 'EU26R0245', 45, 45, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-24 13:35:00'),
+(498, 'EU26R0246', 46, 46, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 14:42:00'),
+(499, 'EU26R0247', 47, 47, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-21 15:49:00'),
+(500, 'EU26R0248', 48, 48, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-22 16:56:00'),
+(501, 'EU26R0249', 49, 49, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-23 09:03:00'),
+(502, 'EU26R0250', 50, 50, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-24 10:10:00'),
+(503, 'EU26R0251', 51, 51, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 11:17:00'),
+(504, 'EU26R0252', 52, 52, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-21 12:24:00'),
+(505, 'EU26R0253', 53, 53, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-22 13:31:00'),
+(506, 'EU26R0254', 54, 54, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-23 14:38:00'),
+(507, 'EU26R0255', 55, 55, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-24 15:45:00'),
+(508, 'EU26R0256', 56, 56, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-20 16:52:00'),
+(509, 'EU26R0257', 57, 57, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-21 09:59:00'),
+(510, 'EU26R0258', 58, 58, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-22 10:06:00'),
+(511, 'EU26R0259', 59, 59, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-23 11:13:00'),
+(512, 'EU26R0260', 60, 60, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-24 12:20:00'),
+(513, 'EU26R0261', 61, 61, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-20 13:27:00'),
+(514, 'EU26R0262', 62, 62, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 14:34:00'),
+(515, 'EU26R0263', 63, 63, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 15:41:00'),
+(516, 'EU26R0264', 64, 64, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-23 16:48:00'),
+(517, 'EU26R0265', 65, 65, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-24 09:55:00'),
+(518, 'EU26R0266', 66, 66, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-20 10:02:00'),
+(519, 'EU26R0267', 67, 67, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-21 11:09:00'),
+(520, 'EU26R0268', 68, 68, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-22 12:16:00'),
+(521, 'EU26R0269', 69, 69, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-23 13:23:00'),
+(522, 'EU26R0270', 70, 70, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-24 14:30:00'),
+(523, 'EU26R0271', 71, 71, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-20 15:37:00'),
+(524, 'EU26R0272', 72, 72, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-21 16:44:00'),
+(525, 'EU26R0273', 73, 73, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 09:51:00'),
+(526, 'EU26R0274', 74, 74, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 10:58:00'),
+(527, 'EU26R0275', 75, 75, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 11:05:00'),
+(528, 'EU26R0276', 76, 76, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 12:12:00'),
+(529, 'EU26R0277', 77, 77, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-21 13:19:00'),
+(530, 'EU26R0278', 78, 78, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 14:26:00'),
+(531, 'EU26R0279', 79, 79, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 15:33:00'),
+(532, 'EU26R0280', 80, 80, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 16:40:00'),
+(533, 'EU26R0281', 81, 81, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 09:47:00'),
+(534, 'EU26R0282', 82, 82, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 10:54:00'),
+(535, 'EU26R0283', 83, 83, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 11:01:00'),
+(536, 'EU26R0284', 84, 84, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 12:08:00'),
+(537, 'EU26R0285', 85, 85, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 13:15:00'),
+(538, 'EU26R0286', 86, 86, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 14:22:00'),
+(539, 'EU26R0287', 87, 87, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 15:29:00'),
+(540, 'EU26R0288', 88, 88, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 16:36:00'),
+(541, 'EU26R0289', 89, 89, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 09:43:00'),
+(542, 'EU26R0290', 90, 90, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 10:50:00'),
+(543, 'EU26R0291', 91, 91, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 11:57:00'),
+(544, 'EU26R0292', 92, 92, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 12:04:00'),
+(545, 'EU26R0293', 93, 93, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 13:11:00'),
+(546, 'EU26R0294', 94, 94, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-23 14:18:00'),
+(547, 'EU26R0295', 95, 95, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 15:25:00'),
+(548, 'EU26R0296', 96, 96, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 16:32:00'),
+(549, 'EU26R0297', 97, 97, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 09:39:00'),
+(550, 'EU26R0298', 98, 98, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 10:46:00'),
+(551, 'EU26R0299', 99, 99, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-23 11:53:00'),
+(552, 'EU26R0300', 100, 100, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-24 12:00:00'),
+(553, 'EU26R0301', 1, 1, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-20 13:07:00'),
+(554, 'EU26R0302', 2, 2, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 14:14:00'),
+(555, 'EU26R0303', 3, 3, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 15:21:00'),
+(556, 'EU26R0304', 4, 4, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-23 16:28:00'),
+(557, 'EU26R0305', 5, 5, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-24 09:35:00'),
+(558, 'EU26R0306', 6, 6, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-20 10:42:00'),
+(559, 'EU26R0307', 7, 7, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-21 11:49:00'),
+(560, 'EU26R0308', 8, 8, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 12:56:00'),
+(561, 'EU26R0309', 9, 9, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-23 13:03:00'),
+(562, 'EU26R0310', 10, 10, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 14:10:00'),
+(563, 'EU26R0311', 11, 11, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 15:17:00'),
+(564, 'EU26R0312', 12, 12, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 16:24:00'),
+(565, 'EU26R0313', 13, 13, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-22 09:31:00'),
+(566, 'EU26R0314', 14, 14, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-23 10:38:00'),
+(567, 'EU26R0315', 15, 15, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-24 11:45:00'),
+(568, 'EU26R0316', 16, 16, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-20 12:52:00'),
+(569, 'EU26R0317', 17, 17, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 13:59:00'),
+(570, 'EU26R0318', 18, 18, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 14:06:00'),
+(571, 'EU26R0319', 19, 19, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-23 15:13:00'),
+(572, 'EU26R0320', 20, 20, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-24 16:20:00'),
+(573, 'EU26R0321', 21, 21, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 09:27:00'),
+(574, 'EU26R0322', 22, 22, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 10:34:00'),
+(575, 'EU26R0323', 23, 23, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-22 11:41:00'),
+(576, 'EU26R0324', 24, 24, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-23 12:48:00'),
+(577, 'EU26R0325', 25, 25, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-24 13:55:00'),
+(578, 'EU26R0326', 26, 26, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 14:02:00'),
+(579, 'EU26R0327', 27, 27, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 15:09:00'),
+(580, 'EU26R0328', 28, 28, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 16:16:00'),
+(581, 'EU26R0329', 29, 29, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 09:23:00'),
+(582, 'EU26R0330', 30, 30, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-24 10:30:00'),
+(583, 'EU26R0331', 31, 31, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-20 11:37:00'),
+(584, 'EU26R0332', 32, 32, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-21 12:44:00'),
+(585, 'EU26R0333', 33, 33, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-22 13:51:00'),
+(586, 'EU26R0334', 34, 34, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-23 14:58:00'),
+(587, 'EU26R0335', 35, 35, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-24 15:05:00'),
+(588, 'EU26R0336', 36, 36, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-20 16:12:00'),
+(589, 'EU26R0337', 37, 37, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-21 09:19:00'),
+(590, 'EU26R0338', 38, 38, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-22 10:26:00'),
+(591, 'EU26R0339', 39, 39, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 11:33:00'),
+(592, 'EU26R0340', 40, 40, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-24 12:40:00'),
+(593, 'EU26R0341', 41, 41, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-20 13:47:00'),
+(594, 'EU26R0342', 42, 42, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-21 14:54:00'),
+(595, 'EU26R0343', 43, 43, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-22 15:01:00'),
+(596, 'EU26R0344', 44, 44, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-23 16:08:00'),
+(597, 'EU26R0345', 45, 45, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-24 09:15:00'),
+(598, 'EU26R0346', 46, 46, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 10:22:00'),
+(599, 'EU26R0347', 47, 47, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 11:29:00'),
+(600, 'EU26R0348', 48, 48, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-22 12:36:00'),
+(601, 'EU26R0349', 49, 49, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-23 13:43:00'),
+(602, 'EU26R0350', 50, 50, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-24 14:50:00'),
+(603, 'EU26R0351', 51, 51, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 15:57:00'),
+(604, 'EU26R0352', 52, 52, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-21 16:04:00'),
+(605, 'EU26R0353', 53, 53, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-22 09:11:00'),
+(606, 'EU26R0354', 54, 54, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-23 10:18:00'),
+(607, 'EU26R0355', 55, 55, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-24 11:25:00'),
+(608, 'EU26R0356', 56, 56, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-20 12:32:00'),
+(609, 'EU26R0357', 57, 57, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-21 13:39:00'),
+(610, 'EU26R0358', 58, 58, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-22 14:46:00'),
+(611, 'EU26R0359', 59, 59, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-23 15:53:00'),
+(612, 'EU26R0360', 60, 60, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-24 16:00:00'),
+(613, 'EU26R0361', 61, 61, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-20 09:07:00'),
+(614, 'EU26R0362', 62, 62, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 10:14:00'),
+(615, 'EU26R0363', 63, 63, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 11:21:00'),
+(616, 'EU26R0364', 64, 64, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-23 12:28:00'),
+(617, 'EU26R0365', 65, 65, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-24 13:35:00'),
+(618, 'EU26R0366', 66, 66, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-20 14:42:00'),
+(619, 'EU26R0367', 67, 67, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-21 15:49:00'),
+(620, 'EU26R0368', 68, 68, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-22 16:56:00'),
+(621, 'EU26R0369', 69, 69, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-23 09:03:00'),
+(622, 'EU26R0370', 70, 70, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-24 10:10:00'),
+(623, 'EU26R0371', 71, 71, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-20 11:17:00'),
+(624, 'EU26R0372', 72, 72, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-21 12:24:00'),
+(625, 'EU26R0373', 73, 73, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 13:31:00'),
+(626, 'EU26R0374', 74, 74, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 14:38:00'),
+(627, 'EU26R0375', 75, 75, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 15:45:00'),
+(628, 'EU26R0376', 76, 76, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 16:52:00'),
+(629, 'EU26R0377', 77, 77, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-21 09:59:00'),
+(630, 'EU26R0378', 78, 78, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 10:06:00'),
+(631, 'EU26R0379', 79, 79, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 11:13:00'),
+(632, 'EU26R0380', 80, 80, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 12:20:00'),
+(633, 'EU26R0381', 81, 81, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 13:27:00'),
+(634, 'EU26R0382', 82, 82, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 14:34:00'),
+(635, 'EU26R0383', 83, 83, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 15:41:00'),
+(636, 'EU26R0384', 84, 84, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 16:48:00'),
+(637, 'EU26R0385', 85, 85, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 09:55:00'),
+(638, 'EU26R0386', 86, 86, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 10:02:00'),
+(639, 'EU26R0387', 87, 87, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 11:09:00'),
+(640, 'EU26R0388', 88, 88, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 12:16:00'),
+(641, 'EU26R0389', 89, 89, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 13:23:00'),
+(642, 'EU26R0390', 90, 90, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 14:30:00'),
+(643, 'EU26R0391', 91, 91, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 15:37:00'),
+(644, 'EU26R0392', 92, 92, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 16:44:00'),
+(645, 'EU26R0393', 93, 93, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 09:51:00'),
+(646, 'EU26R0394', 94, 94, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-23 10:58:00'),
+(647, 'EU26R0395', 95, 95, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 11:05:00'),
+(648, 'EU26R0396', 96, 96, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 12:12:00'),
+(649, 'EU26R0397', 97, 97, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 13:19:00'),
+(650, 'EU26R0398', 98, 98, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 14:26:00'),
+(651, 'EU26R0399', 99, 99, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-23 15:33:00'),
+(652, 'EU26R0400', 100, 100, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-24 16:40:00'),
+(653, 'EU26R0401', 1, 1, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 09:47:00'),
+(654, 'EU26R0402', 2, 2, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 10:54:00'),
+(655, 'EU26R0403', 3, 3, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 11:01:00'),
+(656, 'EU26R0404', 4, 4, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-23 12:08:00'),
+(657, 'EU26R0405', 5, 5, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-24 13:15:00'),
+(658, 'EU26R0406', 6, 6, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-20 14:22:00'),
+(659, 'EU26R0407', 7, 7, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-21 15:29:00'),
+(660, 'EU26R0408', 8, 8, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 16:36:00'),
+(661, 'EU26R0409', 9, 9, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-23 09:43:00'),
+(662, 'EU26R0410', 10, 10, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 10:50:00'),
+(663, 'EU26R0411', 11, 11, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-20 11:57:00'),
+(664, 'EU26R0412', 12, 12, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 12:04:00'),
+(665, 'EU26R0413', 13, 13, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-22 13:11:00'),
+(666, 'EU26R0414', 14, 14, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-23 14:18:00'),
+(667, 'EU26R0415', 15, 15, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-24 15:25:00'),
+(668, 'EU26R0416', 16, 16, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-20 16:32:00'),
+(669, 'EU26R0417', 17, 17, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-21 09:39:00'),
+(670, 'EU26R0418', 18, 18, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 10:46:00'),
+(671, 'EU26R0419', 19, 19, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-23 11:53:00'),
+(672, 'EU26R0420', 20, 20, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-24 12:00:00'),
+(673, 'EU26R0421', 21, 21, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 13:07:00'),
+(674, 'EU26R0422', 22, 22, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 14:14:00'),
+(675, 'EU26R0423', 23, 23, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-22 15:21:00'),
+(676, 'EU26R0424', 24, 24, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-23 16:28:00'),
+(677, 'EU26R0425', 25, 25, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-24 09:35:00'),
+(678, 'EU26R0426', 26, 26, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-20 10:42:00'),
+(679, 'EU26R0427', 27, 27, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 11:49:00'),
+(680, 'EU26R0428', 28, 28, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 12:56:00'),
+(681, 'EU26R0429', 29, 29, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 13:03:00'),
+(682, 'EU26R0430', 30, 30, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-24 14:10:00'),
+(683, 'EU26R0431', 31, 31, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 15:17:00'),
+(684, 'EU26R0432', 32, 32, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-21 16:24:00'),
+(685, 'EU26R0433', 33, 33, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-22 09:31:00'),
+(686, 'EU26R0434', 34, 34, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-23 10:38:00'),
+(687, 'EU26R0435', 35, 35, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-24 11:45:00'),
+(688, 'EU26R0436', 36, 36, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-20 12:52:00'),
+(689, 'EU26R0437', 37, 37, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-21 13:59:00'),
+(690, 'EU26R0438', 38, 38, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-22 14:06:00'),
+(691, 'EU26R0439', 39, 39, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 15:13:00'),
+(692, 'EU26R0440', 40, 40, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-24 16:20:00'),
+(693, 'EU26R0441', 41, 41, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-20 09:27:00'),
+(694, 'EU26R0442', 42, 42, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-21 10:34:00'),
+(695, 'EU26R0443', 43, 43, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-22 11:41:00'),
+(696, 'EU26R0444', 44, 44, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-23 12:48:00'),
+(697, 'EU26R0445', 45, 45, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-24 13:55:00'),
+(698, 'EU26R0446', 46, 46, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 14:02:00'),
+(699, 'EU26R0447', 47, 47, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-21 15:09:00'),
+(700, 'EU26R0448', 48, 48, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-22 16:16:00'),
+(701, 'EU26R0449', 49, 49, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-23 09:23:00'),
+(702, 'EU26R0450', 50, 50, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-24 10:30:00'),
+(703, 'EU26R0451', 51, 51, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 11:37:00'),
+(704, 'EU26R0452', 52, 52, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 12:44:00'),
+(705, 'EU26R0453', 53, 53, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-22 13:51:00'),
+(706, 'EU26R0454', 54, 54, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-23 14:58:00'),
+(707, 'EU26R0455', 55, 55, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-24 15:05:00'),
+(708, 'EU26R0456', 56, 56, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-20 16:12:00'),
+(709, 'EU26R0457', 57, 57, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-21 09:19:00'),
+(710, 'EU26R0458', 58, 58, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-22 10:26:00'),
+(711, 'EU26R0459', 59, 59, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-23 11:33:00'),
+(712, 'EU26R0460', 60, 60, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-24 12:40:00'),
+(713, 'EU26R0461', 61, 61, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-20 13:47:00'),
+(714, 'EU26R0462', 62, 62, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 14:54:00'),
+(715, 'EU26R0463', 63, 63, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 15:01:00'),
+(716, 'EU26R0464', 64, 64, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-23 16:08:00'),
+(717, 'EU26R0465', 65, 65, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-24 09:15:00'),
+(718, 'EU26R0466', 66, 66, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-20 10:22:00'),
+(719, 'EU26R0467', 67, 67, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 11:29:00'),
+(720, 'EU26R0468', 68, 68, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-22 12:36:00'),
+(721, 'EU26R0469', 69, 69, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-23 13:43:00'),
+(722, 'EU26R0470', 70, 70, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-24 14:50:00'),
+(723, 'EU26R0471', 71, 71, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-20 15:57:00'),
+(724, 'EU26R0472', 72, 72, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-21 16:04:00'),
+(725, 'EU26R0473', 73, 73, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 09:11:00'),
+(726, 'EU26R0474', 74, 74, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 10:18:00'),
+(727, 'EU26R0475', 75, 75, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 11:25:00'),
+(728, 'EU26R0476', 76, 76, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 12:32:00'),
+(729, 'EU26R0477', 77, 77, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-21 13:39:00'),
+(730, 'EU26R0478', 78, 78, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 14:46:00'),
+(731, 'EU26R0479', 79, 79, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 15:53:00'),
+(732, 'EU26R0480', 80, 80, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 16:00:00'),
+(733, 'EU26R0481', 81, 81, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 09:07:00'),
+(734, 'EU26R0482', 82, 82, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 10:14:00'),
+(735, 'EU26R0483', 83, 83, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 11:21:00'),
+(736, 'EU26R0484', 84, 84, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 12:28:00'),
+(737, 'EU26R0485', 85, 85, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 13:35:00'),
+(738, 'EU26R0486', 86, 86, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 14:42:00'),
+(739, 'EU26R0487', 87, 87, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 15:49:00'),
+(740, 'EU26R0488', 88, 88, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 16:56:00'),
+(741, 'EU26R0489', 89, 89, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 09:03:00'),
+(742, 'EU26R0490', 90, 90, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 10:10:00'),
+(743, 'EU26R0491', 91, 91, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 11:17:00'),
+(744, 'EU26R0492', 92, 92, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 12:24:00'),
+(745, 'EU26R0493', 93, 93, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 13:31:00'),
+(746, 'EU26R0494', 94, 94, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-23 14:38:00'),
+(747, 'EU26R0495', 95, 95, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 15:45:00'),
+(748, 'EU26R0496', 96, 96, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 16:52:00'),
+(749, 'EU26R0497', 97, 97, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 09:59:00'),
+(750, 'EU26R0498', 98, 98, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 10:06:00'),
+(751, 'EU26R0499', 99, 99, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-23 11:13:00'),
+(752, 'EU26R0500', 100, 100, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-24 12:20:00'),
+(753, 'EU26R0501', 1, 1, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-20 13:27:00'),
+(754, 'EU26R0502', 2, 2, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 14:34:00'),
+(755, 'EU26R0503', 3, 3, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 15:41:00'),
+(756, 'EU26R0504', 4, 4, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-23 16:48:00'),
+(757, 'EU26R0505', 5, 5, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-24 09:55:00'),
+(758, 'EU26R0506', 6, 6, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-20 10:02:00'),
+(759, 'EU26R0507', 7, 7, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-21 11:09:00'),
+(760, 'EU26R0508', 8, 8, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 12:16:00'),
+(761, 'EU26R0509', 9, 9, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-23 13:23:00'),
+(762, 'EU26R0510', 10, 10, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 14:30:00'),
+(763, 'EU26R0511', 11, 11, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-20 15:37:00'),
+(764, 'EU26R0512', 12, 12, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 16:44:00'),
+(765, 'EU26R0513', 13, 13, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-22 09:51:00'),
+(766, 'EU26R0514', 14, 14, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-23 10:58:00'),
+(767, 'EU26R0515', 15, 15, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-24 11:05:00'),
+(768, 'EU26R0516', 16, 16, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-20 12:12:00'),
+(769, 'EU26R0517', 17, 17, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-21 13:19:00'),
+(770, 'EU26R0518', 18, 18, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 14:26:00'),
+(771, 'EU26R0519', 19, 19, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-23 15:33:00'),
+(772, 'EU26R0520', 20, 20, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-24 16:40:00'),
+(773, 'EU26R0521', 21, 21, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 09:47:00'),
+(774, 'EU26R0522', 22, 22, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 10:54:00'),
+(775, 'EU26R0523', 23, 23, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-22 11:01:00'),
+(776, 'EU26R0524', 24, 24, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-23 12:08:00'),
+(777, 'EU26R0525', 25, 25, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-24 13:15:00'),
+(778, 'EU26R0526', 26, 26, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-20 14:22:00'),
+(779, 'EU26R0527', 27, 27, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 15:29:00'),
+(780, 'EU26R0528', 28, 28, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 16:36:00'),
+(781, 'EU26R0529', 29, 29, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 09:43:00'),
+(782, 'EU26R0530', 30, 30, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-24 10:50:00'),
+(783, 'EU26R0531', 31, 31, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-20 11:57:00'),
+(784, 'EU26R0532', 32, 32, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-21 12:04:00'),
+(785, 'EU26R0533', 33, 33, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-22 13:11:00'),
+(786, 'EU26R0534', 34, 34, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-23 14:18:00'),
+(787, 'EU26R0535', 35, 35, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-24 15:25:00'),
+(788, 'EU26R0536', 36, 36, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-20 16:32:00'),
+(789, 'EU26R0537', 37, 37, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-21 09:39:00'),
+(790, 'EU26R0538', 38, 38, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-22 10:46:00'),
+(791, 'EU26R0539', 39, 39, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 11:53:00'),
+(792, 'EU26R0540', 40, 40, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-24 12:00:00'),
+(793, 'EU26R0541', 41, 41, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-20 13:07:00'),
+(794, 'EU26R0542', 42, 42, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-21 14:14:00'),
+(795, 'EU26R0543', 43, 43, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-22 15:21:00'),
+(796, 'EU26R0544', 44, 44, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-23 16:28:00'),
+(797, 'EU26R0545', 45, 45, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-24 09:35:00'),
+(798, 'EU26R0546', 46, 46, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 10:42:00'),
+(799, 'EU26R0547', 47, 47, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-21 11:49:00'),
+(800, 'EU26R0548', 48, 48, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-22 12:56:00'),
+(801, 'EU26R0549', 49, 49, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-23 13:03:00'),
+(802, 'EU26R0550', 50, 50, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-24 14:10:00'),
+(803, 'EU26R0551', 51, 51, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 15:17:00'),
+(804, 'EU26R0552', 52, 52, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-21 16:24:00'),
+(805, 'EU26R0553', 53, 53, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-22 09:31:00'),
+(806, 'EU26R0554', 54, 54, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-23 10:38:00'),
+(807, 'EU26R0555', 55, 55, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-24 11:45:00'),
+(808, 'EU26R0556', 56, 56, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-20 12:52:00'),
+(809, 'EU26R0557', 57, 57, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-21 13:59:00'),
+(810, 'EU26R0558', 58, 58, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-22 14:06:00'),
+(811, 'EU26R0559', 59, 59, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-23 15:13:00'),
+(812, 'EU26R0560', 60, 60, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-24 16:20:00'),
+(813, 'EU26R0561', 61, 61, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-20 09:27:00'),
+(814, 'EU26R0562', 62, 62, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 10:34:00'),
+(815, 'EU26R0563', 63, 63, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 11:41:00'),
+(816, 'EU26R0564', 64, 64, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-23 12:48:00'),
+(817, 'EU26R0565', 65, 65, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-24 13:55:00'),
+(818, 'EU26R0566', 66, 66, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-20 14:02:00'),
+(819, 'EU26R0567', 67, 67, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-21 15:09:00'),
+(820, 'EU26R0568', 68, 68, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-22 16:16:00'),
+(821, 'EU26R0569', 69, 69, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-23 09:23:00'),
+(822, 'EU26R0570', 70, 70, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-24 10:30:00'),
+(823, 'EU26R0571', 71, 71, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-20 11:37:00'),
+(824, 'EU26R0572', 72, 72, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-21 12:44:00'),
+(825, 'EU26R0573', 73, 73, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 13:51:00'),
+(826, 'EU26R0574', 74, 74, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 14:58:00'),
+(827, 'EU26R0575', 75, 75, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 15:05:00'),
+(828, 'EU26R0576', 76, 76, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 16:12:00'),
+(829, 'EU26R0577', 77, 77, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-21 09:19:00'),
+(830, 'EU26R0578', 78, 78, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 10:26:00'),
+(831, 'EU26R0579', 79, 79, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 11:33:00'),
+(832, 'EU26R0580', 80, 80, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 12:40:00'),
+(833, 'EU26R0581', 81, 81, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 13:47:00'),
+(834, 'EU26R0582', 82, 82, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 14:54:00'),
+(835, 'EU26R0583', 83, 83, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 15:01:00'),
+(836, 'EU26R0584', 84, 84, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 16:08:00'),
+(837, 'EU26R0585', 85, 85, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 09:15:00'),
+(838, 'EU26R0586', 86, 86, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 10:22:00'),
+(839, 'EU26R0587', 87, 87, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 11:29:00'),
+(840, 'EU26R0588', 88, 88, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 12:36:00'),
+(841, 'EU26R0589', 89, 89, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 13:43:00'),
+(842, 'EU26R0590', 90, 90, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 14:50:00'),
+(843, 'EU26R0591', 91, 91, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 15:57:00'),
+(844, 'EU26R0592', 92, 92, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 16:04:00'),
+(845, 'EU26R0593', 93, 93, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 09:11:00'),
+(846, 'EU26R0594', 94, 94, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-23 10:18:00'),
+(847, 'EU26R0595', 95, 95, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 11:25:00'),
+(848, 'EU26R0596', 96, 96, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 12:32:00'),
+(849, 'EU26R0597', 97, 97, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 13:39:00'),
+(850, 'EU26R0598', 98, 98, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 14:46:00'),
+(851, 'EU26R0599', 99, 99, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-23 15:53:00'),
+(852, 'EU26R0600', 100, 100, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-24 16:00:00'),
+(853, 'EU26R0601', 1, 1, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-20 09:07:00'),
+(854, 'EU26R0602', 2, 2, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 10:14:00'),
+(855, 'EU26R0603', 3, 3, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 11:21:00'),
+(856, 'EU26R0604', 4, 4, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-23 12:28:00'),
+(857, 'EU26R0605', 5, 5, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-24 13:35:00'),
+(858, 'EU26R0606', 6, 6, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-20 14:42:00'),
+(859, 'EU26R0607', 7, 7, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-21 15:49:00'),
+(860, 'EU26R0608', 8, 8, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 16:56:00'),
+(861, 'EU26R0609', 9, 9, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-23 09:03:00'),
+(862, 'EU26R0610', 10, 10, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 10:10:00'),
+(863, 'EU26R0611', 11, 11, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 11:17:00'),
+(864, 'EU26R0612', 12, 12, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 12:24:00'),
+(865, 'EU26R0613', 13, 13, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-22 13:31:00'),
+(866, 'EU26R0614', 14, 14, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-23 14:38:00'),
+(867, 'EU26R0615', 15, 15, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-24 15:45:00'),
+(868, 'EU26R0616', 16, 16, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-20 16:52:00'),
+(869, 'EU26R0617', 17, 17, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 09:59:00'),
+(870, 'EU26R0618', 18, 18, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 10:06:00'),
+(871, 'EU26R0619', 19, 19, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-23 11:13:00'),
+(872, 'EU26R0620', 20, 20, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-24 12:20:00'),
+(873, 'EU26R0621', 21, 21, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 13:27:00'),
+(874, 'EU26R0622', 22, 22, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 14:34:00'),
+(875, 'EU26R0623', 23, 23, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-22 15:41:00'),
+(876, 'EU26R0624', 24, 24, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-23 16:48:00'),
+(877, 'EU26R0625', 25, 25, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-24 09:55:00'),
+(878, 'EU26R0626', 26, 26, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 10:02:00'),
+(879, 'EU26R0627', 27, 27, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 11:09:00'),
+(880, 'EU26R0628', 28, 28, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 12:16:00'),
+(881, 'EU26R0629', 29, 29, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 13:23:00'),
+(882, 'EU26R0630', 30, 30, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-24 14:30:00'),
+(883, 'EU26R0631', 31, 31, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-20 15:37:00'),
+(884, 'EU26R0632', 32, 32, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-21 16:44:00'),
+(885, 'EU26R0633', 33, 33, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-22 09:51:00'),
+(886, 'EU26R0634', 34, 34, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-23 10:58:00'),
+(887, 'EU26R0635', 35, 35, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-24 11:05:00'),
+(888, 'EU26R0636', 36, 36, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-20 12:12:00'),
+(889, 'EU26R0637', 37, 37, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-21 13:19:00'),
+(890, 'EU26R0638', 38, 38, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-22 14:26:00'),
+(891, 'EU26R0639', 39, 39, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 15:33:00'),
+(892, 'EU26R0640', 40, 40, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-24 16:40:00'),
+(893, 'EU26R0641', 41, 41, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-20 09:47:00'),
+(894, 'EU26R0642', 42, 42, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-21 10:54:00'),
+(895, 'EU26R0643', 43, 43, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-22 11:01:00'),
+(896, 'EU26R0644', 44, 44, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-23 12:08:00'),
+(897, 'EU26R0645', 45, 45, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-24 13:15:00'),
+(898, 'EU26R0646', 46, 46, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 14:22:00'),
+(899, 'EU26R0647', 47, 47, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 15:29:00'),
+(900, 'EU26R0648', 48, 48, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-22 16:36:00'),
+(901, 'EU26R0649', 49, 49, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-23 09:43:00'),
+(902, 'EU26R0650', 50, 50, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-24 10:50:00'),
+(903, 'EU26R0651', 51, 51, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 11:57:00'),
+(904, 'EU26R0652', 52, 52, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-21 12:04:00'),
+(905, 'EU26R0653', 53, 53, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-22 13:11:00'),
+(906, 'EU26R0654', 54, 54, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-23 14:18:00'),
+(907, 'EU26R0655', 55, 55, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-24 15:25:00'),
+(908, 'EU26R0656', 56, 56, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-20 16:32:00'),
+(909, 'EU26R0657', 57, 57, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-21 09:39:00'),
+(910, 'EU26R0658', 58, 58, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-22 10:46:00'),
+(911, 'EU26R0659', 59, 59, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-23 11:53:00'),
+(912, 'EU26R0660', 60, 60, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-24 12:00:00'),
+(913, 'EU26R0661', 61, 61, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-20 13:07:00'),
+(914, 'EU26R0662', 62, 62, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 14:14:00'),
+(915, 'EU26R0663', 63, 63, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 15:21:00'),
+(916, 'EU26R0664', 64, 64, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-23 16:28:00'),
+(917, 'EU26R0665', 65, 65, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-24 09:35:00'),
+(918, 'EU26R0666', 66, 66, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-20 10:42:00'),
+(919, 'EU26R0667', 67, 67, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-21 11:49:00'),
+(920, 'EU26R0668', 68, 68, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-22 12:56:00'),
+(921, 'EU26R0669', 69, 69, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-23 13:03:00'),
+(922, 'EU26R0670', 70, 70, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-24 14:10:00'),
+(923, 'EU26R0671', 71, 71, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-20 15:17:00'),
+(924, 'EU26R0672', 72, 72, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-21 16:24:00'),
+(925, 'EU26R0673', 73, 73, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 09:31:00'),
+(926, 'EU26R0674', 74, 74, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 10:38:00'),
+(927, 'EU26R0675', 75, 75, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 11:45:00'),
+(928, 'EU26R0676', 76, 76, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 12:52:00'),
+(929, 'EU26R0677', 77, 77, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-21 13:59:00'),
+(930, 'EU26R0678', 78, 78, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 14:06:00'),
+(931, 'EU26R0679', 79, 79, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 15:13:00'),
+(932, 'EU26R0680', 80, 80, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 16:20:00'),
+(933, 'EU26R0681', 81, 81, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 09:27:00'),
+(934, 'EU26R0682', 82, 82, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 10:34:00'),
+(935, 'EU26R0683', 83, 83, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 11:41:00'),
+(936, 'EU26R0684', 84, 84, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 12:48:00'),
+(937, 'EU26R0685', 85, 85, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 13:55:00'),
+(938, 'EU26R0686', 86, 86, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 14:02:00'),
+(939, 'EU26R0687', 87, 87, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 15:09:00'),
+(940, 'EU26R0688', 88, 88, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 16:16:00'),
+(941, 'EU26R0689', 89, 89, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 09:23:00'),
+(942, 'EU26R0690', 90, 90, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 10:30:00'),
+(943, 'EU26R0691', 91, 91, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 11:37:00'),
+(944, 'EU26R0692', 92, 92, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 12:44:00'),
+(945, 'EU26R0693', 93, 93, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 13:51:00'),
+(946, 'EU26R0694', 94, 94, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-23 14:58:00'),
+(947, 'EU26R0695', 95, 95, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 15:05:00'),
+(948, 'EU26R0696', 96, 96, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 16:12:00'),
+(949, 'EU26R0697', 97, 97, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 09:19:00'),
+(950, 'EU26R0698', 98, 98, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 10:26:00'),
+(951, 'EU26R0699', 99, 99, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-23 11:33:00'),
+(952, 'EU26R0700', 100, 100, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-24 12:40:00'),
+(953, 'EU26R0701', 1, 1, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 13:47:00'),
+(954, 'EU26R0702', 2, 2, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 14:54:00'),
+(955, 'EU26R0703', 3, 3, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 15:01:00'),
+(956, 'EU26R0704', 4, 4, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-23 16:08:00'),
+(957, 'EU26R0705', 5, 5, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-24 09:15:00'),
+(958, 'EU26R0706', 6, 6, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-20 10:22:00'),
+(959, 'EU26R0707', 7, 7, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-21 11:29:00'),
+(960, 'EU26R0708', 8, 8, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 12:36:00'),
+(961, 'EU26R0709', 9, 9, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-23 13:43:00'),
+(962, 'EU26R0710', 10, 10, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 14:50:00'),
+(963, 'EU26R0711', 11, 11, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-20 15:57:00'),
+(964, 'EU26R0712', 12, 12, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 16:04:00'),
+(965, 'EU26R0713', 13, 13, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-22 09:11:00'),
+(966, 'EU26R0714', 14, 14, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-23 10:18:00'),
+(967, 'EU26R0715', 15, 15, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-24 11:25:00'),
+(968, 'EU26R0716', 16, 16, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-20 12:32:00'),
+(969, 'EU26R0717', 17, 17, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-21 13:39:00'),
+(970, 'EU26R0718', 18, 18, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 14:46:00'),
+(971, 'EU26R0719', 19, 19, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-23 15:53:00'),
+(972, 'EU26R0720', 20, 20, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-24 16:00:00'),
+(973, 'EU26R0721', 21, 21, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 09:07:00'),
+(974, 'EU26R0722', 22, 22, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 10:14:00'),
+(975, 'EU26R0723', 23, 23, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-22 11:21:00'),
+(976, 'EU26R0724', 24, 24, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-23 12:28:00'),
+(977, 'EU26R0725', 25, 25, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-24 13:35:00'),
+(978, 'EU26R0726', 26, 26, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-20 14:42:00'),
+(979, 'EU26R0727', 27, 27, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 15:49:00'),
+(980, 'EU26R0728', 28, 28, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 16:56:00'),
+(981, 'EU26R0729', 29, 29, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 09:03:00'),
+(982, 'EU26R0730', 30, 30, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-24 10:10:00'),
+(983, 'EU26R0731', 31, 31, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-20 11:17:00'),
+(984, 'EU26R0732', 32, 32, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-21 12:24:00'),
+(985, 'EU26R0733', 33, 33, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-22 13:31:00'),
+(986, 'EU26R0734', 34, 34, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-23 14:38:00'),
+(987, 'EU26R0735', 35, 35, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-24 15:45:00'),
+(988, 'EU26R0736', 36, 36, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-20 16:52:00'),
+(989, 'EU26R0737', 37, 37, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-21 09:59:00'),
+(990, 'EU26R0738', 38, 38, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-22 10:06:00'),
+(991, 'EU26R0739', 39, 39, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 11:13:00'),
+(992, 'EU26R0740', 40, 40, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-24 12:20:00'),
+(993, 'EU26R0741', 41, 41, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-20 13:27:00'),
+(994, 'EU26R0742', 42, 42, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-21 14:34:00'),
+(995, 'EU26R0743', 43, 43, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-22 15:41:00'),
+(996, 'EU26R0744', 44, 44, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-23 16:48:00'),
+(997, 'EU26R0745', 45, 45, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-24 09:55:00'),
+(998, 'EU26R0746', 46, 46, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 10:02:00'),
+(999, 'EU26R0747', 47, 47, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-21 11:09:00'),
+(1000, 'EU26R0748', 48, 48, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-22 12:16:00'),
+(1001, 'EU26R0749', 49, 49, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-23 13:23:00'),
+(1002, 'EU26R0750', 50, 50, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-24 14:30:00'),
+(1003, 'EU26R0751', 51, 51, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 15:37:00'),
+(1004, 'EU26R0752', 52, 52, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 16:44:00'),
+(1005, 'EU26R0753', 53, 53, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-22 09:51:00'),
+(1006, 'EU26R0754', 54, 54, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-23 10:58:00'),
+(1007, 'EU26R0755', 55, 55, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-24 11:05:00'),
+(1008, 'EU26R0756', 56, 56, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-20 12:12:00'),
+(1009, 'EU26R0757', 57, 57, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-21 13:19:00'),
+(1010, 'EU26R0758', 58, 58, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-22 14:26:00'),
+(1011, 'EU26R0759', 59, 59, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-23 15:33:00'),
+(1012, 'EU26R0760', 60, 60, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-24 16:40:00'),
+(1013, 'EU26R0761', 61, 61, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-20 09:47:00'),
+(1014, 'EU26R0762', 62, 62, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 10:54:00'),
+(1015, 'EU26R0763', 63, 63, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 11:01:00'),
+(1016, 'EU26R0764', 64, 64, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-23 12:08:00'),
+(1017, 'EU26R0765', 65, 65, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-24 13:15:00'),
+(1018, 'EU26R0766', 66, 66, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-20 14:22:00'),
+(1019, 'EU26R0767', 67, 67, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-21 15:29:00'),
+(1020, 'EU26R0768', 68, 68, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-22 16:36:00'),
+(1021, 'EU26R0769', 69, 69, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-23 09:43:00'),
+(1022, 'EU26R0770', 70, 70, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-24 10:50:00'),
+(1023, 'EU26R0771', 71, 71, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-20 11:57:00'),
+(1024, 'EU26R0772', 72, 72, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-21 12:04:00'),
+(1025, 'EU26R0773', 73, 73, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-22 13:11:00'),
+(1026, 'EU26R0774', 74, 74, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 14:18:00'),
+(1027, 'EU26R0775', 75, 75, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 15:25:00'),
+(1028, 'EU26R0776', 76, 76, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 16:32:00'),
+(1029, 'EU26R0777', 77, 77, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-21 09:39:00'),
+(1030, 'EU26R0778', 78, 78, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-22 10:46:00'),
+(1031, 'EU26R0779', 79, 79, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-23 11:53:00'),
+(1032, 'EU26R0780', 80, 80, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 12:00:00'),
+(1033, 'EU26R0781', 81, 81, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 13:07:00'),
+(1034, 'EU26R0782', 82, 82, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 14:14:00'),
+(1035, 'EU26R0783', 83, 83, 1800.00, 2, 3600.00, 'confirmed', '希望行程步調不要太趕。', '2026-07-22 15:21:00'),
+(1036, 'EU26R0784', 84, 84, 3000.00, 2, 6000.00, 'confirmed', '希望提供適合初學者的拍攝引導。', '2026-07-23 16:28:00'),
+(1037, 'EU26R0785', 85, 85, 2800.00, 2, 5600.00, 'confirmed', '希望安排相鄰座位。', '2026-07-24 09:35:00'),
+(1038, 'EU26R0786', 86, 86, 2200.00, 2, 4400.00, 'confirmed', '請提供集合地點的辨識說明。', '2026-07-20 10:42:00'),
+(1039, 'EU26R0787', 87, 87, 2600.00, 2, 5200.00, 'confirmed', '希望導覽時能多分享在地故事。', '2026-07-21 11:49:00'),
+(1040, 'EU26R0788', 88, 88, 2400.00, 2, 4800.00, 'confirmed', '同行者不吃牛肉，請協助安排。', '2026-07-22 12:56:00'),
+(1041, 'EU26R0789', 89, 89, 3000.00, 2, 6000.00, 'confirmed', '請分享集合點附近的拍攝建議。', '2026-07-23 13:03:00'),
+(1042, 'EU26R0790', 90, 90, 2800.00, 2, 5600.00, 'confirmed', '請於活動前一天再次提醒入場資訊。', '2026-07-24 14:10:00'),
+(1043, 'EU26R0791', 91, 91, 2200.00, 2, 4400.00, 'confirmed', '希望多保留拍照與提問時間。', '2026-07-20 15:17:00'),
+(1044, 'EU26R0792', 92, 92, 2600.00, 2, 5200.00, 'confirmed', '希望有時間欣賞重點展品。', '2026-07-21 16:24:00'),
+(1045, 'EU26R0793', 93, 93, 2400.00, 2, 4800.00, 'confirmed', '如有飲食需求，請於活動前協助確認。', '2026-07-22 09:31:00'),
+(1046, 'EU26R0794', 94, 94, 1800.00, 2, 3600.00, 'confirmed', '請建議適合的服裝與鞋子。', '2026-07-23 10:38:00'),
+(1047, 'EU26R0795', 95, 95, 2800.00, 2, 5600.00, 'confirmed', '請提供劇場交通與入場說明。', '2026-07-24 11:45:00'),
+(1048, 'EU26R0796', 96, 96, 2200.00, 2, 4400.00, 'confirmed', '請於活動開始前 15 分鐘抵達集合地點。', '2026-07-20 12:52:00'),
+(1049, 'EU26R0797', 97, 97, 2600.00, 2, 5200.00, 'confirmed', '請安排節奏較從容的導覽。', '2026-07-21 13:59:00'),
+(1050, 'EU26R0798', 98, 98, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 14:06:00'),
+(1051, 'EU26R0799', 99, 99, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-23 15:13:00'),
+(1052, 'EU26R0800', 100, 100, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-24 16:20:00');
 
 -- --------------------------------------------------------
 -- Seed data for `member_coupons`
@@ -3398,6 +5002,7 @@ INSERT INTO `cart` (`id`, `member_id`, `experience_id`, `session_id`, `adult_qua
 
 -- --------------------------------------------------------
 -- Seed data for `experience_reviews`
+/*
 INSERT INTO `experience_reviews` (`id`, `order_item_id`, `experience_id`, `member_id`, `rating`, `comment`, `created_at`, `image_url`) VALUES
 (1, 1, 1, 1, 5, '早晨的羅馬很舒服，主持人講解清楚，咖啡店也很在地。', '2026-08-06 20:10:00', '/reviews/rome-coffee-review-01.jpg'),
 (2, 2, 2, 2, 5, '料理課很有參與感，最後一起吃飯的氣氛很好。', '2026-08-08 21:30:00', '/reviews/munich-cooking-review-01.jpg'),
@@ -3409,6 +5014,809 @@ INSERT INTO `experience_reviews` (`id`, `order_item_id`, `experience_id`, `membe
 (8, 8, 8, 8, 4, '演出距離很近，很震撼，可惜臨時取消沒有實際參加。', '2026-08-20 12:00:00', NULL),
 (9, 9, 9, 9, 5, '攝影師很會引導姿勢，照片自然不尷尬。', '2026-08-22 17:50:00', '/reviews/london-photo-review-01.jpg'),
 (10, 10, 10, 10, 5, '孩子聽得懂也玩得開心，甜點店選得很棒。', '2026-08-24 20:25:00', '/reviews/vienna-family-review-01.jpg');
+*/
+
+INSERT INTO `experience_reviews` (`id`, `order_item_id`, `experience_id`, `member_id`, `rating`, `comment`, `created_at`, `image_url`) VALUES
+(11, 253, 1, 1, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:11:00', NULL),
+(12, 254, 2, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(13, 255, 3, 3, 4, '食材搭配很有層次，同行者的飲食需求也被細心照顧。', '2026-07-30 20:33:00', NULL),
+(14, 256, 4, 4, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:44:00', NULL),
+(15, 257, 5, 5, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:55:00', NULL),
+(16, 258, 6, 6, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:06:00', NULL),
+(17, 259, 7, 7, 5, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:17:00', NULL),
+(18, 260, 8, 8, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:28:00', NULL),
+(19, 261, 9, 9, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:39:00', NULL),
+(20, 262, 10, 10, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:50:00', NULL),
+(21, 263, 11, 11, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:01:00', NULL),
+(22, 264, 12, 12, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:12:00', NULL),
+(23, 265, 13, 13, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:23:00', NULL),
+(24, 266, 14, 14, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:34:00', NULL),
+(25, 267, 15, 15, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:45:00', NULL),
+(26, 268, 16, 16, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:56:00', NULL),
+(27, 269, 17, 17, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:07:00', NULL),
+(28, 270, 18, 18, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:18:00', NULL),
+(29, 271, 19, 19, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:29:00', NULL),
+(30, 272, 20, 20, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:40:00', NULL),
+(31, 273, 21, 21, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:51:00', NULL),
+(32, 274, 22, 22, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:02:00', NULL),
+(33, 275, 23, 23, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:13:00', NULL),
+(34, 276, 24, 24, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:24:00', NULL),
+(35, 277, 25, 25, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:35:00', NULL),
+(36, 278, 26, 26, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:46:00', NULL),
+(37, 279, 27, 27, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:57:00', NULL),
+(38, 280, 28, 28, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:08:00', NULL),
+(39, 281, 29, 29, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:19:00', NULL),
+(40, 282, 30, 30, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:30:00', NULL),
+(41, 283, 31, 31, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:41:00', NULL),
+(42, 284, 32, 32, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:52:00', NULL),
+(43, 285, 33, 33, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:03:00', NULL),
+(44, 286, 34, 34, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:14:00', NULL),
+(45, 287, 35, 35, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:25:00', NULL),
+(46, 288, 36, 36, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:36:00', NULL),
+(47, 289, 37, 37, 5, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:47:00', NULL),
+(48, 290, 38, 38, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:58:00', NULL),
+(49, 291, 39, 39, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:09:00', NULL),
+(50, 292, 40, 40, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:20:00', NULL),
+(51, 293, 41, 41, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:31:00', NULL),
+(52, 294, 42, 42, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:42:00', NULL),
+(53, 295, 43, 43, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:53:00', NULL),
+(54, 296, 44, 44, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:04:00', NULL),
+(55, 297, 45, 45, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:15:00', NULL),
+(56, 298, 46, 46, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:26:00', NULL),
+(57, 299, 47, 47, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:37:00', NULL),
+(58, 300, 48, 48, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:48:00', NULL),
+(59, 301, 49, 49, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:59:00', NULL),
+(60, 302, 50, 50, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:10:00', NULL),
+(61, 303, 51, 51, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:21:00', NULL),
+(62, 304, 52, 52, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:32:00', NULL),
+(63, 305, 53, 53, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:43:00', NULL),
+(64, 306, 54, 54, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:54:00', NULL),
+(65, 307, 55, 55, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:05:00', NULL),
+(66, 308, 56, 56, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:16:00', NULL),
+(67, 309, 57, 57, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:27:00', NULL),
+(68, 310, 58, 58, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:38:00', NULL),
+(69, 311, 59, 59, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:49:00', NULL),
+(70, 312, 60, 60, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:00:00', NULL),
+(71, 313, 61, 1, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:11:00', NULL),
+(72, 314, 62, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(73, 315, 63, 3, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:33:00', NULL),
+(74, 316, 64, 4, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:44:00', NULL),
+(75, 317, 65, 5, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:55:00', NULL),
+(76, 318, 66, 6, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:06:00', NULL),
+(77, 319, 67, 7, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:17:00', NULL),
+(78, 320, 68, 8, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:28:00', NULL),
+(79, 321, 69, 9, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:39:00', NULL),
+(80, 322, 70, 10, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:50:00', NULL),
+(81, 323, 71, 11, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:01:00', NULL),
+(82, 324, 72, 12, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:12:00', NULL),
+(83, 325, 73, 13, 5, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:23:00', NULL),
+(84, 326, 74, 14, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:34:00', NULL),
+(85, 327, 75, 15, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:45:00', NULL),
+(86, 328, 76, 16, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:56:00', NULL),
+(87, 329, 77, 17, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:07:00', NULL),
+(88, 330, 78, 18, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:18:00', NULL),
+(89, 331, 79, 19, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:29:00', NULL),
+(90, 332, 80, 20, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:40:00', NULL),
+(91, 333, 81, 21, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:51:00', NULL),
+(92, 334, 82, 22, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:02:00', NULL),
+(93, 335, 83, 23, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:13:00', NULL),
+(94, 336, 84, 24, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:24:00', NULL),
+(95, 337, 85, 25, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:35:00', NULL),
+(96, 338, 86, 26, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:46:00', NULL),
+(97, 339, 87, 27, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:57:00', NULL),
+(98, 340, 88, 28, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:08:00', NULL),
+(99, 341, 89, 29, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:19:00', NULL),
+(100, 342, 90, 30, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:30:00', NULL),
+(101, 343, 91, 31, 5, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:41:00', NULL),
+(102, 344, 92, 32, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:52:00', NULL),
+(103, 345, 93, 33, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:03:00', NULL),
+(104, 346, 94, 34, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:14:00', NULL),
+(105, 347, 95, 35, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:25:00', NULL),
+(106, 348, 96, 36, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:36:00', NULL),
+(107, 349, 97, 37, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:47:00', NULL),
+(108, 350, 98, 38, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:58:00', NULL),
+(109, 351, 99, 39, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:09:00', NULL),
+(110, 352, 100, 40, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:20:00', NULL),
+(111, 353, 1, 41, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:31:00', NULL),
+(112, 354, 2, 42, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:42:00', NULL),
+(113, 355, 3, 43, 5, '食材搭配很有層次，同行者的飲食需求也被細心照顧。', '2026-07-30 20:53:00', NULL),
+(114, 356, 4, 44, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:04:00', NULL),
+(115, 357, 5, 45, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:15:00', NULL),
+(116, 358, 6, 46, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:26:00', NULL),
+(117, 359, 7, 47, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:37:00', NULL),
+(118, 360, 8, 48, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:48:00', NULL),
+(119, 361, 9, 49, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:59:00', NULL),
+(120, 362, 10, 50, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:10:00', NULL),
+(121, 363, 11, 51, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:21:00', NULL),
+(122, 364, 12, 52, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:32:00', NULL),
+(123, 365, 13, 53, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:43:00', NULL),
+(124, 366, 14, 54, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:54:00', NULL),
+(125, 367, 15, 55, 5, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:05:00', NULL),
+(126, 368, 16, 56, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:16:00', NULL),
+(127, 369, 17, 57, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:27:00', NULL),
+(128, 370, 18, 58, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:38:00', NULL),
+(129, 371, 19, 59, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:49:00', NULL),
+(130, 372, 20, 60, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:00:00', NULL),
+(131, 373, 21, 1, 5, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:11:00', NULL),
+(132, 374, 22, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(133, 375, 23, 3, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:33:00', NULL),
+(134, 376, 24, 4, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:44:00', NULL),
+(135, 377, 25, 5, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:55:00', NULL),
+(136, 378, 26, 6, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:06:00', NULL),
+(137, 379, 27, 7, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:17:00', NULL),
+(138, 380, 28, 8, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:28:00', NULL),
+(139, 381, 29, 9, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:39:00', NULL),
+(140, 382, 30, 10, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:50:00', NULL),
+(141, 383, 31, 11, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:01:00', NULL),
+(142, 384, 32, 12, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:12:00', NULL),
+(143, 385, 33, 13, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:23:00', NULL),
+(144, 386, 34, 14, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:34:00', NULL),
+(145, 387, 35, 15, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:45:00', NULL),
+(146, 388, 36, 16, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:56:00', NULL),
+(147, 389, 37, 17, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:07:00', NULL),
+(148, 390, 38, 18, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:18:00', NULL),
+(149, 391, 39, 19, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:29:00', NULL),
+(150, 392, 40, 20, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:40:00', NULL),
+(151, 393, 41, 21, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:51:00', NULL),
+(152, 394, 42, 22, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:02:00', NULL),
+(153, 395, 43, 23, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:13:00', NULL),
+(154, 396, 44, 24, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:24:00', NULL),
+(155, 397, 45, 25, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:35:00', NULL),
+(156, 398, 46, 26, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:46:00', NULL),
+(157, 399, 47, 27, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:57:00', NULL),
+(158, 400, 48, 28, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:08:00', NULL),
+(159, 401, 49, 29, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:19:00', NULL),
+(160, 402, 50, 30, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:30:00', NULL),
+(161, 403, 51, 31, 5, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:41:00', NULL),
+(162, 404, 52, 32, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:52:00', NULL),
+(163, 405, 53, 33, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:03:00', NULL),
+(164, 406, 54, 34, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:14:00', NULL),
+(165, 407, 55, 35, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:25:00', NULL),
+(166, 408, 56, 36, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:36:00', NULL),
+(167, 409, 57, 37, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:47:00', NULL),
+(168, 410, 58, 38, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:58:00', NULL),
+(169, 411, 59, 39, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:09:00', NULL),
+(170, 412, 60, 40, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:20:00', NULL),
+(171, 413, 61, 41, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:31:00', NULL),
+(172, 414, 62, 42, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:42:00', NULL),
+(173, 415, 63, 43, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:53:00', NULL),
+(174, 416, 64, 44, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:04:00', NULL),
+(175, 417, 65, 45, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:15:00', NULL),
+(176, 418, 66, 46, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:26:00', NULL),
+(177, 419, 67, 47, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:37:00', NULL),
+(178, 420, 68, 48, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:48:00', NULL),
+(179, 421, 69, 49, 5, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:59:00', NULL),
+(180, 422, 70, 50, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:10:00', NULL),
+(181, 423, 71, 51, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:21:00', NULL),
+(182, 424, 72, 52, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:32:00', NULL),
+(183, 425, 73, 53, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:43:00', NULL),
+(184, 426, 74, 54, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:54:00', NULL),
+(185, 427, 75, 55, 5, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:05:00', NULL),
+(186, 428, 76, 56, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:16:00', NULL),
+(187, 429, 77, 57, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:27:00', NULL),
+(188, 430, 78, 58, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:38:00', NULL),
+(189, 431, 79, 59, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:49:00', NULL),
+(190, 432, 80, 60, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:00:00', NULL),
+(191, 433, 81, 1, 5, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:11:00', NULL),
+(192, 434, 82, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(193, 435, 83, 3, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:33:00', NULL),
+(194, 436, 84, 4, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:44:00', NULL),
+(195, 437, 85, 5, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:55:00', NULL),
+(196, 438, 86, 6, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:06:00', NULL),
+(197, 439, 87, 7, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:17:00', NULL),
+(198, 440, 88, 8, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:28:00', NULL),
+(199, 441, 89, 9, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:39:00', NULL),
+(200, 442, 90, 10, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:50:00', NULL),
+(201, 443, 91, 11, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:01:00', NULL),
+(202, 444, 92, 12, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:12:00', NULL),
+(203, 445, 93, 13, 5, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:23:00', NULL),
+(204, 446, 94, 14, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:34:00', NULL),
+(205, 447, 95, 15, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:45:00', NULL),
+(206, 448, 96, 16, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:56:00', NULL),
+(207, 449, 97, 17, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:07:00', NULL),
+(208, 450, 98, 18, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:18:00', NULL),
+(209, 451, 99, 19, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:29:00', NULL),
+(210, 452, 100, 20, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:40:00', NULL),
+(211, 453, 1, 21, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:51:00', NULL),
+(212, 454, 2, 22, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:02:00', NULL),
+(213, 455, 3, 23, 4, '食材搭配很有層次，同行者的飲食需求也被細心照顧。', '2026-07-30 20:13:00', NULL),
+(214, 456, 4, 24, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:24:00', NULL),
+(215, 457, 5, 25, 5, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:35:00', NULL),
+(216, 458, 6, 26, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:46:00', NULL),
+(217, 459, 7, 27, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:57:00', NULL),
+(218, 460, 8, 28, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:08:00', NULL),
+(219, 461, 9, 29, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:19:00', NULL),
+(220, 462, 10, 30, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:30:00', NULL),
+(221, 463, 11, 31, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:41:00', NULL),
+(222, 464, 12, 32, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:52:00', NULL),
+(223, 465, 13, 33, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:03:00', NULL),
+(224, 466, 14, 34, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:14:00', NULL),
+(225, 467, 15, 35, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:25:00', NULL),
+(226, 468, 16, 36, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:36:00', NULL),
+(227, 469, 17, 37, 5, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:47:00', NULL),
+(228, 470, 18, 38, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:58:00', NULL),
+(229, 471, 19, 39, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:09:00', NULL),
+(230, 472, 20, 40, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:20:00', NULL),
+(231, 473, 21, 41, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:31:00', NULL),
+(232, 474, 22, 42, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:42:00', NULL),
+(233, 475, 23, 43, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:53:00', NULL),
+(234, 476, 24, 44, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:04:00', NULL),
+(235, 477, 25, 45, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:15:00', NULL),
+(236, 478, 26, 46, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:26:00', NULL),
+(237, 479, 27, 47, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:37:00', NULL),
+(238, 480, 28, 48, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:48:00', NULL),
+(239, 481, 29, 49, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:59:00', NULL),
+(240, 482, 30, 50, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:10:00', NULL),
+(241, 483, 31, 51, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:21:00', NULL),
+(242, 484, 32, 52, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:32:00', NULL),
+(243, 485, 33, 53, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:43:00', NULL),
+(244, 486, 34, 54, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:54:00', NULL),
+(245, 487, 35, 55, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:05:00', NULL),
+(246, 488, 36, 56, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:16:00', NULL),
+(247, 489, 37, 57, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:27:00', NULL),
+(248, 490, 38, 58, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:38:00', NULL),
+(249, 491, 39, 59, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:49:00', NULL),
+(250, 492, 40, 60, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:00:00', NULL),
+(251, 493, 41, 1, 5, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:11:00', NULL),
+(252, 494, 42, 2, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:22:00', NULL),
+(253, 495, 43, 3, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:33:00', NULL),
+(254, 496, 44, 4, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:44:00', NULL),
+(255, 497, 45, 5, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:55:00', NULL),
+(256, 498, 46, 6, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:06:00', NULL),
+(257, 499, 47, 7, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:17:00', NULL),
+(258, 500, 48, 8, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:28:00', NULL),
+(259, 501, 49, 9, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:39:00', NULL),
+(260, 502, 50, 10, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:50:00', NULL),
+(261, 503, 51, 11, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:01:00', NULL),
+(262, 504, 52, 12, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:12:00', NULL),
+(263, 505, 53, 13, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:23:00', NULL),
+(264, 506, 54, 14, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:34:00', NULL),
+(265, 507, 55, 15, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:45:00', NULL),
+(266, 508, 56, 16, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:56:00', NULL),
+(267, 509, 57, 17, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:07:00', NULL),
+(268, 510, 58, 18, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:18:00', NULL),
+(269, 511, 59, 19, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:29:00', NULL),
+(270, 512, 60, 20, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:40:00', NULL),
+(271, 513, 61, 21, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:51:00', NULL),
+(272, 514, 62, 22, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:02:00', NULL),
+(273, 515, 63, 23, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:13:00', NULL),
+(274, 516, 64, 24, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:24:00', NULL),
+(275, 517, 65, 25, 5, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:35:00', NULL),
+(276, 518, 66, 26, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:46:00', NULL),
+(277, 519, 67, 27, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:57:00', NULL),
+(278, 520, 68, 28, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:08:00', NULL),
+(279, 521, 69, 29, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:19:00', NULL),
+(280, 522, 70, 30, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:30:00', NULL),
+(281, 523, 71, 31, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:41:00', NULL),
+(282, 524, 72, 32, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:52:00', NULL),
+(283, 525, 73, 33, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:03:00', NULL),
+(284, 526, 74, 34, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:14:00', NULL),
+(285, 527, 75, 35, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:25:00', NULL),
+(286, 528, 76, 36, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:36:00', NULL),
+(287, 529, 77, 37, 5, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:47:00', NULL),
+(288, 530, 78, 38, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:58:00', NULL),
+(289, 531, 79, 39, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:09:00', NULL),
+(290, 532, 80, 40, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:20:00', NULL),
+(291, 533, 81, 41, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:31:00', NULL),
+(292, 534, 82, 42, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:42:00', NULL),
+(293, 535, 83, 43, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:53:00', NULL),
+(294, 536, 84, 44, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:04:00', NULL),
+(295, 537, 85, 45, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:15:00', NULL),
+(296, 538, 86, 46, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:26:00', NULL),
+(297, 539, 87, 47, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:37:00', NULL),
+(298, 540, 88, 48, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:48:00', NULL),
+(299, 541, 89, 49, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:59:00', NULL),
+(300, 542, 90, 50, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:10:00', NULL),
+(301, 543, 91, 51, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:21:00', NULL),
+(302, 544, 92, 52, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:32:00', NULL),
+(303, 545, 93, 53, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:43:00', NULL),
+(304, 546, 94, 54, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:54:00', NULL),
+(305, 547, 95, 55, 5, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:05:00', NULL),
+(306, 548, 96, 56, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:16:00', NULL),
+(307, 549, 97, 57, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:27:00', NULL),
+(308, 550, 98, 58, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:38:00', NULL),
+(309, 551, 99, 59, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:49:00', NULL),
+(310, 552, 100, 60, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:00:00', NULL),
+(311, 553, 1, 1, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:11:00', NULL),
+(312, 554, 2, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(313, 555, 3, 3, 4, '食材搭配很有層次，同行者的飲食需求也被細心照顧。', '2026-07-30 20:33:00', NULL),
+(314, 556, 4, 4, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:44:00', NULL),
+(315, 557, 5, 5, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:55:00', NULL),
+(316, 558, 6, 6, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:06:00', NULL),
+(317, 559, 7, 7, 5, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:17:00', NULL),
+(318, 560, 8, 8, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:28:00', NULL),
+(319, 561, 9, 9, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:39:00', NULL),
+(320, 562, 10, 10, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:50:00', NULL),
+(321, 563, 11, 11, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:01:00', NULL),
+(322, 564, 12, 12, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:12:00', NULL),
+(323, 565, 13, 13, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:23:00', NULL),
+(324, 566, 14, 14, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:34:00', NULL),
+(325, 567, 15, 15, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:45:00', NULL),
+(326, 568, 16, 16, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:56:00', NULL),
+(327, 569, 17, 17, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:07:00', NULL),
+(328, 570, 18, 18, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:18:00', NULL),
+(329, 571, 19, 19, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:29:00', NULL),
+(330, 572, 20, 20, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:40:00', NULL),
+(331, 573, 21, 21, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:51:00', NULL),
+(332, 574, 22, 22, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:02:00', NULL),
+(333, 575, 23, 23, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:13:00', NULL),
+(334, 576, 24, 24, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:24:00', NULL),
+(335, 577, 25, 25, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:35:00', NULL),
+(336, 578, 26, 26, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:46:00', NULL),
+(337, 579, 27, 27, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:57:00', NULL),
+(338, 580, 28, 28, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:08:00', NULL),
+(339, 581, 29, 29, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:19:00', NULL),
+(340, 582, 30, 30, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:30:00', NULL),
+(341, 583, 31, 31, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:41:00', NULL),
+(342, 584, 32, 32, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:52:00', NULL),
+(343, 585, 33, 33, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:03:00', NULL),
+(344, 586, 34, 34, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:14:00', NULL),
+(345, 587, 35, 35, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:25:00', NULL),
+(346, 588, 36, 36, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:36:00', NULL),
+(347, 589, 37, 37, 5, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:47:00', NULL),
+(348, 590, 38, 38, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:58:00', NULL),
+(349, 591, 39, 39, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:09:00', NULL),
+(350, 592, 40, 40, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:20:00', NULL),
+(351, 593, 41, 41, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:31:00', NULL),
+(352, 594, 42, 42, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:42:00', NULL),
+(353, 595, 43, 43, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:53:00', NULL),
+(354, 596, 44, 44, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:04:00', NULL),
+(355, 597, 45, 45, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:15:00', NULL),
+(356, 598, 46, 46, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:26:00', NULL),
+(357, 599, 47, 47, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:37:00', NULL),
+(358, 600, 48, 48, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:48:00', NULL),
+(359, 601, 49, 49, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:59:00', NULL),
+(360, 602, 50, 50, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:10:00', NULL),
+(361, 603, 51, 51, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:21:00', NULL),
+(362, 604, 52, 52, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:32:00', NULL),
+(363, 605, 53, 53, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:43:00', NULL),
+(364, 606, 54, 54, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:54:00', NULL),
+(365, 607, 55, 55, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:05:00', NULL),
+(366, 608, 56, 56, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:16:00', NULL),
+(367, 609, 57, 57, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:27:00', NULL),
+(368, 610, 58, 58, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:38:00', NULL),
+(369, 611, 59, 59, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:49:00', NULL),
+(370, 612, 60, 60, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:00:00', NULL),
+(371, 613, 61, 1, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:11:00', NULL),
+(372, 614, 62, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(373, 615, 63, 3, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:33:00', NULL),
+(374, 616, 64, 4, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:44:00', NULL),
+(375, 617, 65, 5, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:55:00', NULL),
+(376, 618, 66, 6, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:06:00', NULL),
+(377, 619, 67, 7, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:17:00', NULL),
+(378, 620, 68, 8, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:28:00', NULL),
+(379, 621, 69, 9, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:39:00', NULL),
+(380, 622, 70, 10, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:50:00', NULL),
+(381, 623, 71, 11, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:01:00', NULL),
+(382, 624, 72, 12, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:12:00', NULL),
+(383, 625, 73, 13, 5, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:23:00', NULL),
+(384, 626, 74, 14, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:34:00', NULL),
+(385, 627, 75, 15, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:45:00', NULL),
+(386, 628, 76, 16, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:56:00', NULL),
+(387, 629, 77, 17, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:07:00', NULL),
+(388, 630, 78, 18, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:18:00', NULL),
+(389, 631, 79, 19, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:29:00', NULL),
+(390, 632, 80, 20, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:40:00', NULL),
+(391, 633, 81, 21, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:51:00', NULL),
+(392, 634, 82, 22, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:02:00', NULL),
+(393, 635, 83, 23, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:13:00', NULL),
+(394, 636, 84, 24, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:24:00', NULL),
+(395, 637, 85, 25, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:35:00', NULL),
+(396, 638, 86, 26, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:46:00', NULL),
+(397, 639, 87, 27, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:57:00', NULL),
+(398, 640, 88, 28, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:08:00', NULL),
+(399, 641, 89, 29, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:19:00', NULL),
+(400, 642, 90, 30, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:30:00', NULL),
+(401, 643, 91, 31, 5, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:41:00', NULL),
+(402, 644, 92, 32, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:52:00', NULL),
+(403, 645, 93, 33, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:03:00', NULL),
+(404, 646, 94, 34, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:14:00', NULL),
+(405, 647, 95, 35, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:25:00', NULL),
+(406, 648, 96, 36, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:36:00', NULL),
+(407, 649, 97, 37, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:47:00', NULL),
+(408, 650, 98, 38, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:58:00', NULL),
+(409, 651, 99, 39, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:09:00', NULL),
+(410, 652, 100, 40, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:20:00', NULL),
+(411, 653, 1, 41, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:31:00', NULL),
+(412, 654, 2, 42, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:42:00', NULL),
+(413, 655, 3, 43, 5, '食材搭配很有層次，同行者的飲食需求也被細心照顧。', '2026-07-30 20:53:00', NULL),
+(414, 656, 4, 44, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:04:00', NULL),
+(415, 657, 5, 45, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:15:00', NULL),
+(416, 658, 6, 46, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:26:00', NULL),
+(417, 659, 7, 47, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:37:00', NULL),
+(418, 660, 8, 48, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:48:00', NULL),
+(419, 661, 9, 49, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:59:00', NULL),
+(420, 662, 10, 50, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:10:00', NULL),
+(421, 663, 11, 51, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:21:00', NULL),
+(422, 664, 12, 52, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:32:00', NULL),
+(423, 665, 13, 53, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:43:00', NULL),
+(424, 666, 14, 54, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:54:00', NULL),
+(425, 667, 15, 55, 5, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:05:00', NULL),
+(426, 668, 16, 56, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:16:00', NULL),
+(427, 669, 17, 57, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:27:00', NULL),
+(428, 670, 18, 58, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:38:00', NULL),
+(429, 671, 19, 59, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:49:00', NULL),
+(430, 672, 20, 60, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:00:00', NULL),
+(431, 673, 21, 1, 5, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:11:00', NULL),
+(432, 674, 22, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(433, 675, 23, 3, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:33:00', NULL),
+(434, 676, 24, 4, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:44:00', NULL),
+(435, 677, 25, 5, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:55:00', NULL),
+(436, 678, 26, 6, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:06:00', NULL),
+(437, 679, 27, 7, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:17:00', NULL),
+(438, 680, 28, 8, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:28:00', NULL),
+(439, 681, 29, 9, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:39:00', NULL),
+(440, 682, 30, 10, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:50:00', NULL),
+(441, 683, 31, 11, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:01:00', NULL),
+(442, 684, 32, 12, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:12:00', NULL),
+(443, 685, 33, 13, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:23:00', NULL),
+(444, 686, 34, 14, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:34:00', NULL),
+(445, 687, 35, 15, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:45:00', NULL),
+(446, 688, 36, 16, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:56:00', NULL),
+(447, 689, 37, 17, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:07:00', NULL),
+(448, 690, 38, 18, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:18:00', NULL),
+(449, 691, 39, 19, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:29:00', NULL),
+(450, 692, 40, 20, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:40:00', NULL),
+(451, 693, 41, 21, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:51:00', NULL),
+(452, 694, 42, 22, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:02:00', NULL),
+(453, 695, 43, 23, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:13:00', NULL),
+(454, 696, 44, 24, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:24:00', NULL),
+(455, 697, 45, 25, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:35:00', NULL),
+(456, 698, 46, 26, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:46:00', NULL),
+(457, 699, 47, 27, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:57:00', NULL),
+(458, 700, 48, 28, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:08:00', NULL),
+(459, 701, 49, 29, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:19:00', NULL),
+(460, 702, 50, 30, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:30:00', NULL),
+(461, 703, 51, 31, 5, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:41:00', NULL),
+(462, 704, 52, 32, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:52:00', NULL),
+(463, 705, 53, 33, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:03:00', NULL),
+(464, 706, 54, 34, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:14:00', NULL),
+(465, 707, 55, 35, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:25:00', NULL),
+(466, 708, 56, 36, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:36:00', NULL),
+(467, 709, 57, 37, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:47:00', NULL),
+(468, 710, 58, 38, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:58:00', NULL),
+(469, 711, 59, 39, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:09:00', NULL),
+(470, 712, 60, 40, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:20:00', NULL),
+(471, 713, 61, 41, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:31:00', NULL),
+(472, 714, 62, 42, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:42:00', NULL),
+(473, 715, 63, 43, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:53:00', NULL),
+(474, 716, 64, 44, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:04:00', NULL),
+(475, 717, 65, 45, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:15:00', NULL),
+(476, 718, 66, 46, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:26:00', NULL),
+(477, 719, 67, 47, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:37:00', NULL),
+(478, 720, 68, 48, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:48:00', NULL),
+(479, 721, 69, 49, 5, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:59:00', NULL),
+(480, 722, 70, 50, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:10:00', NULL),
+(481, 723, 71, 51, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:21:00', NULL),
+(482, 724, 72, 52, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:32:00', NULL),
+(483, 725, 73, 53, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:43:00', NULL),
+(484, 726, 74, 54, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:54:00', NULL),
+(485, 727, 75, 55, 5, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:05:00', NULL),
+(486, 728, 76, 56, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:16:00', NULL),
+(487, 729, 77, 57, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:27:00', NULL),
+(488, 730, 78, 58, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:38:00', NULL),
+(489, 731, 79, 59, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:49:00', NULL),
+(490, 732, 80, 60, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:00:00', NULL),
+(491, 733, 81, 1, 5, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:11:00', NULL),
+(492, 734, 82, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(493, 735, 83, 3, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:33:00', NULL),
+(494, 736, 84, 4, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:44:00', NULL),
+(495, 737, 85, 5, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:55:00', NULL),
+(496, 738, 86, 6, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:06:00', NULL),
+(497, 739, 87, 7, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:17:00', NULL),
+(498, 740, 88, 8, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:28:00', NULL),
+(499, 741, 89, 9, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:39:00', NULL),
+(500, 742, 90, 10, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:50:00', NULL),
+(501, 743, 91, 11, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:01:00', NULL),
+(502, 744, 92, 12, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:12:00', NULL),
+(503, 745, 93, 13, 5, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:23:00', NULL),
+(504, 746, 94, 14, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:34:00', NULL),
+(505, 747, 95, 15, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:45:00', NULL),
+(506, 748, 96, 16, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:56:00', NULL),
+(507, 749, 97, 17, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:07:00', NULL),
+(508, 750, 98, 18, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:18:00', NULL),
+(509, 751, 99, 19, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:29:00', NULL),
+(510, 752, 100, 20, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:40:00', NULL),
+(511, 753, 1, 21, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:51:00', NULL),
+(512, 754, 2, 22, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:02:00', NULL),
+(513, 755, 3, 23, 4, '食材搭配很有層次，同行者的飲食需求也被細心照顧。', '2026-07-30 20:13:00', NULL),
+(514, 756, 4, 24, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:24:00', NULL),
+(515, 757, 5, 25, 5, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:35:00', NULL),
+(516, 758, 6, 26, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:46:00', NULL),
+(517, 759, 7, 27, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:57:00', NULL),
+(518, 760, 8, 28, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:08:00', NULL),
+(519, 761, 9, 29, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:19:00', NULL),
+(520, 762, 10, 30, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:30:00', NULL),
+(521, 763, 11, 31, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:41:00', NULL),
+(522, 764, 12, 32, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:52:00', NULL),
+(523, 765, 13, 33, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:03:00', NULL),
+(524, 766, 14, 34, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:14:00', NULL),
+(525, 767, 15, 35, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:25:00', NULL),
+(526, 768, 16, 36, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:36:00', NULL),
+(527, 769, 17, 37, 5, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:47:00', NULL),
+(528, 770, 18, 38, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:58:00', NULL),
+(529, 771, 19, 39, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:09:00', NULL),
+(530, 772, 20, 40, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:20:00', NULL),
+(531, 773, 21, 41, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:31:00', NULL),
+(532, 774, 22, 42, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:42:00', NULL),
+(533, 775, 23, 43, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:53:00', NULL),
+(534, 776, 24, 44, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:04:00', NULL),
+(535, 777, 25, 45, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:15:00', NULL),
+(536, 778, 26, 46, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:26:00', NULL),
+(537, 779, 27, 47, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:37:00', NULL),
+(538, 780, 28, 48, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:48:00', NULL),
+(539, 781, 29, 49, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:59:00', NULL),
+(540, 782, 30, 50, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:10:00', NULL),
+(541, 783, 31, 51, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:21:00', NULL),
+(542, 784, 32, 52, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:32:00', NULL),
+(543, 785, 33, 53, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:43:00', NULL),
+(544, 786, 34, 54, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:54:00', NULL),
+(545, 787, 35, 55, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:05:00', NULL),
+(546, 788, 36, 56, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:16:00', NULL),
+(547, 789, 37, 57, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:27:00', NULL),
+(548, 790, 38, 58, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:38:00', NULL),
+(549, 791, 39, 59, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:49:00', NULL),
+(550, 792, 40, 60, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:00:00', NULL),
+(551, 793, 41, 1, 5, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:11:00', NULL),
+(552, 794, 42, 2, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:22:00', NULL),
+(553, 795, 43, 3, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:33:00', NULL),
+(554, 796, 44, 4, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:44:00', NULL),
+(555, 797, 45, 5, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:55:00', NULL),
+(556, 798, 46, 6, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:06:00', NULL),
+(557, 799, 47, 7, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:17:00', NULL),
+(558, 800, 48, 8, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:28:00', NULL),
+(559, 801, 49, 9, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:39:00', NULL),
+(560, 802, 50, 10, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:50:00', NULL),
+(561, 803, 51, 11, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:01:00', NULL),
+(562, 804, 52, 12, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:12:00', NULL),
+(563, 805, 53, 13, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:23:00', NULL),
+(564, 806, 54, 14, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:34:00', NULL),
+(565, 807, 55, 15, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:45:00', NULL),
+(566, 808, 56, 16, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:56:00', NULL),
+(567, 809, 57, 17, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:07:00', NULL),
+(568, 810, 58, 18, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:18:00', NULL),
+(569, 811, 59, 19, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:29:00', NULL),
+(570, 812, 60, 20, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:40:00', NULL),
+(571, 813, 61, 21, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:51:00', NULL),
+(572, 814, 62, 22, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:02:00', NULL),
+(573, 815, 63, 23, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:13:00', NULL),
+(574, 816, 64, 24, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:24:00', NULL),
+(575, 817, 65, 25, 5, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:35:00', NULL),
+(576, 818, 66, 26, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:46:00', NULL),
+(577, 819, 67, 27, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:57:00', NULL),
+(578, 820, 68, 28, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:08:00', NULL),
+(579, 821, 69, 29, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:19:00', NULL),
+(580, 822, 70, 30, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:30:00', NULL),
+(581, 823, 71, 31, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:41:00', NULL),
+(582, 824, 72, 32, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:52:00', NULL),
+(583, 825, 73, 33, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:03:00', NULL),
+(584, 826, 74, 34, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:14:00', NULL),
+(585, 827, 75, 35, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:25:00', NULL),
+(586, 828, 76, 36, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:36:00', NULL),
+(587, 829, 77, 37, 5, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:47:00', NULL),
+(588, 830, 78, 38, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:58:00', NULL),
+(589, 831, 79, 39, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:09:00', NULL),
+(590, 832, 80, 40, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:20:00', NULL),
+(591, 833, 81, 41, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:31:00', NULL),
+(592, 834, 82, 42, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:42:00', NULL),
+(593, 835, 83, 43, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:53:00', NULL),
+(594, 836, 84, 44, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:04:00', NULL),
+(595, 837, 85, 45, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:15:00', NULL),
+(596, 838, 86, 46, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:26:00', NULL),
+(597, 839, 87, 47, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:37:00', NULL),
+(598, 840, 88, 48, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:48:00', NULL),
+(599, 841, 89, 49, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:59:00', NULL),
+(600, 842, 90, 50, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:10:00', NULL),
+(601, 843, 91, 51, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:21:00', NULL),
+(602, 844, 92, 52, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:32:00', NULL),
+(603, 845, 93, 53, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:43:00', NULL),
+(604, 846, 94, 54, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:54:00', NULL),
+(605, 847, 95, 55, 5, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:05:00', NULL),
+(606, 848, 96, 56, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:16:00', NULL),
+(607, 849, 97, 57, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:27:00', NULL),
+(608, 850, 98, 58, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:38:00', NULL),
+(609, 851, 99, 59, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:49:00', NULL),
+(610, 852, 100, 60, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:00:00', NULL),
+(611, 853, 1, 1, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:11:00', NULL),
+(612, 854, 2, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(613, 855, 3, 3, 4, '食材搭配很有層次，同行者的飲食需求也被細心照顧。', '2026-07-30 20:33:00', NULL),
+(614, 856, 4, 4, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:44:00', NULL),
+(615, 857, 5, 5, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:55:00', NULL),
+(616, 858, 6, 6, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:06:00', NULL),
+(617, 859, 7, 7, 5, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:17:00', NULL),
+(618, 860, 8, 8, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:28:00', NULL),
+(619, 861, 9, 9, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:39:00', NULL),
+(620, 862, 10, 10, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:50:00', NULL),
+(621, 863, 11, 11, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:01:00', NULL),
+(622, 864, 12, 12, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:12:00', NULL),
+(623, 865, 13, 13, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:23:00', NULL),
+(624, 866, 14, 14, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:34:00', NULL),
+(625, 867, 15, 15, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:45:00', NULL),
+(626, 868, 16, 16, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:56:00', NULL),
+(627, 869, 17, 17, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:07:00', NULL),
+(628, 870, 18, 18, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:18:00', NULL),
+(629, 871, 19, 19, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:29:00', NULL),
+(630, 872, 20, 20, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:40:00', NULL),
+(631, 873, 21, 21, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:51:00', NULL),
+(632, 874, 22, 22, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:02:00', NULL),
+(633, 875, 23, 23, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:13:00', NULL),
+(634, 876, 24, 24, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:24:00', NULL),
+(635, 877, 25, 25, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:35:00', NULL),
+(636, 878, 26, 26, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:46:00', NULL),
+(637, 879, 27, 27, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:57:00', NULL),
+(638, 880, 28, 28, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:08:00', NULL),
+(639, 881, 29, 29, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:19:00', NULL),
+(640, 882, 30, 30, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:30:00', NULL),
+(641, 883, 31, 31, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:41:00', NULL),
+(642, 884, 32, 32, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:52:00', NULL),
+(643, 885, 33, 33, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:03:00', NULL),
+(644, 886, 34, 34, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:14:00', NULL),
+(645, 887, 35, 35, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:25:00', NULL),
+(646, 888, 36, 36, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:36:00', NULL),
+(647, 889, 37, 37, 5, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:47:00', NULL),
+(648, 890, 38, 38, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:58:00', NULL),
+(649, 891, 39, 39, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:09:00', NULL),
+(650, 892, 40, 40, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:20:00', NULL),
+(651, 893, 41, 41, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:31:00', NULL),
+(652, 894, 42, 42, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:42:00', NULL),
+(653, 895, 43, 43, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:53:00', NULL),
+(654, 896, 44, 44, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:04:00', NULL),
+(655, 897, 45, 45, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:15:00', NULL),
+(656, 898, 46, 46, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:26:00', NULL),
+(657, 899, 47, 47, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:37:00', NULL),
+(658, 900, 48, 48, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:48:00', NULL),
+(659, 901, 49, 49, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:59:00', NULL),
+(660, 902, 50, 50, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:10:00', NULL),
+(661, 903, 51, 51, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:21:00', NULL),
+(662, 904, 52, 52, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:32:00', NULL),
+(663, 905, 53, 53, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:43:00', NULL),
+(664, 906, 54, 54, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:54:00', NULL),
+(665, 907, 55, 55, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:05:00', NULL),
+(666, 908, 56, 56, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:16:00', NULL),
+(667, 909, 57, 57, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:27:00', NULL),
+(668, 910, 58, 58, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:38:00', NULL),
+(669, 911, 59, 59, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:49:00', NULL),
+(670, 912, 60, 60, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:00:00', NULL),
+(671, 913, 61, 1, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:11:00', NULL),
+(672, 914, 62, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(673, 915, 63, 3, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:33:00', NULL),
+(674, 916, 64, 4, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:44:00', NULL),
+(675, 917, 65, 5, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:55:00', NULL),
+(676, 918, 66, 6, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:06:00', NULL),
+(677, 919, 67, 7, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:17:00', NULL),
+(678, 920, 68, 8, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:28:00', NULL),
+(679, 921, 69, 9, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:39:00', NULL),
+(680, 922, 70, 10, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:50:00', NULL),
+(681, 923, 71, 11, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:01:00', NULL),
+(682, 924, 72, 12, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:12:00', NULL),
+(683, 925, 73, 13, 5, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:23:00', NULL),
+(684, 926, 74, 14, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:34:00', NULL),
+(685, 927, 75, 15, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:45:00', NULL),
+(686, 928, 76, 16, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:56:00', NULL),
+(687, 929, 77, 17, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:07:00', NULL),
+(688, 930, 78, 18, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:18:00', NULL),
+(689, 931, 79, 19, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:29:00', NULL),
+(690, 932, 80, 20, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:40:00', NULL),
+(691, 933, 81, 21, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:51:00', NULL),
+(692, 934, 82, 22, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:02:00', NULL),
+(693, 935, 83, 23, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:13:00', NULL),
+(694, 936, 84, 24, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:24:00', NULL),
+(695, 937, 85, 25, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:35:00', NULL),
+(696, 938, 86, 26, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:46:00', NULL),
+(697, 939, 87, 27, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:57:00', NULL),
+(698, 940, 88, 28, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:08:00', NULL),
+(699, 941, 89, 29, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:19:00', NULL),
+(700, 942, 90, 30, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:30:00', NULL),
+(701, 943, 91, 31, 5, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:41:00', NULL),
+(702, 944, 92, 32, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:52:00', NULL),
+(703, 945, 93, 33, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:03:00', NULL),
+(704, 946, 94, 34, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:14:00', NULL),
+(705, 947, 95, 35, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:25:00', NULL),
+(706, 948, 96, 36, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:36:00', NULL),
+(707, 949, 97, 37, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:47:00', NULL),
+(708, 950, 98, 38, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:58:00', NULL),
+(709, 951, 99, 39, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:09:00', NULL),
+(710, 952, 100, 40, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:20:00', NULL),
+(711, 953, 1, 41, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:31:00', NULL),
+(712, 954, 2, 42, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:42:00', NULL),
+(713, 955, 3, 43, 5, '食材搭配很有層次，同行者的飲食需求也被細心照顧。', '2026-07-30 20:53:00', NULL),
+(714, 956, 4, 44, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:04:00', NULL),
+(715, 957, 5, 45, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:15:00', NULL),
+(716, 958, 6, 46, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:26:00', NULL),
+(717, 959, 7, 47, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:37:00', NULL),
+(718, 960, 8, 48, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:48:00', NULL),
+(719, 961, 9, 49, 5, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:59:00', NULL),
+(720, 962, 10, 50, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:10:00', NULL),
+(721, 963, 11, 51, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:21:00', NULL),
+(722, 964, 12, 52, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:32:00', NULL),
+(723, 965, 13, 53, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:43:00', NULL),
+(724, 966, 14, 54, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:54:00', NULL),
+(725, 967, 15, 55, 5, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:05:00', NULL),
+(726, 968, 16, 56, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:16:00', NULL),
+(727, 969, 17, 57, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:27:00', NULL),
+(728, 970, 18, 58, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:38:00', NULL),
+(729, 971, 19, 59, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:49:00', NULL),
+(730, 972, 20, 60, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:00:00', NULL),
+(731, 973, 21, 1, 5, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:11:00', NULL),
+(732, 974, 22, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(733, 975, 23, 3, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:33:00', NULL),
+(734, 976, 24, 4, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:44:00', NULL),
+(735, 977, 25, 5, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:55:00', NULL),
+(736, 978, 26, 6, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:06:00', NULL),
+(737, 979, 27, 7, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:17:00', NULL),
+(738, 980, 28, 8, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:28:00', NULL),
+(739, 981, 29, 9, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:39:00', NULL),
+(740, 982, 30, 10, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:50:00', NULL),
+(741, 983, 31, 11, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:01:00', NULL),
+(742, 984, 32, 12, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:12:00', NULL),
+(743, 985, 33, 13, 5, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:23:00', NULL),
+(744, 986, 34, 14, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:34:00', NULL),
+(745, 987, 35, 15, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:45:00', NULL),
+(746, 988, 36, 16, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:56:00', NULL),
+(747, 989, 37, 17, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:07:00', NULL),
+(748, 990, 38, 18, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:18:00', NULL),
+(749, 991, 39, 19, 5, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:29:00', NULL),
+(750, 992, 40, 20, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:40:00', NULL),
+(751, 993, 41, 21, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:51:00', NULL),
+(752, 994, 42, 22, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:02:00', NULL),
+(753, 995, 43, 23, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:13:00', NULL),
+(754, 996, 44, 24, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:24:00', NULL),
+(755, 997, 45, 25, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:35:00', NULL),
+(756, 998, 46, 26, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:46:00', NULL),
+(757, 999, 47, 27, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:57:00', NULL),
+(758, 1000, 48, 28, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:08:00', NULL),
+(759, 1001, 49, 29, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:19:00', NULL),
+(760, 1002, 50, 30, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:30:00', NULL),
+(761, 1003, 51, 31, 5, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:41:00', NULL),
+(762, 1004, 52, 32, 5, '活動安排細心，風景很美，整體比自己亂逛更有收穫。', '2026-07-31 21:52:00', NULL),
+(763, 1005, 53, 33, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:03:00', NULL),
+(764, 1006, 54, 34, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:14:00', NULL),
+(765, 1007, 55, 35, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:25:00', NULL),
+(766, 1008, 56, 36, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:36:00', NULL),
+(767, 1009, 57, 37, 5, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:47:00', NULL),
+(768, 1010, 58, 38, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:58:00', NULL),
+(769, 1011, 59, 39, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:09:00', NULL),
+(770, 1012, 60, 40, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:20:00', NULL),
+(771, 1013, 61, 41, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:31:00', NULL),
+(772, 1014, 62, 42, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:42:00', NULL),
+(773, 1015, 63, 43, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:53:00', NULL),
+(774, 1016, 64, 44, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:04:00', NULL),
+(775, 1017, 65, 45, 4, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:15:00', NULL),
+(776, 1018, 66, 46, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:26:00', NULL),
+(777, 1019, 67, 47, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:37:00', NULL),
+(778, 1020, 68, 48, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:48:00', NULL),
+(779, 1021, 69, 49, 5, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:59:00', NULL),
+(780, 1022, 70, 50, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:10:00', NULL),
+(781, 1023, 71, 51, 4, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:21:00', NULL),
+(782, 1024, 72, 52, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:32:00', NULL),
+(783, 1025, 73, 53, 4, '行程不會太累，沿途停下來拍照的時間剛剛好。', '2026-07-30 18:43:00', NULL),
+(784, 1026, 74, 54, 5, '攝影師會即時提醒角度，成品比我原本預期的好很多。', '2026-07-31 19:54:00', NULL),
+(785, 1027, 75, 55, 5, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:05:00', NULL),
+(786, 1028, 76, 56, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:16:00', NULL),
+(787, 1029, 77, 57, 4, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:27:00', NULL),
+(788, 1030, 78, 58, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:38:00', NULL),
+(789, 1031, 79, 59, 4, '光線和背景都挑得很用心，留下了很喜歡的旅行照片。', '2026-07-30 20:49:00', NULL),
+(790, 1032, 80, 60, 5, '同行朋友看得很投入，整晚的體驗比想像中還要精彩。', '2026-07-31 21:00:00', NULL),
+(791, 1033, 81, 1, 5, '導覽員很會說故事，原本看不懂的建築細節都變得有意思。', '2026-07-30 18:11:00', NULL),
+(792, 1034, 82, 2, 5, '導覽節奏很好，重點展品都有足夠時間慢慢欣賞。', '2026-07-31 19:22:00', NULL),
+(793, 1035, 83, 3, 4, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:33:00', NULL),
+(794, 1036, 84, 4, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:44:00', NULL),
+(795, 1037, 85, 5, 4, '現場的氣氛很棒，從入場到結束都安排得很順利。', '2026-07-30 18:55:00', NULL),
+(796, 1038, 86, 6, 5, '路線安排得很順，邊走邊聽完全不會覺得趕。', '2026-07-31 19:06:00', NULL),
+(797, 1039, 87, 7, 5, '原本只是來拍照，結果聽完故事後對藝術多了很多興趣。', '2026-07-30 20:17:00', NULL),
+(798, 1040, 88, 8, 5, '從前菜到甜點都很滿意，是旅行中很有記憶點的一餐。', '2026-07-31 21:28:00', NULL),
+(799, 1041, 89, 9, 4, '拍攝時很自然，不擅長面對鏡頭的人也不會尷尬。', '2026-07-30 18:39:00', NULL),
+(800, 1042, 90, 10, 5, '表演和燈光效果都很精彩，是很推薦的夜間行程。', '2026-07-31 19:50:00', NULL),
+(801, 1043, 91, 11, 4, '內容比預期豐富，特別喜歡那些只有在地人才知道的小故事。', '2026-07-30 20:01:00', NULL),
+(802, 1044, 92, 12, 5, '內容扎實而且有趣，同行的朋友也一直說值回票價。', '2026-07-31 21:12:00', NULL),
+(803, 1045, 93, 13, 5, '每一道料理都有自己的故事，吃起來不只是美味而已。', '2026-07-30 18:23:00', NULL),
+(804, 1046, 94, 14, 5, '導覽員熟悉每個角落，讓普通的街景也變得很有故事。', '2026-07-31 19:34:00', NULL),
+(805, 1047, 95, 15, 4, '服務人員很親切，座位與動線安排讓人很放心。', '2026-07-30 20:45:00', NULL),
+(806, 1048, 96, 16, 5, '很適合第一次來這座城市的人，重點都幫我們整理好了。', '2026-07-31 21:56:00', NULL),
+(807, 1049, 97, 17, 4, '講解清楚又不會太艱深，讓人真的能看懂作品的魅力。', '2026-07-30 18:07:00', NULL),
+(808, 1050, 98, 18, 5, '主廚的介紹很親切，整晚的氛圍舒服又有質感。', '2026-07-31 19:18:00', NULL),
+(809, 1051, 99, 19, 5, '步調舒服又能看到不少景點，適合想慢慢感受城市的人。', '2026-07-30 20:29:00', NULL),
+(810, 1052, 100, 20, 5, '引導簡單好懂，整個過程輕鬆，照片也很有紀念價值。', '2026-07-31 21:40:00', NULL);
 
 -- Seed data for `category_notes`
 INSERT INTO category_notes (category_id, title, content, sort_order) VALUES
@@ -3453,68 +5861,68 @@ WHERE status = 1;
 
 -- --------------------------------------------------------
 -- 阿偉：對齊 member 等級／M幣／累積消費（進度條）
-UPDATE `member` SET `member_level`='銅', `current_points`=155, `total_spent`=3500, `total_orders`=2 WHERE `id`=1;
-UPDATE `member` SET `member_level`='銀', `current_points`=530, `total_spent`=7600, `total_orders`=6 WHERE `id`=2;
-UPDATE `member` SET `member_level`='銅', `current_points`=49, `total_spent`=2000, `total_orders`=1 WHERE `id`=3;
-UPDATE `member` SET `member_level`='銅', `current_points`=52, `total_spent`=800, `total_orders`=1 WHERE `id`=4;
-UPDATE `member` SET `member_level`='銀', `current_points`=575, `total_spent`=10000, `total_orders`=6 WHERE `id`=5;
-UPDATE `member` SET `member_level`='銅', `current_points`=180, `total_spent`=3500, `total_orders`=2 WHERE `id`=6;
-UPDATE `member` SET `member_level`='銅', `current_points`=61, `total_spent`=2000, `total_orders`=1 WHERE `id`=7;
-UPDATE `member` SET `member_level`='金', `current_points`=1660, `total_spent`=19200, `total_orders`=11 WHERE `id`=8;
-UPDATE `member` SET `member_level`='銀', `current_points`=635, `total_spent`=8400, `total_orders`=4 WHERE `id`=9;
-UPDATE `member` SET `member_level`='金', `current_points`=1700, `total_spent`=21600, `total_orders`=8 WHERE `id`=10;
-UPDATE `member` SET `member_level`='銅', `current_points`=205, `total_spent`=3500, `total_orders`=2 WHERE `id`=11;
-UPDATE `member` SET `member_level`='銀', `current_points`=680, `total_spent`=6000, `total_orders`=4 WHERE `id`=12;
-UPDATE `member` SET `member_level`='銅', `current_points`=79, `total_spent`=1200, `total_orders`=1 WHERE `id`=13;
-UPDATE `member` SET `member_level`='銅', `current_points`=82, `total_spent`=1600, `total_orders`=1 WHERE `id`=14;
-UPDATE `member` SET `member_level`='銀', `current_points`=725, `total_spent`=8400, `total_orders`=4 WHERE `id`=15;
-UPDATE `member` SET `member_level`='銅', `current_points`=230, `total_spent`=3500, `total_orders`=2 WHERE `id`=16;
-UPDATE `member` SET `member_level`='銅', `current_points`=91, `total_spent`=1200, `total_orders`=1 WHERE `id`=17;
-UPDATE `member` SET `member_level`='金', `current_points`=1860, `total_spent`=22800, `total_orders`=11 WHERE `id`=18;
-UPDATE `member` SET `member_level`='銀', `current_points`=785, `total_spent`=6800, `total_orders`=5 WHERE `id`=19;
-UPDATE `member` SET `member_level`='金', `current_points`=1900, `total_spent`=25200, `total_orders`=8 WHERE `id`=20;
-UPDATE `member` SET `member_level`='銅', `current_points`=255, `total_spent`=3500, `total_orders`=2 WHERE `id`=21;
-UPDATE `member` SET `member_level`='銀', `current_points`=830, `total_spent`=9200, `total_orders`=5 WHERE `id`=22;
-UPDATE `member` SET `member_level`='銅', `current_points`=109, `total_spent`=2000, `total_orders`=1 WHERE `id`=23;
-UPDATE `member` SET `member_level`='銅', `current_points`=112, `total_spent`=800, `total_orders`=1 WHERE `id`=24;
-UPDATE `member` SET `member_level`='銀', `current_points`=875, `total_spent`=6800, `total_orders`=5 WHERE `id`=25;
-UPDATE `member` SET `member_level`='銅', `current_points`=280, `total_spent`=3500, `total_orders`=2 WHERE `id`=26;
-UPDATE `member` SET `member_level`='銅', `current_points`=121, `total_spent`=2000, `total_orders`=1 WHERE `id`=27;
-UPDATE `member` SET `member_level`='金', `current_points`=2060, `total_spent`=18000, `total_orders`=11 WHERE `id`=28;
-UPDATE `member` SET `member_level`='銀', `current_points`=935, `total_spent`=10000, `total_orders`=6 WHERE `id`=29;
-UPDATE `member` SET `member_level`='金', `current_points`=2100, `total_spent`=20400, `total_orders`=8 WHERE `id`=30;
-UPDATE `member` SET `member_level`='銅', `current_points`=305, `total_spent`=3500, `total_orders`=2 WHERE `id`=31;
-UPDATE `member` SET `member_level`='銀', `current_points`=980, `total_spent`=7600, `total_orders`=6 WHERE `id`=32;
-UPDATE `member` SET `member_level`='銅', `current_points`=139, `total_spent`=1200, `total_orders`=1 WHERE `id`=33;
-UPDATE `member` SET `member_level`='銅', `current_points`=142, `total_spent`=1600, `total_orders`=1 WHERE `id`=34;
-UPDATE `member` SET `member_level`='銀', `current_points`=1025, `total_spent`=10000, `total_orders`=6 WHERE `id`=35;
-UPDATE `member` SET `member_level`='銅', `current_points`=330, `total_spent`=3500, `total_orders`=2 WHERE `id`=36;
-UPDATE `member` SET `member_level`='銅', `current_points`=151, `total_spent`=1200, `total_orders`=1 WHERE `id`=37;
-UPDATE `member` SET `member_level`='金', `current_points`=2260, `total_spent`=21600, `total_orders`=11 WHERE `id`=38;
-UPDATE `member` SET `member_level`='銀', `current_points`=1085, `total_spent`=8400, `total_orders`=4 WHERE `id`=39;
-UPDATE `member` SET `member_level`='金', `current_points`=2300, `total_spent`=24000, `total_orders`=8 WHERE `id`=40;
-UPDATE `member` SET `member_level`='銅', `current_points`=355, `total_spent`=3500, `total_orders`=2 WHERE `id`=41;
-UPDATE `member` SET `member_level`='銀', `current_points`=1130, `total_spent`=6000, `total_orders`=4 WHERE `id`=42;
-UPDATE `member` SET `member_level`='銅', `current_points`=169, `total_spent`=2000, `total_orders`=1 WHERE `id`=43;
-UPDATE `member` SET `member_level`='銅', `current_points`=172, `total_spent`=800, `total_orders`=1 WHERE `id`=44;
-UPDATE `member` SET `member_level`='銀', `current_points`=1175, `total_spent`=8400, `total_orders`=4 WHERE `id`=45;
-UPDATE `member` SET `member_level`='銅', `current_points`=380, `total_spent`=3500, `total_orders`=2 WHERE `id`=46;
-UPDATE `member` SET `member_level`='銅', `current_points`=181, `total_spent`=2000, `total_orders`=1 WHERE `id`=47;
-UPDATE `member` SET `member_level`='金', `current_points`=2460, `total_spent`=25200, `total_orders`=11 WHERE `id`=48;
-UPDATE `member` SET `member_level`='銀', `current_points`=1235, `total_spent`=6800, `total_orders`=5 WHERE `id`=49;
-UPDATE `member` SET `member_level`='金', `current_points`=2500, `total_spent`=19200, `total_orders`=8 WHERE `id`=50;
-UPDATE `member` SET `member_level`='銅', `current_points`=405, `total_spent`=3500, `total_orders`=2 WHERE `id`=51;
-UPDATE `member` SET `member_level`='銀', `current_points`=1280, `total_spent`=9200, `total_orders`=5 WHERE `id`=52;
-UPDATE `member` SET `member_level`='銅', `current_points`=199, `total_spent`=1200, `total_orders`=1 WHERE `id`=53;
-UPDATE `member` SET `member_level`='銅', `current_points`=202, `total_spent`=1600, `total_orders`=1 WHERE `id`=54;
-UPDATE `member` SET `member_level`='銀', `current_points`=1325, `total_spent`=6800, `total_orders`=5 WHERE `id`=55;
-UPDATE `member` SET `member_level`='銅', `current_points`=430, `total_spent`=3500, `total_orders`=2 WHERE `id`=56;
-UPDATE `member` SET `member_level`='銅', `current_points`=211, `total_spent`=1200, `total_orders`=1 WHERE `id`=57;
-UPDATE `member` SET `member_level`='金', `current_points`=2660, `total_spent`=20400, `total_orders`=11 WHERE `id`=58;
-UPDATE `member` SET `member_level`='銀', `current_points`=1385, `total_spent`=10000, `total_orders`=6 WHERE `id`=59;
-UPDATE `member` SET `member_level`='金', `current_points`=2700, `total_spent`=22800, `total_orders`=8 WHERE `id`=60;
-UPDATE `member` SET `member_level`='銅', `current_points`=320, `total_spent`=2800, `total_orders`=2 WHERE `id`=101;
-UPDATE `member` SET `member_level`='銀', `current_points`=860, `total_spent`=9200, `total_orders`=5 WHERE `id`=102;
-UPDATE `member` SET `member_level`='金', `current_points`=2400, `total_spent`=22000, `total_orders`=12 WHERE `id`=103;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=155, `total_spent`=3500, `total_orders`=2 WHERE `id`=1;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=530, `total_spent`=7600, `total_orders`=6 WHERE `id`=2;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=49, `total_spent`=2000, `total_orders`=1 WHERE `id`=3;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=52, `total_spent`=800, `total_orders`=1 WHERE `id`=4;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=575, `total_spent`=10000, `total_orders`=6 WHERE `id`=5;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=180, `total_spent`=3500, `total_orders`=2 WHERE `id`=6;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=61, `total_spent`=2000, `total_orders`=1 WHERE `id`=7;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=1660, `total_spent`=19200, `total_orders`=11 WHERE `id`=8;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=635, `total_spent`=8400, `total_orders`=4 WHERE `id`=9;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=1700, `total_spent`=21600, `total_orders`=8 WHERE `id`=10;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=205, `total_spent`=3500, `total_orders`=2 WHERE `id`=11;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=680, `total_spent`=6000, `total_orders`=4 WHERE `id`=12;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=79, `total_spent`=1200, `total_orders`=1 WHERE `id`=13;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=82, `total_spent`=1600, `total_orders`=1 WHERE `id`=14;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=725, `total_spent`=8400, `total_orders`=4 WHERE `id`=15;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=230, `total_spent`=3500, `total_orders`=2 WHERE `id`=16;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=91, `total_spent`=1200, `total_orders`=1 WHERE `id`=17;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=1860, `total_spent`=22800, `total_orders`=11 WHERE `id`=18;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=785, `total_spent`=6800, `total_orders`=5 WHERE `id`=19;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=1900, `total_spent`=25200, `total_orders`=8 WHERE `id`=20;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=255, `total_spent`=3500, `total_orders`=2 WHERE `id`=21;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=830, `total_spent`=9200, `total_orders`=5 WHERE `id`=22;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=109, `total_spent`=2000, `total_orders`=1 WHERE `id`=23;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=112, `total_spent`=800, `total_orders`=1 WHERE `id`=24;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=875, `total_spent`=6800, `total_orders`=5 WHERE `id`=25;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=280, `total_spent`=3500, `total_orders`=2 WHERE `id`=26;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=121, `total_spent`=2000, `total_orders`=1 WHERE `id`=27;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=2060, `total_spent`=18000, `total_orders`=11 WHERE `id`=28;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=935, `total_spent`=10000, `total_orders`=6 WHERE `id`=29;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=2100, `total_spent`=20400, `total_orders`=8 WHERE `id`=30;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=305, `total_spent`=3500, `total_orders`=2 WHERE `id`=31;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=980, `total_spent`=7600, `total_orders`=6 WHERE `id`=32;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=139, `total_spent`=1200, `total_orders`=1 WHERE `id`=33;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=142, `total_spent`=1600, `total_orders`=1 WHERE `id`=34;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=1025, `total_spent`=10000, `total_orders`=6 WHERE `id`=35;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=330, `total_spent`=3500, `total_orders`=2 WHERE `id`=36;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=151, `total_spent`=1200, `total_orders`=1 WHERE `id`=37;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=2260, `total_spent`=21600, `total_orders`=11 WHERE `id`=38;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=1085, `total_spent`=8400, `total_orders`=4 WHERE `id`=39;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=2300, `total_spent`=24000, `total_orders`=8 WHERE `id`=40;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=355, `total_spent`=3500, `total_orders`=2 WHERE `id`=41;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=1130, `total_spent`=6000, `total_orders`=4 WHERE `id`=42;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=169, `total_spent`=2000, `total_orders`=1 WHERE `id`=43;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=172, `total_spent`=800, `total_orders`=1 WHERE `id`=44;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=1175, `total_spent`=8400, `total_orders`=4 WHERE `id`=45;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=380, `total_spent`=3500, `total_orders`=2 WHERE `id`=46;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=181, `total_spent`=2000, `total_orders`=1 WHERE `id`=47;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=2460, `total_spent`=25200, `total_orders`=11 WHERE `id`=48;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=1235, `total_spent`=6800, `total_orders`=5 WHERE `id`=49;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=2500, `total_spent`=19200, `total_orders`=8 WHERE `id`=50;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=405, `total_spent`=3500, `total_orders`=2 WHERE `id`=51;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=1280, `total_spent`=9200, `total_orders`=5 WHERE `id`=52;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=199, `total_spent`=1200, `total_orders`=1 WHERE `id`=53;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=202, `total_spent`=1600, `total_orders`=1 WHERE `id`=54;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=1325, `total_spent`=6800, `total_orders`=5 WHERE `id`=55;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=430, `total_spent`=3500, `total_orders`=2 WHERE `id`=56;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=211, `total_spent`=1200, `total_orders`=1 WHERE `id`=57;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=2660, `total_spent`=20400, `total_orders`=11 WHERE `id`=58;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=1385, `total_spent`=10000, `total_orders`=6 WHERE `id`=59;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=2700, `total_spent`=22800, `total_orders`=8 WHERE `id`=60;
+UPDATE `member` SET `member_level`='啟程旅人', `current_points`=320, `total_spent`=2800, `total_orders`=2 WHERE `id`=101;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=860, `total_spent`=9200, `total_orders`=5 WHERE `id`=102;
+UPDATE `member` SET `member_level`='環遊旅人', `current_points`=2400, `total_spent`=22000, `total_orders`=12 WHERE `id`=103;
 
 COMMIT;
