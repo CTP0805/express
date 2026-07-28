@@ -60,11 +60,12 @@ router.get("/", async (req: Request, res: Response) => {
     (
       e.city LIKE ?
       OR e.title LIKE ?
+       OR e.description LIKE ?
       OR c.category_name LIKE ?
     )
   `);
 
-      params.push(searchKeyword, searchKeyword, searchKeyword);
+      params.push(searchKeyword, searchKeyword, searchKeyword, searchKeyword);
     }
     // 有傳城市才加入城市條件
     if (city) {
@@ -304,11 +305,12 @@ router.get("/categories", async (req: Request, res: Response) => {
         (
           e.city LIKE ?
           OR e.title LIKE ?
+            OR e.description LIKE ?
           OR c.category_name LIKE ?
         )
       `);
 
-      params.push(searchKeyword, searchKeyword, searchKeyword);
+      params.push(searchKeyword, searchKeyword, searchKeyword, searchKeyword);
     }
 
     if (city) {
