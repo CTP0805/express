@@ -1,319 +1,410 @@
--- schema.sql
--- 資料表架構：CREATE TABLE、索引、AUTO_INCREMENT、外鍵
--- 使用方式：先匯入 schema.sql，再匯入 seed.sql
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
+-- schema_reordered.sql
+-- 已依照外鍵相依關係重新排序
+-- 每個資料表都在 CREATE TABLE 時直接設定：
+-- 1. PRIMARY KEY
+-- 2. AUTO_INCREMENT
+-- 3. INDEX / UNIQUE KEY
+-- 4. FOREIGN KEY
 --
--- 主機： 127.0.0.1
--- 產生時間： 2026-07-13 14:18:38
--- 伺服器版本： 8.0.45
--- PHP 版本： 8.1.25
+-- 建議：先匯入此 schema，再匯入 seed.sql
 
-CREATE DATABASE final_project;
+CREATE DATABASE IF NOT EXISTS `final_project`
+  DEFAULT CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
 
-USE final_project;
+USE `final_project`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-
-START TRANSACTION;
-
 SET time_zone = "+00:00";
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */
-;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */
-;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */
-;
-/*!40101 SET NAMES utf8mb4 */
-;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
---
--- 資料庫： `final2`
---
+SET FOREIGN_KEY_CHECKS = 0;
 
--- --------------------------------------------------------
-
---
--- 資料表結構 `cart`
---
-
-CREATE TABLE `cart` (
-    `id` int NOT NULL,
-    `member_id` int NOT NULL,
-    `experience_id` int NOT NULL,
-    `session_id` int NOT NULL,
-    `adult_quantity` int NOT NULL DEFAULT '1',
-    `child_quantity` int NOT NULL DEFAULT '0'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `cart`
---
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `coupons`
---
-
-CREATE TABLE `coupons` (
-    `id` int NOT NULL,
-    `coupon_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `min_spent` decimal(10, 2) NOT NULL,
-    `discount_amount` decimal(10, 2) NOT NULL,
-    `start_date` date NOT NULL,
-    `end_date` date NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `coupons`
---
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `experiences`
---
-
-CREATE TABLE `experiences` (
-    `id` int NOT NULL,
-    `category_id` int NOT NULL,
-    `host_id` int NOT NULL,
-    `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-    `meeting_point` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `longitude` decimal(9, 6) DEFAULT NULL,
-    `latitude` decimal(8, 6) DEFAULT NULL,
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `experiences`
---
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `experience_categories`
---
-
-CREATE TABLE `experience_categories` (
-    `id` int NOT NULL,
-    `category_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `icon_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `sort_order` int NOT NULL DEFAULT '0',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `experience_categories`
---
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `experience_images`
---
-
-CREATE TABLE `experience_images` (
-    `id` int NOT NULL,
-    `experience_id` int NOT NULL,
-    `image_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `is_primary` tinyint NOT NULL DEFAULT '0',
-    `sort_order` int NOT NULL DEFAULT '0',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `experience_images`
---
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `experience_reviews`
---
-
-CREATE TABLE `experience_reviews` (
-    `id` int NOT NULL,
-    `order_item_id` int NOT NULL,
-    `experience_id` int NOT NULL,
-    `member_id` int NOT NULL,
-    `rating` int NOT NULL,
-    `comment` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `image_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `experience_reviews`
---
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `favorites`
---
-
-CREATE TABLE `favorites` (
-    `id` int NOT NULL,
-    `experience_id` int NOT NULL,
-    `member_id` int NOT NULL,
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `favorites`
---
-
---
--- 資料表結構 `recently_viewed`
---
-
-CREATE TABLE `recently_viewed` (
-    `id` int NOT NULL,
-    `member_id` int NOT NULL,
-    `experience_id` int NOT NULL,
-    `viewed_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `hosts`
---
-
-CREATE TABLE `hosts` (
-    `id` int NOT NULL,
-    `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `role` VARCHAR(50) NOT NULL,
-    `bio` text COLLATE utf8mb4_unicode_ci,
-    `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `hosts`
---
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `member`
---
+-- ========================================================
+-- 1. member
+-- 無外鍵相依
+-- ========================================================
 
 CREATE TABLE `member` (
-    `id` int NOT NULL ,
-    `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    `password_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `gender` enum('男','女','其他') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `birthday` date DEFAULT NULL,
-    `avatar_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `member_level` enum('啟程旅人','探索旅人','環遊旅人') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '銅',
-    `is_email_verified` datetime DEFAULT NULL,
-    `google_uid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `current_points` int NOT NULL DEFAULT '0',
-    `total_spent` int NOT NULL DEFAULT '0',
-    `total_orders` int NOT NULL DEFAULT '0',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `token_version` int NOT NULL DEFAULT '1',
-    `role` enum('管理者','客服','會員') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '會員',
-    `city` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_hash` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` ENUM('男','女','其他') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `birthday` DATE DEFAULT NULL,
+  `avatar_url` VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `member_level` ENUM('啟程旅人','探索旅人','環遊旅人') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '啟程旅人',
+  `is_email_verified` DATETIME DEFAULT NULL,
+  `google_uid` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `current_points` INT NOT NULL DEFAULT 0,
+  `total_spent` INT NOT NULL DEFAULT 0,
+  `total_orders` INT NOT NULL DEFAULT 0,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `token_version` INT NOT NULL DEFAULT 1,
+  `role` ENUM('管理者','客服','會員') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '會員',
+  `city` VARCHAR(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
 
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_member_email` (`email`),
+  UNIQUE KEY `uk_member_google_uid` (`google_uid`),
+  KEY `idx_member_level` (`member_level`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=104;
 
---
--- 傾印資料表的資料 `member`
---
+-- ========================================================
+-- 2. coupons
+-- 無外鍵相依
+-- ========================================================
 
--- --------------------------------------------------------
+CREATE TABLE `coupons` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `coupon_name` VARCHAR(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `min_spent` DECIMAL(10,2) NOT NULL,
+  `discount_amount` DECIMAL(10,2) NOT NULL,
+  `start_date` DATE NOT NULL,
+  `end_date` DATE NOT NULL,
 
---
--- 資料表結構 `member_coupons`
---
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=11;
 
-CREATE TABLE `member_coupons` (
-    `id` int NOT NULL,
-    `member_id` int NOT NULL,
-    `coupon_id` int NOT NULL,
-    `is_used` tinyint(1) NOT NULL DEFAULT '0',
-    `received_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `used_at` datetime DEFAULT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+-- ========================================================
+-- 3. hosts
+-- 無外鍵相依
+-- ========================================================
 
---
--- 傾印資料表的資料 `member_coupons`
---
+CREATE TABLE `hosts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` VARCHAR(50) NOT NULL,
+  `bio` TEXT COLLATE utf8mb4_unicode_ci,
+  `avatar` VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
 
--- --------------------------------------------------------
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=11;
 
---
--- 資料表結構 `order_items`
---
+-- ========================================================
+-- 4. experience_categories
+-- 無外鍵相依
+-- ========================================================
 
-CREATE TABLE `order_items` (
-    `id` int NOT NULL,
-    `order_id` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `experience_id` int NOT NULL,
-    `session_id` int NOT NULL,
-    `original_unit_price` decimal(10, 2) NOT NULL,
-    `quantity` int NOT NULL,
-    `subtotal` decimal(10, 2) NOT NULL,
-    `item_status` enum(
-        'pending',
-        'confirmed',
-        'cancelled'
-    ) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
-    `special_request` text COLLATE utf8mb4_unicode_ci,
-    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+CREATE TABLE `experience_categories` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `category_name` VARCHAR(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_url` VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sort_order` INT NOT NULL DEFAULT 0,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
---
--- 傾印資料表的資料 `order_items`
---
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=7;
 
--- --------------------------------------------------------
+-- ========================================================
+-- 5. experiences
+-- 依賴：experience_categories、hosts
+-- ========================================================
 
---
--- 資料表結構 `order_main`
---
+CREATE TABLE `experiences` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `category_id` INT NOT NULL,
+  `host_id` INT NOT NULL,
+  `city` VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` TEXT COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meeting_point` VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `longitude` DECIMAL(9,6) DEFAULT NULL,
+  `latitude` DECIMAL(8,6) DEFAULT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (`id`),
+  KEY `idx_experiences_category_id` (`category_id`),
+  KEY `idx_experiences_host_id` (`host_id`),
+
+  CONSTRAINT `fk_experiences_category`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `experience_categories` (`id`),
+
+  CONSTRAINT `fk_experiences_host`
+    FOREIGN KEY (`host_id`)
+    REFERENCES `hosts` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=11;
+
+-- ========================================================
+-- 6. sessions
+-- 依賴：experiences
+-- ========================================================
+
+CREATE TABLE `sessions` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `experience_id` INT NOT NULL,
+  `start_time` DATETIME NOT NULL,
+  `end_time` DATETIME NOT NULL,
+  `booking_deadline` DATETIME NOT NULL,
+  `adult_price` DECIMAL(10,2) NOT NULL,
+  `child_price` DECIMAL(10,2) NOT NULL,
+  `min_participants` INT NOT NULL,
+  `max_participants` INT NOT NULL,
+  `status` TINYINT NOT NULL DEFAULT 1,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (`id`),
+  KEY `idx_sessions_experience_id` (`experience_id`),
+
+  CONSTRAINT `fk_sessions_experience`
+    FOREIGN KEY (`experience_id`)
+    REFERENCES `experiences` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=11;
+
+-- ========================================================
+-- 7. experience_images
+-- 依賴：experiences
+-- ========================================================
+
+CREATE TABLE `experience_images` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `experience_id` INT NOT NULL,
+  `image_url` VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_primary` TINYINT NOT NULL DEFAULT 0,
+  `sort_order` INT NOT NULL DEFAULT 0,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (`id`),
+  KEY `idx_experience_images_experience_id` (`experience_id`),
+
+  CONSTRAINT `fk_experience_images_experience`
+    FOREIGN KEY (`experience_id`)
+    REFERENCES `experiences` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=11;
+
+-- ========================================================
+-- 8. order_main
+-- 依賴：member、coupons
+-- ========================================================
 
 CREATE TABLE `order_main` (
-    `id` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `member_id` int NOT NULL,
-    `contact_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `contact_phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `contact_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `payment_method` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `order_status` enum(
-        'pending',
-        'paid',
-        'cancelled'
-    ) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
-    `original_amount` decimal(10, 2) NOT NULL,
-    `coupon_id` int DEFAULT NULL,
-    `coupon_discount` decimal(10, 2) NOT NULL DEFAULT '0.00',
-    `points_redeemed` int NOT NULL DEFAULT '0',
-    `final_amount` decimal(10, 2) NOT NULL,
-    `points_earned` int NOT NULL DEFAULT '0',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+  `id` VARCHAR(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `member_id` INT NOT NULL,
+  `contact_name` VARCHAR(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact_phone` VARCHAR(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact_email` VARCHAR(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment_method` VARCHAR(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_status` ENUM('pending','paid','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `original_amount` DECIMAL(10,2) NOT NULL,
+  `coupon_id` INT DEFAULT NULL,
+  `coupon_discount` DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  `points_redeemed` INT NOT NULL DEFAULT 0,
+  `final_amount` DECIMAL(10,2) NOT NULL,
+  `points_earned` INT NOT NULL DEFAULT 0,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
---
--- 傾印資料表的資料 `order_main`
---
+  PRIMARY KEY (`id`),
+  KEY `idx_order_main_member_id` (`member_id`),
+  KEY `idx_order_main_coupon_id` (`coupon_id`),
 
--- --------------------------------------------------------
+  CONSTRAINT `fk_order_main_member`
+    FOREIGN KEY (`member_id`)
+    REFERENCES `member` (`id`),
 
---
--- 資料表結構 `posts`
---
+  CONSTRAINT `fk_order_main_coupon`
+    FOREIGN KEY (`coupon_id`)
+    REFERENCES `coupons` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
+
+-- ========================================================
+-- 9. member_coupons
+-- 依賴：member、coupons
+-- ========================================================
+
+CREATE TABLE `member_coupons` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `member_id` INT NOT NULL,
+  `coupon_id` INT NOT NULL,
+  `is_used` TINYINT(1) NOT NULL DEFAULT 0,
+  `received_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `used_at` DATETIME DEFAULT NULL,
+
+  PRIMARY KEY (`id`),
+  KEY `idx_member_coupons_member_id` (`member_id`),
+  KEY `idx_member_coupons_coupon_id` (`coupon_id`),
+
+  CONSTRAINT `fk_member_coupons_member`
+    FOREIGN KEY (`member_id`)
+    REFERENCES `member` (`id`),
+
+  CONSTRAINT `fk_member_coupons_coupon`
+    FOREIGN KEY (`coupon_id`)
+    REFERENCES `coupons` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=631;
+
+-- ========================================================
+-- 10. order_items
+-- 依賴：order_main、experiences、sessions
+-- ========================================================
+
+CREATE TABLE `order_items` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `order_id` VARCHAR(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `experience_id` INT NOT NULL,
+  `session_id` INT NOT NULL,
+  `original_unit_price` DECIMAL(10,2) NOT NULL,
+  `quantity` INT NOT NULL,
+  `subtotal` DECIMAL(10,2) NOT NULL,
+  `item_status` ENUM('pending','confirmed','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `special_request` TEXT COLLATE utf8mb4_unicode_ci,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (`id`),
+  KEY `idx_order_items_order_id` (`order_id`),
+  KEY `idx_order_items_experience_id` (`experience_id`),
+  KEY `idx_order_items_session_id` (`session_id`),
+
+  CONSTRAINT `fk_order_items_order`
+    FOREIGN KEY (`order_id`)
+    REFERENCES `order_main` (`id`),
+
+  CONSTRAINT `fk_order_items_experience`
+    FOREIGN KEY (`experience_id`)
+    REFERENCES `experiences` (`id`),
+
+  CONSTRAINT `fk_order_items_session`
+    FOREIGN KEY (`session_id`)
+    REFERENCES `sessions` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=253;
+
+-- ========================================================
+-- 11. cart
+-- 依賴：member、experiences、sessions
+-- ========================================================
+
+CREATE TABLE `cart` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `member_id` INT NOT NULL,
+  `experience_id` INT NOT NULL,
+  `session_id` INT NOT NULL,
+  `adult_quantity` INT NOT NULL DEFAULT 1,
+  `child_quantity` INT NOT NULL DEFAULT 0,
+
+  PRIMARY KEY (`id`),
+  KEY `idx_cart_member_id` (`member_id`),
+  KEY `idx_cart_experience_id` (`experience_id`),
+  KEY `idx_cart_session_id` (`session_id`),
+
+  CONSTRAINT `fk_cart_member`
+    FOREIGN KEY (`member_id`)
+    REFERENCES `member` (`id`),
+
+  CONSTRAINT `fk_cart_experience`
+    FOREIGN KEY (`experience_id`)
+    REFERENCES `experiences` (`id`),
+
+  CONSTRAINT `fk_cart_session`
+    FOREIGN KEY (`session_id`)
+    REFERENCES `sessions` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=11;
+
+-- ========================================================
+-- 12. favorites
+-- 依賴：member、experiences
+-- ========================================================
+
+CREATE TABLE `favorites` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `experience_id` INT NOT NULL,
+  `member_id` INT NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_favorites_member_experience` (`member_id`, `experience_id`),
+  KEY `idx_favorites_experience_id` (`experience_id`),
+
+  CONSTRAINT `fk_favorites_member`
+    FOREIGN KEY (`member_id`)
+    REFERENCES `member` (`id`),
+
+  CONSTRAINT `fk_favorites_experience`
+    FOREIGN KEY (`experience_id`)
+    REFERENCES `experiences` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=11;
+
+-- ========================================================
+-- 13. experience_reviews
+-- 依賴：order_items、experiences、member
+-- ========================================================
+
+CREATE TABLE `experience_reviews` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `order_item_id` INT NOT NULL,
+  `experience_id` INT NOT NULL,
+  `member_id` INT NOT NULL,
+  `rating` INT NOT NULL,
+  `comment` VARCHAR(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `image_url` VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+
+  PRIMARY KEY (`id`),
+  KEY `idx_experience_reviews_order_item_id` (`order_item_id`),
+  KEY `idx_experience_reviews_experience_id` (`experience_id`),
+  KEY `idx_experience_reviews_member_id` (`member_id`),
+
+  CONSTRAINT `fk_experience_reviews_order_item`
+    FOREIGN KEY (`order_item_id`)
+    REFERENCES `order_items` (`id`),
+
+  CONSTRAINT `fk_experience_reviews_experience`
+    FOREIGN KEY (`experience_id`)
+    REFERENCES `experiences` (`id`),
+
+  CONSTRAINT `fk_experience_reviews_member`
+    FOREIGN KEY (`member_id`)
+    REFERENCES `member` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci
+  AUTO_INCREMENT=11;
+
+-- ========================================================
+-- 14. posts
+-- 依賴：member、experience_categories、order_items、experiences
+-- ========================================================
 
 CREATE TABLE `posts` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -325,23 +416,21 @@ CREATE TABLE `posts` (
   `content_image` TEXT COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` VARCHAR(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'draft',
   `published_at` DATETIME DEFAULT NULL,
-  `updated_at` DATETIME NOT NULL
-    DEFAULT CURRENT_TIMESTAMP
-    ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `author_id` INT NOT NULL,
   `category_id` INT DEFAULT NULL,
   `order_item_id` INT DEFAULT NULL,
+  `experience_id` INT DEFAULT NULL,
   `review_note` TEXT COLLATE utf8mb4_unicode_ci DEFAULT NULL,
 
   PRIMARY KEY (`id`),
-
   UNIQUE KEY `uk_posts_slug` (`slug`),
   UNIQUE KEY `uk_posts_order_item_id` (`order_item_id`),
-
   KEY `idx_posts_title` (`title`),
   KEY `idx_posts_author_id` (`author_id`),
   KEY `idx_posts_category_id` (`category_id`),
+  KEY `idx_posts_experience_id` (`experience_id`),
   KEY `idx_posts_status_published` (`status`, `published_at`),
 
   CONSTRAINT `fk_posts_author`
@@ -354,21 +443,20 @@ CREATE TABLE `posts` (
 
   CONSTRAINT `fk_posts_order_item`
     FOREIGN KEY (`order_item_id`)
-    REFERENCES `order_items` (`id`)
+    REFERENCES `order_items` (`id`),
+
+  CONSTRAINT `fk_posts_experience`
+    FOREIGN KEY (`experience_id`)
+    REFERENCES `experiences` (`id`)
 ) ENGINE=InnoDB
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_unicode_ci
   AUTO_INCREMENT=11;
 
---
--- 資料表結構 `posts`
---
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `blog_comments`
---
+-- ========================================================
+-- 15. blog_comments
+-- 依賴：posts、member
+-- ========================================================
 
 CREATE TABLE `blog_comments` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -393,392 +481,77 @@ CREATE TABLE `blog_comments` (
 ) ENGINE=InnoDB
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_unicode_ci;
-  
---
--- 資料表結構 `blog_comments`
---
 
--- --------------------------------------------------------
+-- ========================================================
+-- 16. category_notes
+-- 依賴：experience_categories
+-- ========================================================
 
---
--- 資料表結構 `sessions`
---
+CREATE TABLE `category_notes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `category_id` INT NOT NULL,
+  `title` VARCHAR(50) NOT NULL,
+  `content` VARCHAR(255) NOT NULL,
+  `sort_order` INT NOT NULL DEFAULT 0,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-CREATE TABLE `sessions` (
-    `id` int NOT NULL,
-    `experience_id` int NOT NULL,
-    `start_time` datetime NOT NULL,
-    `end_time` datetime NOT NULL,
-    `booking_deadline` datetime NOT NULL,
-    `adult_price` decimal(10, 2) NOT NULL,
-    `child_price` decimal(10, 2) NOT NULL,
-    `min_participants` int NOT NULL,
-    `max_participants` int NOT NULL,
-    `status` tinyint NOT NULL DEFAULT '1',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+  PRIMARY KEY (`id`),
+  KEY `idx_category_notes_category_id` (`category_id`),
 
---
--- 傾印資料表的資料 `sessions`
---
-
---
--- 已傾印資料表的索引
---
-
---
--- 資料表索引 `cart`
---
-ALTER TABLE `cart`
-ADD PRIMARY KEY (`id`),
-ADD KEY `idx_cart_member_id` (`member_id`),
-ADD KEY `idx_cart_experience_id` (`experience_id`),
-ADD KEY `idx_cart_session_id` (`session_id`);
-
---
--- 資料表索引 `coupons`
---
-ALTER TABLE `coupons` ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `experiences`
---
-ALTER TABLE `experiences`
-ADD PRIMARY KEY (`id`),
-ADD KEY `idx_experiences_category_id` (`category_id`),
-ADD KEY `idx_experiences_host_id` (`host_id`);
-
---
--- 資料表索引 `experience_categories`
---
-ALTER TABLE `experience_categories` ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `experience_images`
---
-ALTER TABLE `experience_images`
-ADD PRIMARY KEY (`id`),
-ADD KEY `idx_experience_images_experience_id` (`experience_id`);
-
---
--- 資料表索引 `experience_reviews`
---
-ALTER TABLE `experience_reviews`
-ADD PRIMARY KEY (`id`),
-ADD KEY `idx_experience_reviews_order_item_id` (`order_item_id`),
-ADD KEY `idx_experience_reviews_experience_id` (`experience_id`),
-ADD KEY `idx_experience_reviews_member_id` (`member_id`);
-
---
--- 資料表索引 `favorites`
---
-ALTER TABLE `favorites`
-ADD PRIMARY KEY (`id`),
-ADD UNIQUE KEY `uk_favorites_member_experience` (`member_id`, `experience_id`),
-ADD KEY `idx_favorites_experience_id` (`experience_id`);
-
---
--- 資料表索引 `recently_viewed`
---
-
-ALTER TABLE `recently_viewed`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uk_recently_viewed_member_experience` (
-    `member_id`,
-    `experience_id`
-  ),
-  ADD KEY `idx_recently_viewed_member_time` (
-    `member_id`,
-    `viewed_at`,
-    `id`
-  );
-
---
--- 資料表索引 `hosts`
---
-ALTER TABLE `hosts` ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `member`
---
-ALTER TABLE `member`
-ADD PRIMARY KEY (`id`),
-ADD UNIQUE KEY `uk_member_email` (`email`),
-ADD UNIQUE KEY `uk_member_google_uid` (`google_uid`),
-ADD KEY `idx_member_level` (`member_level`);
-
---
--- 資料表索引 `member_coupons`
---
-ALTER TABLE `member_coupons`
-ADD PRIMARY KEY (`id`),
-ADD KEY `idx_member_coupons_member_id` (`member_id`),
-ADD KEY `idx_member_coupons_coupon_id` (`coupon_id`);
-
---
--- 資料表索引 `order_items`
---
-ALTER TABLE `order_items`
-ADD PRIMARY KEY (`id`),
-ADD KEY `idx_order_items_order_id` (`order_id`),
-ADD KEY `idx_order_items_experience_id` (`experience_id`),
-ADD KEY `idx_order_items_session_id` (`session_id`);
-
---
--- 資料表索引 `order_main`
---
-ALTER TABLE `order_main`
-ADD PRIMARY KEY (`id`),
-ADD KEY `idx_order_main_member_id` (`member_id`),
-ADD KEY `idx_order_main_coupon_id` (`coupon_id`);
-
---
--- 資料表索引 `posts`
---
-ALTER TABLE `posts`
-ADD PRIMARY KEY (`id`),
-ADD UNIQUE KEY `uk_posts_slug` (`slug`),
-ADD KEY `idx_posts_author_id` (`author_id`),
-ADD KEY `idx_posts_category_id` (`category_id`),
-ADD KEY `idx_posts_status_published` (`status`, `published_at`),
-ADD KEY `idx_posts_title` (`title`);
-
---
--- 資料表索引 `sessions`
---
-ALTER TABLE `sessions`
-ADD PRIMARY KEY (`id`),
-ADD KEY `idx_sessions_experience_id` (`experience_id`);
-
---
--- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
---
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `cart`
---
-ALTER TABLE `cart`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `coupons`
---
-ALTER TABLE `coupons`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `experiences`
---
-ALTER TABLE `experiences`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `experience_categories`
---
-ALTER TABLE `experience_categories`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 7;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `experience_images`
---
-ALTER TABLE `experience_images`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `experience_reviews`
---
-ALTER TABLE `experience_reviews`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `favorites`
---
-ALTER TABLE `favorites`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `recently_viewed`
---
-
-ALTER TABLE `recently_viewed`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 1;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `hosts`
---
-ALTER TABLE `hosts`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `member`
---
-ALTER TABLE `member`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 104;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `member_coupons`
---
-ALTER TABLE `member_coupons`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 631;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `order_items`
---
-ALTER TABLE `order_items`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 253;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `posts`
---
-ALTER TABLE `posts`
-MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `sessions`
---
-ALTER TABLE `sessions`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 11;
-
---
--- 已傾印資料表的限制式
---
-
---
--- 資料表的限制式 `cart`
---
-ALTER TABLE `cart`
-ADD CONSTRAINT `fk_cart_experience` FOREIGN KEY (`experience_id`) REFERENCES `experiences` (`id`),
-ADD CONSTRAINT `fk_cart_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
-ADD CONSTRAINT `fk_cart_session` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`);
-
---
--- 資料表的限制式 `experiences`
---
-ALTER TABLE `experiences`
-ADD CONSTRAINT `fk_experiences_category` FOREIGN KEY (`category_id`) REFERENCES `experience_categories` (`id`),
-ADD CONSTRAINT `fk_experiences_host` FOREIGN KEY (`host_id`) REFERENCES `hosts` (`id`);
-
---
--- 資料表的限制式 `experience_images`
---
-ALTER TABLE `experience_images`
-ADD CONSTRAINT `fk_experience_images_experience` FOREIGN KEY (`experience_id`) REFERENCES `experiences` (`id`);
-
---
--- 資料表的限制式 `experience_reviews`
---
-ALTER TABLE `experience_reviews`
-ADD CONSTRAINT `fk_experience_reviews_experience` FOREIGN KEY (`experience_id`) REFERENCES `experiences` (`id`),
-ADD CONSTRAINT `fk_experience_reviews_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
-ADD CONSTRAINT `fk_experience_reviews_order_item` FOREIGN KEY (`order_item_id`) REFERENCES `order_items` (`id`);
-
---
--- 資料表的限制式 `favorites`
---
-ALTER TABLE `favorites`
-ADD CONSTRAINT `fk_favorites_experience` FOREIGN KEY (`experience_id`) REFERENCES `experiences` (`id`),
-ADD CONSTRAINT `fk_favorites_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`);
-
---
--- 資料表的限制式 `recently_viewed`
---
-ALTER TABLE `recently_viewed`
-  ADD CONSTRAINT `fk_recently_viewed_member`
-    FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
-  ADD CONSTRAINT `fk_recently_viewed_experience`
-    FOREIGN KEY (`experience_id`) REFERENCES `experiences` (`id`);
-
---
--- 資料表的限制式 `member_coupons`
---
-ALTER TABLE `member_coupons`
-ADD CONSTRAINT `fk_member_coupons_coupon` FOREIGN KEY (`coupon_id`) REFERENCES `coupons` (`id`),
-ADD CONSTRAINT `fk_member_coupons_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`);
-
---
--- 資料表的限制式 `order_items`
---
-ALTER TABLE `order_items`
-ADD CONSTRAINT `fk_order_items_experience` FOREIGN KEY (`experience_id`) REFERENCES `experiences` (`id`),
-ADD CONSTRAINT `fk_order_items_order` FOREIGN KEY (`order_id`) REFERENCES `order_main` (`id`),
-ADD CONSTRAINT `fk_order_items_session` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`);
-
---
--- 資料表的限制式 `order_main`
---
-ALTER TABLE `order_main`
-ADD CONSTRAINT `fk_order_main_coupon` FOREIGN KEY (`coupon_id`) REFERENCES `coupons` (`id`),
-ADD CONSTRAINT `fk_order_main_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`);
-
---
--- 資料表的限制式 `posts`
---
-ALTER TABLE `posts`
-ADD CONSTRAINT `fk_posts_author` FOREIGN KEY (`author_id`) REFERENCES `member` (`id`);
-
---
--- 資料表的限制式 `sessions`
---
-ALTER TABLE `sessions`
-ADD CONSTRAINT `fk_sessions_experience` FOREIGN KEY (`experience_id`) REFERENCES `experiences` (`id`);
-
-COMMIT;
-
-CREATE TABLE category_notes (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  category_id INT NOT NULL,
-  title VARCHAR(50) NOT NULL,
-  content VARCHAR(255) NOT NULL,
-  sort_order INT NOT NULL DEFAULT 0,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
--- 加上注意事項的資料表（每個分類分別有對應的注意事項）
-CONSTRAINT fk_category_notes_category
-    FOREIGN KEY (category_id)
-    REFERENCES experience_categories(id)
+  CONSTRAINT `fk_category_notes_category`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `experience_categories` (`id`)
     ON DELETE CASCADE
-);
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
+
+-- ========================================================
+-- 17. chat_rooms
+-- 依賴：member
+-- ========================================================
+
 CREATE TABLE `chat_rooms` (
-  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-  CONSTRAINT fk_chat_rooms_user
+  PRIMARY KEY (`id`),
+  KEY `idx_chat_rooms_user_id` (`user_id`),
+
+  CONSTRAINT `fk_chat_rooms_user`
     FOREIGN KEY (`user_id`)
-    REFERENCES `member`(`id`)  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    REFERENCES `member` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
 
+-- ========================================================
+-- 18. chat_messages
+-- 依賴：chat_rooms
+-- ========================================================
 
 CREATE TABLE `chat_messages` (
-  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `room_id` INT NOT NULL,
   `sender` ENUM('user','admin') NOT NULL,
   `text` TEXT NOT NULL,
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_read` TINYINT(1) NOT NULL DEFAULT 0,
 
-  CONSTRAINT fk_chat_messages_room
+  PRIMARY KEY (`id`),
+  KEY `idx_chat_messages_room_id` (`room_id`),
+
+  CONSTRAINT `fk_chat_messages_room`
     FOREIGN KEY (`room_id`)
-    REFERENCES `chat_rooms`(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
-;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */
-;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */
-;
+    REFERENCES `chat_rooms` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
