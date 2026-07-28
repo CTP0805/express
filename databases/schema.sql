@@ -552,6 +552,43 @@ CREATE TABLE `chat_messages` (
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+-- ========================================================
+-- 19. recently_viewed
+-- ========================================================
+
+CREATE TABLE `recently_viewed` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `member_id` INT NOT NULL,
+  `experience_id` INT NOT NULL,
+  `viewed_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (`id`),
+
+  UNIQUE KEY `uk_recently_viewed_member_experience` (
+    `member_id`,
+    `experience_id`
+  ),
+
+  KEY `idx_recently_viewed_member_time` (
+    `member_id`,
+    `viewed_at`,
+    `id`
+  ),
+
+  CONSTRAINT `fk_recently_viewed_member`
+    FOREIGN KEY (`member_id`)
+    REFERENCES `member` (`id`),
+
+  CONSTRAINT `fk_recently_viewed_experience`
+    FOREIGN KEY (`experience_id`)
+    REFERENCES `experiences` (`id`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
+
+
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
