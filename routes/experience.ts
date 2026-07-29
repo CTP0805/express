@@ -566,6 +566,7 @@ FROM sessions
 
     m.name AS member_name,
     m.avatar_url AS member_avatar,
+    m.city AS member_city,
 
     s.start_time AS departure_date
   FROM experience_reviews r
