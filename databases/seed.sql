@@ -871,103 +871,332 @@ WHERE p.slug LIKE 'official-%-category-%'
 ORDER BY p.published_at DESC
 LIMIT 12;
 
--- 每篇已發布文章建立 2～7 則假留言
-INSERT INTO `blog_comments` (
-  `post_id`,
-  `member_id`,
-  `content`,
-  `created_at`
-)
-WITH
-comment_slots AS (
-  SELECT 1 AS slot_number
-  UNION ALL SELECT 2
-  UNION ALL SELECT 3
-  UNION ALL SELECT 4
-  UNION ALL SELECT 5
-  UNION ALL SELECT 6
-  UNION ALL SELECT 7
-),
-comment_source AS (
-  SELECT
-    p.id AS post_id,
-    commenter.id AS member_id,
-
-    CASE slots.slot_number
-      WHEN 1 THEN CONCAT(
-        '這篇「', p.title,
-        '」整理得很清楚，行程節奏和注意事項都很實用，已經先收藏起來了！'
-      )
-
-      WHEN 2 THEN CONCAT(
-        '最近正在規劃相關行程，剛好看到「', p.title,
-        '」。文章提到要預留交通、排隊和休息時間，這點真的很容易忽略。'
-      )
-
-      WHEN 3 THEN CONCAT(
-        '我之前也走過類似路線，實際花費的時間比地圖看起來更久。建議大家一定要穿好走的鞋，行程不要安排得太緊。'
-      )
-
-      WHEN 4 THEN CONCAT(
-        '很喜歡「', p.title,
-        '」裡面的雨天備案，不需要取消整天，只要保留主要行程再調整附近景點，帶家人旅行時很實用。'
-      )
-
-      WHEN 5 THEN CONCAT(
-        '交通和步行時間的提醒很有幫助。想請問如果只有半天，會建議保留主要體驗，還是以附近街區散步為主呢？'
-      )
-
-      WHEN 6 THEN CONCAT(
-        '文章用上午、中午、下午和傍晚拆分行程，讀起來比單純列出景點更容易執行，出發前知道該注意什麼真的差很多。'
-      )
-
-      ELSE CONCAT(
-        '已經把「', p.title,
-        '」分享給同行朋友了！我們很需要這種可以臨時刪減、又不會破壞整體行程的規劃方式。'
-      )
-    END AS content,
-
-    TIMESTAMPADD(
-      HOUR,
-      slots.slot_number * 2,
-      COALESCE(p.published_at, p.created_at)
-    ) AS created_at
-
-  FROM `posts` AS p
-
-  CROSS JOIN comment_slots AS slots
-
-  INNER JOIN `member` AS commenter
-    ON commenter.id =
-      1 + MOD(
-        CRC32(p.slug) + slots.slot_number * 7,
-        60
-      )
-    AND commenter.role = '會員'
-
-  WHERE p.status = 'published'
-    AND slots.slot_number <=
-      2 + MOD(
-        CRC32(CONCAT(p.slug, '-comment-count')),
-        6
-      )
-)
-
-SELECT
-  source.post_id,
-  source.member_id,
-  source.content,
-  source.created_at
-FROM comment_source AS source
-
-WHERE NOT EXISTS (
-  SELECT 1
-  FROM `blog_comments` AS existing_comment
-  WHERE existing_comment.post_id = source.post_id
-    AND existing_comment.member_id = source.member_id
-    AND existing_comment.content = source.content
-);
-
+-- 每篇官方文章建立 3～6 則留言，留言數量依文章交錯配置。
+INSERT INTO `blog_comments` (`post_id`, `member_id`, `content`, `created_at`) VALUES
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-1-1'), 1, '倫敦老城的步行順序整理得很清楚，先看歷史背景再走現場，確實比較容易理解街區變化。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-1-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-1-1'), 14, '正在規劃倫敦行程，這篇古蹟巡禮的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-1-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-1-1'), 27, '文章把重點拆得很清楚，尤其是倫敦古蹟巡禮行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-1-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-1-2'), 32, '很喜歡把古蹟和日常街景放在同一條路線，想請問週末上午的人潮會不會特別多？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-1-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-1-2'), 21, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-1-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-1-2'), 34, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-1-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-1-2'), 47, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整倫敦的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-1-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-2-1'), 14, '展館不用一次看完的提醒很實際，上次就是排太滿，後半段幾乎沒有力氣好好欣賞作品。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-2-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-2-1'), 28, '對第一次安排倫敦自由行的人很友善，從藝文導覽開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-2-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-2-1'), 41, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-2-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-2-1'), 54, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-2-1'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-2-1'), 7, '看完後更期待倫敦旅行，希望之後也能分享更多藝文導覽附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-2-1'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), 45, '用一個藝術主題串起整天的方式很棒，已經把這篇加入下次倫敦旅行的收藏清單。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), 35, '看完後更期待倫敦旅行，希望之後也能分享更多藝文導覽附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), 48, '正在規劃倫敦行程，這篇藝文導覽的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), 1, '文章把重點拆得很清楚，尤其是倫敦藝文導覽行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), 14, '想請問如果只有半天，倫敦的藝文導覽會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), 27, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-2-2'), INTERVAL 25 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-3-1'), 7, '市場和社區餐館交錯安排很有生活感，也能避免每一餐都在熱門店排隊。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-3-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-3-1'), 42, '想請問如果只有半天，倫敦的美饌饗宴會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-3-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-3-1'), 55, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-3-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-3-2'), 38, '想知道文中提到的市場平日早上去會不會比較好逛，帶小孩同行適合嗎？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-3-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-3-2'), 49, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整倫敦的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-3-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-3-2'), 2, '對第一次安排倫敦自由行的人很友善，從美饌饗宴開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-3-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-3-2'), 15, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-3-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-4-1'), 20, '河岸路線把休息點也標出來很貼心，倫敦天氣變化快，保留彈性真的很重要。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-4-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-4-1'), 56, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-4-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-4-1'), 9, '看完後更期待倫敦旅行，希望之後也能分享更多戶外探索附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-4-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-4-1'), 22, '正在規劃倫敦行程，這篇戶外探索的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-4-1'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-4-1'), 35, '文章把重點拆得很清楚，尤其是倫敦戶外探索行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-4-1'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), 51, '這種不追求走完全程的安排很適合我，旅行舒服比完成景點數量更重要。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), 3, '文章把重點拆得很清楚，尤其是倫敦戶外探索行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), 16, '想請問如果只有半天，倫敦的戶外探索會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), 29, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), 42, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), 55, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整倫敦的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-4-2'), INTERVAL 26 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-5-1'), 26, '清晨街景和傍晚光線的比較很實用，拍攝前先決定氛圍確實能少走很多冤枉路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-5-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-5-1'), 10, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-5-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-5-1'), 23, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整倫敦的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-5-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-5-2'), 57, '文中的取景提醒很尊重當地居民，希望之後也能看到更多雨天拍攝的建議。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-5-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-5-2'), 17, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-5-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-5-2'), 30, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-5-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-5-2'), 43, '看完後更期待倫敦旅行，希望之後也能分享更多專人攝影附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-5-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-6-1'), 9, '末班交通和備用叫車方式都有提到，對第一次安排倫敦夜生活的人很有幫助。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-6-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-6-1'), 24, '正在規劃倫敦行程，這篇娛樂與夜生活的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-6-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-6-1'), 37, '文章把重點拆得很清楚，尤其是倫敦娛樂與夜生活行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-6-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-6-1'), 50, '想請問如果只有半天，倫敦的娛樂與夜生活會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-6-1'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-6-1'), 3, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-6-1'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), 40, '夜間活動結束後的集合點建議很實際，和朋友分開行動前真的要先講清楚。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), 31, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), 44, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), 57, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整倫敦的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), 10, '對第一次安排倫敦自由行的人很友善，從娛樂與夜生活開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), 23, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-london-category-6-2'), INTERVAL 27 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-1-1'), 2, '巴黎古蹟不只看正面建築的觀點很有意思，下次會多注意廣場和周圍街道的關係。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-1-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-1-1'), 38, '對第一次安排巴黎自由行的人很友善，從古蹟巡禮開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-1-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-1-1'), 51, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-1-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-1-2'), 33, '文章節奏很適合第一次去巴黎的人，沒有把每個知名地標都硬塞在同一天。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-1-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-1-2'), 45, '看完後更期待巴黎旅行，希望之後也能分享更多古蹟巡禮附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-1-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-1-2'), 58, '正在規劃巴黎行程，這篇古蹟巡禮的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-1-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-1-2'), 11, '文章把重點拆得很清楚，尤其是巴黎古蹟巡禮行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-1-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-2-1'), 15, '先選觀看主題再逛展的方式很受用，不然大型美術館真的很容易看到最後失去重點。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-2-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-2-1'), 52, '想請問如果只有半天，巴黎的藝文導覽會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-2-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-2-1'), 5, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-2-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-2-1'), 18, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-2-1'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-2-1'), 31, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整巴黎的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-2-1'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), 46, '美術館和周邊街區一起安排很自然，請問如果遇到休館日有推薦的替代路線嗎？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), 59, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整巴黎的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), 12, '對第一次安排巴黎自由行的人很友善，從藝文導覽開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), 25, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), 38, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), 51, '看完後更期待巴黎旅行，希望之後也能分享更多藝文導覽附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-2-2'), INTERVAL 25 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-3-1'), 8, '沒有只列熱門餐廳，而是從市場和日常餐桌介紹巴黎，讀起來更有旅行感。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-3-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-3-1'), 6, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-3-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-3-1'), 19, '看完後更期待巴黎旅行，希望之後也能分享更多美饌饗宴附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-3-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-3-2'), 39, '保留一餐給臨時發現的小店這個建議很棒，常常意外走進去的店反而最難忘。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-3-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-3-2'), 13, '文章把重點拆得很清楚，尤其是巴黎美饌饗宴行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-3-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-3-2'), 26, '想請問如果只有半天，巴黎的美饌饗宴會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-3-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-3-2'), 52, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-3-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-4-1'), 21, '塞納河岸散步加入折返時間後安心很多，傍晚光線應該也很適合慢慢走。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-4-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-4-1'), 20, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-4-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-4-1'), 33, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整巴黎的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-4-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-4-1'), 46, '對第一次安排巴黎自由行的人很友善，從戶外探索開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-4-1'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-4-1'), 59, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-4-1'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), 52, '喜歡文章強調依體力刪減路線，不必為了照表操課讓同行的人都太累。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), 27, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), 40, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), 53, '看完後更期待巴黎旅行，希望之後也能分享更多戶外探索附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), 6, '正在規劃巴黎行程，這篇戶外探索的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), 19, '文章把重點拆得很清楚，尤其是巴黎戶外探索行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-4-2'), INTERVAL 26 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-5-1'), 27, '巴黎街角的取景方向說明很具體，服裝顏色簡單一點確實比較能融入環境。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-5-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-5-1'), 34, '正在規劃巴黎行程，這篇專人攝影的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-5-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-5-1'), 47, '文章把重點拆得很清楚，尤其是巴黎專人攝影行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-5-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-5-2'), 58, '背影和環境互動的拍法比一直看鏡頭自然，已經把幾個場景記下來了。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-5-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-5-2'), 41, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-5-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-5-2'), 54, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-5-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-5-2'), 7, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整巴黎的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-5-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-6-1'), 10, '把回程路線放在夜間行程前面確認很重要，巴黎不同區域晚上的氣氛差異很大。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-6-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-6-1'), 48, '對第一次安排巴黎自由行的人很友善，從娛樂與夜生活開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-6-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-6-1'), 1, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-6-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-6-1'), 14, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-6-1'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-6-1'), 27, '看完後更期待巴黎旅行，希望之後也能分享更多娛樂與夜生活附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-6-1'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), 41, '表演結束時間和末班車一起規劃的方式很清楚，對自由行新手很友善。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), 55, '看完後更期待巴黎旅行，希望之後也能分享更多娛樂與夜生活附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), 8, '正在規劃巴黎行程，這篇娛樂與夜生活的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), 21, '文章把重點拆得很清楚，尤其是巴黎娛樂與夜生活行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), 34, '想請問如果只有半天，巴黎的娛樂與夜生活會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), 47, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-paris-category-6-2'), INTERVAL 27 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-1'), 3, '運河老屋和街區歷史一起介紹很有層次，走路時應該會更留意建築細節。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-1'), 2, '想請問如果只有半天，阿姆斯特丹的古蹟巡禮會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-1'), 15, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-2'), 34, '這條歷史路線看起來很適合慢慢走，尤其喜歡保留運河邊休息時間的安排。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-2'), 9, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整阿姆斯特丹的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-2'), 22, '對第一次安排阿姆斯特丹自由行的人很友善，從古蹟巡禮開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-2'), 35, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-1-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-1'), 16, '文章提醒一次只看幾個展覽主題很實際，阿姆斯特丹的博物館真的很容易排太多。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-1'), 17, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-1'), 29, '看完後更期待阿姆斯特丹旅行，希望之後也能分享更多藝文導覽附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-1'), 42, '正在規劃阿姆斯特丹行程，這篇藝文導覽的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-1'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-1'), 55, '文章把重點拆得很清楚，尤其是阿姆斯特丹藝文導覽行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-1'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), 47, '展館建築本身也納入觀察的方式很棒，不只是進去看完作品就離開。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), 23, '文章把重點拆得很清楚，尤其是阿姆斯特丹藝文導覽行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), 36, '想請問如果只有半天，阿姆斯特丹的藝文導覽會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), 49, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), 2, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), 15, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整阿姆斯特丹的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-2-2'), INTERVAL 25 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-1'), 11, '市場早餐加上街區小店的安排很吸引人，感覺比整天追著名店跑輕鬆很多。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-1'), 30, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-1'), 43, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整阿姆斯特丹的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-2'), 42, '文中對供餐時段的提醒很有用，之前太晚去就錯過想吃的餐點了。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-2'), 37, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-2'), 50, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-2'), 3, '看完後更期待阿姆斯特丹旅行，希望之後也能分享更多美饌饗宴附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-3-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-1'), 22, '單車道安全提醒一定要記住，第一次去時真的很容易只注意汽車和行人。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-1'), 44, '正在規劃阿姆斯特丹行程，這篇戶外探索的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-1'), 57, '文章把重點拆得很清楚，尤其是阿姆斯特丹戶外探索行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-1'), 10, '想請問如果只有半天，阿姆斯特丹的戶外探索會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-1'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-1'), 23, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-1'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), 53, '運河步道不用走很快，留時間看倒影和老屋才是阿姆斯特丹最舒服的節奏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), 51, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), 4, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), 17, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整阿姆斯特丹的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), 30, '對第一次安排阿姆斯特丹自由行的人很友善，從戶外探索開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), 43, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-4-2'), INTERVAL 26 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-1'), 28, '清晨運河邊的拍攝建議很實用，光線柔和又能避開最擁擠的時段。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-1'), 58, '對第一次安排阿姆斯特丹自由行的人很友善，從專人攝影開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-1'), 11, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-2'), 59, '取景時不擋住居民出入口這點很重要，希望每個旅人都能好好遵守。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-2'), 5, '看完後更期待阿姆斯特丹旅行，希望之後也能分享更多專人攝影附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-2'), 18, '正在規劃阿姆斯特丹行程，這篇專人攝影的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-2'), 31, '文章把重點拆得很清楚，尤其是阿姆斯特丹專人攝影行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-5-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-1'), 12, '夜間沿著明亮主要道路移動的提醒很實際，回住宿前也要先確認電車班次。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-1'), 13, '想請問如果只有半天，阿姆斯特丹的娛樂與夜生活會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-1'), 25, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-1'), 38, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-1'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-1'), 51, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整阿姆斯特丹的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-1'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), 43, '文章沒有只介紹熱鬧場所，也把安全和回程安排說清楚，讀完比較安心。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), 19, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整阿姆斯特丹的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), 32, '對第一次安排阿姆斯特丹自由行的人很友善，從娛樂與夜生活開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), 45, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), 58, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), 11, '看完後更期待阿姆斯特丹旅行，希望之後也能分享更多娛樂與夜生活附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-amsterdam-category-6-2'), INTERVAL 27 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-1'), 4, '巴塞隆納建築的年代和街區格局一起看，應該比只拍外觀更能理解城市。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-1'), 26, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-1'), 39, '看完後更期待巴塞隆納旅行，希望之後也能分享更多古蹟巡禮附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-2'), 35, '坡地和步行距離的提醒很重要，地圖看起來很近，實際走起來可能完全不同。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-2'), 33, '文章把重點拆得很清楚，尤其是巴塞隆納古蹟巡禮行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-2'), 46, '想請問如果只有半天，巴塞隆納的古蹟巡禮會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-2'), 59, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-1-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-1'), 17, '把展館和城市建築放在同一天觀察很有趣，主題也比單純跑景點更完整。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-1'), 40, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-1'), 53, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整巴塞隆納的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-1'), 6, '對第一次安排巴塞隆納自由行的人很友善，從藝文導覽開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-1'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-1'), 19, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-1'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), 48, '如果特展額滿就改看常設展和周邊街區，這個備案很適合旺季旅行。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), 47, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), 60, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), 13, '看完後更期待巴塞隆納旅行，希望之後也能分享更多藝文導覽附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), 26, '正在規劃巴塞隆納行程，這篇藝文導覽的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), 39, '文章把重點拆得很清楚，尤其是巴塞隆納藝文導覽行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-2-2'), INTERVAL 25 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-1'), 13, '市場、代表料理和居民餐館分成三個層次介紹，讀完很容易安排自己的美食路線。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-1'), 54, '正在規劃巴塞隆納行程，這篇美饌饗宴的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-1'), 7, '文章把重點拆得很清楚，尤其是巴塞隆納美饌饗宴行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-2'), 44, '很認同不要每餐都排熱門名店，留一點空白才能遇到真正喜歡的小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-2'), 1, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-2'), 14, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-2'), 27, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整巴塞隆納的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-3-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-1'), 24, '早晚走戶外、中午安排室內的節奏很適合巴塞隆納，夏天應該會舒服很多。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-1'), 8, '對第一次安排巴塞隆納自由行的人很友善，從戶外探索開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-1'), 21, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-1'), 34, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-1'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-1'), 47, '看完後更期待巴塞隆納旅行，希望之後也能分享更多戶外探索附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-1'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), 55, '海岸和公園不用硬排在同一段，依天氣調整才不會把旅行變成體力考驗。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), 15, '看完後更期待巴塞隆納旅行，希望之後也能分享更多戶外探索附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), 28, '正在規劃巴塞隆納行程，這篇戶外探索的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), 41, '文章把重點拆得很清楚，尤其是巴塞隆納戶外探索行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), 54, '想請問如果只有半天，巴塞隆納的戶外探索會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), 7, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-4-2'), INTERVAL 26 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-1'), 30, '現代建築的線條拿來當旅拍背景很有特色，文章提供的色彩搭配也很好理解。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-1'), 22, '想請問如果只有半天，巴塞隆納的專人攝影會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-1'), 35, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-2'), 60, '傍晚海邊光線變化很快，預留等待時間而不是一直換點的建議很實際。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-2'), 29, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整巴塞隆納的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-2'), 42, '對第一次安排巴塞隆納自由行的人很友善，從專人攝影開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-2'), 55, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-5-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-1'), 18, '夜間活動前先確認證件和寄物規定，這些小細節真的最容易到現場才發現。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-1'), 36, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-1'), 49, '看完後更期待巴塞隆納旅行，希望之後也能分享更多娛樂與夜生活附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-1'), 2, '正在規劃巴塞隆納行程，這篇娛樂與夜生活的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-1'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-1'), 15, '文章把重點拆得很清楚，尤其是巴塞隆納娛樂與夜生活行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-1'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), 49, '回程交通和集合點都有提醒，和朋友一起安排夜生活時可以直接照這份清單確認。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), 43, '文章把重點拆得很清楚，尤其是巴塞隆納娛樂與夜生活行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), 56, '想請問如果只有半天，巴塞隆納的娛樂與夜生活會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), 9, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), 22, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), 35, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整巴塞隆納的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-barcelona-category-6-2'), INTERVAL 27 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-1-1'), 5, '慕尼黑舊城的歷史節點整理得不會太複雜，很適合邊走邊對照建築細節。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-1-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-1-1'), 50, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-1-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-1-1'), 3, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整慕尼黑的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-1-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-1-2'), 36, '大型活動期間避開主要人潮的建議很有用，去之前會先查一下城市活動日期。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-1-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-1-2'), 57, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-1-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-1-2'), 10, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-1-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-1-2'), 23, '看完後更期待慕尼黑旅行，希望之後也能分享更多古蹟巡禮附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-1-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-2-1'), 19, '展館、王室建築和公園的搭配很舒服，不會整天都待在室內吸收大量資訊。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-2-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-2-1'), 4, '正在規劃慕尼黑行程，這篇藝文導覽的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-2-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-2-1'), 17, '文章把重點拆得很清楚，尤其是慕尼黑藝文導覽行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-2-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-2-1'), 30, '想請問如果只有半天，慕尼黑的藝文導覽會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-2-1'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-2-1'), 43, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-2-1'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), 50, '先選重點作品再使用語音導覽的方式很好，不然很容易每一件都聽到最後太疲累。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), 11, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), 24, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), 37, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整慕尼黑的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), 51, '對第一次安排慕尼黑自由行的人很友善，從藝文導覽開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), 3, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-2-2'), INTERVAL 25 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-3-1'), 25, '從在地餐桌文化理解城市很有趣，文章也有提醒份量和供餐時間，實用度很高。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-3-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-3-1'), 18, '對第一次安排慕尼黑自由行的人很友善，從美饌饗宴開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-3-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-3-1'), 31, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-3-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-3-2'), 56, '請問如果不喝酒，文中的餐館和市場路線還適合照原本方式安排嗎？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-3-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-3-2'), 25, '看完後更期待慕尼黑旅行，希望之後也能分享更多美饌饗宴附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-3-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-3-2'), 38, '正在規劃慕尼黑行程，這篇美饌饗宴的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-3-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-3-2'), 51, '文章把重點拆得很清楚，尤其是慕尼黑美饌饗宴行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-3-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-4-1'), 31, '市區綠地和近郊路線分開選擇很合理，可以依當天天氣和體力臨時決定。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-4-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-4-1'), 32, '想請問如果只有半天，慕尼黑的戶外探索會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-4-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-4-1'), 45, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-4-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-4-1'), 58, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-4-1'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-4-1'), 11, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整慕尼黑的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-4-1'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), 6, '折返時間和日落一起考慮很重要，尤其冬天白天短，不能只看路線公里數。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), 39, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整慕尼黑的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), 52, '對第一次安排慕尼黑自由行的人很友善，從戶外探索開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), 5, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), 18, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), 31, '看完後更期待慕尼黑旅行，希望之後也能分享更多戶外探索附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-4-2'), INTERVAL 26 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-5-1'), 37, '慕尼黑的建築和綠地色彩很適合自然旅拍，場景距離安排也看起來不會太趕。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-5-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-5-1'), 46, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-5-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-5-1'), 59, '看完後更期待慕尼黑旅行，希望之後也能分享更多專人攝影附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-5-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-5-2'), 12, '文章提到遇到人潮就耐心等待，不要頻繁換點，這點對拍攝效率真的很有幫助。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-5-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-5-2'), 53, '文章把重點拆得很清楚，尤其是慕尼黑專人攝影行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-5-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-5-2'), 6, '想請問如果只有半天，慕尼黑的專人攝影會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-5-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-5-2'), 19, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-5-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-6-1'), 43, '大型活動期間先準備替代車站和回程方式，應該能避免散場時卡在人群裡。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-6-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-6-1'), 60, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-6-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-6-1'), 13, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整慕尼黑的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-6-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-6-1'), 26, '對第一次安排慕尼黑自由行的人很友善，從娛樂與夜生活開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-6-1'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-6-1'), 39, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-6-1'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), 18, '夜間行程沒有排得太密，保留一個可以隨時結束的選項感覺更安心。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), 7, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), 20, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), 33, '看完後更期待慕尼黑旅行，希望之後也能分享更多娛樂與夜生活附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), 46, '正在規劃慕尼黑行程，這篇娛樂與夜生活的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), 59, '文章把重點拆得很清楚，尤其是慕尼黑娛樂與夜生活行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-munich-category-6-2'), INTERVAL 27 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-1-1'), 6, '威尼斯的橋梁和廣場放進歷史脈絡後更有意思，不會只是一直拍相似的水巷照片。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-1-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-1-1'), 14, '正在規劃威尼斯行程，這篇古蹟巡禮的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-1-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-1-1'), 27, '文章把重點拆得很清楚，尤其是威尼斯古蹟巡禮行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-1-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-1-2'), 37, '路線沒有要求照固定順序完成，迷路時回到主要地標重新確認方向這點很實際。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-1-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-1-2'), 21, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-1-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-1-2'), 34, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-1-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-1-2'), 47, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整威尼斯的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-1-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-2-1'), 23, '用展館作為散步中段的休息和觀察點很不錯，可以避開午後最擁擠的時段。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-2-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-2-1'), 28, '對第一次安排威尼斯自由行的人很友善，從藝文導覽開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-2-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-2-1'), 41, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-2-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-2-1'), 54, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-2-1'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-2-1'), 7, '看完後更期待威尼斯旅行，希望之後也能分享更多藝文導覽附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-2-1'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), 54, '文章把作品和城市水路連在一起閱讀，讓藝文行程不會和外面的街景完全分開。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), 35, '看完後更期待威尼斯旅行，希望之後也能分享更多藝文導覽附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), 48, '正在規劃威尼斯行程，這篇藝文導覽的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), 1, '文章把重點拆得很清楚，尤其是威尼斯藝文導覽行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), 14, '想請問如果只有半天，威尼斯的藝文導覽會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), 27, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-2-2'), INTERVAL 25 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-3-1'), 29, '先確認供餐時間真的很重要，威尼斯有些店過了時段就很難找到想吃的餐點。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-3-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-3-1'), 42, '想請問如果只有半天，威尼斯的美饌饗宴會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-3-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-3-1'), 55, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-3-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-3-2'), 60, '市場和小餐館的組合比一直在觀光區找店自然很多，也比較能感受到當地生活。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-3-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-3-2'), 49, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整威尼斯的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-3-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-3-2'), 2, '對第一次安排威尼斯自由行的人很友善，從美饌饗宴開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-3-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-3-2'), 15, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-3-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-4-1'), 4, '橋很多、路面又不平，把實際步行時間抓長一點確實比照地圖估算安全。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-4-1'), INTERVAL 2 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-4-1'), 56, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-4-1'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-4-1'), 9, '看完後更期待威尼斯旅行，希望之後也能分享更多戶外探索附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-4-1'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-4-1'), 22, '正在規劃威尼斯行程，這篇戶外探索的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-4-1'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-4-1'), 35, '文章把重點拆得很清楚，尤其是威尼斯戶外探索行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-4-1'), INTERVAL 21 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), 35, '水上交通和步行交替的安排說明得很清楚，帶長輩同行時應該很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), INTERVAL 5 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), 3, '文章把重點拆得很清楚，尤其是威尼斯戶外探索行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), 16, '想請問如果只有半天，威尼斯的戶外探索會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), 29, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), 42, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), 55, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整威尼斯的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-4-2'), INTERVAL 26 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-5-1'), 17, '清晨水巷的光線一定很漂亮，文章也提醒不要長時間占用狹窄通道，很周到。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-5-1'), INTERVAL 3 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-5-1'), 10, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-5-1'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-5-1'), 23, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整威尼斯的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-5-1'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-5-2'), 48, '利用倒影和背影取景的方式很適合威尼斯，比每張照片都正面看鏡頭自然多了。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-5-2'), INTERVAL 6 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-5-2'), 17, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-5-2'), INTERVAL 9 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-5-2'), 30, '這篇的上午與傍晚節奏分配很舒服，帶家人同行也不會覺得一直在趕路。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-5-2'), INTERVAL 13 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-5-2'), 43, '看完後更期待威尼斯旅行，希望之後也能分享更多專人攝影附近的在地小店。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-5-2'), INTERVAL 17 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-6-1'), 13, '夜間走水巷要特別注意方向，先保存住宿位置和主要廣場真的不能省略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-6-1'), INTERVAL 4 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-6-1'), 24, '正在規劃威尼斯行程，這篇娛樂與夜生活的交通和時間提醒很實用，已經先加入收藏。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-6-1'), INTERVAL 10 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-6-1'), 37, '文章把重點拆得很清楚，尤其是威尼斯娛樂與夜生活行程需要保留休息時間，這點很容易被忽略。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-6-1'), INTERVAL 14 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-6-1'), 50, '想請問如果只有半天，威尼斯的娛樂與夜生活會建議保留哪一段作為主要行程？', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-6-1'), INTERVAL 18 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-6-1'), 3, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-6-1'), INTERVAL 22 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), 44, '晚間行程把水上交通結束時間也算進去很實用，不會玩到最後才發現回程麻煩。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), INTERVAL 7 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), 31, '我之前走過類似路線，實際步行時間比地圖估計更久，文中的彈性安排很有參考價值。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), INTERVAL 11 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), 45, '已經把這篇分享給同行朋友，大家都很喜歡不追求密集踩點的規劃方式。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), INTERVAL 15 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), 57, '雨天備案寫得很完整，就算天氣臨時改變，也知道如何調整威尼斯的行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), INTERVAL 19 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), 10, '對第一次安排威尼斯自由行的人很友善，從娛樂與夜生活開始認識城市感覺很有方向。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), INTERVAL 23 HOUR)),
+((SELECT `id` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), 23, '文中提醒先確認營業時間與預約規則很重要，能避免抵達現場才臨時改行程。', DATE_ADD((SELECT `published_at` FROM `posts` WHERE `slug` = 'official-venice-category-6-2'), INTERVAL 27 HOUR));
 
 -- --------------------------------------------------------
 -- Seed data for `experience_images`
@@ -1026,8 +1255,6 @@ FROM experience_numbers e
 CROSS JOIN image_numbers i
 ORDER BY e.experience_id, i.image_number;
 
--- --------------------------------------------------------
--- Seed data for `order_main`
 INSERT INTO `order_main` (`id`, `member_id`, `contact_name`, `contact_phone`, `contact_email`, `payment_method`, `order_status`, `original_amount`, `coupon_id`, `coupon_discount`, `points_redeemed`, `final_amount`, `points_earned`, `created_at`, `updated_at`) VALUES
 ('EU26R0001', 1, '陳柏宇', '0912345678', 'chen.boyu@example.com', 'credit_card', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-20 09:07:00', '2026-07-20 09:07:00'),
 ('EU26R0002', 2, '林冠廷', '0900000002', 'lin.guanding@example.com', 'line_pay', 'paid', 5200.00, 1, 300.00, 20, 4880.00, 488, '2026-07-21 10:14:00', '2026-07-21 10:14:00'),
