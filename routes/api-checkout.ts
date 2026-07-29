@@ -100,10 +100,10 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
     let discountRate = 1.0;
     let rewardRate = 0.01; // 預設銅牌 1%
 
-    if (member.member_level === "金") {
+    if (member.member_level === "環遊旅人") {
       discountRate = 0.9;  // 金牌 9 折
       rewardRate = 0.05;    // 金牌 5% 回饋
-    } else if (member.member_level === "銀") {
+    } else if (member.member_level === "探索旅人") {
       discountRate = 0.95; // 銀牌 95 折
       rewardRate = 0.03;    // 銀牌 3% 回饋
     }
@@ -332,11 +332,11 @@ router.post("/pay-success", authenticate, async (req: Request, res: Response) =>
 
         // C. 判定最新會員等級 (金牌 > 銀牌 > 銅牌)
         // 門檻範例：金牌 (20,000元 或 10筆) / 銀牌 (8,000元 或 5筆)
-        let newLevel = "銅";
+        let newLevel = "啟程旅人";
         if (totalSpent >= 20000 || totalOrders >= 10) {
-          newLevel = "金";
+          newLevel = "環遊旅人";
         } else if (totalSpent >= 8000 || totalOrders >= 5) {
-          newLevel = "銀";
+          newLevel = "探索旅人";
         }
 
         // D. 若等級有提升，更新資料庫的 member_level 欄位
