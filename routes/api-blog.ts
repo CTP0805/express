@@ -98,16 +98,10 @@ type BlogCommentRow = RowDataPacket & {
   created_at: Date | string;
 };
 
-/** 舊 DB 一定有的欄位（保證列表可顯示） */
+/** 舊 DB 一定有的文章欄位；訂單／商品資料由 getPostSelect 動態補上。 */
 const POST_SELECT_BASE = `
   id, title, slug, content, excerpt, cover_image, content_image,
-  status, published_at, updated_at, created_at, author_id, category_id,
-  (
-    SELECT ec.category_name
-    FROM experience_categories AS ec
-    WHERE ec.id = posts.category_id
-    LIMIT 1
-  ) AS category_name
+  status, published_at, updated_at, created_at, author_id
 `;
 
 /** 擴充欄位快取：使用者可能只加 review_note、或完整 order_* */
@@ -146,22 +140,118 @@ async function postsHasColumn(column: string): Promise<boolean> {
 }
 
 async function postsHaveOrderColumns(): Promise<boolean> {
-  return postsHasColumn("order_id");
+  return (
+    (await postsHasColumn("order_id")) &&
+    (await postsHasColumn("order_title"))
+  );
 }
 
 async function postsHaveReviewNote(): Promise<boolean> {
   return postsHasColumn("review_note");
 }
 
-/** 依實際存在的欄位組 SELECT（修正：只加 review_note 也能讀退回原因） */
+/**
+ * 從文章綁定的 order_item / experience 反查訂單、城市與商品類型。
+ * 舊草稿若只存過 order_id，也會以該訂單第一筆商品補齊畫面欄位。
+ */
 async function getPostSelect(): Promise<string> {
-  const extras: string[] = [];
-  if (await postsHasColumn("order_id")) extras.push("order_id");
-  if (await postsHasColumn("order_title")) extras.push("order_title");
-  if (await postsHasColumn("review_note")) extras.push("review_note");
-  if (extras.length === 0) return POST_SELECT_BASE;
+  const hasOrderId = await postsHasColumn("order_id");
+  const hasOrderTitle = await postsHasColumn("order_title");
+  const legacyOrderIdExpression = `
+    CASE
+      WHEN posts.excerpt LIKE '[訂單 %｜%'
+      THEN SUBSTRING_INDEX(
+        SUBSTRING_INDEX(posts.excerpt, '｜', 1),
+        '[訂單 ',
+        -1
+      )
+      ELSE NULL
+    END
+  `;
+  const orderIdFallback = `
+    COALESCE(
+      (SELECT oi.order_id
+       FROM order_items AS oi
+       WHERE oi.id = posts.order_item_id
+       LIMIT 1),
+      ${legacyOrderIdExpression}
+    )
+  `;
+  const orderIdExpression = hasOrderId
+    ? `COALESCE(posts.order_id, ${orderIdFallback})`
+    : orderIdFallback;
+  const orderExperienceFallback = `
+    (SELECT oi.experience_id
+     FROM order_items AS oi
+     WHERE oi.order_id = ${orderIdExpression}
+     ORDER BY oi.id ASC
+     LIMIT 1)
+  `;
+  const experienceIdExpression = `
+    COALESCE(
+      posts.experience_id,
+      (SELECT oi.experience_id
+       FROM order_items AS oi
+       WHERE oi.id = posts.order_item_id
+       LIMIT 1),
+      ${orderExperienceFallback}
+    )
+  `;
+  const orderItemIdExpression = `
+    COALESCE(
+      posts.order_item_id,
+      (SELECT oi.id
+       FROM order_items AS oi
+       WHERE oi.order_id = ${orderIdExpression}
+       ORDER BY oi.id ASC
+       LIMIT 1)
+    )
+  `;
+  const experienceTitleExpression = `
+    (SELECT e.title
+     FROM experiences AS e
+     WHERE e.id = ${experienceIdExpression}
+     LIMIT 1)
+  `;
+  const orderTitleExpression = hasOrderTitle
+    ? `COALESCE(posts.order_title, ${experienceTitleExpression})`
+    : experienceTitleExpression;
+  const reviewNoteSelect = (await postsHaveReviewNote())
+    ? "posts.review_note"
+    : "NULL AS review_note";
+
   return `${POST_SELECT_BASE},
-  ${extras.join(", ")}
+  ${orderItemIdExpression} AS order_item_id,
+  ${experienceIdExpression} AS experience_id,
+  ${orderIdExpression} AS order_id,
+  ${orderTitleExpression} AS order_title,
+  ${experienceTitleExpression} AS experience_title,
+  (SELECT e.city
+   FROM experiences AS e
+   WHERE e.id = ${experienceIdExpression}
+   LIMIT 1) AS city,
+  COALESCE(
+    posts.category_id,
+    (SELECT e.category_id
+     FROM experiences AS e
+     WHERE e.id = ${experienceIdExpression}
+     LIMIT 1)
+  ) AS category_id,
+  (SELECT ec.category_name
+   FROM experience_categories AS ec
+   WHERE ec.id = COALESCE(
+     posts.category_id,
+     (SELECT e.category_id
+      FROM experiences AS e
+      WHERE e.id = ${experienceIdExpression}
+      LIMIT 1)
+   )
+   LIMIT 1) AS category_name,
+  ${reviewNoteSelect},
+  (SELECT m.name
+   FROM member AS m
+   WHERE m.id = posts.author_id
+   LIMIT 1) AS author_name
 `;
 }
 
@@ -188,7 +278,13 @@ function mapPost(row: PostRow) {
     author_id: Number(row.author_id),
     category_id: row.category_id == null ? null : Number(row.category_id),
     category_name: row.category_name ?? null,
-    order_id: row.order_id ?? null,
+    order_item_id:
+      row.order_item_id == null ? null : Number(row.order_item_id),
+    experience_id:
+      row.experience_id == null ? null : Number(row.experience_id),
+    experience_title: row.experience_title ?? null,
+    city: row.city ?? null,
+    order_id: row.order_id == null ? null : String(row.order_id),
     order_title: row.order_title ?? null,
     review_note: row.review_note ?? null,
     author_name: row.author_name ?? null,
@@ -463,8 +559,29 @@ router.get(
       const memberId = req.user!.id;
       const withOrderCol = await postsHaveOrderColumns();
       const excludeWritten = withOrderCol
-        ? `AND NOT EXISTS (SELECT 1 FROM posts p WHERE p.order_id = om.id)`
-        : "";
+        ? `
+          AND NOT EXISTS (
+            SELECT 1
+            FROM posts p
+            WHERE p.order_id = om.id
+              OR p.order_item_id IN (
+                SELECT written_item.id
+                FROM order_items written_item
+                WHERE written_item.order_id = om.id
+              )
+          )
+        `
+        : `
+          AND NOT EXISTS (
+            SELECT 1
+            FROM posts p
+            WHERE p.order_item_id IN (
+              SELECT written_item.id
+              FROM order_items written_item
+              WHERE written_item.order_id = om.id
+            )
+          )
+        `;
 
       const [rows] = await pool.query<RowDataPacket[]>(
         `
@@ -799,19 +916,23 @@ router.post("/", authenticate, async (req: Request, res: Response) => {
     // 訂單必須屬於本人且 paid
     const [orderRows] = await pool.query<RowDataPacket[]>(
       `
-        SELECT om.id, om.order_status,
-          COALESCE(
-            (
-              SELECT e.title
-              FROM order_items oi
-              INNER JOIN experiences e ON e.id = oi.experience_id
-              WHERE oi.order_id = om.id
-              ORDER BY oi.id ASC
-              LIMIT 1
-            ),
-            CONCAT('訂單 ', om.id)
-          ) AS order_title
+        SELECT
+          om.id,
+          om.order_status,
+          oi.id AS order_item_id,
+          oi.experience_id,
+          e.category_id,
+          COALESCE(e.title, CONCAT('訂單 ', om.id)) AS order_title
         FROM order_main om
+        LEFT JOIN order_items oi
+          ON oi.id = (
+            SELECT first_item.id
+            FROM order_items first_item
+            WHERE first_item.order_id = om.id
+            ORDER BY first_item.id ASC
+            LIMIT 1
+          )
+        LEFT JOIN experiences e ON e.id = oi.experience_id
         WHERE om.id = ? AND om.member_id = ?
         LIMIT 1
       `,
@@ -826,12 +947,33 @@ router.post("/", authenticate, async (req: Request, res: Response) => {
       res.status(400).json({ success: false, message: "僅已完成（已付款）訂單可撰寫文章" });
       return;
     }
+    if (!order.order_item_id || !order.experience_id || !order.category_id) {
+      res.status(400).json({
+        success: false,
+        message: "此訂單缺少商品資料，無法建立文章",
+      });
+      return;
+    }
 
     const withOrderCol = await postsHaveOrderColumns();
     if (withOrderCol) {
       const [dup] = await pool.query<RowDataPacket[]>(
-        `SELECT id FROM posts WHERE order_id = ? LIMIT 1`,
-        [orderId],
+        `
+          SELECT id
+          FROM posts
+          WHERE order_id = ? OR order_item_id = ?
+          LIMIT 1
+        `,
+        [orderId, order.order_item_id],
+      );
+      if (dup.length > 0) {
+        res.status(400).json({ success: false, message: "此訂單已撰寫過文章" });
+        return;
+      }
+    } else {
+      const [dup] = await pool.query<RowDataPacket[]>(
+        `SELECT id FROM posts WHERE order_item_id = ? LIMIT 1`,
+        [order.order_item_id],
       );
       if (dup.length > 0) {
         res.status(400).json({ success: false, message: "此訂單已撰寫過文章" });
@@ -848,11 +990,10 @@ router.post("/", authenticate, async (req: Request, res: Response) => {
     const contentImage = persistSingleImageField(
       emptyToNull(body.content_image),
     );
-    // category_id 保留相容：若有傳則用，否則 null
-    const categoryId =
-      body.category_id != null && Number(body.category_id) > 0
-        ? Number(body.category_id)
-        : null;
+    // 商品類型、城市的來源必須跟訂單一致，不接受前端自行指定。
+    const categoryId = Number(order.category_id);
+    const orderItemId = Number(order.order_item_id);
+    const experienceId = Number(order.experience_id);
 
     let result: ResultSetHeader;
     if (withOrderCol) {
@@ -860,8 +1001,9 @@ router.post("/", authenticate, async (req: Request, res: Response) => {
         `
           INSERT INTO posts (
             title, slug, content, excerpt, cover_image, content_image,
-            status, published_at, author_id, category_id, order_id, order_title, review_note
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, ?, ?, ?, NULL)
+            status, published_at, author_id, category_id,
+            order_item_id, experience_id, order_id, order_title, review_note
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, ?, ?, ?, ?, ?, NULL)
         `,
         [
           title,
@@ -873,33 +1015,34 @@ router.post("/", authenticate, async (req: Request, res: Response) => {
           status,
           memberId,
           categoryId,
+          orderItemId,
+          experienceId,
           orderId,
           orderTitle,
         ],
       );
       result = insertResult;
     } else {
-      // 尚未跑 schema 擴充：仍可寫文（訂單名稱寫進 excerpt 前綴備註，不擋列表）
-      const excerptWithOrder =
-        excerpt ??
-        `[訂單 ${orderId}｜${orderTitle}]`;
       const [insertResult] = await pool.query<ResultSetHeader>(
         `
           INSERT INTO posts (
             title, slug, content, excerpt, cover_image, content_image,
-            status, published_at, author_id, category_id
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, ?)
+            status, published_at, author_id, category_id,
+            order_item_id, experience_id
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, ?, ?, ?)
         `,
         [
           title,
           slug,
           contentStored,
-          excerptWithOrder,
+          excerpt,
           coverImage,
           contentImage,
           status,
           memberId,
           categoryId,
+          orderItemId,
+          experienceId,
         ],
       );
       result = insertResult;
@@ -1097,7 +1240,8 @@ router.post(
 
       const body = req.body as { action?: string; note?: string };
       const action = String(body.action ?? "").trim();
-      const note = emptyToNull(body.note);
+      const note =
+        action === "approve" ? null : emptyToNull(body.note);
 
       if (action !== "approve" && action !== "reject") {
         res.status(400).json({

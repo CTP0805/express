@@ -950,7 +950,7 @@ router.put(
       if (updateResult) {
         res
           .status(200)
-          .json({ success: true, message: "密碼更新成功(，請重新登入?)" });
+          .json({ success: true, message: "密碼更新成功，請重新登入！" });
       }
     } else {
       res.status(400).json({ success: false, message: "帳號或密碼錯誤(後端)" });
