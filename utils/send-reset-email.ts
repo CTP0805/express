@@ -2,7 +2,6 @@ import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 import { EmailTemplate } from "./email-template.js";
-import pool from "../utils/connect-mysql.js";
 
 // TS 型別
 type ResetPasswordPayload = {

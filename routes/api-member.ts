@@ -20,7 +20,7 @@ const updateProfileSchema = z.object({
       .string()
       .trim()
       .regex(/^09\d{8}$/, {
-        message: "手機格式錯誤，請輸入 09 開頭的 10 碼手機號碼",
+        message: "手機格式錯誤",
       })
       .nullable(),
   ),
