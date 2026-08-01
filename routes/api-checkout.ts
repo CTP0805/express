@@ -2,6 +2,7 @@ import express, { type Request, type Response, Router } from "express";
 import type { RowDataPacket } from "mysql2/promise";
 import pool from "../utils/connect-mysql.js";
 import { authenticate } from "../middlewares/authenticate.js";
+import { sendVoucherEmail } from "../utils/send-voucher-email.js";
 
 const router: Router = Router();
 
@@ -49,12 +50,16 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
     coupon_id, // 前端選的折價券 ID (沒有就傳 null)
     points_redeemed, // 前端輸入要折抵的 M 幣數量 (沒有就 0)
     payment_method = "credit_card",
+    is_direct = false,
+    items = [], // 前端帶過來的實際結帳商品清單
   } = req.body;
 
   try {
-    // === 步驟 1：後端撈取購物車，自己計算金額（防止前端竄改金額） ===
-    // 撈出你的 cart 表商品
-    const [cartItems] = await pool.query<RowDataPacket[]>(
+    let checkoutCartItems = items;
+
+    // 若前端未傳 items，預設從 DB cart 撈取
+    if (!checkoutCartItems || checkoutCartItems.length === 0) {
+      const [rows] = await pool.query<RowDataPacket[]>(
   `SELECT 
     cart.id,
     cart.member_id,
@@ -69,17 +74,21 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
   WHERE cart.member_id = ?`,
       [memberId],
     );
+    checkoutCartItems = rows;
+}
 
-    if (!cartItems || cartItems.length === 0)
-      return res.status(400).json({ success: false, message: "購物車是空的" });
+    if (!checkoutCartItems || checkoutCartItems.length === 0)
+      return res.status(400).json({ success: false, message: "沒有可結帳的商品" });
 
     // 分別計算 (大人數 × 大人價) + (小孩數 × 小孩價)
     let original_amount = 0;
-    for (const item of cartItems) {
+    for (const item of checkoutCartItems) {
       const adultSubtotal =
-        Number(item.adult_quantity || 0) * Number(item.adult_price || 0);
+        Number(item.adultQuantity || item.adult_quantity || 0) *
+        Number(item.adultPrice || item.adult_price || 0);
       const childSubtotal =
-        Number(item.child_quantity || 0) * Number(item.child_price || 0);
+        Number(item.childQuantity || item.child_quantity || 0) *
+        Number(item.childPrice || item.child_price || 0);
 
       original_amount += adultSubtotal + childSubtotal;
     }
@@ -165,17 +174,21 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
     );
 
     // C. 寫入 order_items 明細表
-    for (const item of cartItems) {
-        const adultQty = Number(item.adult_quantity || 0);
-        const childQty = Number(item.child_quantity || 0);
-        const adultPrice = Number(item.adult_price || 0);
-        const childPrice = Number(item.child_price || 0);
+    for (const item of checkoutCartItems) {
+      const adultQty = Number(item.adultQuantity || item.adult_quantity || 0);
+      const childQty = Number(item.childQuantity || item.child_quantity || 0);
+      const adultPrice = Number(item.adultPrice || item.adult_price || 0);
+      const childPrice = Number(item.childPrice || item.child_price || 0);
         // 1. 計算該項目的真實小計金額 (大人 + 小孩)
         const itemTotal = (adultQty * adultPrice) + (childQty * childPrice);
         // 2. 計算總人數
         const totalQuantity = adultQty + childQty;
         // 3. 基準單價 (若有大人帶大人價，沒大人帶小孩價)
         const unitPrice = adultQty > 0 ? adultPrice : childPrice;
+
+        // 🚀 關鍵：兼顧前端傳來的 experienceId 與資料庫的 experience_id
+      const expId = item.experienceId || item.experience_id;
+      const sessId = item.sessionId || item.session_id;
 
         await pool.query(
         `
@@ -185,14 +198,28 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
       `,
         [
           order_id,
-          item.experience_id,
-          item.session_id,
+          expId,     // 帶入解析後的 ID
+          sessId,    // 帶入解析後的 ID
           unitPrice,     // 對應 original_unit_price
           totalQuantity, // 對應 quantity (總人數)
           itemTotal,     // 對應 subtotal (項目小計)
         ],
       );
+
+
+    // 🚀 關鍵：只有從「購物車結帳」時，才刪除購物車中對應被結帳的項目
+      if (!is_direct && expId && sessId) {
+        await pool.query(
+          "DELETE FROM cart WHERE member_id = ? AND experience_id = ? AND session_id = ?",
+          [
+            memberId,
+            item.experienceId || item.experience_id,
+            item.sessionId || item.session_id,
+          ]
+        );
+      }
     }
+    
 
     // D. 扣除會員 M 幣 (current_points)
     if (points_redeemed > 0) {
@@ -209,9 +236,6 @@ router.post("/submit", authenticate, async (req: Request, res: Response) => {
         [memberId, coupon_id],
       );
     }
-
-    // F. 清空該會員的購物車暂存
-    await pool.query("DELETE FROM cart WHERE member_id = ?", [memberId]);
 
     // === 步驟 5：大功告成，回傳訂單編號給前端，準備去付款頁面 ===
     res.json({ success: true, order_id, final_amount });
@@ -347,9 +371,32 @@ router.post("/pay-success", authenticate, async (req: Request, res: Response) =>
           );
         }
       }
-    }
+      // 🚀 關鍵新增：撈出行程標題並發送 Email 憑證！
+        try {
+          const [itemRows] = await pool.query<RowDataPacket[]>(
+            `SELECT experiences.title 
+             FROM order_items 
+             JOIN experiences ON order_items.experience_id = experiences.id 
+             WHERE order_items.order_id = ? LIMIT 1`,
+            [order_id]
+          );
 
-    res.json({ success: true, email: order.contact_email });
+          const title = itemRows[0]?.title || "精選體驗行程";
+          const targetEmail = order.contact_email || req.user?.email || "hwby2124@gmail.com";
+
+          // 背景發送 Email，不卡住 API 回應時間
+          sendVoucherEmail(targetEmail, {
+            order_id,
+            final_amount: Number(order.final_amount) || 0,
+            title,
+          }).catch(err => console.error("憑證 Email 寄送失敗:", err));
+
+        } catch (e) {
+          console.error("準備憑證信件資料失敗:", e);
+        }
+      }
+
+      res.json({ success: true, email: order.contact_email });
   } catch (error) {
     console.error("更新付款成功狀態失敗：", error);
     res.status(500).json({ success: false, message: "伺服器錯誤" });

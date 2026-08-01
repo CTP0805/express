@@ -51,8 +51,8 @@ const LEVEL_THRESHOLDS: Record<
   { minOrders: number; minSpent: number }
 > = {
   啟程旅人: { minOrders: 0, minSpent: 0 },
-  探索旅人: { minOrders: 3, minSpent: 5000 },
-  環遊旅人: { minOrders: 6, minSpent: 15000 },
+  探索旅人: { minOrders: 5, minSpent: 8000 },
+  環遊旅人: { minOrders: 10, minSpent: 20000 },
 };
 
 // 卡面主題由後端依資料庫等級決定，前端只套用回傳色碼。

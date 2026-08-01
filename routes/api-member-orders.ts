@@ -9,13 +9,14 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
   const memberId = req.user?.id;
 
   try {
-   const [rows] = await pool.query<RowDataPacket[]>(
- `SELECT 
+    const [rows] = await pool.query<RowDataPacket[]>(
+      `SELECT 
         order_items.id AS item_id,
         order_main.id AS order_id,
         order_items.item_status AS order_status,
         order_main.payment_method,
         order_items.subtotal AS item_price,
+        order_main.final_amount,
         order_main.created_at AS order_date,
         order_main.created_at AS booking_date,
         order_main.coupon_discount,
@@ -31,7 +32,7 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
        LEFT JOIN experience_images ON experiences.id = experience_images.experience_id AND experience_images.is_primary = 1
        WHERE order_main.member_id = ?
        ORDER BY order_main.created_at DESC`,
-      [memberId]
+      [memberId],
     );
 
     res.json({ success: true, orders: rows });
@@ -52,39 +53,44 @@ router.post("/cancel", authenticate, async (req: Request, res: Response) => {
       `SELECT 
         order_items.id AS item_id,
         order_items.item_status,
-        order_items.subtotal,
         order_main.id AS order_id,
-        order_main.points_redeemed
-       FROM order_items
-       JOIN order_main ON order_items.order_id = order_main.id
-       WHERE order_items.id = ? AND order_main.member_id = ?`,
-      [item_id, memberId]
+        order_main.final_amount,
+        order_main.points_earned
+      FROM order_items
+      JOIN order_main ON order_items.order_id = order_main.id
+      WHERE order_items.id = ? AND order_main.member_id = ?`,
+      [item_id, memberId],
     );
 
     const item = rows[0];
     if (!item) {
-      return res.status(404).json({ success: false, message: "找不到該預訂行程" });
+      return res
+        .status(404)
+        .json({ success: false, message: "找不到該預訂行程" });
     }
 
     if (item.item_status === "cancelled") {
-      return res.status(400).json({ success: false, message: "該行程已經取消過了" });
+      return res
+        .status(400)
+        .json({ success: false, message: "該行程已經取消過了" });
     }
 
     // 計算應退還的 M 幣 (以實付金額 1:1 轉換) 與 應扣除的已贈送 M 幣
-    const refundPoints = Math.round(Number(item.subtotal) || 0);
-    const earnedPointsToDeduct = Number(item.points_earned) || 0;
+    const refundPoints = Math.round(Number(item.final_amount) || 0);
+    // B. 計算應扣除的當初贈送 M 幣
+    const earnedPointsToDeduct = Math.round(Number(item.points_earned) || 0);
 
     // B. 將該筆 order_items 狀態更新為 'cancelled'
     await pool.query(
       "UPDATE order_items SET item_status = 'cancelled' WHERE id = ?",
-      [item_id]
+      [item_id],
     );
 
     // 更新會員 M 幣 (加上退款 M 幣 - 扣除已發放的獎勵點數)
     const netPointsChange = refundPoints - earnedPointsToDeduct;
     await pool.query(
       "UPDATE member SET current_points = GREATEST(0, current_points + ?) WHERE id = ?",
-      [netPointsChange, memberId]
+      [netPointsChange, memberId],
     );
 
     res.json({
