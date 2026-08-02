@@ -1,7 +1,7 @@
 import { type Request, type Response, Router } from "express";
 import pool from "../utils/connect-mysql.js";
 import type { RowDataPacket } from "mysql2";
-
+import uploadChatImage from "../utils/upload-chat-image.js";
 interface Room extends RowDataPacket {
   id: number;
 }
@@ -13,7 +13,17 @@ router.get("/:userId/messages", async (req: Request, res: Response) => {
     const { userId } = req.params;
     const [rows] = await pool.query(
       `
-            SELECT cm.sender,cm.text,cm.created_at,cm.is_read FROM chat_messages cm JOIN chat_rooms cr ON cm.room_id=cr.id WHERE cr.user_id=? ORDER BY cm.created_at ASC`,
+        SELECT 
+          cm.sender,
+          cm.text,
+          cm.image AS image_url,   -- 資料庫 image 轉成 image_url
+          cm.created_at,
+          cm.is_read
+        FROM chat_messages cm
+        JOIN chat_rooms cr ON cm.room_id = cr.id
+        WHERE cr.user_id = ?
+        ORDER BY cm.created_at ASC
+      `,
       [userId],
     );
     res.json(rows);
@@ -87,4 +97,33 @@ router.patch("/:userId/read", async (req: Request, res: Response) => {
     });
   }
 });
+
+router.post(
+  "/upload",
+  uploadChatImage.single("image"),
+  async (req: Request, res: Response) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({
+          success: false,
+          message: "沒有收到圖片",
+        });
+      }
+
+      const imageUrl = `/chat/${req.file.filename}`;
+
+      res.json({
+        success: true,
+        imageUrl,
+      });
+    } catch (err) {
+      console.error(err);
+
+      res.status(500).json({
+        success: false,
+        message: "圖片上傳失敗",
+      });
+    }
+  },
+);
 export default router;
