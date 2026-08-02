@@ -83,6 +83,7 @@ INSERT INTO `member` (
 (101, '一般會員(測試)', 'member@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '啟程旅人', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:42:45', '2026-07-21 09:44:46', 1, '會員', NULL),
 (102, '管理員(測試)', 'admin@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '啟程旅人', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:44:46', '2026-07-21 09:44:46', 1, '管理者', NULL),
 (103, '客服(測試)', 'support@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '啟程旅人', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:46:55', '2026-07-21 09:46:55', 1, '客服', NULL);
+(104, 'yang powei', 'hwty2124@gmail.com', '$2b$10S2ASBYDDshqtCwJEPMIklutAidsto1h/LM5tR7Es91...', '0911123456', NULL, NULL, NULL, '啟程旅人', '2026-08-01 20:32:38', NULL, 10000, 0, 0, '2026-08-02 20:32:16', '2026-08-02 22:48:11', 1, '會員', NULL);
 
 -- --------------------------------------------------------
 -- Seed data for `coupons`
@@ -3828,6 +3829,13 @@ INSERT INTO `member_coupons` (`id`, `member_id`, `coupon_id`, `is_used`, `receiv
 (628, 103, 8, 0, '2026-06-04 16:51:00', NULL),
 (629, 103, 9, 0, '2026-06-04 17:52:00', NULL),
 (630, 103, 10, 0, '2026-06-04 08:53:00', NULL);
+(630, 103, 10, 0, '2026-06-04 08:53:00', NULL),
+(631, 104, 1, 0, '2026-08-02 20:35:25', NULL),
+(632, 104, 2, 0, '2026-08-02 20:35:38', NULL),
+(633, 104, 3, 0, '2026-08-02 20:35:48', NULL),
+(634, 104, 4, 0, '2026-08-02 20:35:59', NULL),
+(635, 104, 5, 0, '2026-08-02 20:36:06', NULL),
+(636, 104, 6, 0, '2026-08-02 20:36:18', NULL);
 
 
 -- --------------------------------------------------------
@@ -4972,5 +4980,6 @@ UPDATE `member` SET `member_level`='環遊旅人', `current_points`=2700, `total
 UPDATE `member` SET `member_level`='啟程旅人', `current_points`=320, `total_spent`=2800, `total_orders`=2 WHERE `id`=101;
 UPDATE `member` SET `member_level`='探索旅人', `current_points`=860, `total_spent`=9200, `total_orders`=5 WHERE `id`=102;
 UPDATE `member` SET `member_level`='環遊旅人', `current_points`=2400, `total_spent`=22000, `total_orders`=12 WHERE `id`=103;
+UPDATE `member` SET `member_level`='探索旅人', `current_points`=10000, `total_spent`=6000, `total_orders`=0 WHERE `id`=104;
 
 COMMIT;
