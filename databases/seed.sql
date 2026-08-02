@@ -2057,6 +2057,11 @@ INSERT INTO `order_main` (`id`, `member_id`, `contact_name`, `contact_phone`, `c
 ('EU26R0799', 19, '賴冠宇', '0900000019', 'lai.guanyu@example.com', 'credit_card', 'paid', 3600.00, 1, 300.00, 20, 3280.00, 328, '2026-07-23 15:13:00', '2026-07-23 15:13:00'),
 ('EU26R0800', 20, '蘇彥廷', '0978123456', 'su.yanting@example.com', 'line_pay', 'paid', 6000.00, 1, 300.00, 20, 5680.00, 568, '2026-07-24 16:20:00', '2026-07-24 16:20:00');
 
+-- 測試會員 101：會員等級頁使用的兩筆已付款訂單，累積實付 NT$2,800。
+INSERT INTO `order_main` (`id`, `member_id`, `contact_name`, `contact_phone`, `contact_email`, `payment_method`, `order_status`, `original_amount`, `coupon_id`, `coupon_discount`, `points_redeemed`, `final_amount`, `points_earned`, `created_at`, `updated_at`) VALUES
+('EU101LV0001', 101, '一般會員(測試)', '0900000101', 'member@example.com', 'credit_card', 'paid', 1200.00, NULL, 0.00, 0, 1200.00, 12, '2026-07-12 10:00:00', '2026-07-12 10:00:00'),
+('EU101LV0002', 101, '一般會員(測試)', '0900000101', 'member@example.com', 'line_pay', 'paid', 1600.00, NULL, 0.00, 0, 1600.00, 16, '2026-07-22 14:30:00', '2026-07-22 14:30:00');
+
 -- --------------------------------------------------------
 -- Seed data for `order_items`
 /*
@@ -3115,6 +3120,11 @@ INSERT INTO `order_items` (`id`, `order_id`, `experience_id`, `session_id`, `ori
 (1050, 'EU26R0798', 98, 98, 2400.00, 2, 4800.00, 'confirmed', '希望提供無酒精飲品選項。', '2026-07-22 14:06:00'),
 (1051, 'EU26R0799', 99, 99, 1800.00, 2, 3600.00, 'confirmed', '希望保留沿途拍照與休息時間。', '2026-07-23 15:13:00'),
 (1052, 'EU26R0800', 100, 100, 3000.00, 2, 6000.00, 'confirmed', '想多拍幾張自然互動畫面。', '2026-07-24 16:20:00');
+
+-- 測試會員 101：會員等級頁訂單明細（id 交由資料庫自動產生）。
+INSERT INTO `order_items` (`order_id`, `experience_id`, `session_id`, `original_unit_price`, `quantity`, `subtotal`, `item_status`, `special_request`, `updated_at`) VALUES
+('EU101LV0001', 1, 1, 1200.00, 1, 1200.00, 'confirmed', '測試會員 101 的第一筆會員等級訂單。', '2026-07-12 10:00:00'),
+('EU101LV0002', 2, 2, 800.00, 2, 1600.00, 'confirmed', '測試會員 101 的第二筆會員等級訂單。', '2026-07-22 14:30:00');
 
 -- --------------------------------------------------------
 -- Seed data for `member_coupons`

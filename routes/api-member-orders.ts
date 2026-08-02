@@ -1,5 +1,5 @@
 import express, { type Request, type Response, Router } from "express";
-import type { RowDataPacket } from "mysql2/promise";
+import type { ResultSetHeader, RowDataPacket } from "mysql2/promise";
 import pool from "../utils/connect-mysql.js";
 import { authenticate } from "../middlewares/authenticate.js";
 
@@ -45,56 +45,79 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
 router.post("/cancel", authenticate, async (req: Request, res: Response) => {
   const { item_id } = req.body;
   const memberId = req.user?.id;
+  const connection = await pool.getConnection();
 
   try {
+    await connection.beginTransaction();
+
     // 檢查訂單是否存在且屬於該會員
-    const [rows] = await pool.query<RowDataPacket[]>(
+    const [rows] = await connection.query<RowDataPacket[]>(
       `SELECT 
         order_items.id AS item_id,
         order_items.item_status,
         order_items.subtotal,
+        order_items.refunded_points,
         order_main.id AS order_id,
-        order_main.points_redeemed
+        order_main.order_status
        FROM order_items
        JOIN order_main ON order_items.order_id = order_main.id
-       WHERE order_items.id = ? AND order_main.member_id = ?`,
+       WHERE order_items.id = ? AND order_main.member_id = ?
+       FOR UPDATE`,
       [item_id, memberId]
     );
 
     const item = rows[0];
     if (!item) {
+      await connection.rollback();
       return res.status(404).json({ success: false, message: "找不到該預訂行程" });
     }
 
     if (item.item_status === "cancelled") {
+      await connection.rollback();
       return res.status(400).json({ success: false, message: "該行程已經取消過了" });
     }
+    if (item.order_status !== "paid" || item.item_status !== "confirmed") {
+      await connection.rollback();
+      return res.status(400).json({
+        success: false,
+        message: "只能取消已付款且已確認的行程",
+      });
+    }
 
-    // 計算應退還的 M 幣 (以實付金額 1:1 轉換) 與 應扣除的已贈送 M 幣
+    // 單一商品小計以 1:1 轉成 M 幣退還，並存在 order_items 作為永久紀錄。
     const refundPoints = Math.round(Number(item.subtotal) || 0);
-    const earnedPointsToDeduct = Number(item.points_earned) || 0;
 
-    // B. 將該筆 order_items 狀態更新為 'cancelled'
-    await pool.query(
-      "UPDATE order_items SET item_status = 'cancelled' WHERE id = ?",
-      [item_id]
+    const [updateResult] = await connection.query<ResultSetHeader>(
+      `UPDATE order_items
+       SET item_status = 'cancelled', refunded_points = ?, cancelled_at = NOW()
+       WHERE id = ? AND item_status = 'confirmed'`,
+      [refundPoints, item_id]
     );
+    if (updateResult.affectedRows !== 1) {
+      await connection.rollback();
+      return res.status(409).json({
+        success: false,
+        message: "行程狀態已改變，請重新整理後再試",
+      });
+    }
 
-    // 更新會員 M 幣 (加上退款 M 幣 - 扣除已發放的獎勵點數)
-    const netPointsChange = refundPoints - earnedPointsToDeduct;
-    await pool.query(
-      "UPDATE member SET current_points = GREATEST(0, current_points + ?) WHERE id = ?",
-      [netPointsChange, memberId]
+    await connection.query(
+      "UPDATE member SET current_points = current_points + ? WHERE id = ?",
+      [refundPoints, memberId]
     );
+    await connection.commit();
 
     res.json({
       success: true,
-      message: "取消成功，實付金額已全額轉換為 M 幣退還！",
+      message: "取消成功，單一商品金額已轉換為 M 幣退還！",
       refunded_points: refundPoints,
     });
   } catch (error) {
+    await connection.rollback();
     console.error("取消訂單失敗：", error);
     res.status(500).json({ success: false, message: "伺服器錯誤" });
+  } finally {
+    connection.release();
   }
 });
 

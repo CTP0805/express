@@ -5,8 +5,8 @@
  * （獨立檔，不修改 api-member.ts）
  *
  * GET  /api/member-order           目前登入會員的訂單列表（含明細）
- * GET  /api/member-order/:id       單筆訂單詳情
- * POST /api/member-order/:id/cancel  取消訂單（pending／paid → cancelled）
+ * POST /api/member-order/review-image  上傳評價圖片
+ * POST /api/member-order/items/:itemId/review  新增單一訂單項目評價
  */
 import { type Request, type Response, Router } from "express";
 import type { ResultSetHeader, RowDataPacket } from "mysql2";
@@ -493,136 +493,6 @@ router.post(
     } catch (error) {
       console.error("[POST /api/member-order/items/:itemId/review]", error);
       res.status(500).json({ success: false, message: "送出評價失敗" });
-    }
-  },
-);
-
-/**
- * GET /:id
- * 單筆訂單（僅本人）
- */
-router.get("/:id", authenticate, async (req: Request, res: Response) => {
-  try {
-    const memberId = req.user!.id;
-    const orderId = String(req.params.id ?? "").trim();
-    if (!orderId) {
-      res.status(400).json({ success: false, message: "缺少訂單編號" });
-      return;
-    }
-
-    const [orderRows] = await pool.query<OrderMainRow[]>(
-      `
-        SELECT
-          id, member_id, contact_name, contact_phone, contact_email,
-          payment_method, order_status, original_amount, coupon_id,
-          coupon_discount, points_redeemed, final_amount, points_earned,
-          created_at, updated_at
-        FROM order_main
-        WHERE id = ? AND member_id = ?
-        LIMIT 1
-      `,
-      [orderId, memberId],
-    );
-
-    const main = orderRows[0];
-    if (!main) {
-      res.status(404).json({ success: false, message: "找不到訂單" });
-      return;
-    }
-
-    const itemMap = await fetchItemsForOrders([orderId]);
-    res.status(200).json({
-      success: true,
-      message: "訂單取得成功",
-      data: { order: mapOrder(main, itemMap.get(orderId) ?? []) },
-    });
-  } catch (error) {
-    console.error("[GET /api/member-order/:id]", error);
-    res.status(500).json({ success: false, message: "取得訂單失敗" });
-  }
-});
-
-/**
- * POST /:id/cancel
- * 取消訂單
- */
-router.post(
-  "/:id/cancel",
-  authenticate,
-  async (req: Request, res: Response) => {
-    try {
-      const memberId = req.user!.id;
-      const orderId = String(req.params.id ?? "").trim();
-      if (!orderId) {
-        res.status(400).json({ success: false, message: "缺少訂單編號" });
-        return;
-      }
-
-      const [orderRows] = await pool.query<OrderMainRow[]>(
-        `
-          SELECT id, member_id, order_status
-          FROM order_main
-          WHERE id = ? AND member_id = ?
-          LIMIT 1
-        `,
-        [orderId, memberId],
-      );
-      const main = orderRows[0];
-      if (!main) {
-        res.status(404).json({ success: false, message: "找不到訂單" });
-        return;
-      }
-      if (main.order_status === "cancelled") {
-        res.status(400).json({ success: false, message: "訂單已取消" });
-        return;
-      }
-      if (main.order_status !== "pending" && main.order_status !== "paid") {
-        res.status(400).json({ success: false, message: "此訂單無法取消" });
-        return;
-      }
-
-      await pool.query<ResultSetHeader>(
-        `
-          UPDATE order_main
-          SET order_status = 'cancelled', updated_at = NOW()
-          WHERE id = ? AND member_id = ?
-        `,
-        [orderId, memberId],
-      );
-      await pool.query(
-        `
-          UPDATE order_items
-          SET item_status = 'cancelled', updated_at = NOW()
-          WHERE order_id = ?
-        `,
-        [orderId],
-      );
-
-      const [updatedRows] = await pool.query<OrderMainRow[]>(
-        `
-          SELECT
-            id, member_id, contact_name, contact_phone, contact_email,
-            payment_method, order_status, original_amount, coupon_id,
-            coupon_discount, points_redeemed, final_amount, points_earned,
-            created_at, updated_at
-          FROM order_main
-          WHERE id = ?
-          LIMIT 1
-        `,
-        [orderId],
-      );
-      const itemMap = await fetchItemsForOrders([orderId]);
-
-      res.status(200).json({
-        success: true,
-        message: "訂單已取消",
-        data: {
-          order: mapOrder(updatedRows[0]!, itemMap.get(orderId) ?? []),
-        },
-      });
-    } catch (error) {
-      console.error("[POST /api/member-order/:id/cancel]", error);
-      res.status(500).json({ success: false, message: "取消訂單失敗" });
     }
   },
 );

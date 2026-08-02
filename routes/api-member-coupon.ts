@@ -13,7 +13,8 @@
  *   coupons         = 券「目錄」（有哪些券、折多少、有效期）
  *   member_coupons  = 會員「錢包裡的券」（誰領了、用過沒）
  *   member.current_points = 現在 M 幣餘額
- *   order_main      = 沒有獨立流水表，用 points_earned / points_redeemed「推導」流水
+ *   order_main      = 用 points_earned / points_redeemed 推導回饋與折抵流水
+ *   order_items     = 用 refunded_points / cancelled_at 推導單項取消退款流水
  *
  * 付款成功後核銷／發幣／升等不在這裡：
  *   → 見 api-payment-success-rewards.ts（成功頁呼叫）
@@ -96,6 +97,13 @@ type OrderPointRow = RowDataPacket & {
   points_redeemed: number;
   created_at: Date | string;
   order_status: string;
+};
+
+type ItemRefundRow = RowDataPacket & {
+  item_id: number;
+  order_id: string;
+  refunded_points: number;
+  cancelled_at: Date | string;
 };
 
 type MemberPointRow = RowDataPacket & {
@@ -201,13 +209,30 @@ router.get("/benefits", authenticate, async (req: Request, res: Response) => {
       return;
     }
 
-    // (2) 由訂單推導 M幣「流水」（沒有獨立 point_transactions 表）
+    // (2) 由 order_main / order_items 推導 M幣流水（沒有獨立 point_transactions 表）
     const [orderRows] = await pool.query<OrderPointRow[]>(
       `
         SELECT id, points_earned, points_redeemed, created_at, order_status
         FROM order_main
         WHERE member_id = ?
         ORDER BY created_at DESC
+      `,
+      [memberId],
+    );
+    const [refundRows] = await pool.query<ItemRefundRow[]>(
+      `
+        SELECT
+          oi.id AS item_id,
+          oi.order_id,
+          oi.refunded_points,
+          oi.cancelled_at
+        FROM order_items AS oi
+        INNER JOIN order_main AS om ON om.id = oi.order_id
+        WHERE om.member_id = ?
+          AND oi.item_status = 'cancelled'
+          AND oi.refunded_points > 0
+          AND oi.cancelled_at IS NOT NULL
+        ORDER BY oi.cancelled_at DESC
       `,
       [memberId],
     );
@@ -254,6 +279,20 @@ router.get("/benefits", authenticate, async (req: Request, res: Response) => {
           expires_at: null,
         });
       }
+    }
+    for (const refund of refundRows) {
+      transactions.push({
+        id: txId++,
+        user_id: memberId,
+        title: `取消單一商品退還 M幣 · ${refund.order_id}`,
+        amount: Number(refund.refunded_points),
+        type: "refund",
+        status: "earned",
+        order_id: refund.order_id,
+        created_at:
+          toIso(refund.cancelled_at) ?? new Date().toISOString(),
+        expires_at: null,
+      });
     }
 
     transactions.sort(
