@@ -1,7 +1,7 @@
 import type { Server } from "socket.io";
 import type { ResultSetHeader } from "mysql2";
 import pool from "../utils/connect-mysql.js";
-
+const onlineAdmins = new Map<string, string>();
 type ChatMessage = {
   roomId: string;
   text: string;
@@ -11,10 +11,45 @@ type ChatMessage = {
 
 export default function chatSocket(io: Server) {
   io.on("connection", (socket) => {
+    socket.on("admin-online", (adminId) => {
+      onlineAdmins.set(String(adminId), socket.id);
+
+      console.log("客服上線:", adminId, socket.id);
+
+      io.emit("admin-status", {
+        adminId,
+        online: true,
+      });
+    });
+    socket.on("disconnect", () => {
+      for (const [adminId, socketId] of onlineAdmins.entries()) {
+        if (socketId === socket.id) {
+          onlineAdmins.delete(adminId);
+
+          io.emit("admin-status", {
+            adminId,
+            online: false,
+          });
+
+          console.log("客服離線:", adminId);
+        }
+      }
+    });
     socket.on("join-room", (roomId) => {
       socket.join(roomId);
     });
+    socket.on("admin-typing", ({ roomId }) => {
+      console.log("admin typing:", roomId);
 
+      const room = io.sockets.adapter.rooms.get(roomId);
+
+      console.log("房間成員:", room);
+
+      socket.to(roomId).emit("admin-typing");
+    });
+    socket.on("user-typing", ({ roomId }) => {
+      socket.to(roomId).emit("user-typing");
+    });
     socket.on("send-message", async (data: ChatMessage) => {
       try {
         const userId = data.roomId.split("-")[1];
