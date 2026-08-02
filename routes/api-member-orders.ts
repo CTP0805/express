@@ -1,5 +1,5 @@
 import express, { type Request, type Response, Router } from "express";
-import type { RowDataPacket } from "mysql2/promise";
+import type { ResultSetHeader, RowDataPacket } from "mysql2/promise";
 import pool from "../utils/connect-mysql.js";
 import { authenticate } from "../middlewares/authenticate.js";
 
@@ -46,10 +46,13 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
 router.post("/cancel", authenticate, async (req: Request, res: Response) => {
   const { item_id } = req.body;
   const memberId = req.user?.id;
+  const connection = await pool.getConnection();
 
   try {
+    await connection.beginTransaction();
+
     // 檢查訂單是否存在且屬於該會員
-    const [rows] = await pool.query<RowDataPacket[]>(
+    const [rows] = await connection.query<RowDataPacket[]>(
       `SELECT 
         order_items.id AS item_id,
         order_items.item_status,
@@ -74,6 +77,13 @@ router.post("/cancel", authenticate, async (req: Request, res: Response) => {
         .status(400)
         .json({ success: false, message: "該行程已經取消過了" });
     }
+    if (item.order_status !== "paid" || item.item_status !== "confirmed") {
+      await connection.rollback();
+      return res.status(400).json({
+        success: false,
+        message: "只能取消已付款且已確認的行程",
+      });
+    }
 
     // 計算應退還的 M 幣 (以實付金額 1:1 轉換) 與 應扣除的已贈送 M 幣
     const refundPoints = Math.round(Number(item.final_amount) || 0);
@@ -95,7 +105,7 @@ router.post("/cancel", authenticate, async (req: Request, res: Response) => {
 
     res.json({
       success: true,
-      message: "取消成功，實付金額已全額轉換為 M 幣退還！",
+      message: "取消成功，單一商品金額已轉換為 M 幣退還！",
       refunded_points: refundPoints,
     });
   } catch (error) {

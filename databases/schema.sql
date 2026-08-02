@@ -280,6 +280,8 @@ CREATE TABLE `order_items` (
   `quantity` INT NOT NULL,
   `subtotal` DECIMAL(10,2) NOT NULL,
   `item_status` ENUM('pending','confirmed','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `refunded_points` INT NOT NULL DEFAULT 0,
+  `cancelled_at` DATETIME DEFAULT NULL,
   `special_request` TEXT COLLATE utf8mb4_unicode_ci,
   `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
@@ -481,7 +483,9 @@ CREATE TABLE `blog_comments` (
   `post_id` BIGINT UNSIGNED NOT NULL,
   `member_id` INT NOT NULL,
   `content` VARCHAR(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` VARCHAR(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
   PRIMARY KEY (`id`),
   KEY `idx_blog_comments_post_created` (`post_id`, `created_at`),

@@ -2085,6 +2085,10 @@ SET
     INTERVAL MOD(CAST(RIGHT(id, 4) AS UNSIGNED) - 1, 10) DAY
   )
 WHERE id LIKE 'EU26R%';
+-- 測試會員 101：會員等級頁使用的兩筆已付款訂單，累積實付 NT$2,800。
+INSERT INTO `order_main` (`id`, `member_id`, `contact_name`, `contact_phone`, `contact_email`, `payment_method`, `order_status`, `original_amount`, `coupon_id`, `coupon_discount`, `points_redeemed`, `final_amount`, `points_earned`, `created_at`, `updated_at`) VALUES
+('EU101LV0001', 101, '一般會員(測試)', '0900000101', 'member@example.com', 'credit_card', 'paid', 1200.00, NULL, 0.00, 0, 1200.00, 12, '2026-07-12 10:00:00', '2026-07-12 10:00:00'),
+('EU101LV0002', 101, '一般會員(測試)', '0900000101', 'member@example.com', 'line_pay', 'paid', 1600.00, NULL, 0.00, 0, 1600.00, 16, '2026-07-22 14:30:00', '2026-07-22 14:30:00');
 
 -- --------------------------------------------------------
 -- Seed data for `order_items`
@@ -3193,6 +3197,10 @@ JOIN historical_sessions s
   AND s.session_date = t.session_date;
 
 
+-- 測試會員 101：會員等級頁訂單明細（id 交由資料庫自動產生）。
+INSERT INTO `order_items` (`order_id`, `experience_id`, `session_id`, `original_unit_price`, `quantity`, `subtotal`, `item_status`, `special_request`, `updated_at`) VALUES
+('EU101LV0001', 1, 1, 1200.00, 1, 1200.00, 'confirmed', '測試會員 101 的第一筆會員等級訂單。', '2026-07-12 10:00:00'),
+('EU101LV0002', 2, 2, 800.00, 2, 1600.00, 'confirmed', '測試會員 101 的第二筆會員等級訂單。', '2026-07-22 14:30:00');
 
 -- --------------------------------------------------------
 -- Seed data for `member_coupons`

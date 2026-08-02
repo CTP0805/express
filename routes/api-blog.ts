@@ -32,6 +32,8 @@
  * GET    /api/blog/pending-review  待審核佇列（管理者）
  * GET    /api/blog/eligible-orders 可撰寫的已完成訂單（需登入）
  * GET    /api/blog/slug/:slug      已上架單篇
+ * PUT    /api/blog/comments/:id    編輯自己的留言
+ * DELETE /api/blog/comments/:id    軟刪除自己的留言
  * GET    /api/blog/:id             單篇
  * POST   /api/blog                 新增（會員綁 order_id）
  * PUT    /api/blog/:id             更新（僅作者內容；管理者不可改內容）
@@ -96,6 +98,7 @@ type BlogCommentRow = RowDataPacket & {
   author_avatar: string | null;
   content: string;
   created_at: Date | string;
+  updated_at: Date | string;
 };
 
 /** 舊 DB 一定有的文章欄位；訂單／商品資料由 getPostSelect 動態補上。 */
@@ -262,6 +265,19 @@ function toIso(value: Date | string | null | undefined): string | null {
   return Number.isNaN(d.getTime()) ? String(value) : d.toISOString();
 }
 
+function mapBlogComment(row: BlogCommentRow) {
+  return {
+    id: Number(row.id),
+    post_id: Number(row.post_id),
+    member_id: Number(row.member_id),
+    author_name: row.author_name,
+    author_avatar: row.author_avatar,
+    content: row.content,
+    created_at: toIso(row.created_at) ?? new Date().toISOString(),
+    updated_at: toIso(row.updated_at) ?? new Date().toISOString(),
+  };
+}
+
 function mapPost(row: PostRow) {
   return {
     id: Number(row.id),
@@ -379,6 +395,7 @@ router.get("/", async (req: Request, res: Response) => {
             SELECT COUNT(*)
             FROM blog_comments AS bc
             WHERE bc.post_id = posts.id
+              AND bc.status = 'published'
           ) AS comment_count
         FROM posts
         ${where}
@@ -667,11 +684,13 @@ router.get("/slug/:slug/comments", async (req: Request, res: Response) => {
           m.name AS author_name,
           m.avatar_url AS author_avatar,
           bc.content,
-          bc.created_at
+          bc.created_at,
+          bc.updated_at
         FROM blog_comments AS bc
         INNER JOIN member AS m
           ON m.id = bc.member_id
         WHERE bc.post_id = ?
+          AND bc.status = 'published'
         ORDER BY bc.created_at DESC, bc.id DESC
       `,
       [post.id],
@@ -679,16 +698,7 @@ router.get("/slug/:slug/comments", async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      comments: rows.map((row) => ({
-        id: Number(row.id),
-        post_id: Number(row.post_id),
-        member_id: Number(row.member_id),
-        author_name: row.author_name,
-        author_avatar: row.author_avatar,
-        content: row.content,
-        created_at:
-          toIso(row.created_at) ?? new Date().toISOString(),
-      })),
+      comments: rows.map(mapBlogComment),
     });
   } catch (error) {
     console.error("[GET /api/blog/slug/:slug/comments]", error);
@@ -757,7 +767,8 @@ router.post(
             m.name AS author_name,
             m.avatar_url AS author_avatar,
             bc.content,
-            bc.created_at
+            bc.created_at,
+            bc.updated_at
           FROM blog_comments AS bc
           INNER JOIN member AS m
             ON m.id = bc.member_id
@@ -778,20 +789,146 @@ router.post(
       res.status(201).json({
         success: true,
         message: "留言已送出",
-        comment: {
-          id: Number(created.id),
-          post_id: Number(created.post_id),
-          member_id: Number(created.member_id),
-          author_name: created.author_name,
-          author_avatar: created.author_avatar,
-          content: created.content,
-          created_at:
-            toIso(created.created_at) ?? new Date().toISOString(),
-        },
+        comment: mapBlogComment(created),
       });
     } catch (error) {
       console.error("[POST /api/blog/slug/:slug/comments]", error);
       res.status(500).json({ success: false, message: "送出留言失敗" });
+    }
+  },
+);
+
+// =============================================================================
+// 【區塊】編輯文章留言 PUT /comments/:id（僅留言本人）
+// =============================================================================
+router.put(
+  "/comments/:id",
+  authenticate,
+  async (req: Request, res: Response) => {
+    try {
+      const commentId = Number(req.params.id);
+      const memberId = req.user?.id;
+      const content = String(
+        (req.body as { content?: unknown }).content ?? "",
+      ).trim();
+
+      if (!Number.isInteger(commentId) || commentId <= 0) {
+        res.status(400).json({ success: false, message: "留言編號不正確" });
+        return;
+      }
+      if (!memberId) {
+        res.status(401).json({ success: false, message: "請先登入" });
+        return;
+      }
+      if (content.length < 2 || content.length > 500) {
+        res.status(400).json({
+          success: false,
+          message: "留言內容需為 2 至 500 個字",
+        });
+        return;
+      }
+
+      const [result] = await pool.query<ResultSetHeader>(
+        `
+          UPDATE blog_comments
+          SET content = ?
+          WHERE id = ?
+            AND member_id = ?
+            AND status = 'published'
+        `,
+        [content, commentId, memberId],
+      );
+      if (result.affectedRows === 0) {
+        res.status(404).json({
+          success: false,
+          message: "找不到可編輯的留言",
+        });
+        return;
+      }
+
+      const [rows] = await pool.query<BlogCommentRow[]>(
+        `
+          SELECT
+            bc.id,
+            bc.post_id,
+            bc.member_id,
+            m.name AS author_name,
+            m.avatar_url AS author_avatar,
+            bc.content,
+            bc.created_at,
+            bc.updated_at
+          FROM blog_comments AS bc
+          INNER JOIN member AS m
+            ON m.id = bc.member_id
+          WHERE bc.id = ?
+            AND bc.status = 'published'
+          LIMIT 1
+        `,
+        [commentId],
+      );
+      const updated = rows[0];
+      if (!updated) {
+        res.status(500).json({
+          success: false,
+          message: "留言更新後讀取失敗",
+        });
+        return;
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "留言已更新",
+        comment: mapBlogComment(updated),
+      });
+    } catch (error) {
+      console.error("[PUT /api/blog/comments/:id]", error);
+      res.status(500).json({ success: false, message: "更新留言失敗" });
+    }
+  },
+);
+
+// =============================================================================
+// 【區塊】刪除文章留言 DELETE /comments/:id（改狀態為 deleted）
+// =============================================================================
+router.delete(
+  "/comments/:id",
+  authenticate,
+  async (req: Request, res: Response) => {
+    try {
+      const commentId = Number(req.params.id);
+      const memberId = req.user?.id;
+
+      if (!Number.isInteger(commentId) || commentId <= 0) {
+        res.status(400).json({ success: false, message: "留言編號不正確" });
+        return;
+      }
+      if (!memberId) {
+        res.status(401).json({ success: false, message: "請先登入" });
+        return;
+      }
+
+      const [result] = await pool.query<ResultSetHeader>(
+        `
+          UPDATE blog_comments
+          SET status = 'deleted'
+          WHERE id = ?
+            AND member_id = ?
+            AND status = 'published'
+        `,
+        [commentId, memberId],
+      );
+      if (result.affectedRows === 0) {
+        res.status(404).json({
+          success: false,
+          message: "找不到可刪除的留言",
+        });
+        return;
+      }
+
+      res.status(200).json({ success: true, message: "留言已刪除" });
+    } catch (error) {
+      console.error("[DELETE /api/blog/comments/:id]", error);
+      res.status(500).json({ success: false, message: "刪除留言失敗" });
     }
   },
 );
