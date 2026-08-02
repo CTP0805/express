@@ -6,16 +6,16 @@ import { z } from "zod";
 import sendVerifyEmail from "../utils/send-verify-email.js";
 import sendResetPasswordEmail from "../utils/send-reset-email.js";
 import "dotenv/config";
-import cookieParser from "cookie-parser";
 import crypto from "node:crypto";
 import { authenticate } from "../middlewares/authenticate.js";
+import type { RowDataPacket } from "mysql2/promise";
 
 const { FRONTEND_ORIGIN } = process.env;
 
 const router: Router = Router();
 
 // TS 型別專區
-type MemberRow = {
+type MemberRow = RowDataPacket & {
   id?: number;
   name?: string;
   email?: string;
@@ -137,7 +137,7 @@ router.post("/login", async (req: Request, res: Response) => {
       // 400 Bad Request
       res
         .status(400)
-        .json({ success: false, message: zodResult.error.issues[0].message });
+        .json({ success: false, message: zodResult.error.issues[0]?.message ?? "資料格式錯誤" });
       return;
     }
   }
@@ -146,9 +146,10 @@ router.post("/login", async (req: Request, res: Response) => {
   const sql = `SELECT * FROM member WHERE email = ?`;
   const [member] = await pool.query<MemberRow[]>(sql, [email]);
 
+  
   if (member.length === 0) {
     // 401 Unauthorized
-    res.status(401).json({ success: false, message: "帳號或密碼錯誤(後端)" });
+    res.status(401).json({ success: false, message: "帳號或密碼錯誤" });
     return;
   }
 
@@ -189,13 +190,13 @@ router.post("/login", async (req: Request, res: Response) => {
 
       res.status(200).json({
         success: true,
-        message: "登入成功(後端)",
+        message: "登入成功",
         data: { id, name, email }, // 這裡就不要再把 token 回應給前端，我們已經把 token 放在前端的 cookie 裡了
       });
     }
   } else {
     // 401 Unauthorized
-    res.status(401).json({ success: false, message: "帳號或密碼錯誤(後端)" });
+    res.status(401).json({ success: false, message: "帳號或密碼錯誤" });
   }
 });
 
@@ -210,7 +211,7 @@ router.post("/logout", (req: Request, res: Response) => {
 
   res.status(200).json({
     success: true,
-    message: "登出成功(後端)",
+    message: "登出成功",
   });
 });
 
@@ -222,7 +223,7 @@ router.get("/me", authenticate, async (req: Request, res: Response) => {
     // 401 Unauthorized
     res.status(401).json({
       success: false,
-      message: "尚未登入(後端)",
+      message: "尚未登入",
     });
     return;
   }
@@ -277,7 +278,7 @@ router.post("/register", async (req: Request, res: Response) => {
       // 400 Bad Request
       res
         .status(400)
-        .json({ success: false, message: zodResult.error.issues[0].message });
+        .json({ success: false, message: zodResult.error.issues[0]?.message ?? "資料格式錯誤" });
       return;
     }
   }
@@ -290,7 +291,7 @@ router.post("/register", async (req: Request, res: Response) => {
 
   if (existingMember.length) {
     // 409 Conflict
-    res.status(409).json({ success: false, message: "此 Email 已註冊過(後端)" });
+    res.status(409).json({ success: false, message: "此 Email 已註冊過" });
     return;
   }
 
@@ -311,12 +312,12 @@ router.post("/register", async (req: Request, res: Response) => {
       // 201 Created
       res.status(201).json({
         success: true,
-        message: "註冊成功，已發送驗證信，請至信箱完成驗證(後端)",
+        message: "註冊成功，已發送驗證信，請至信箱完成驗證",
       });
     }
   } catch (error) {
     console.warn(error);
-    res.status(500).json({ success: false, message: "註冊失敗(後端)" });
+    res.status(500).json({ success: false, message: "註冊失敗" });
   }
 });
 
@@ -473,7 +474,7 @@ router.post("/resend-verify-email", async (req: Request, res: Response) => {
   if (!zodResult.success) {
     res.status(400).json({
       success: false,
-      message: zodResult.error.issues[0].message,
+      message: zodResult.error.issues[0]?.message ?? "資料格式錯誤",
     });
     return;
   }
@@ -549,7 +550,7 @@ router.post("/forgot-password", async (req: Request, res: Response) => {
     // 400 Bad Request
     res.status(400).json({
       success: false,
-      message: zodResult.error.issues[0].message,
+      message: zodResult.error.issues[0]?.message ?? "資料格式錯誤",
     });
     return;
   }
@@ -759,7 +760,7 @@ router.put("/reset-password", async (req: Request, res: Response) => {
     // 400 Bad Request
     res.status(400).json({
       success: false,
-      message: zodResult.error.issues[0].message,
+      message: zodResult.error.issues[0]?.message ?? "資料格式錯誤",
     });
     return;
   }
@@ -912,7 +913,7 @@ router.put(
     if (!zodResult.success) {
       res.status(400).json({
         success: false,
-        message: zodResult.error.issues[0].message,
+        message: zodResult.error.issues[0]?.message ?? "資料格式錯誤",
       });
       return;
     }
@@ -953,7 +954,7 @@ router.put(
           .json({ success: true, message: "密碼更新成功，請重新登入！" });
       }
     } else {
-      res.status(400).json({ success: false, message: "帳號或密碼錯誤(後端)" });
+      res.status(400).json({ success: false, message: "帳號或密碼錯誤" });
     }
   },
 );
@@ -1120,11 +1121,5 @@ router.post("/oauth-google", async (req: Request, res: Response) => {
   }
 });
 
-// 刪除帳號???
-router.delete(
-  "/delete-account",
-  authenticate,
-  (req: Request, res: Response) => {},
-);
 
 export default router;
