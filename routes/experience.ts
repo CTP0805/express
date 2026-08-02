@@ -390,6 +390,132 @@ router.get("/categories", async (req: Request, res: Response) => {
   }
 });
 
+// 取得詳情頁相關體驗
+router.get("/:id/related", async (req: Request, res: Response) => {
+  try {
+    const experienceId = Number(req.params.id);
+
+    if (!Number.isInteger(experienceId) || experienceId <= 0) {
+      return res.status(400).json({
+        status: "error",
+        message: "無效的體驗 ID",
+      });
+    }
+
+    const [currentRows] = await pool.query(
+      `
+        SELECT id, city, category_id
+        FROM experiences
+        WHERE id = ?
+        LIMIT 1
+      `,
+      [experienceId],
+    );
+
+    const currentExperience = (currentRows as any[])[0];
+
+    if (!currentExperience) {
+      return res.status(404).json({
+        status: "error",
+        message: "找不到該項體驗商品",
+      });
+    }
+
+    const [rows] = await pool.query(
+      `
+        SELECT
+          e.id,
+          e.title,
+          e.city,
+          c.category_name,
+          COALESCE(ps.adult_min_price, 0) AS price,
+          ci.image_url,
+          COALESCE(rs.rating, 0) AS rating,
+          COALESCE(rs.review_count, 0) AS review_count
+
+        FROM experiences e
+
+        LEFT JOIN experience_categories c
+          ON e.category_id = c.id
+
+        INNER JOIN (
+          SELECT
+            experience_id,
+            MIN(adult_price) AS adult_min_price
+          FROM sessions
+          WHERE status = 1
+            AND start_time >= NOW()
+            AND booking_deadline >= NOW()
+          GROUP BY experience_id
+        ) ps
+          ON e.id = ps.experience_id
+
+        LEFT JOIN (
+          SELECT experience_id, image_url
+          FROM (
+            SELECT
+              experience_id,
+              image_url,
+              ROW_NUMBER() OVER (
+                PARTITION BY experience_id
+                ORDER BY is_primary DESC, sort_order ASC, id ASC
+              ) AS rn
+            FROM experience_images
+          ) ranked_images
+          WHERE rn = 1
+        ) ci
+          ON e.id = ci.experience_id
+
+        LEFT JOIN (
+          SELECT
+            experience_id,
+            ROUND(AVG(rating), 1) AS rating,
+            COUNT(*) AS review_count
+          FROM experience_reviews
+          GROUP BY experience_id
+        ) rs
+          ON e.id = rs.experience_id
+
+        WHERE e.id <> ?
+          AND (e.category_id = ? OR e.city = ?)
+
+        ORDER BY
+         (e.city = ?) DESC,
+          (e.category_id = ?) DESC,
+         
+          COALESCE(rs.rating, 0) DESC,
+          COALESCE(rs.review_count, 0) DESC
+
+        LIMIT 10
+      `,
+      [
+        experienceId,
+        currentExperience.category_id,
+        currentExperience.city,
+        currentExperience.city,
+        currentExperience.category_id,
+      ],
+    );
+
+    res.json({
+      status: "success",
+      data: (rows as any[]).map((item) => ({
+        ...item,
+        price: Number(item.price),
+        rating: Number(item.rating),
+        review_count: Number(item.review_count),
+      })),
+    });
+  } catch (error) {
+    console.error("取得相關體驗失敗:", error);
+
+    res.status(500).json({
+      status: "error",
+      message: "伺服器內部錯誤",
+    });
+  }
+});
+
 // 取得商品詳情頁
 router.get("/:id", async (req: Request, res: Response) => {
   try {
@@ -529,20 +655,36 @@ router.get("/:id", async (req: Request, res: Response) => {
       sort_order: Number(image.sort_order),
     }));
     const sessionsSql = `
-SELECT
-  id,
-  start_time,
-  end_time,
-  adult_price,
-  child_price,
-  min_participants,
-  max_participants
-FROM sessions
-  WHERE experience_id = ?
-    AND status = 1
-    AND start_time >= NOW()
-    AND booking_deadline >= NOW()
-  ORDER BY start_time ASC
+  SELECT
+    s.id,
+    s.start_time,
+    s.end_time,
+    s.adult_price,
+    s.child_price,
+    s.min_participants,
+    s.max_participants,
+    GREATEST(
+      s.max_participants - COALESCE(bookings.booked_participants, 0),
+      0
+    ) AS remaining_participants
+  FROM sessions s
+  LEFT JOIN (
+    SELECT
+      oi.session_id,
+      SUM(oi.quantity) AS booked_participants
+    FROM order_items oi
+    INNER JOIN order_main om
+      ON om.id = oi.order_id
+    WHERE om.order_status = 'paid'
+      AND oi.item_status = 'confirmed'
+    GROUP BY oi.session_id
+  ) bookings
+    ON bookings.session_id = s.id
+  WHERE s.experience_id = ?
+    AND s.status = 1
+    AND s.start_time >= NOW()
+    AND s.booking_deadline >= NOW()
+  ORDER BY s.start_time ASC
 `;
 
     const [sessionRows] = await pool.query(sessionsSql, [experience.id]);
@@ -553,6 +695,7 @@ FROM sessions
       child_price: Number(session.child_price),
       min_participants: Number(session.min_participants),
       max_participants: Number(session.max_participants),
+      remaining_participants: Number(session.remaining_participants),
     }));
 
     const reviewsSql = `
@@ -566,6 +709,7 @@ FROM sessions
 
     m.name AS member_name,
     m.avatar_url AS member_avatar,
+    m.city AS member_city,
 
     s.start_time AS departure_date
   FROM experience_reviews r
@@ -581,9 +725,49 @@ FROM sessions
 
     const [reviewRows] = await pool.query(reviewsSql, [experience.id]);
 
+    const reviewIds = (reviewRows as any[]).map((review) => review.id);
+
+    let reviewImageRows: any[] = [];
+
+    if (reviewIds.length > 0) {
+      const placeholders = reviewIds.map(() => "?").join(",");
+
+      const [rows] = await pool.query(
+        `
+      SELECT
+        id,
+        review_id,
+        image_url,
+        sort_order
+      FROM experience_review_images
+      WHERE review_id IN (${placeholders})
+      ORDER BY review_id ASC, sort_order ASC, id ASC
+    `,
+        reviewIds,
+      );
+
+      reviewImageRows = rows as any[];
+    }
+
+    const imagesByReviewId = new Map<number, any[]>();
+
+    for (const image of reviewImageRows) {
+      const reviewId = Number(image.review_id);
+      const currentImages = imagesByReviewId.get(reviewId) ?? [];
+
+      currentImages.push({
+        id: Number(image.id),
+        image_url: image.image_url,
+        sort_order: Number(image.sort_order),
+      });
+
+      imagesByReviewId.set(reviewId, currentImages);
+    }
+
     const reviews = (reviewRows as any[]).map((review) => ({
       ...review,
       rating: Number(review.rating),
+      images: imagesByReviewId.get(Number(review.id)) ?? [],
     }));
 
     // 成功找到，回傳單一商品物件

@@ -401,6 +401,24 @@ CREATE TABLE `experience_reviews` (
   COLLATE=utf8mb4_unicode_ci
   AUTO_INCREMENT=11;
 
+-- experience_reviews_images
+
+CREATE TABLE experience_review_images (
+  id INT NOT NULL AUTO_INCREMENT,
+  review_id INT NOT NULL,
+  image_url VARCHAR(500) NOT NULL,
+  sort_order INT NOT NULL DEFAULT 0,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (id),
+  INDEX idx_review_images_review_order (review_id, sort_order, id),
+
+  CONSTRAINT fk_review_images_review
+    FOREIGN KEY (review_id)
+    REFERENCES experience_reviews(id)
+    ON DELETE CASCADE
+);
+
 -- ========================================================
 -- 14. posts
 -- 依賴：member、experience_categories、order_items、experiences
