@@ -37,6 +37,12 @@ type OrderMainRow = RowDataPacket & {
   updated_at: Date | string;
 };
 
+type ReviewImage = {
+  id: number;
+  image_url: string;
+  sort_order: number;
+};
+
 type OrderItemRow = RowDataPacket & {
   id: number;
   order_id: string;
@@ -55,7 +61,7 @@ type OrderItemRow = RowDataPacket & {
   review_id: number | null;
   review_rating: number | null;
   review_comment: string | null;
-  review_image_url: string | null;
+  review_images: ReviewImage[];
   review_created_at: Date | string | null;
 };
 
@@ -130,7 +136,6 @@ async function fetchItemsForOrders(
         r.id AS review_id,
         r.rating AS review_rating,
         r.comment AS review_comment,
-        r.image_url AS review_image_url,
         r.created_at AS review_created_at
       FROM order_items oi
       LEFT JOIN experiences e ON e.id = oi.experience_id
@@ -142,7 +147,49 @@ async function fetchItemsForOrders(
     `,
     orderIds,
   );
+  const reviewIds = [
+    ...new Set(
+      rows
+        .map((row) => Number(row.review_id))
+        .filter((id) => Number.isInteger(id) && id > 0),
+    ),
+  ];
 
+  const imagesByReviewId = new Map<number, ReviewImage[]>();
+
+  if (reviewIds.length > 0) {
+    const reviewPlaceholders = reviewIds.map(() => "?").join(", ");
+
+    const [imageRows] = await pool.query<RowDataPacket[]>(
+      `
+      SELECT id, review_id, image_url, sort_order
+      FROM experience_review_images
+      WHERE review_id IN (${reviewPlaceholders})
+      ORDER BY review_id ASC, sort_order ASC, id ASC
+    `,
+      reviewIds,
+    );
+
+    for (const image of imageRows) {
+      const reviewId = Number(image.review_id);
+      const images = imagesByReviewId.get(reviewId) ?? [];
+
+      images.push({
+        id: Number(image.id),
+        image_url: String(image.image_url),
+        sort_order: Number(image.sort_order),
+      });
+
+      imagesByReviewId.set(reviewId, images);
+    }
+  }
+
+  for (const row of rows) {
+    row.review_images =
+      row.review_id == null
+        ? []
+        : (imagesByReviewId.get(Number(row.review_id)) ?? []);
+  }
   for (const row of rows) {
     const key = String(row.order_id);
     const list = map.get(key) ?? [];
@@ -158,7 +205,7 @@ function mapItemReview(it: OrderItemRow) {
     id: Number(it.review_id),
     rating: Number(it.review_rating) || 0,
     comment: String(it.review_comment ?? ""),
-    image_url: it.review_image_url ?? null,
+    images: it.review_images ?? [],
     created_at: toIso(it.review_created_at),
   };
 }
@@ -188,12 +235,10 @@ function mapOrder(main: OrderMainRow, items: OrderItemRow[]) {
   const primary = mappedItems[0];
   const reviewableItems = mappedItems.filter(
     (it) =>
-      String(main.order_status) === "paid" &&
-      it.item_status !== "cancelled",
+      String(main.order_status) === "paid" && it.item_status !== "cancelled",
   );
   const allReviewed =
-    reviewableItems.length > 0 &&
-    reviewableItems.every((it) => it.has_review);
+    reviewableItems.length > 0 && reviewableItems.every((it) => it.has_review);
   const anyReviewed = reviewableItems.some((it) => it.has_review);
   const canReview =
     String(main.order_status) === "paid" &&
@@ -222,8 +267,7 @@ function mapOrder(main: OrderMainRow, items: OrderItemRow[]) {
     image_url: primary?.image_url ?? null,
     items: mappedItems,
     /** 是否可取消 */
-    can_cancel:
-      main.order_status === "pending" || main.order_status === "paid",
+    can_cancel: main.order_status === "pending" || main.order_status === "paid",
     /** 評價狀態（訂單層） */
     can_review: canReview,
     has_review: anyReviewed,
@@ -293,8 +337,7 @@ router.post(
   (req: Request, res: Response, next) => {
     reviewImageUpload.single("image")(req, res, (err: unknown) => {
       if (err) {
-        const message =
-          err instanceof Error ? err.message : "上傳失敗";
+        const message = err instanceof Error ? err.message : "上傳失敗";
         if (
           err &&
           typeof err === "object" &&
@@ -357,14 +400,41 @@ router.post(
       const body = req.body as {
         rating?: number;
         comment?: string;
-        image_url?: string | null;
+        image_urls?: unknown;
       };
+
       const rating = Number(body.rating);
       const comment = String(body.comment ?? "").trim();
-      const imageUrl = body.image_url
-        ? String(body.image_url).trim().slice(0, 255)
-        : null;
 
+      const imageUrls = Array.isArray(body.image_urls)
+        ? body.image_urls
+            .filter((url): url is string => typeof url === "string")
+            .map((url) => url.trim())
+            .filter(Boolean)
+        : [];
+      if (imageUrls.length > 6) {
+        res.status(400).json({
+          success: false,
+          message: "最多可上傳 6 張評價照片",
+        });
+        return;
+      }
+
+      if (imageUrls.some((url) => url.length > 500)) {
+        res.status(400).json({
+          success: false,
+          message: "圖片路徑格式錯誤",
+        });
+        return;
+      }
+
+      if (imageUrls.some((url) => !url.startsWith("/uploads/reviews/"))) {
+        res.status(400).json({
+          success: false,
+          message: "圖片路徑無效",
+        });
+        return;
+      }
       if (!Number.isFinite(rating) || rating < 1 || rating > 5) {
         res.status(400).json({ success: false, message: "評分請選 1～5 星" });
         return;
@@ -417,7 +487,9 @@ router.post(
         return;
       }
       if (String(item.item_status) === "cancelled") {
-        res.status(400).json({ success: false, message: "已取消的項目無法評價" });
+        res
+          .status(400)
+          .json({ success: false, message: "已取消的項目無法評價" });
         return;
       }
 
@@ -432,19 +504,30 @@ router.post(
 
       const [insertResult] = await pool.query<ResultSetHeader>(
         `
-          INSERT INTO experience_reviews
-            (order_item_id, experience_id, member_id, rating, comment, image_url, created_at)
-          VALUES (?, ?, ?, ?, ?, ?, NOW())
-        `,
-        [
-          itemId,
-          Number(item.experience_id),
-          memberId,
-          rating,
-          comment,
-          imageUrl,
-        ],
+    INSERT INTO experience_reviews
+      (order_item_id, experience_id, member_id, rating, comment, image_url, created_at)
+    VALUES (?, ?, ?, ?, ?, NULL, NOW())
+  `,
+        [itemId, Number(item.experience_id), memberId, rating, comment],
       );
+      if (imageUrls.length > 0) {
+        const values = imageUrls.map((imageUrl, index) => [
+          insertResult.insertId,
+          imageUrl,
+          index,
+        ]);
+
+        const placeholders = values.map(() => "(?, ?, ?)").join(", ");
+
+        await pool.query(
+          `
+      INSERT INTO experience_review_images
+        (review_id, image_url, sort_order)
+      VALUES ${placeholders}
+    `,
+          values.flat(),
+        );
+      }
 
       const [reviewRows] = await pool.query<RowDataPacket[]>(
         `
@@ -456,7 +539,15 @@ router.post(
         [insertResult.insertId],
       );
       const r = reviewRows[0];
-
+      const [reviewImageRows] = await pool.query<RowDataPacket[]>(
+        `
+    SELECT id, image_url, sort_order
+    FROM experience_review_images
+    WHERE review_id = ?
+    ORDER BY sort_order ASC, id ASC
+  `,
+        [insertResult.insertId],
+      );
       // 回傳更新後的整筆訂單，方便前端刷新卡片
       const orderId = String(item.order_id);
       const [orderRows] = await pool.query<OrderMainRow[]>(
@@ -483,7 +574,11 @@ router.post(
                 id: Number(r.id),
                 rating: Number(r.rating),
                 comment: String(r.comment),
-                image_url: (r.image_url as string) ?? null,
+                images: reviewImageRows.map((image) => ({
+                  id: Number(image.id),
+                  image_url: String(image.image_url),
+                  sort_order: Number(image.sort_order),
+                })),
                 created_at: toIso(r.created_at as Date | string),
               }
             : null,
