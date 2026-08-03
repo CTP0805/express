@@ -97,6 +97,7 @@ type BlogCommentRow = RowDataPacket & {
   author_name: string;
   author_avatar: string | null;
   content: string;
+  status: "published" | "deleted";
   created_at: Date | string;
   updated_at: Date | string;
 };
@@ -272,7 +273,8 @@ function mapBlogComment(row: BlogCommentRow) {
     member_id: Number(row.member_id),
     author_name: row.author_name,
     author_avatar: row.author_avatar,
-    content: row.content,
+    content: row.status === "deleted" ? "" : row.content,
+    status: row.status,
     created_at: toIso(row.created_at) ?? new Date().toISOString(),
     updated_at: toIso(row.updated_at) ?? new Date().toISOString(),
   };
@@ -535,6 +537,9 @@ router.get("/pending-review",
           ? req.query.status.trim()
           : "pending_review";
 
+      const statusWhere = statusFilter === "all" ? "" : "WHERE p.status = ?";
+      const params = statusFilter === "all" ? [] : [statusFilter];
+
       const [rows] = await pool.query<PostRow[]>(
         `
           SELECT
@@ -544,10 +549,10 @@ router.get("/pending-review",
           FROM posts p
           LEFT JOIN member m ON m.id = p.author_id
           LEFT JOIN experience_categories ec ON ec.id = p.category_id
-          WHERE p.status = ?
+          ${statusWhere}
           ORDER BY p.updated_at DESC
         `,
-        [statusFilter],
+        params,
       );
 
       res.status(200).json({
@@ -684,13 +689,13 @@ router.get("/slug/:slug/comments", async (req: Request, res: Response) => {
           m.name AS author_name,
           m.avatar_url AS author_avatar,
           bc.content,
+          bc.status,
           bc.created_at,
           bc.updated_at
         FROM blog_comments AS bc
         INNER JOIN member AS m
           ON m.id = bc.member_id
         WHERE bc.post_id = ?
-          AND bc.status = 'published'
         ORDER BY bc.created_at DESC, bc.id DESC
       `,
       [post.id],
@@ -753,10 +758,24 @@ router.post(
             post_id,
             member_id,
             content
-          ) VALUES (?, ?, ?)
+          )
+          SELECT ?, ?, ?
+          WHERE NOT EXISTS (
+            SELECT 1
+            FROM blog_comments
+            WHERE post_id = ?
+              AND member_id = ?
+          )
         `,
-        [post.id, req.user!.id, content],
+        [post.id, req.user!.id, content, post.id, req.user!.id],
       );
+      if (result.affectedRows === 0) {
+        res.status(409).json({
+          success: false,
+          message: "您已留言過，不能重複留言",
+        });
+        return;
+      }
 
       const [rows] = await pool.query<BlogCommentRow[]>(
         `
@@ -767,6 +786,7 @@ router.post(
             m.name AS author_name,
             m.avatar_url AS author_avatar,
             bc.content,
+            bc.status,
             bc.created_at,
             bc.updated_at
           FROM blog_comments AS bc
@@ -855,6 +875,7 @@ router.put(
             m.name AS author_name,
             m.avatar_url AS author_avatar,
             bc.content,
+            bc.status,
             bc.created_at,
             bc.updated_at
           FROM blog_comments AS bc
