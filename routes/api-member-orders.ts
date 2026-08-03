@@ -18,7 +18,7 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
         order_items.subtotal AS item_price,
         order_main.final_amount,
         order_main.created_at AS order_date,
-        order_main.created_at AS booking_date,
+        sessions.start_time AS booking_date,
         order_main.coupon_discount,
         order_main.points_redeemed,
         experiences.id AS experience_id,
@@ -29,6 +29,7 @@ router.get("/", authenticate, async (req: Request, res: Response) => {
        FROM order_items
        JOIN order_main ON order_items.order_id = order_main.id
        JOIN experiences ON order_items.experience_id = experiences.id
+       LEFT JOIN sessions ON order_items.session_id = sessions.id
        LEFT JOIN experience_images ON experiences.id = experience_images.experience_id AND experience_images.is_primary = 1
        WHERE order_main.member_id = ?
        ORDER BY order_main.created_at DESC`,
@@ -53,9 +54,8 @@ router.post("/cancel", authenticate, async (req: Request, res: Response) => {
       `SELECT 
         order_items.id AS item_id,
         order_items.item_status,
-        order_main.id AS order_id,
-        order_main.final_amount,
-        order_main.points_earned
+        order_items.subtotal,
+        order_main.id AS order_id
       FROM order_items
       JOIN order_main ON order_items.order_id = order_main.id
       WHERE order_items.id = ? AND order_main.member_id = ?`,
@@ -76,21 +76,20 @@ router.post("/cancel", authenticate, async (req: Request, res: Response) => {
     }
 
     // 計算應退還的 M 幣 (以實付金額 1:1 轉換) 與 應扣除的已贈送 M 幣
-    const refundPoints = Math.round(Number(item.final_amount) || 0);
+    const refundPoints = Math.round(Number(item.subtotal) || 0);
     // B. 計算應扣除的當初贈送 M 幣
     const earnedPointsToDeduct = Math.round(Number(item.points_earned) || 0);
 
-    // B. 將該筆 order_items 狀態更新為 'cancelled'
+    // C. 將該筆 order_items 狀態更新為 'cancelled'
     await pool.query(
       "UPDATE order_items SET item_status = 'cancelled' WHERE id = ?",
       [item_id],
     );
 
-    // 更新會員 M 幣 (加上退款 M 幣 - 扣除已發放的獎勵點數)
-    const netPointsChange = refundPoints - earnedPointsToDeduct;
+    // 將退還的 M 幣全額加回會員帳戶
     await pool.query(
-      "UPDATE member SET current_points = GREATEST(0, current_points + ?) WHERE id = ?",
-      [netPointsChange, memberId],
+      "UPDATE member SET current_points = current_points + ? WHERE id = ?",
+      [refundPoints, memberId]
     );
 
     res.json({
