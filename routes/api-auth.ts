@@ -312,7 +312,7 @@ router.post("/register", async (req: Request, res: Response) => {
       // 201 Created
       res.status(201).json({
         success: true,
-        message: "註冊成功，已發送驗證信，請至信箱完成驗證",
+        message: "註冊成功，已發送驗證信！",
       });
     }
   } catch (error) {
