@@ -38,6 +38,7 @@
  * POST   /api/blog                 新增（會員綁 order_id）
  * PUT    /api/blog/:id             更新（僅作者內容；管理者不可改內容）
  * POST   /api/blog/:id/review      管理者通過／駁回 + 註解
+ * POST   /api/blog/:id/unpublish   管理者下架已上架文章
  * DELETE /api/blog/:id             刪除（僅作者）
  */
 import { type Request, type Response, Router } from "express";
@@ -51,7 +52,7 @@ import {
 
 const router: Router = Router();
 
-// ---------- 常數：標題長度、允許的文章狀態（和前端 types 要對齊）----------
+// ---------- 常數：標題長度、會員可送出的文章狀態 ----------
 const TITLE_MAX = 20;
 const ALLOWED_STATUS = new Set([
   "draft", // 草稿
@@ -814,6 +815,60 @@ router.post(
     } catch (error) {
       console.error("[POST /api/blog/slug/:slug/comments]", error);
       res.status(500).json({ success: false, message: "送出留言失敗" });
+    }
+  },
+);
+
+// =============================================================================
+// 【區塊】下架 POST /:id/unpublish（僅管理者）
+// 誰用：member/edit-post 管理員的所有文章列表
+// 做什麼：把已上架文章改為 unpublished，公開列表會立刻不再顯示
+// =============================================================================
+router.post(
+  "/:id/unpublish",
+  authenticate,
+  async (req: Request, res: Response) => {
+    try {
+      const role = await getMemberRole(req.user!.id);
+      if (!isAdminRole(role)) {
+        res.status(403).json({ success: false, message: "僅管理者可下架文章" });
+        return;
+      }
+
+      const id = Number(req.params.id);
+      if (!Number.isFinite(id) || id <= 0) {
+        res.status(400).json({ success: false, message: "無效的文章 ID" });
+        return;
+      }
+
+      const [result] = await pool.query<ResultSetHeader>(
+        `UPDATE posts SET status = 'unpublished' WHERE id = ? AND status = 'published'`,
+        [id],
+      );
+      if (result.affectedRows === 0) {
+        res.status(400).json({ success: false, message: "找不到可下架的已上架文章" });
+        return;
+      }
+
+      const select = await getPostSelect();
+      const [rows] = await pool.query<PostRow[]>(
+        `SELECT ${select} FROM posts WHERE id = ? LIMIT 1`,
+        [id],
+      );
+      const post = rows[0];
+      if (!post) {
+        res.status(500).json({ success: false, message: "文章下架後讀取失敗" });
+        return;
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "文章已下架",
+        post: mapPost(post),
+      });
+    } catch (error) {
+      console.error("[POST /api/blog/:id/unpublish]", error);
+      res.status(500).json({ success: false, message: "下架文章失敗" });
     }
   },
 );
