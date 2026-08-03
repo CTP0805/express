@@ -82,8 +82,8 @@ INSERT INTO `member` (
 (60, '鍾語嫣', 'zhong.yuyan@example.com', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', '0989234567', '女', '1990-04-12', '/avatars/default/women/30.jpg', '環遊旅人', '2024-02-05 09:20:00', NULL, 6940, 111500, 54, '2023-10-30 15:20:00', '2025-07-20 08:30:00', 2, '會員', '桃園市'),
 (101, '一般會員(測試)', 'member@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '啟程旅人', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:42:45', '2026-07-21 09:44:46', 1, '會員', NULL),
 (102, '管理員(測試)', 'admin@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '啟程旅人', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:44:46', '2026-07-21 09:44:46', 1, '管理者', NULL),
-(103, '客服(測試)', 'support@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '啟程旅人', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:46:55', '2026-07-21 09:46:55', 1, '客服', NULL);
-(104, 'yang powei', 'hwty2124@gmail.com', '$2b$10S2ASBYDDshqtCwJEPMIklutAidsto1h/LM5tR7Es91...', '0911123456', NULL, NULL, NULL, '啟程旅人', '2026-08-01 20:32:38', NULL, 10000, 0, 0, '2026-08-02 20:32:16', '2026-08-02 22:48:11', 1, '會員', NULL);
+(103, '客服(測試)', 'support@example.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', NULL, NULL, NULL, NULL, '啟程旅人', '2026-07-18 11:40:45', NULL, 0, 0, 0, '2026-07-21 09:46:55', '2026-07-21 09:46:55', 1, '客服', NULL),
+(104, 'yang powei', 'hwby2124@gmail.com', '$2b$10$ULh5GqF3nEDSpzB82gWx8O.AtcZvB3sjKHswYngrNPouEf8GBy6s6', '0911123456', NULL, NULL, NULL, '啟程旅人', '2026-08-01 20:32:38', NULL, 10000, 0, 0, '2026-08-02 20:32:16', '2026-08-02 22:48:11', 1, '會員', NULL);
 
 -- --------------------------------------------------------
 -- Seed data for `coupons`
@@ -3876,7 +3876,6 @@ INSERT INTO `member_coupons` (`id`, `member_id`, `coupon_id`, `is_used`, `receiv
 (627, 103, 7, 0, '2026-06-04 15:50:00', NULL),
 (628, 103, 8, 0, '2026-06-04 16:51:00', NULL),
 (629, 103, 9, 0, '2026-06-04 17:52:00', NULL),
-(630, 103, 10, 0, '2026-06-04 08:53:00', NULL);
 (630, 103, 10, 0, '2026-06-04 08:53:00', NULL),
 (631, 104, 1, 0, '2026-08-02 20:35:25', NULL),
 (632, 104, 2, 0, '2026-08-02 20:35:38', NULL),
