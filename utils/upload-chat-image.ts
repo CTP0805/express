@@ -1,7 +1,18 @@
 // 這個檔案是在寫一個上傳檔案的模組
 import multer, { type FileFilterCallback } from "multer";
+import fs from "fs";
+import path from "path";
 import type { Request } from "express";
 import { v4 } from "uuid"; // uuid 是獨一無二的亂碼
+const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "reviews");
+
+function ensureUploadDir(): void {
+  if (!fs.existsSync(UPLOAD_DIR)) {
+    fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+  }
+}
+
+ensureUploadDir();
 
 // 1.篩選檔案、 2.決定副檔名
 const extMap: Record<string, string> = {

@@ -11,15 +11,36 @@ type ChatMessage = {
 
 export default function chatSocket(io: Server) {
   io.on("connection", (socket) => {
-    socket.on("admin-online", (adminId) => {
+    io.on("connection", (socket) => {
+      console.log("連線:", socket.id);
+
+      socket.on("disconnect", () => {
+        console.log("斷線:", socket.id);
+      });
+    });
+    socket.on("admin-online", ({ adminId }) => {
       onlineAdmins.set(String(adminId), socket.id);
 
-      console.log("客服上線:", adminId, socket.id);
+      console.log("客服上線:", adminId);
 
       io.emit("admin-status", {
-        adminId,
         online: true,
       });
+    });
+    socket.on("check-admin-status", () => {
+      socket.emit("admin-status", {
+        online: onlineAdmins.size > 0,
+      });
+    });
+
+    socket.on("admin-offline", ({ adminId }) => {
+      onlineAdmins.delete(String(adminId));
+
+      io.emit("admin-status", {
+        online: false,
+      });
+
+      console.log("客服登出:", adminId);
     });
     socket.on("disconnect", () => {
       for (const [adminId, socketId] of onlineAdmins.entries()) {
