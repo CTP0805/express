@@ -488,6 +488,7 @@ CREATE TABLE `blog_comments` (
   `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
   PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_blog_comments_post_member` (`post_id`, `member_id`),
   KEY `idx_blog_comments_post_created` (`post_id`, `created_at`),
   KEY `idx_blog_comments_member_id` (`member_id`),
 

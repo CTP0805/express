@@ -38,6 +38,7 @@
  * POST   /api/blog                 新增（會員綁 order_id）
  * PUT    /api/blog/:id             更新（僅作者內容；管理者不可改內容）
  * POST   /api/blog/:id/review      管理者通過／駁回 + 註解
+ * POST   /api/blog/:id/unpublish   管理者下架已上架文章
  * DELETE /api/blog/:id             刪除（僅作者）
  */
 import { type Request, type Response, Router } from "express";
@@ -51,7 +52,7 @@ import {
 
 const router: Router = Router();
 
-// ---------- 常數：標題長度、允許的文章狀態（和前端 types 要對齊）----------
+// ---------- 常數：標題長度、會員可送出的文章狀態 ----------
 const TITLE_MAX = 20;
 const ALLOWED_STATUS = new Set([
   "draft", // 草稿
@@ -97,6 +98,7 @@ type BlogCommentRow = RowDataPacket & {
   author_name: string;
   author_avatar: string | null;
   content: string;
+  status: "published" | "deleted";
   created_at: Date | string;
   updated_at: Date | string;
 };
@@ -272,7 +274,8 @@ function mapBlogComment(row: BlogCommentRow) {
     member_id: Number(row.member_id),
     author_name: row.author_name,
     author_avatar: row.author_avatar,
-    content: row.content,
+    content: row.status === "deleted" ? "" : row.content,
+    status: row.status,
     created_at: toIso(row.created_at) ?? new Date().toISOString(),
     updated_at: toIso(row.updated_at) ?? new Date().toISOString(),
   };
@@ -535,6 +538,9 @@ router.get("/pending-review",
           ? req.query.status.trim()
           : "pending_review";
 
+      const statusWhere = statusFilter === "all" ? "" : "WHERE p.status = ?";
+      const params = statusFilter === "all" ? [] : [statusFilter];
+
       const [rows] = await pool.query<PostRow[]>(
         `
           SELECT
@@ -544,10 +550,10 @@ router.get("/pending-review",
           FROM posts p
           LEFT JOIN member m ON m.id = p.author_id
           LEFT JOIN experience_categories ec ON ec.id = p.category_id
-          WHERE p.status = ?
+          ${statusWhere}
           ORDER BY p.updated_at DESC
         `,
-        [statusFilter],
+        params,
       );
 
       res.status(200).json({
@@ -684,13 +690,13 @@ router.get("/slug/:slug/comments", async (req: Request, res: Response) => {
           m.name AS author_name,
           m.avatar_url AS author_avatar,
           bc.content,
+          bc.status,
           bc.created_at,
           bc.updated_at
         FROM blog_comments AS bc
         INNER JOIN member AS m
           ON m.id = bc.member_id
         WHERE bc.post_id = ?
-          AND bc.status = 'published'
         ORDER BY bc.created_at DESC, bc.id DESC
       `,
       [post.id],
@@ -753,10 +759,24 @@ router.post(
             post_id,
             member_id,
             content
-          ) VALUES (?, ?, ?)
+          )
+          SELECT ?, ?, ?
+          WHERE NOT EXISTS (
+            SELECT 1
+            FROM blog_comments
+            WHERE post_id = ?
+              AND member_id = ?
+          )
         `,
-        [post.id, req.user!.id, content],
+        [post.id, req.user!.id, content, post.id, req.user!.id],
       );
+      if (result.affectedRows === 0) {
+        res.status(409).json({
+          success: false,
+          message: "您已留言過，不能重複留言",
+        });
+        return;
+      }
 
       const [rows] = await pool.query<BlogCommentRow[]>(
         `
@@ -767,6 +787,7 @@ router.post(
             m.name AS author_name,
             m.avatar_url AS author_avatar,
             bc.content,
+            bc.status,
             bc.created_at,
             bc.updated_at
           FROM blog_comments AS bc
@@ -794,6 +815,60 @@ router.post(
     } catch (error) {
       console.error("[POST /api/blog/slug/:slug/comments]", error);
       res.status(500).json({ success: false, message: "送出留言失敗" });
+    }
+  },
+);
+
+// =============================================================================
+// 【區塊】下架 POST /:id/unpublish（僅管理者）
+// 誰用：member/edit-post 管理員的所有文章列表
+// 做什麼：把已上架文章改為 unpublished，公開列表會立刻不再顯示
+// =============================================================================
+router.post(
+  "/:id/unpublish",
+  authenticate,
+  async (req: Request, res: Response) => {
+    try {
+      const role = await getMemberRole(req.user!.id);
+      if (!isAdminRole(role)) {
+        res.status(403).json({ success: false, message: "僅管理者可下架文章" });
+        return;
+      }
+
+      const id = Number(req.params.id);
+      if (!Number.isFinite(id) || id <= 0) {
+        res.status(400).json({ success: false, message: "無效的文章 ID" });
+        return;
+      }
+
+      const [result] = await pool.query<ResultSetHeader>(
+        `UPDATE posts SET status = 'unpublished' WHERE id = ? AND status = 'published'`,
+        [id],
+      );
+      if (result.affectedRows === 0) {
+        res.status(400).json({ success: false, message: "找不到可下架的已上架文章" });
+        return;
+      }
+
+      const select = await getPostSelect();
+      const [rows] = await pool.query<PostRow[]>(
+        `SELECT ${select} FROM posts WHERE id = ? LIMIT 1`,
+        [id],
+      );
+      const post = rows[0];
+      if (!post) {
+        res.status(500).json({ success: false, message: "文章下架後讀取失敗" });
+        return;
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "文章已下架",
+        post: mapPost(post),
+      });
+    } catch (error) {
+      console.error("[POST /api/blog/:id/unpublish]", error);
+      res.status(500).json({ success: false, message: "下架文章失敗" });
     }
   },
 );
@@ -855,6 +930,7 @@ router.put(
             m.name AS author_name,
             m.avatar_url AS author_avatar,
             bc.content,
+            bc.status,
             bc.created_at,
             bc.updated_at
           FROM blog_comments AS bc

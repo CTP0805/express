@@ -37,8 +37,11 @@ export function saveDataUrlToBlogPublic(dataUrl: string): string | null {
   );
   if (!match) return null;
 
-  const mime = match[1].toLowerCase();
-  const b64 = match[2].replace(/\s/g, "");
+  const [, rawMime, rawBase64] = match;
+  if (!rawMime || !rawBase64) return null;
+
+  const mime = rawMime.toLowerCase();
+  const b64 = rawBase64.replace(/\s/g, "");
   const ext = MIME_EXT[mime];
   if (!ext) return null;
 
